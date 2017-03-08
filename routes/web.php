@@ -29,6 +29,12 @@ Route::group(['namespace' => 'Frontend','middleware' => 'web'], function (){
     Route::get('our-history', 'PageController@history')->name('frontend.history');
     Route::get('our-process', 'PageController@process')->name('frontend.process');
     Route::get('infil', 'PageController@infil')->name('frontend.infil');
+
+    // Application
+    Route::get('apply', 'ApplicationController@showApply')->name('frontend.apply');
+    Route::get('apply/{type}', 'ApplicationController@showApplication')->name('frontend.apply.application');
+    Route::post('apply', 'ApplicationController@postApplication')->name('frontend.apply.application.post');
+
 });
 
 // Authentication Pages
