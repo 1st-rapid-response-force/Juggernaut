@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <meta name="_token" content="{{ csrf_token() }}" />
 
-    <title>Strategic Development Group - @yield('title')</title>
+    <title>1st Rapid Response Force - @yield('title')</title>
 
     <!-- FAVICON -->
     <link rel="shortcut icon" href="img/favicon.ico">
