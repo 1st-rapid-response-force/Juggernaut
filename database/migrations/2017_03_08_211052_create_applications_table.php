@@ -16,7 +16,7 @@ class CreateApplicationsTable extends Migration
         Schema::create('applications', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->json('application');
+            $table->text('application');
             $table->boolean('interview_required')->default(false);
             $table->unsignedInteger('interview_id')->nullable();
             $table->integer('status')->default(1);
