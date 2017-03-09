@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\Message;
+use App\User;
+use Carbon\Carbon;
+use Cmgmyr\Messenger\Models\Participant;
+use Cmgmyr\Messenger\Models\Thread;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -50,6 +55,38 @@ class ApplicationController extends Controller
             $appModel->interview_required = true;
             $appModel->interview_id = mt_rand(1,3);
             $appModel->save();
+
+            $body = \Crypt::encrypt('THE FOLLOWING MEMBER IS REQUESTING A POSITION WHICH REQUIRES AN INTERVIEW: '.$request->type.' - PLEASE CONTACT MEMBER ON TEAMSPEAK - http://steamcommunity.com/profiles/'.$user->steam_id);
+            //Lets email the interviewer
+            $thread = Thread::create(
+                [
+                    'subject' => 'New Applicant - Interview Request - '.$user->name(),
+                ]
+            );
+            // Message
+            $message = Message::create(
+                [
+                    'thread_id' => $thread->id,
+                    'user_id'   => $appModel->interview_id,
+                    'body'      => $body
+                ]
+            );
+
+            // Sender
+            Participant::create(
+                [
+                    'thread_id' => $thread->id,
+                    'user_id'   => $appModel->interview_id,
+                    'last_read' => new Carbon
+                ]
+            );
+            $data = [
+                'title' => 'New Applicant - Interview Request - '.$user->name(),
+                'content' => $body,
+                'creator' => $appModel->interview_id,
+                'id' => $thread->id
+            ];
+            $this->emailUsersNewMessage([$appModel->interview_id],$data);
         }
 
         return redirect(route('frontend.apply.application.success'));
@@ -66,6 +103,25 @@ class ApplicationController extends Controller
             return redirect(route('frontend.apply'));
         }
 
+    }
+
+    /**
+     * Sends emails to all recipients
+     * @param $users
+     * @param $data
+     */
+    private function emailUsersNewMessage($users,$data)
+    {
+        foreach($users as $userID)
+        {
+            $user = User::find($userID);
+            \Mail::send('emails.newMessage', ['user' => $user,'data' =>$data], function ($m) use ($user,$data) {
+                $m->to($user->email, $user->member);
+                $m->subject('1st RRF - New Message - '.$data['title']);
+                $m->from('no-reply@1st-rrf.com','NATO Strategic Development Group');
+                $m->sender('no-reply@1st-rrf.com','NATO Strategic Development Group');
+            });
+        }
     }
 
 }

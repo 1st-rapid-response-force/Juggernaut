@@ -15,6 +15,14 @@ class TeamTableSeeder extends Seeder
             'name' => '1st Rapid Response Force - HQ',
         ]);
 
+        $rrf = \App\Models\Unit\Team::create([
+            'name' => '1st Rapid Response Force - Reserves',
+            'parent_id' => $rrf->id
+        ]);
+
+
+
+
 
         // 1st Platoon
         $platoon = \App\Models\Unit\Team::create([

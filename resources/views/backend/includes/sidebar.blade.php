@@ -24,6 +24,10 @@
                 {{ link_to_route('admin.dashboard', trans('menus.backend.sidebar.dashboard')) }}
             </li>
 
+            <li class="{{ Active::pattern('admin/applications*') }}">
+                <a href="{{route('admin.applications.index')}}"> <i class="fa fa-file" aria-hidden="true"></i> Applications</a>
+            </li>
+
             <li class="{{ Active::pattern('admin/calendar*') }}">
                 <a href="{{route('admin.calendar.index')}}"> <i class="fa fa-calendar" aria-hidden="true"></i> {{trans('menus.backend.unit.calendar.name')}}</a>
             </li>

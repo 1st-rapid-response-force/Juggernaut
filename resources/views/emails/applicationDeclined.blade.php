@@ -195,7 +195,7 @@
                                 <tr>
                                     <td valign="top" class="mobile-block mobile-no-padding-bottom mobile-center" width="270" style="background:#1f1f1f;padding:10px 10px 10px 20px;">
                                         <a href="#" style="text-decoration:none;">
-                                            <img src="http://1st-rrf.com/img/email-logo.png" alt="SDG"/>
+                                            <img src="http://1st-rrf.com/img/email-logo.png" alt="RRF"/>
                                         </a>
                                     </td>
                                 </tr>
@@ -211,14 +211,13 @@
                             <table cellpadding="0" cellspacing="0" width="600" class="w320">
                                 <tr>
                                     <td align="left" class="mobile-padding" style="padding:20px 20px 0">
-
-                                        <h1>{{$data['title']}}</h1>
+                                        <h1>Your Application has been declined</h1>
                                         <br>
-                                        You have been added to a conversation.
+                                        After review, your application has been declined by our board.
+                                        <br><br>
+                                        You are still welcome on all of our public facing assets, such as our public server and teamspeak.
                                         <br>
-                                        You can view this message here - <a href="http://sdg-arma.com/my-inbox/{{$data['id']}}">My Inbox - View Message</a>
-                                        <br>
-                                        <small>We are a gaming group for ARMA 3 - we are not affiliated or represent any real world entity</small>
+                                        <small>We are a gaming MILSIM group for ARMA 3 - we are not affiliated or represent any real world entity</small>
                                         <br><br>
                                     </td>
                                 </tr>

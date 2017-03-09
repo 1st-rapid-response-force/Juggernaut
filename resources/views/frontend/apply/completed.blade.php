@@ -26,7 +26,6 @@
 
                             <p>While you wait for us to process your application why not:</p>
                             <ul>
-                                <li>Download the <a href="/modpack">modpack via Infil</a></li>
                                 <li>Hop onto <a href="ts3server://ts.1st-rrf.com?port=9987&addbookmark=1st Rapid Response Force">Teamspeak Server</a> and get to know everyone</li>
                                 @if(\Auth::User()->application->interview_required)
                                 <li>Complete your interview on the Teamspeak</li>
@@ -34,10 +33,6 @@
                                 <li>Sign up to the <a href="http://steamcommunity.com/groups/1st-rrf">1st RRF Steam group</a> and get notifications when the public server is running an organized event.</li>
                             </ul>
                             <p>See you on the Battlefield.</p>
-                            <div class="text-center">
-                                <h3>The First Graduating Class of the 1st RRF</h3>
-                                <img src="https://i.imgur.com/HG3fYPW.jpg" class="img-thumbnail">
-                            </div>
                         </div>
                     </div>
                 </div>

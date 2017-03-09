@@ -87,8 +87,15 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['web','auth','admin'], 
     Route::get('/', ['as' => 'admin.index', 'uses' => 'DashboardController@index']);
     Route::get('/dashboard', ['as' => 'admin.dashboard', 'uses' => 'DashboardController@index']);
 
+    Route::group(['namespace' => 'Unit\Application'], function (){
+        Route::resource('applications', 'ApplicationController', ['as' => 'admin']);
+        Route::get('applications/{id}/accept', 'ApplicationController@acceptApplicant')->name('admin.applications.accept');
+        Route::get('applications/{id}/decline', 'ApplicationController@declineApplicant')->name('admin.applications.decline');
+    });
+
     Route::group(['namespace' => 'Unit\Calendar'], function (){
         Route::resource('calendar', 'CalendarController', ['except' => ['show','create'], 'as' => 'admin']);
+
         /**
          * Award Status'
          */

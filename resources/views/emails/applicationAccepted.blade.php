@@ -195,7 +195,7 @@
                                 <tr>
                                     <td valign="top" class="mobile-block mobile-no-padding-bottom mobile-center" width="270" style="background:#1f1f1f;padding:10px 10px 10px 20px;">
                                         <a href="#" style="text-decoration:none;">
-                                            <img src="http://1st-rrf.com/img/email-logo.png" alt="SDG"/>
+                                            <img src="http://1st-rrf.com/img/email-logo.png" alt="RRF"/>
                                         </a>
                                     </td>
                                 </tr>
@@ -212,13 +212,20 @@
                                 <tr>
                                     <td align="left" class="mobile-padding" style="padding:20px 20px 0">
 
-                                        <h1>{{$data['title']}}</h1>
+                                        <h1>Welcome aboard - {{$data['name']}}</h1>
                                         <br>
-                                        You have been added to a conversation.
+                                        You have been accepted into the 1st Rapid Response Force! To ensure you are hitting the ground running, follow the steps below:
+                                        <ol>
+                                            <li>Add your Teamspeak ID to your Settings to obtain your rank and permissions on Teamspeak - <a href="http://1st-rrf.com/settings/teamspeak">Manage your Teamspeak IDs</a></li>
+                                            <li>Download and Setup the Modpack - <a href="http://1st-rrf.com/modpack">Installing the Modpack</a></li>
+                                            <li>Add the SquadXML to your ingame character -<a href="http://1st-rrf.com/settings">View SquadXML URL</a> </li>
+                                            <li>Last but not least, be active and get to know your fellow members!</li>
+                                        </ol>
+                                        <br><br>
+                                        Once again, Congratulations! We hope to see you on the virtual battlespace soon!
                                         <br>
-                                        You can view this message here - <a href="http://sdg-arma.com/my-inbox/{{$data['id']}}">My Inbox - View Message</a>
                                         <br>
-                                        <small>We are a gaming group for ARMA 3 - we are not affiliated or represent any real world entity</small>
+                                        <small>We are a gaming MILSIM group for ARMA 3 - we are not affiliated or represent any real world entity</small>
                                         <br><br>
                                     </td>
                                 </tr>

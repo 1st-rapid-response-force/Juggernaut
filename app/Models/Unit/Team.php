@@ -45,4 +45,9 @@ class Team extends Model implements HasMedia
     {
         return $this->hasMany('App\Models\Unit\TeamVideo');
     }
+
+    public function randomHeader()
+    {
+        return '/img/arma/'.rand(1,5).'.jpg';
+    }
 }
