@@ -7,7 +7,7 @@
                 <ul>
                     <li><a href="{{route('frontend.index')}}">Home</a></li>
                     <li><a href="{{route('frontend.index')}}">About Us</a></li>
-                    <li><a href="{{route('frontend.index')}}">Apply</a></li>
+                    <li><a href="{{route('frontend.apply')}}">Apply</a></li>
 
                     @if(!\Auth::guest())
                     <li><a href="{{route('frontend.calendar')}}">Calendar</a></li>
@@ -17,6 +17,7 @@
         </nav>
         <div class="nav-right">
         @if(!\Auth::guest())
+            @if(count(\Auth::User()->member))
             <div class="nav-profile dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span><img src="{{\Auth::User()->member->avatar}}" alt=""> {{\Auth::User()->member}}</span></a>
                 <ul class="dropdown-menu">
@@ -30,6 +31,14 @@
                     <li><a href="{{route('auth.logout')}}"><i class="fa fa-power-off"></i> Sign Out</a></li>
                 </ul>
             </div>
+            @else
+                    <div class="nav-profile dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span>{{\Auth::User()->name()}}</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{route('auth.logout')}}"><i class="fa fa-power-off"></i> Sign Out</a></li>
+                        </ul>
+                    </div>
+            @endif
 
         </div>
         @else

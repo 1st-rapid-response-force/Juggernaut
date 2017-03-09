@@ -32,8 +32,14 @@ Route::group(['namespace' => 'Frontend','middleware' => 'web'], function (){
 
     // Application
     Route::get('apply', 'ApplicationController@showApply')->name('frontend.apply');
-    Route::get('apply/{type}', 'ApplicationController@showApplication')->name('frontend.apply.application');
-    Route::post('apply', 'ApplicationController@postApplication')->name('frontend.apply.application.post');
+    Route::group(['middleware' => ['auth']], function()
+    {
+        // Application
+        Route::get('apply/completed', 'ApplicationController@successApplication')->name('frontend.apply.application.success');
+        Route::get('apply/{type}', 'ApplicationController@showApplication')->name('frontend.apply.application');
+
+        Route::post('apply', 'ApplicationController@postApplication')->name('frontend.apply.application.post');
+    });
 
 });
 
@@ -41,8 +47,8 @@ Route::group(['namespace' => 'Frontend','middleware' => 'web'], function (){
 Route::group(['namespace' => 'Auth','middleware' => 'web'], function (){
     Route::get('auth/validate', 'SteamController@validateSteam')->name('auth.validate');
     Route::get('login', 'SteamController@loginPage')->name('auth.login');
+    Route::post('register', 'SteamController@registerUser')->name('frontend.user.register.post');
     Route::get('auth/logout', 'SteamController@logout')->name('auth.logout');
-
 
 });
 

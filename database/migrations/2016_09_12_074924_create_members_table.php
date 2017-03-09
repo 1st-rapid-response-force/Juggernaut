@@ -22,6 +22,7 @@ class CreateMembersTable extends Migration
             $table->unsignedInteger('team_id');
             $table->text('bio')->nullable();
             $table->string('avatar')->default('/img/avatars/background.png');
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }
