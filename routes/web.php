@@ -13,6 +13,8 @@
 // Public Pages
 Route::group(['namespace' => 'Frontend','middleware' => 'web'], function (){
     Route::get('/', 'PageController@home')->name('frontend.index');
+
+    // Team
     Route::get('team/{team}', 'PageController@team')->name('frontend.team');
     Route::get('team/{team}/members', 'Unit\TeamController@members')->name('frontend.team.members');
     Route::get('team/{team}/videos', 'Unit\TeamController@videos')->name('frontend.team.videos');
@@ -25,6 +27,13 @@ Route::group(['namespace' => 'Frontend','middleware' => 'web'], function (){
     Route::post('team/{team}/leader/add-video', 'Unit\TeamController@addVideoPost')->name('frontend.team.leader.add-video.post');
     Route::delete('team/{team}/leader/timeline/{timeline_id}/delete', 'Unit\TeamController@deleteTimelineEvent')->name('frontend.team.leader.delete-timeline-event');
     Route::post('team/{team}/leader/video/{video_id}/edit-video', 'Unit\TeamController@editVideoPost')->name('frontend.team.leader.edit-video.post');
+
+    // File
+    Route::get('files/my-file', 'Unit\FileController@getMyFile')->name('frontend.files.my-file');
+    Route::get('files/my-face', 'Unit\FileController@showFaces')->name('frontend.files.faces');
+    Route::post('files/my-face', 'Unit\FileController@saveFace')->name('frontend.files.faces.post');
+    Route::get('files/{id}', 'Unit\FileController@getFile')->name('frontend.files.file');
+
     Route::get('our-mission', 'PageController@mission')->name('frontend.mission');
     Route::get('our-history', 'PageController@history')->name('frontend.history');
     Route::get('our-process', 'PageController@process')->name('frontend.process');
@@ -95,13 +104,15 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['web','auth','admin'], 
 
     Route::group(['namespace' => 'Unit\Calendar'], function (){
         Route::resource('calendar', 'CalendarController', ['except' => ['show','create'], 'as' => 'admin']);
-
-        /**
-         * Award Status'
-         */
         Route::get('create/event', 'CalendarController@createEvent')->name('admin.calendar.create.event');
         Route::get('create/school', 'CalendarController@createSchool')->name('admin.calendar.create.school');
         Route::get('create/training', 'CalendarController@createTraining')->name('admin.calendar.create.training');
+    });
+
+    Route::group(['namespace' => 'Unit', 'prefix'=>'unit'], function (){
+        Route::resource('awards', 'AwardController', ['as' => 'admin']);
+        Route::resource('ribbons', 'RibbonController', ['as' => 'admin']);
+        Route::resource('qualifications', 'QualificationController', ['as' => 'admin']);
     });
 
 

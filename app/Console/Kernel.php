@@ -17,6 +17,7 @@ class Kernel extends ConsoleKernel
         \App\Console\Commands\CreateSearchable::class,
         \App\Console\Commands\SquadXML::class,
         \App\Console\Commands\UpdateTeamspeak::class,
+        \App\Console\Commands\CreateCAC::class,
     ];
 
     /**

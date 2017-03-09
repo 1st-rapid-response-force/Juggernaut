@@ -32,6 +32,50 @@
                 <a href="{{route('admin.calendar.index')}}"> <i class="fa fa-calendar" aria-hidden="true"></i> {{trans('menus.backend.unit.calendar.name')}}</a>
             </li>
 
+            <li class="{{ Active::pattern('admin/unit/*') }} treeview">
+                <a href="#">
+                    <i class="fa fa-sitemap"></i>
+                    <span>Unit Management</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+
+                <ul class="treeview-menu {{ Active::pattern('admin/unit/*', 'menu-open') }}" style="display: none; {{ Active::pattern('admin/unit/*', 'display: block;') }}">
+                    <li class="{{ Active::pattern('admin/unit/awards*') }}">
+                        <a href="{{route('admin.awards.index')}}">
+                            <i class="fa fa-circle-o"></i>
+                            <span>Awards</span>
+                        </a>
+                    </li>
+                    <li class="{{ Active::pattern('admin/unit/files*') }}">
+                        <a href="#">
+                            <i class="fa fa-circle-o"></i>
+                            <span>Member Files</span>
+                        </a>
+                    </li>
+
+                    <li class="{{ Active::pattern('admin/unit/programs*') }}">
+                        <a href="#">
+                            <i class="fa fa-circle-o"></i>
+                            <span>Programs</span>
+                        </a>
+                    </li>
+
+                    <li class="{{ Active::pattern('admin/unit/qualifications*') }}">
+                        <a href="{{route('admin.qualifications.index')}}">
+                            <i class="fa fa-circle-o"></i>
+                            <span>Qualifications</span>
+                        </a>
+                    </li>
+                    <li class="{{ Active::pattern('admin/unit/ribbons*') }}">
+                        <a href="{{route('admin.ribbons.index')}}">
+                            <i class="fa fa-circle-o"></i>
+                            <span>Ribbons</span>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </li>
         </ul><!-- /.sidebar-menu -->
     </section><!-- /.sidebar -->
 </aside>

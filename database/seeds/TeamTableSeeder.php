@@ -13,16 +13,13 @@ class TeamTableSeeder extends Seeder
     {
         $rrf = \App\Models\Unit\Team::create([
             'name' => '1st Rapid Response Force - HQ',
+            'leader_id' => 1
         ]);
 
         $rrf = \App\Models\Unit\Team::create([
             'name' => '1st Rapid Response Force - Reserves',
             'parent_id' => $rrf->id
         ]);
-
-
-
-
 
         // 1st Platoon
         $platoon = \App\Models\Unit\Team::create([
@@ -58,7 +55,8 @@ class TeamTableSeeder extends Seeder
         // Aviation
         $air = \App\Models\Unit\Team::create([
             'name' => 'Aviation Command',
-            'parent_id' => $rrf->id
+            'parent_id' => $rrf->id,
+            'leader_id' => 2
         ]);
 
         $rot = \App\Models\Unit\Team::create([
@@ -94,7 +92,8 @@ class TeamTableSeeder extends Seeder
         // Aviation
         $special = \App\Models\Unit\Team::create([
             'name' => 'Operational Detachment Alpha (SFOD-A)',
-            'parent_id' => $rrf->id
+            'parent_id' => $rrf->id,
+            'leader_id' => 3
         ]);
 
 

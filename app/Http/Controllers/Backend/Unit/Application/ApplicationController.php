@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Backend\Unit\Application;
 
 use App\Models\Application;
+use App\Models\Unit\TeamTimeline;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -51,11 +53,21 @@ class ApplicationController extends Controller
             'team_id' => 2,
         ]);
 
-        // Queue jobs
+        // Call Jobs
         \Artisan::call('member:avatar');
         \Artisan::call('member:searchable');
         \Artisan::call('member:squadxml');
 
+        // Create all relevant records
+        $app->user->member->serviceHistory()->create(['text' => 'Enlisted in the 1st Rapid Response Force','date'=> new Carbon]);
+
+        TeamTimeline::create([
+                'team_id' => 2,
+                'name' => $app->user->member.' has joined the 1st RRF',
+                'type' => 'new-member',
+                'body' => $app->user->member.' has been accepted and has joined the 1st Rapid Response Force!',
+                'date' => new Carbon
+        ]);
 
         flash('Application has been approved.', 'success');
         return redirect(route('admin.applications.index'));

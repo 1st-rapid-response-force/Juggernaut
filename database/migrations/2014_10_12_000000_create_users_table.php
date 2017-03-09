@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('steam_id')->unique();
             $table->string('timezone')->default(config('app.timezone'));
             $table->boolean('admin')->default(false);
+            $table->boolean('board_member')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

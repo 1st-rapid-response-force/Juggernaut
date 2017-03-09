@@ -39,8 +39,33 @@ class Member extends Model
         return $this->belongsTo('App\Models\Unit\Team');
     }
 
+    public function qualifications()
+    {
+        return $this->belongsToMany('App\Models\Unit\Qualification')->withPivot('awarded_at','note');
+    }
+
+    public function serviceHistory()
+    {
+        return $this->hasMany('App\Models\Unit\ServiceHistory');
+    }
+
+    public function ribbons()
+    {
+        return $this->belongsToMany('App\Models\Unit\Ribbon')->withPivot('awarded_at','note');
+    }
+
+    public function awards()
+    {
+        return $this->belongsToMany('App\Models\Unit\Award')->withPivot('awarded_at','note');
+    }
+
     public function teamspeak()
     {
         return $this->hasMany('App\Models\Unit\Teamspeak');
+    }
+
+    public function showCAC()
+    {
+        return '/img/faces/members/'.$this->user->steam_id.'.png';
     }
 }

@@ -21,6 +21,14 @@ class CreateQualificationsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+
+        Schema::create('member_qualification', function (Blueprint $table) {
+            $table->increments('id')->unsigned();
+            $table->integer('member_id')->unsigned();
+            $table->integer('qualification_id')->unsigned();
+            $table->dateTime('awarded_at');
+            $table->text('note')->nullable();
+        });
     }
 
     /**
@@ -30,6 +38,7 @@ class CreateQualificationsTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('member_qualification');
         Schema::dropIfExists('qualifications');
     }
 }

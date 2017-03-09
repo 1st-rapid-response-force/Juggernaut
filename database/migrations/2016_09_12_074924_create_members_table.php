@@ -20,6 +20,7 @@ class CreateMembersTable extends Migration
             $table->string('position')->nullable();
             $table->unsignedInteger('rank_id');
             $table->unsignedInteger('team_id');
+            $table->unsignedInteger('face_id')->default(1);
             $table->text('bio')->nullable();
             $table->string('avatar')->default('/img/avatars/background.png');
             $table->boolean('active')->default(true);
