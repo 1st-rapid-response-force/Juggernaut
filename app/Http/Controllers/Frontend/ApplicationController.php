@@ -40,6 +40,13 @@ class ApplicationController extends Controller
     public function postApplication(CreateApplicationRequest $request)
     {
         $user = \Auth::User();
+
+        //Do a quick check to prevent duplicates
+        if (count($user->application)) {
+            flash('You have already submitted an application.', 'danger');
+            return redirect()->back();
+        }
+
         $appInput = collect($request->all());
         $appModel = $user->application()->create(['application' => $appInput->toJson()]);
 
@@ -56,7 +63,7 @@ class ApplicationController extends Controller
             $appModel->interview_id = mt_rand(1,3);
             $appModel->save();
 
-            $body = \Crypt::encrypt('THE FOLLOWING MEMBER IS REQUESTING A POSITION WHICH REQUIRES AN INTERVIEW: '.$request->type.' - PLEASE CONTACT MEMBER ON TEAMSPEAK - http://steamcommunity.com/profiles/'.$user->steam_id);
+            $body = \Crypt::encrypt('SYSTEM MESSAGE: THE FOLLOWING MEMBER IS REQUESTING A POSITION WHICH REQUIRES AN INTERVIEW: '.$request->type.' - PLEASE CONTACT MEMBER ON TEAMSPEAK - http://steamcommunity.com/profiles/'.$user->steam_id);
             //Lets email the interviewer
             $thread = Thread::create(
                 [
@@ -82,7 +89,7 @@ class ApplicationController extends Controller
             );
             $data = [
                 'title' => 'New Applicant - Interview Request - '.$user->name(),
-                'content' => $body,
+                'content' => 'SYSTEM MESSAGE: THE FOLLOWING MEMBER IS REQUESTING A POSITION WHICH REQUIRES AN INTERVIEW: '.$request->type.' - PLEASE CONTACT MEMBER ON TEAMSPEAK - http://steamcommunity.com/profiles/'.$user->steam_id,
                 'creator' => $appModel->interview_id,
                 'id' => $thread->id
             ];

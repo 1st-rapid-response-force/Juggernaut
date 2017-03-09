@@ -46,7 +46,7 @@
                                         {{ Form::label('first_name', 'First Name', ['class' => 'col-lg-2 control-label']) }}
 
                                         <div class="col-lg-10">
-                                            {{ Form::text('first_name', null, ['class' => 'form-control', 'placeholder' => 'First Name']) }}
+                                            {{ Form::text('first_name', \Auth::User()->first_name, ['class' => 'form-control', 'placeholder' => 'First Name']) }}
                                         </div><!--col-lg-10-->
                                     </div><!--form control-->
 
@@ -54,7 +54,7 @@
                                         {{ Form::label('last_name', 'Last Name', ['class' => 'col-lg-2 control-label']) }}
 
                                         <div class="col-lg-10">
-                                            {{ Form::text('last_name', null, ['class' => 'form-control', 'placeholder' => 'Last Name']) }}
+                                            {{ Form::text('last_name', \Auth::User()->last_name, ['class' => 'form-control', 'placeholder' => 'Last Name']) }}
                                         </div><!--col-lg-10-->
                                     </div><!--form control-->
 
