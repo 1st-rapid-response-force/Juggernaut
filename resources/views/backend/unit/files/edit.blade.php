@@ -111,6 +111,169 @@
                             </select>
                         </div><!--col-lg-10-->
                     </div><!--form control-->
+                    <br>
+                    <legend>File</legend>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4>Ribbons</h4>
+                                    </div><!--panel-heading-->
+
+                                    <div class="panel-body text-center">
+                                        @if(count($file->ribbons) > 0)
+                                            <div class="row">
+                                                <?php $i = 3; ?>
+                                                @foreach($file->ribbons as $ribbon)
+                                                    <div class="col-lg-4">
+                                                        <img style="width: 125px; height:35px;" src="{{$ribbon->getImage()}}"><br>
+                                                        <small>{{$ribbon->name}}</small>
+                                                    </div>
+                                                    <?php if (($i != 0) && (($i % 1) == 1)) echo '</div><div class="row">'; ?>
+                                                    <?php $i--; ?>
+                                                @endforeach
+                                            </div>
+                                        @else
+                                            <p>This member does not have any ribbons</p>
+                                        @endif
+                                    </div><!--panel-body-->
+                                </div><!--panel-->
+                            </div><!--col-xs-12-->
+                        </div><!--row-->
+                        <br>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4>Service History</h4>
+                                    </div><!--panel-heading-->
+
+                                    <div class="panel-body">
+                                        @if($file->serviceHistory->count() > 0)
+                                            <table class="table table-bordered table-condensed table-hover" id="serviceHistoryTable">
+                                                <thead>
+                                                <th>Date</th>
+                                                <th>Note</th>
+                                                </thead>
+                                                <tbody>
+                                                @foreach($file->serviceHistory()->orderBy('date','desc')->get() as $serviceHistory)
+                                                    <tr>
+                                                        <td class="col-lg-2">{{\Carbon\Carbon::createFromFormat('Y-m-d',$serviceHistory->date)->toFormattedDateString()}}</td>
+                                                        <td class="col-lg-10">{{$serviceHistory->text}}</td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+                                        @else
+                                            <p>No Service History for this member.</p>
+                                        @endif
+                                    </div><!--panel-body-->
+                                </div><!--panel-->
+                            </div><!--col-xs-12-->
+                        </div><!--row-->
+                        <br>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4>Awards</h4>
+                                    </div><!--panel-heading-->
+
+                                    <div class="panel-body">
+                                        @if($file->awards->count() > 0)
+                                            <table class="table table-bordered table-condensed table-hover" id="serviceHistoryTable">
+                                                <thead>
+                                                <th>Date Awarded</th>
+                                                <th>Award</th>
+                                                <th>Note</th>
+                                                </thead>
+                                                <tbody>
+                                                @foreach($file->awards()->get() as $awards)
+                                                    <tr>
+                                                        <td class="col-lg-2">{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$awards->pivot->awarded_at)->toFormattedDateString()}}</td>
+                                                        <td class="col-lg-4">{{$awards->name}}</td>
+                                                        <td class="col-lg-6">{{$awards->pivot->note}}</td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+                                        @else
+                                            <p>No Awards for this member.</p>
+                                        @endif
+                                    </div><!--panel-body-->
+                                </div><!--panel-->
+                            </div><!--col-xs-12-->
+                        </div><!--row-->
+                        <br>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4>Qualifications</h4>
+                                    </div><!--panel-heading-->
+
+                                    <div class="panel-body">
+                                        @if($file->serviceHistory->count() > 0)
+                                            <table class="table table-bordered table-condensed table-hover" id="serviceHistoryTable">
+                                                <thead>
+                                                <th>Date Awarded</th>
+                                                <th>Qualification</th>
+                                                <th>Note</th>
+                                                </thead>
+                                                <tbody>
+                                                @foreach($file->qualifications()->get() as $qualifications)
+                                                    <tr>
+                                                        <td class="col-lg-2">{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$qualifications->pivot->awarded_at)->toFormattedDateString()}}</td>
+                                                        <td class="col-lg-4">{{$qualifications->name}}</td>
+                                                        <td class="col-lg-6">{{$qualifications->pivot->note}}</td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+                                        @else
+                                            <p>No Service History for this member.</p>
+                                        @endif
+                                    </div><!--panel-body-->
+                                </div><!--panel-->
+                            </div><!--col-xs-12-->
+                        </div><!--row-->
+
+                        <br>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4>Training Programs</h4>
+                                    </div><!--panel-heading-->
+
+                                    <div class="panel-body">
+                                        @if($file->serviceHistory->count() > 0)
+                                            <table class="table table-bordered table-condensed table-hover" id="serviceHistoryTable">
+                                                <thead>
+                                                <th>Date Awarded</th>
+                                                <th>Qualification</th>
+                                                <th>Note</th>
+                                                </thead>
+                                                <tbody>
+                                                @foreach($file->qualifications()->get() as $qualifications)
+                                                    <tr>
+                                                        <td class="col-lg-2">{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$qualifications->pivot->awarded_at)->toFormattedDateString()}}</td>
+                                                        <td class="col-lg-4">{{$qualifications->name}}</td>
+                                                        <td class="col-lg-6">{{$qualifications->pivot->note}}</td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+                                        @else
+                                            <p>No Training Programs for this member.</p>
+                                        @endif
+                                    </div><!--panel-body-->
+                                </div><!--panel-->
+                            </div><!--col-xs-12-->
+                        </div><!--row-->
+
+                    </div><!--col-md-12-->
                     <legend>Options</legend>
                     <div class="row">
                         <div class="col-lg-6">
@@ -124,7 +287,7 @@
                             <button type="button" class="btn btn-success btn-sm btn-block" data-toggle="modal" data-target="#addServiceHistory">Add Service History</button>
                         </div>
                     </div>
-
+                    <br>
                 </div>
 
                 <div class="col-lg-2">
@@ -175,7 +338,7 @@
                         {{csrf_field()}}
                         @if(\App\Models\Unit\Award::all()->count() >0)
                         <div class="form-group">
-                            {{ Form::label('rank_id', 'Rank', ['class' => 'col-lg-2 control-label']) }}
+                            {{ Form::label('award_id', 'Award', ['class' => 'col-lg-2 control-label']) }}
 
                             <div class="col-lg-10">
                                 <select name="award_id" class="form-control">
@@ -186,6 +349,20 @@
                             </div><!--col-lg-10-->
 
                         </div>
+                            <div class="form-group">
+                                {{ Form::label('note', 'Note', ['class' => 'col-lg-2 control-label']) }}
+                                <div class="col-lg-10">
+                                    {{ Form::text('note', null, ['class' => 'form-control', 'placeholder' => 'What would you like to record in this members service history?']) }}
+                                </div><!--col-lg-10-->
+                            </div><!--form control-->
+
+                            <div class="form-group">
+                                {{ Form::label('awarded_at', 'Date', ['class' => 'col-lg-2 control-label']) }}
+                                <div class="col-lg-10">
+                                    {{ Form::text('awarded_at', null, ['class' => 'form-control', 'placeholder' => 'YYYY-MM-DD']) }}
+                                    <small>Make sure to follow the format YYYY-MM-DD</small>
+                                </div><!--col-lg-10-->
+                            </div><!--form control-->
                         @else
                             <p>There are currently no awards</p>
                         @endif
@@ -210,7 +387,7 @@
                 <div class="modal-body">
                     <form class="form-horizontal" action="{{route('admin.members.edit.add-qualification',$file->id)}}" method="POST" enctype="multipart/form-data">
                         {{csrf_field()}}
-                        @if(\App\Models\Unit\Award::all()->count() >0)
+                        @if(\App\Models\Unit\Qualification::all()->count() >0)
                             <div class="form-group">
                                 {{ Form::label('qualification_id', 'Qualification', ['class' => 'col-lg-2 control-label']) }}
 
@@ -221,8 +398,21 @@
                                         @endforeach
                                     </select>
                                 </div><!--col-lg-10-->
-
                             </div>
+                            <div class="form-group">
+                                {{ Form::label('note', 'Note', ['class' => 'col-lg-2 control-label']) }}
+                                <div class="col-lg-10">
+                                    {{ Form::text('note', null, ['class' => 'form-control', 'placeholder' => 'What would you like to record in this members service history?']) }}
+                                </div><!--col-lg-10-->
+                            </div><!--form control-->
+
+                            <div class="form-group">
+                                {{ Form::label('awarded_at', 'Date', ['class' => 'col-lg-2 control-label']) }}
+                                <div class="col-lg-10">
+                                    {{ Form::text('awarded_at', null, ['class' => 'form-control', 'placeholder' => 'YYYY-MM-DD']) }}
+                                    <small>Make sure to follow the format YYYY-MM-DD</small>
+                                </div><!--col-lg-10-->
+                            </div><!--form control-->
                         @else
                             <p>There are currently no qualifications</p>
                     @endif
@@ -261,6 +451,21 @@
                                 </div><!--col-lg-10-->
 
                             </div>
+
+                            <div class="form-group">
+                                {{ Form::label('note', 'Note', ['class' => 'col-lg-2 control-label']) }}
+                                <div class="col-lg-10">
+                                    {{ Form::text('note', null, ['class' => 'form-control', 'placeholder' => 'What would you like to record in this members service history?']) }}
+                                </div><!--col-lg-10-->
+                            </div><!--form control-->
+
+                            <div class="form-group">
+                                {{ Form::label('awarded_at', 'Date', ['class' => 'col-lg-2 control-label']) }}
+                                <div class="col-lg-10">
+                                    {{ Form::text('awarded_at', null, ['class' => 'form-control', 'placeholder' => 'YYYY-MM-DD']) }}
+                                    <small>Make sure to follow the format YYYY-MM-DD</small>
+                                </div><!--col-lg-10-->
+                            </div><!--form control-->
                         @else
                             <p>There are currently no qualifications</p>
                     @endif
@@ -296,7 +501,7 @@
                         <div class="form-group">
                             {{ Form::label('date', 'Date', ['class' => 'col-lg-2 control-label']) }}
                             <div class="col-lg-10">
-                                {{ Form::text('Date', null, ['class' => 'form-control', 'placeholder' => 'YYYY-MM-DD']) }}
+                                {{ Form::text('date', null, ['class' => 'form-control', 'placeholder' => 'YYYY-MM-DD']) }}
                                 <small>Make sure to follow the format YYYY-MM-DD</small>
                             </div><!--col-lg-10-->
                         </div><!--form control-->

@@ -133,9 +133,9 @@
                                                                             <th>Note</th>
                                                                             </thead>
                                                                             <tbody>
-                                                                            @foreach($member->awards()->orderBy('date','desc')->get() as $awards)
+                                                                            @foreach($member->awards()->get() as $awards)
                                                                                 <tr>
-                                                                                    <td class="col-lg-2">{{\Carbon\Carbon::createFromFormat('Y-m-d',$awards->date)->toFormattedDateString()}}</td>
+                                                                                    <td class="col-lg-2">{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$awards->pivot->awarded_at)->toFormattedDateString()}}</td>
                                                                                     <td class="col-lg-4">{{$awards->name}}</td>
                                                                                     <td class="col-lg-6">{{$awards->pivot->note}}</td>
                                                                                 </tr>

@@ -17,7 +17,7 @@ class CreatePaperworksTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('member_id');
             $table->unsignedInteger('processor_id')->nullable();
-            $table->string('type')->default('MISC');
+            $table->string('type')->default('NA');
             $table->text('paperwork');
             $table->integer('status')->default(1);
             $table->timestamps();

@@ -72,18 +72,6 @@
                             </p>
                         </li>
 
-                        <li class="user-body">
-                            <div class="col-xs-4 text-center">
-                                {{ link_to('#', 'Link') }}
-                            </div>
-                            <div class="col-xs-4 text-center">
-                                {{ link_to('#', 'Link') }}
-                            </div>
-                            <div class="col-xs-4 text-center">
-                                {{ link_to('#', 'Link') }}
-                            </div>
-                        </li>
-
                         <li class="user-footer">
                             <div class="pull-left">
                                 {{ link_to_route('frontend.index', trans('navs.general.home'), [], ['class' => 'btn btn-default btn-flat']) }}

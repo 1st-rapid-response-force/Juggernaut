@@ -30,4 +30,56 @@ class PaperworkController extends Controller
 
         }
     }
+
+    public function showDischargeForm()
+    {
+        return view('frontend.paperwork.discharge.new');
+    }
+
+    public function storeDischargeForm(Request $request)
+    {
+        $form = collect($request->except('_token'));
+        $paperwork = \Auth::User()->member->paperwork()->create(['type'=>'discharge','paperwork'=> $form->toJson()]);
+        flash('Discharge Application has been filed, we will notify you via email.', 'success');
+        return redirect(route('frontend.files.my-file'));
+    }
+
+    public function showFileCorrectionForm()
+    {
+        return view('frontend.paperwork.file-correction.new');
+    }
+
+    public function storeFileCorrectionForm(Request $request)
+    {
+        $form = collect($request->except('_token'));
+        $paperwork = \Auth::User()->member->paperwork()->create(['type'=>'file-correction','paperwork'=> $form->toJson()]);
+        flash('File Correction form has been filed, We will contact you soon regarding this form.', 'success');
+        return redirect(route('frontend.files.my-file'));
+    }
+
+    public function showBadConductForm()
+    {
+        return view('frontend.paperwork.bad-conduct.new');
+    }
+
+    public function storeBadConductForm(Request $request)
+    {
+        $form = collect($request->except('_token'));
+        $paperwork = \Auth::User()->member->paperwork()->create(['type'=>'bad-conduct','paperwork'=> $form->toJson()]);
+        flash('Bad Conduct Form has been filed, We will contact you soon regarding this form.', 'success');
+        return redirect(route('frontend.files.my-file'));
+    }
+
+    public function showLeaveForm()
+    {
+        return view('frontend.paperwork.leave.new');
+    }
+
+    public function storeLeaveForm(Request $request)
+    {
+        $form = collect($request->except('_token'));
+        $paperwork = \Auth::User()->member->paperwork()->create(['type'=>'leave','paperwork'=> $form->toJson()]);
+        flash('Your Leave of Absence Request has been filed, We will contact you soon regarding this form.', 'success');
+        return redirect(route('frontend.files.my-file'));
+    }
 }

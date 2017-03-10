@@ -47,7 +47,7 @@ class ApplicationController extends Controller
             return redirect()->back();
         }
 
-        $appInput = collect($request->all());
+        $appInput = collect($request->except('_token'));
         $appModel = $user->application()->create(['application' => $appInput->toJson()]);
 
         // Change name from app

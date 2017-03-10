@@ -54,7 +54,7 @@
                     </li>
 
                     <li class="{{ Active::pattern('admin/unit/programs*') }}">
-                        <a href="#">
+                        <a href="{{route('admin.programs.index')}}">
                             <i class="fa fa-circle-o"></i>
                             <span>Programs</span>
                         </a>

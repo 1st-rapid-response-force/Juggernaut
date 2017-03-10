@@ -64,6 +64,11 @@ class Member extends Model
         return $this->hasMany('App\Models\Unit\Teamspeak');
     }
 
+    public function paperwork()
+    {
+        return $this->hasMany('App\Models\Unit\Paperwork');
+    }
+
     public function showCAC()
     {
         return '/img/faces/members/'.$this->user->steam_id.'.png';

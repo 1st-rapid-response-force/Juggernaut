@@ -65,7 +65,7 @@ Route::group(['namespace' => 'Auth','middleware' => 'web'], function (){
 // Authenticated Frontend
 Route::group(['namespace' => 'Frontend', 'middleware' => ['web','auth']], function (){
     //Report in Check
-    Route::group(['namespace' => 'Unit','middleware' => ['auth']], function()
+    Route::group(['namespace' => 'Unit'], function()
     {
         //My Inbox
         Route::get('/my-inbox', ['as' => 'inbox', 'uses' => 'myInboxController@index']);
@@ -76,6 +76,20 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['web','auth']], functi
         Route::post('/my-inbox/delete', ['as' => 'inbox.removeThreads', 'uses' => 'myInboxController@deleteInboxThreads']);
         Route::get('/my-inbox/edit-message/{id}', ['as' => 'inbox.edit.message', 'uses' => 'myInboxController@editMessage']);
         Route::put('/my-inbox/edit-message/{id}', ['as' => 'inbox.edit.message.update', 'uses' => 'myInboxController@editMessageSave']);
+
+        //Paperwork
+        Route::get('paperwork/discharge', ['as' => 'frontend.paperwork.discharge', 'uses' => 'PaperworkController@showDischargeForm']);
+        Route::post('paperwork/discharge', ['as' => 'frontend.paperwork.discharge.post', 'uses' => 'PaperworkController@storeDischargeForm']);
+        Route::get('paperwork/file-correction', ['as' => 'frontend.paperwork.file-correction', 'uses' => 'PaperworkController@showFileCorrectionForm']);
+        Route::post('paperwork/file-correction', ['as' => 'frontend.paperwork.file-correction.post', 'uses' => 'PaperworkController@storeFileCorrectionForm']);
+        Route::get('paperwork/bad-conduct', ['as' => 'frontend.paperwork.bad-conduct', 'uses' => 'PaperworkController@showBadConductForm']);
+        Route::post('paperwork/bad-conduct', ['as' => 'frontend.paperwork.bad-conduct.post', 'uses' => 'PaperworkController@storeBadConductForm']);
+        Route::get('paperwork/leave', ['as' => 'frontend.paperwork.leave', 'uses' => 'PaperworkController@showLeaveForm']);
+        Route::post('paperwork/leave', ['as' => 'frontend.paperwork.leave.post', 'uses' => 'PaperworkController@storeLeaveForm']);
+
+
+        Route::get('paperwork/{id}/view', ['as' => 'frontend.paperwork.show', 'uses' => 'PaperworkController@showPaperwork']);
+
     });
 
     Route::get('settings', ['as' => 'frontend.settings', 'uses' => 'UserController@settings']);
@@ -86,6 +100,9 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['web','auth']], functi
 
     Route::get('calendar', 'PageController@calendar')->name('frontend.calendar');
     Route::post('calendar', 'PageController@setCalendar')->name('frontend.calendar.timezone');
+
+
+
 
     //Auto-Complete
     Route::get('autocomplete/members', 'AutoCompleteController@getMembers');
@@ -110,17 +127,23 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['web','auth','admin'], 
     });
 
     Route::group(['namespace' => 'Unit', 'prefix'=>'unit'], function (){
-        Route::post('members/{id}/add-award', 'CalendarController@createEvent')->name('admin.members.edit.add-award');
-        Route::post('members/{id}/add-qualification', 'CalendarController@createEvent')->name('admin.members.edit.add-qualification');
-        Route::post('members/{id}/add-training', 'CalendarController@createEvent')->name('admin.members.edit.add-training');
-        Route::post('members/{id}/add-ribbon', 'CalendarController@createEvent')->name('admin.members.edit.add-ribbon');
-        Route::post('members/{id}/add-service-history', 'CalendarController@createEvent')->name('admin.members.edit.add-service-history');
+        Route::post('members/{id}/add-award', 'FileController@addAward')->name('admin.members.edit.add-award');
+        Route::post('members/{id}/add-qualification', 'FileController@addQualification')->name('admin.members.edit.add-qualification');
+        Route::post('members/{id}/add-training', 'FileController@addTraining')->name('admin.members.edit.add-training');
+        Route::post('members/{id}/add-ribbon', 'FileController@addRibbon')->name('admin.members.edit.add-ribbon');
+        Route::post('members/{id}/add-service-history', 'FileController@addServiceHistory')->name('admin.members.edit.add-service-history');
         Route::resource('members', 'FileController', ['as' => 'admin']);
 
 
+        Route::resource('programs', 'ProgramController', ['as' => 'admin']);
         Route::resource('awards', 'AwardController', ['as' => 'admin']);
         Route::resource('ribbons', 'RibbonController', ['as' => 'admin']);
         Route::resource('qualifications', 'QualificationController', ['as' => 'admin']);
+    });
+
+    Route::group(['namespace' => 'Unit', 'prefix'=>'paperwork'], function (){
+        Route::get('program-completion', 'PaperworkController@showProgramCompletionForm')->name('admin.paperwork.program-completion');
+        Route::post('program-completion', 'PaperworkController@storeProgramCompletionForm')->name('admin.paperwork.program-completion.post');
     });
 
 

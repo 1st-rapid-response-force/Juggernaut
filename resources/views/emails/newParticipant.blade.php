@@ -216,7 +216,7 @@
                                         <br>
                                         You have been added to a conversation.
                                         <br>
-                                        You can view this message here - <a href="http://sdg-arma.com/my-inbox/{{$data['id']}}">My Inbox - View Message</a>
+                                        You can view this message here - <a href="http://1st-rrf.com/my-inbox/{{$data['id']}}">My Inbox - View Message</a>
                                         <br>
                                         <small>We are a gaming group for ARMA 3 - we are not affiliated or represent any real world entity</small>
                                         <br><br>

@@ -2,7 +2,7 @@
 
 @section('page-header')
     <h1>
-        SDG
+        RRF
         <small>{{ trans('strings.backend.dashboard.title') }}</small>
     </h1>
 @endsection

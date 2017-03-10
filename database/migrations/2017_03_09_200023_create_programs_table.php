@@ -15,6 +15,20 @@ class CreateProgramsTable extends Migration
     {
         Schema::create('programs', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->text('description')->nullable();
+            $table->string('video')->nullable();
+            $table->string('document')->nullable();
+            $table->timestamps();
+        });
+
+        Schema::create('programs_dates', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('program_id');
+            $table->unsignedInteger('responsible_id');
+            $table->dateTime('start_time');
+            $table->dateTime('end_time');
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
 
@@ -35,6 +49,8 @@ class CreateProgramsTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('member_program');
+        Schema::dropIfExists('programs_dates');
         Schema::dropIfExists('programs');
     }
 }
