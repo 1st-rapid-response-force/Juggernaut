@@ -1,6 +1,6 @@
 @extends ('backend.layouts.master')
 
-@section ('title', trans('labels.backend.calendar.management'))
+@section ('title', 'Applications')
 
 @section('after-styles-end')
     {{ Html::style("css/backend/plugin/datatables/dataTables.bootstrap.min.css") }}

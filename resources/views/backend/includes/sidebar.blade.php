@@ -47,7 +47,7 @@
                         </a>
                     </li>
                     <li class="{{ Active::pattern('admin/unit/files*') }}">
-                        <a href="#">
+                        <a href="{{route('admin.members.index')}}">
                             <i class="fa fa-circle-o"></i>
                             <span>Member Files</span>
                         </a>

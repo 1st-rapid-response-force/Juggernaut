@@ -1,6 +1,6 @@
 @extends ('backend.layouts.master')
 
-@section ('title', trans('labels.backend.calendar.management'))
+@section ('title', 'Applications')
 
 @section('after-styles-end')
     {{ Html::style("css/backend/plugin/datatables/dataTables.bootstrap.min.css") }}
@@ -44,7 +44,7 @@
                         <td>{{$app->id}}</td>
                         <td>{{$app->user->name()}}</td>
                         <td><a href="http://steamcommunity.com/profiles/{{$app->user->steam_id}}" target="_blank" rel="noopener">{{$app->user->steam_id}}</a></td>
-                        <td>{{$app->getStatus()}}</td>
+                        <td>{!! $app->getStatus() !!}</td>
                         <td>{!! $app->getActionButtonsAttribute() !!}</td>
                     </tr>
                     @endforeach

@@ -57,6 +57,7 @@ class ApplicationController extends Controller
         \Artisan::call('member:avatar');
         \Artisan::call('member:searchable');
         \Artisan::call('member:squadxml');
+        \Artisan::call('member:cac');
 
         // Create all relevant records
         $app->user->member->serviceHistory()->create(['text' => 'Enlisted in the 1st Rapid Response Force','date'=> new Carbon]);

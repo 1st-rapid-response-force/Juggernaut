@@ -27,13 +27,13 @@ class Application extends Model
     {
         switch ($this->status){
             case 1:
-                return 'New Application';
+                return '<span class="label label-info">New Application</span>';
                 break;
             case 2:
-                return 'Application Declined';
+                return '<span class="label label-danger">Application Declined</span>';
                 break;
             case 3:
-                return 'Application Accepted';
+                return '<span class="label label-success">Application Accepted</span>';
                 break;
         }
     }

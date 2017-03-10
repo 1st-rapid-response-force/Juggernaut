@@ -110,6 +110,14 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['web','auth','admin'], 
     });
 
     Route::group(['namespace' => 'Unit', 'prefix'=>'unit'], function (){
+        Route::post('members/{id}/add-award', 'CalendarController@createEvent')->name('admin.members.edit.add-award');
+        Route::post('members/{id}/add-qualification', 'CalendarController@createEvent')->name('admin.members.edit.add-qualification');
+        Route::post('members/{id}/add-training', 'CalendarController@createEvent')->name('admin.members.edit.add-training');
+        Route::post('members/{id}/add-ribbon', 'CalendarController@createEvent')->name('admin.members.edit.add-ribbon');
+        Route::post('members/{id}/add-service-history', 'CalendarController@createEvent')->name('admin.members.edit.add-service-history');
+        Route::resource('members', 'FileController', ['as' => 'admin']);
+
+
         Route::resource('awards', 'AwardController', ['as' => 'admin']);
         Route::resource('ribbons', 'RibbonController', ['as' => 'admin']);
         Route::resource('qualifications', 'QualificationController', ['as' => 'admin']);

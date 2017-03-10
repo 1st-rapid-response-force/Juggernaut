@@ -10,11 +10,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Member extends Model
 {
-    /**
-     * Array of guarded columns
-     * @var array
-     */
-    protected $guarded = ['id'];
+
+    protected $fillable = [
+        'searchable_name','position','rank_id', 'team_id', 'face_id', 'bio','avatar','active'
+    ];
+
 
     public function __toString()
     {
@@ -68,4 +68,56 @@ class Member extends Model
     {
         return '/img/faces/members/'.$this->user->steam_id.'.png';
     }
+
+    public function getActive()
+    {
+        switch ($this->active){
+            case 1:
+                return '<span class="label label-success">Active</span>';
+                break;
+            case 0:
+                return '<span class="label label-danger">Not Active</span>';
+                break;
+        }
+    }
+
+    /**
+     * @return string
+     */
+    public function getShowButtonAttribute()
+    {
+        return '<a href="'.route('admin.members.show', $this).'" class="btn btn-xs btn-info"><i class="fa fa-search" data-toggle="tooltip" data-placement="top" title="View"></i></a> ';
+    }
+    /**
+     * @return string
+     */
+    public function getEditButtonAttribute()
+    {
+        return '<a href="'.route('admin.members.edit', $this).'" class="btn btn-xs btn-primary"><i class="fa fa-pencil" data-toggle="tooltip" data-placement="top" title="Edit"></i></a> ';
+    }
+
+    /**
+     * @return string
+     */
+    public function getDeleteButtonAttribute()
+    {
+        return '<a href="'.route('admin.members.destroy', $this).'"
+             data-method="delete"
+             data-trans-button-cancel="Cancel"
+             data-trans-button-confirm="Delete"
+             data-trans-title="Are you sure?"
+             class="btn btn-xs btn-danger"><i class="fa fa-trash" data-toggle="tooltip" data-placement="top" title="Delete"></i></a> ';
+
+    }
+
+    /**
+     * @return string
+     */
+    public function getActionButtonsAttribute()
+    {
+        return
+            $this->getShowButtonAttribute().
+            $this->getDeleteButtonAttribute();
+    }
+
 }

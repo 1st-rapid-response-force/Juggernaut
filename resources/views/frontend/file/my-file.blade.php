@@ -163,7 +163,39 @@
                                                             </div><!--panel-->
                                                         </div><!--col-xs-12-->
                                                     </div><!--row-->
+                                                    <br>
+                                                    <div class="row">
+                                                        <div class="col-xs-12">
+                                                            <div class="panel panel-default">
+                                                                <div class="panel-heading">
+                                                                    <h4>Awards</h4>
+                                                                </div><!--panel-heading-->
 
+                                                                <div class="panel-body">
+                                                                    @if(\Auth::User()->member->awards->count() > 0)
+                                                                        <table class="table table-bordered table-condensed table-hover" id="serviceHistoryTable">
+                                                                            <thead>
+                                                                            <th>Date Awarded</th>
+                                                                            <th>Award</th>
+                                                                            <th>Note</th>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                            @foreach(\Auth::User()->member->awards()->orderBy('date','desc')->get() as $awards)
+                                                                                <tr>
+                                                                                    <td class="col-lg-2">{{\Carbon\Carbon::createFromFormat('Y-m-d',$awards->date)->toFormattedDateString()}}</td>
+                                                                                    <td class="col-lg-4">{{$awards->name}}</td>
+                                                                                    <td class="col-lg-6">{{$awards->pivot->note}}</td>
+                                                                                </tr>
+                                                                            @endforeach
+                                                                            </tbody>
+                                                                        </table>
+                                                                    @else
+                                                                        <p>No Awards for this member.</p>
+                                                                    @endif
+                                                                </div><!--panel-body-->
+                                                            </div><!--panel-->
+                                                        </div><!--col-xs-12-->
+                                                    </div><!--row-->
                                                     <br>
                                                     <div class="row">
                                                         <div class="col-xs-12">
