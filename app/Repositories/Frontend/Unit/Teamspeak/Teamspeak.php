@@ -45,24 +45,9 @@ class Teamspeak implements TeamspeakContract
         if ($user->member->rank->id >= 2) {
             $groups->push(9);
             $groups->push($user->member->rank->teamspeak_id);
-            // Push Team
-            switch ($user->member->team->id)
-            {
-                case 1:
-                    $groups->push(48);
-                    break;
-                case 2:
-                    $groups->push(49);
-                    break;
-                case 3:
-                    $groups->push(50);
-                    break;
-                case 4:
-                    $groups->push(51);
-                    break;
-            }
-            //Admin Check - Rod and Striker
-            if (($user->id == 1) || ($user->id == 2))
+
+            //Admin Check - Rod and Striker and Oges
+            if (($user->id == 1) || ($user->id == 2) || ($user->id == 3))
                 $groups->push(6);
         } else {
             $groups->push(38);
