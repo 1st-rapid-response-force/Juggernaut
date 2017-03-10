@@ -4,7 +4,7 @@ use App\Exceptions\GeneralException;
 use App\Models\Unit\Member;
 use App\User;
 use App\Teamspeak as TeamspeakModel;
-use TeamSpeak3;
+use ts3admin;
 /**
  * Class Teamspeak
  * @package App\Modules\Teamspeak
@@ -23,12 +23,10 @@ class Teamspeak implements TeamspeakContract
         $user = env('TEAMSPEAK_USER_NAME', 'ts3');
         $pass = env('TEAMSPEAK_PASSWORD', 'password');
 
-        try {
-            $this->ts = TeamSpeak3::factory('serverquery://' . $user . ':' . $pass . '@' . $ip . ':10011/?server_port=' . $port);
-
-        } catch (\TeamSpeak3_Exception $e) {
-            $this->ts = null;
-        }
+        $this->ts = new \ts3admin($ip, 10011);
+        $this->ts->connect();
+        $this->ts->login($user,$pass);
+        $this->ts->selectServer($port);
 
     }
     /**
@@ -53,33 +51,38 @@ class Teamspeak implements TeamspeakContract
             $groups->push(38);
         }
 
+
         //Lets begin
         $uuids = $user->member->teamspeak;
         foreach ($uuids as $uid) {
-            try {
-                $user = $this->ts->clientFindDb($uid->uuid, true);
-                $currentGroups = collect($this->ts->clientGetServerGroupsByDbid($user));
-                //Remove ignore groups that need to be ignored (push to talk, etc)
-                foreach ($groupsNo as $ignore) {
-                    $currentGroups->forget($ignore);
-                }
-                //Deal with default group
-                if ($currentGroups->contains('sgid', 8))
-                    $currentGroups->forget(8);
-                $currentGroups = $currentGroups->keys();
-                //Find groups that need to be added
-                $add = $groups->diff($currentGroups);
-                $remove = $currentGroups->diff($groups);
-                // Remove Groups
-                foreach ($remove as $group) {
-                    $this->ts->serverGroupClientDel($group, $user);
-                }
-                // Add Groups
-                foreach ($add as $group) {
-                    $this->ts->serverGroupClientAdd($group, $user);
-                }
-            } catch (\TeamSpeak3_Exception $e) {
-                return collect(['success' => false, 'message' => $e->getCode() . ' - ' . $e->getMessage()]);
+            $user = $this->ts->clientDbFind($uid->uuid, true);
+            $currentGroupsRequest = collect($this->ts->serverGroupsByClientID($user['data'][0]['cldbid']));
+            $currentGroups = collect();
+
+            foreach ($currentGroupsRequest['data'] as $severgroup)
+            {
+                $currentGroups->push($severgroup['sgid']);
+            }
+
+            // Remove items that are in the ignore list
+            $currentGroups = $currentGroups->reject(function($value, $key) use ($groupsNo) {
+                if($groupsNo->contains($value))
+                    return true;
+            });
+
+
+            //Find groups that need to be added
+            $add = $groups->diff($currentGroups);
+
+            $remove = $currentGroups->diff($groups);
+
+            // Remove Groups
+            foreach ($remove as $group) {
+                $this->ts->serverGroupDeleteClient($group, $user['data'][0]['cldbid']);
+            }
+            // Add Groups
+            foreach ($add as $group) {
+                $this->ts->serverGroupAddClient($group, $user['data'][0]['cldbid']);
             }
         }
         return collect(['success' => true, 'message' => 'Teamspeak update successful.']);
@@ -109,18 +112,20 @@ class Teamspeak implements TeamspeakContract
      */
     public function delete($uuid)
     {
-        try {
-            $user = $this->ts->clientFindDb($uuid, true);
-            $currentGroups = collect($this->ts->clientGetServerGroupsByDbid($user));
-            if ($currentGroups->contains('sgid', 8))
-                $currentGroups->forget(8);
-            $currentGroups = $currentGroups->keys();
-            foreach ($currentGroups as $group) {
-                $this->ts->serverGroupClientDel($group, $user);
-            }
-        } catch (\TeamSpeak3_Exception $e) {
-            return collect(['success' => false, 'message' => $e->getCode() . ' - ' . $e->getMessage()]);
+        $user = $this->ts->clientDbFind($uuid, true);
+        $currentGroupsRequest = collect($this->ts->serverGroupsByClientID($user['data'][0]['cldbid']));
+        $currentGroups = collect();
+
+        foreach ($currentGroupsRequest['data'] as $severgroup)
+        {
+            $currentGroups->push($severgroup['sgid']);
         }
+
+
+        foreach ($currentGroups as $group) {
+            $this->ts->serverGroupDeleteClient($group, $user['data'][0]['cldbid']);
+        }
+
         return collect(['success' => true, 'message' => 'Teamspeak update successful.']);
     }
     public function ban($user)
@@ -155,5 +160,9 @@ class Teamspeak implements TeamspeakContract
     public function tsviewer()
     {
         return $this->ts->getViewer(new \TeamSpeak3_Viewer_Html("/images/viewericons/", "/images/flags/", "data:image"));
+    }
+
+    public function  __destruct() {
+        //delete file
     }
 }
