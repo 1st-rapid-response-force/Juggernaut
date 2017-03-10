@@ -195,7 +195,7 @@
                                 <tr>
                                     <td valign="top" class="mobile-block mobile-no-padding-bottom mobile-center" width="270" style="background:#1f1f1f;padding:10px 10px 10px 20px;">
                                         <a href="#" style="text-decoration:none;">
-                                            <img src="http://1st-rrf.com/img/email-logo.png" alt="SDG"/>
+                                            <img src="http://1st-rrf.com/img/email-logo.png" alt="RRF"/>
                                         </a>
                                     </td>
                                 </tr>

@@ -268,8 +268,8 @@ class myInboxController extends Controller
             \Mail::send('emails.newMessage', ['user' => $user,'data' =>$data], function ($m) use ($user,$data) {
                 $m->to($user->email, $user->member);
                 $m->subject('1st RRF - New Message - '.$data['title']);
-                $m->from('no-reply@1st-rrf.com','NATO Strategic Development Group');
-                $m->sender('no-reply@1st-rrf.com','NATO Strategic Development Group');
+                $m->from('no-reply@1st-rrf.com','1st Rapid Response Force');
+                $m->sender('no-reply@1st-rrf.com','1st Rapid Response Force');
             });
         }
     }
@@ -286,8 +286,8 @@ class myInboxController extends Controller
             \Mail::send('emails.newParticipant', ['user' => $user,'data' =>$data], function ($m) use ($user,$data) {
                 $m->to($user->email, $user->member);
                 $m->subject('1st RRF - You have been added to a Conversation');
-                $m->from('no-reply@1st-rrf.com','NATO Strategic Development Group');
-                $m->sender('no-reply@1st-rrf.com','NATO Strategic Development Group');
+                $m->from('no-reply@1st-rrf.com','1st Rapid Response Force');
+                $m->sender('no-reply@1st-rrf.com','1st Rapid Response Force');
             });
         }
     }
