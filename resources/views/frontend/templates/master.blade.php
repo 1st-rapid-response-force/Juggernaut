@@ -34,7 +34,7 @@
     @yield('before-styles-end')
     <link href="/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
 
     <!-- PLUGINS -->
     <link href="/plugins/animate/animate.min.css" rel="stylesheet">
