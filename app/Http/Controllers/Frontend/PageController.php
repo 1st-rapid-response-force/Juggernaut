@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\Unit\Member;
+use App\Models\Unit\Rank;
 use App\Models\Unit\Team;
 use App\Repositories\Frontend\Unit\CalendarRepositoryContract;
 use Illuminate\Http\Request;
@@ -34,6 +36,30 @@ class PageController extends Controller
         $team = Team::find($team);
         return view('frontend.team.team-page',['team' => $team,'events' => $team->timeline()->orderBy('id','desc')->get()]);
 
+    }
+
+    public function structure()
+    {
+        $command = Team::find(1);
+        $infantry = Team::whereBetween('id', [3, 8])->get();
+        $aviation = Team::whereBetween('id', [9, 15])->get();
+        $reserve = Team::find(2);
+        $discharged = Member::whereNull('team_id')->get();
+
+        $officerRanks = Rank::whereBetween('id', [19, 24])->get();
+        $warrantRanks = Rank::whereBetween('id', [14, 18])->get();
+        $enlistedRanks = Rank::whereBetween('id', [2, 13])->get();
+
+        return view('frontend.pages.structure',
+            ['command'=> $command,
+            'infantryGroups' => $infantry,
+            'aviationGroups' => $aviation,
+            'reserve' => $reserve,
+            'discharged' => $discharged,
+            'officerRanks' => $officerRanks,
+            'warrantRanks' => $warrantRanks,
+            'enlistedRanks' => $enlistedRanks,
+            ]);
     }
 
     public function mission()

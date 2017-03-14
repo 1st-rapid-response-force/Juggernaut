@@ -6,8 +6,8 @@
             <div class="nav-control">
                 <ul>
                     <li><a href="{{route('frontend.index')}}">Home</a></li>
-                    <li><a href="{{route('frontend.index')}}">About Us</a></li>
                     <li><a href="{{route('frontend.apply')}}">Apply</a></li>
+                    <li><a href="{{route('frontend.structure')}}">Our Structure</a></li>
 
                     @if(!\Auth::guest())
                     <li><a href="{{route('frontend.calendar')}}">Calendar</a></li>

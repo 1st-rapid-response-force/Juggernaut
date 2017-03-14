@@ -34,6 +34,7 @@ Route::group(['namespace' => 'Frontend','middleware' => 'web'], function (){
     Route::post('files/my-face', 'Unit\FileController@saveFace')->name('frontend.files.faces.post');
     Route::get('files/{id}', 'Unit\FileController@getFile')->name('frontend.files.file');
 
+    Route::get('our-structure', 'PageController@structure')->name('frontend.structure');
     Route::get('our-mission', 'PageController@mission')->name('frontend.mission');
     Route::get('our-history', 'PageController@history')->name('frontend.history');
     Route::get('our-process', 'PageController@process')->name('frontend.process');
