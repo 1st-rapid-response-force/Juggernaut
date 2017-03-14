@@ -1,6 +1,6 @@
 @extends('frontend.templates.master')
 
-@section('title','Application')
+@section('title','Leave')
 
 @section('after-styles-end')
     <link rel="stylesheet" type="text/css" href="/plugins/gridforms/gridforms.css">

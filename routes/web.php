@@ -78,6 +78,7 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['web','auth']], functi
         Route::put('/my-inbox/edit-message/{id}', ['as' => 'inbox.edit.message.update', 'uses' => 'myInboxController@editMessageSave']);
 
         //Paperwork
+        Route::get('paperwork/{id}', ['as' => 'frontend.paperwork.get', 'uses' => 'PaperworkController@showPaperwork']);
         Route::get('paperwork/discharge', ['as' => 'frontend.paperwork.discharge', 'uses' => 'PaperworkController@showDischargeForm']);
         Route::post('paperwork/discharge', ['as' => 'frontend.paperwork.discharge.post', 'uses' => 'PaperworkController@storeDischargeForm']);
         Route::get('paperwork/file-correction', ['as' => 'frontend.paperwork.file-correction', 'uses' => 'PaperworkController@showFileCorrectionForm']);
@@ -86,6 +87,11 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['web','auth']], functi
         Route::post('paperwork/bad-conduct', ['as' => 'frontend.paperwork.bad-conduct.post', 'uses' => 'PaperworkController@storeBadConductForm']);
         Route::get('paperwork/leave', ['as' => 'frontend.paperwork.leave', 'uses' => 'PaperworkController@showLeaveForm']);
         Route::post('paperwork/leave', ['as' => 'frontend.paperwork.leave.post', 'uses' => 'PaperworkController@storeLeaveForm']);
+
+        Route::get('paperwork/aviation/flight-plan', ['as' => 'frontend.paperwork.aviation.flight-plan', 'uses' => 'PaperworkController@showFlightPlanForm']);
+        Route::post('paperwork/aviation/flight-plan', ['as' => 'frontend.paperwork.aviation.flight-plan.post', 'uses' => 'PaperworkController@storeFlightPlanForm']);
+        Route::put('paperwork/aviation/flight-plan/{id}', ['as' => 'frontend.paperwork.aviation.flight-plan.put', 'uses' => 'PaperworkController@updateFlightPlanForm']);
+
 
 
         Route::get('paperwork/{id}/view', ['as' => 'frontend.paperwork.show', 'uses' => 'PaperworkController@showPaperwork']);
