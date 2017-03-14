@@ -21,6 +21,21 @@ use App\Events\Backend\Unit\Calendar\CalendarEventModified;
  */
 class EloquentCalendarRepository implements CalendarRepositoryContract {
 
+    public function getCalendar(User $user)
+    {
+        $this->timezone = $user->timezone;
+        session(['timezone' => $this->timezone]);
+
+        $events = Event::all();
+        foreach ($events as $event)
+        {
+            $event->start_time = $event->start_time->setTimezone($this->timezone);
+            $event->end_time = $event->end_time->setTimezone($this->timezone);
+        }
+
+        return \Calendar::addEvents($events);
+    }
+
     /**
      * @param $input
      * @param User $user

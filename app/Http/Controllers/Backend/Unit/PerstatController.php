@@ -106,7 +106,7 @@ class PerstatController extends Controller
     private function emailReportIn($user)
     {
         \Mail::queue('emails.reportIn', ['user' => $user], function ($m) use ($user) {
-            $m->to($user->email, $user->vpf);
+            $m->to($user->email, $user->member);
             $m->subject('1st RRF - Report In');
             $m->from('no-reply@1st-rrf.com','1st Rapid Response Force');
             $m->sender('no-reply@1st-rrf.com','1st Rapid Response Force');

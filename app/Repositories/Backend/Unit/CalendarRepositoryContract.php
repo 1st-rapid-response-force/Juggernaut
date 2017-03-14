@@ -15,6 +15,11 @@ use App\User;
 interface CalendarRepositoryContract {
 
     /**
+     * @param User $user
+     * @return mixed
+     */
+    public function getCalendar(User $user);
+    /**
      * @param $input
      * @param User $user
      * @return mixed

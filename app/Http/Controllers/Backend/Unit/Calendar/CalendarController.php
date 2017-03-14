@@ -30,9 +30,7 @@ class CalendarController extends Controller
 
     public function index()
     {
-        $events = Event::all();
-        $calendar = \Calendar::addEvents($events);
-
+        $calendar = $this->calendar->getCalendar(\Auth::User());
         return view('backend.calendar.index', ['calendar' => $calendar]);
     }
 

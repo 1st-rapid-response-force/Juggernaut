@@ -47,6 +47,7 @@
 
                 <div class="col-lg-10">
                     {{ Form::text('end_time', null, ['class' => 'form-control', 'placeholder' => trans('validation.attributes.backend.unit.calendar.events.end_date'),'required' => 'required', 'id' =>'end_date']) }}
+                    <p class="help-block">This time is your local time.</p>
                 </div><!--col-lg-10-->
             </div><!--form control-->
 
