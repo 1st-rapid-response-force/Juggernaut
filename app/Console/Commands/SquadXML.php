@@ -46,19 +46,19 @@ class SquadXML extends Command
             $xml = '<?xml version="1.0"?>'. PHP_EOL;
             $xml .= '<!DOCTYPE squad SYSTEM "squad.dtd">'. PHP_EOL;
             $xml .= '<?xml-stylesheet href="squad.xsl" type="text/xsl"?>'. PHP_EOL;
-            $xml .= '<squad nick="SDG">'. PHP_EOL;
-            $xml .= '<name>NATO Strategic Development Group</name>'. PHP_EOL;
-            $xml .= '<email>contactus@sdg-arma.com</email>'. PHP_EOL;
-            $xml .= '<web>sdg-arma.com</web>'. PHP_EOL;
-            $xml .= '<picture>logo-'.$team->id.'.paa</picture>'. PHP_EOL;
-            $xml .= '<title>NATO Strategic Development Group</title>'. PHP_EOL;
+            $xml .= '<squad nick="RRF">'. PHP_EOL;
+            $xml .= '<name>1st Rapid Response Force</name>'. PHP_EOL;
+            $xml .= '<email>contactus@1st-rrf.com</email>'. PHP_EOL;
+            $xml .= '<web>1st-rrf.com</web>'. PHP_EOL;
+            $xml .= '<picture>1st-rrf.paa</picture>'. PHP_EOL;
+            $xml .= '<title>1st Rapid Response Force</title>'. PHP_EOL;
             foreach ($members as $member)
             {
                 $xml .= '<member id="'.$member->user->steam_id.'" nick="'.$member.'">'. PHP_EOL;
                 $xml .= '<name>'.$member->user->first_name.' '.$member->user->last_name.'</name>'. PHP_EOL;
                 $xml .= '<email>'.$member->user->email.'</email>'. PHP_EOL;
                 $xml .= '<icq>N/A</icq>'. PHP_EOL;
-                $xml .= '<remark>NATO Strategic Development Group - '.$member->team->name.'</remark>'. PHP_EOL;
+                $xml .= '<remark>1st Rapid Response Force - '.$member->team->name.'</remark>'. PHP_EOL;
                 $xml .= '</member>'. PHP_EOL;
             }
             $xml .= '</squad>'. PHP_EOL;
