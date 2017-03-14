@@ -33,12 +33,12 @@
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane active" id="command">
                                     @if(($command->members->count() > 0))
-                                        <h4><strong>{{$command->name}}</strong></h4>
+                                        <h4><strong><a href="{{route('frontend.team',$command->id)}}">{{$command->name}}</a></strong></h4>
                                         @foreach($command->members as $member)
                                             <img src="{{$member->avatar}}" class="img-circle" style="padding: 2px; height: 32px; width: 32px;"> <a href="{{route('frontend.files.file',$member->id)}}">{{$member->searchable_name}}  - {{$member->position}}</a></br>
                                         @endforeach
                                     @else
-                                        <h4><strong>{{$command->name}}</strong></h4>
+                                        <h4><strong><a href="{{route('frontend.team',$command->id)}}">{{$command->name}}</a></strong></h4>
                                         <p>There are currently no members in this group.</p>
                                     @endif
                                 </div>
@@ -46,12 +46,12 @@
                                 <div role="tabpanel" class="tab-pane" id="infantry">
                                     @foreach($infantryGroups as $group)
                                         @if(($group->members->count() > 0))
-                                            <h4><strong>{{$group->name}}</strong></h4>
+                                            <h4><strong><a href="{{route('frontend.team',$group->id)}}">{{$group->name}}</a></strong></h4>
                                             @foreach($group->members as $member)
                                                 <img src="{{$member->avatar}}" class="img-circle" style="padding: 2px; height: 32px; width: 32px;"> <a href="{{route('frontend.files.file',$member->id)}}">{{$member->searchable_name}} - {{$member->position}}</a></br>
                                             @endforeach
                                         @else
-                                            <h4><strong>{{$group->name}}</strong></h4>
+                                            <h4><strong><a href="{{route('frontend.team',$group->id)}}">{{$group->name}}</a></strong></h4>
                                             <p>There are currently no members in this group.</p>
                                         @endif
                                     @endforeach
@@ -60,12 +60,12 @@
                                 <div role="tabpanel" class="tab-pane" id="aviation">
                                     @foreach($aviationGroups as $group)
                                         @if(($group->members->count() > 0))
-                                            <h4><strong>{{$group->name}}</strong></h4>
+                                            <h4><strong><a href="{{route('frontend.team',$group->id)}}">{{$group->name}}</a></strong></h4>
                                             @foreach($group->members as $member)
                                                 <img src="{{$member->avatar}}" class="img-circle" style="padding: 2px; height: 32px; width: 32px;"> <a href="{{route('frontend.files.file',$member->id)}}">{{$member->searchable_name}} - {{$member->position}}</a></br>
                                             @endforeach
                                         @else
-                                            <h4><strong>{{$group->name}}</strong></h4>
+                                            <h4><strong><a href="{{route('frontend.team',$group->id)}}">{{$group->name}}</a></strong></h4>
                                             <p>There are currently no members in this group.</p>
                                         @endif
                                     @endforeach
@@ -78,12 +78,12 @@
 
                                 <div role="tabpanel" class="tab-pane" id="reserve">
                                     @if(($reserve->members->count() > 0))
-                                        <h4><strong>{{$reserve->name}}</strong></h4>
+                                        <h4><strong><a href="{{route('frontend.team',$reserve->id)}}">{{$reserve->name}}</a></strong></h4>
                                         @foreach($reserve->members as $member)
                                             <img src="{{$member->avatar}}" class="img-circle" style="padding: 2px; height: 32px; width: 32px;"><a href="{{route('frontend.files.file',$member->id)}}"> {{$member->searchable_name}} - {{$member->position}}</a></br>
                                         @endforeach
                                     @else
-                                        <h4><strong>{{$reserve->name}}</strong></h4>
+                                        <h4><strong><a href="{{route('frontend.team',$reserve->id)}}">{{$reserve->name}}</a></strong></h4>
                                         <p>There are currently no members in this group.</p>
                                     @endif
                                 </div>

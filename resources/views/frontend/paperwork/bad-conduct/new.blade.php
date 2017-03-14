@@ -26,8 +26,8 @@
                                     <div class="text-center"><h3>PRIVACY ACT STATEMENT</h3></div>
                                     <p><strong>AUTHORITY: </strong> 1ST-RRF-POLICIES-PROCEDURES</p>
                                     <p><strong>PRINCIPAL PURPOSE(S): </strong> Used to report conduct infractions within the unit.</p>
-                                    <p><strong>ROUTINE USE(S): </strong> This form is used to report conduct which will be reviewed by the Commanding Officer.</p>
-                                    <p><strong>DISCLOSURE: </strong> Voluntary; information is internally used and can only be viewed by Unit Commander</p>
+                                    <p><strong>ROUTINE USE(S): </strong> This form is used to report bad conduct that has broken our guidelines..</p>
+                                    <p><strong>DISCLOSURE: </strong> Voluntary; information is internally used and will be sent up the chain of command</p>
                                     <p><strong>INFO: </strong> Upon submitting this form and investigation will be conducted regarding the infraction. You may be contacted for more information regarding this case, however your report or name will never be disclosed to the violating party. This form will not be attached to your file.</p>
                                     <fieldset>
                                         <legend>A. INFRACTION REPORT</legend>
