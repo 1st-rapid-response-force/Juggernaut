@@ -72,10 +72,12 @@
                             <span>Ribbons</span>
                         </a>
                     </li>
-
-
                 </ul>
+            <li class="">
+                <a href="/admin/log-viewer"> <i class="fa fa-cogs" aria-hidden="true"></i> Log Viewer</a>
             </li>
+            </li>
+
         </ul><!-- /.sidebar-menu -->
     </section><!-- /.sidebar -->
 </aside>
