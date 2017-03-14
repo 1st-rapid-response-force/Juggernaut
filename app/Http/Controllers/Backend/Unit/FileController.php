@@ -6,6 +6,7 @@ use App\Models\Unit\Award;
 use App\Models\Unit\Member;
 use App\Models\Unit\Rank;
 use App\Models\Unit\Team;
+use App\Repositories\Frontend\Unit\Teamspeak\TeamspeakContract;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -15,6 +16,13 @@ use App\Http\Controllers\Controller;
 
 class FileController extends Controller
 {
+    protected $ts;
+
+    public function __construct(TeamspeakContract $ts)
+    {
+        $this->ts = $ts;
+    }
+
     public function index()
     {
         $files = Member::all();
@@ -36,6 +44,9 @@ class FileController extends Controller
 
         $file->update($request->member);
         $user->update($request->user);
+
+        //Update teamspeak
+        $this->ts->update($user);
 
         // Call Jobs
         \Artisan::call('member:avatar');

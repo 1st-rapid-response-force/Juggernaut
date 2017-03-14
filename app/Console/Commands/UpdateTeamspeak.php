@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Unit\Member;
 use App\Repositories\Frontend\Unit\Teamspeak\TeamspeakContract;
 use App\User;
 use Illuminate\Console\Command;
@@ -50,12 +51,12 @@ class UpdateTeamspeak extends Command
     public function handle()
     {
         $this->info('Updating Teamspeak');
-        $users = User::all();
+        $members = Member::all();
 
-        foreach ($users as $user)
+        foreach ($members as $member)
         {
-            $this->info('Updating user - '.$user->member);
-            $this->ts->update($user);
+            $this->info('Updating user - '.$member->searchable_name);
+            $this->ts->update($member->user);
             sleep(2);
         }
 

@@ -29,6 +29,12 @@ class UserController extends Controller
         $user->update($request->except(['_token','bio']));
         $user->member()->update(['bio' => $request->get('bio')]);
 
+        // Call Jobs
+        \Artisan::call('member:avatar');
+        \Artisan::call('member:searchable');
+        \Artisan::call('member:squadxml');
+        \Artisan::call('member:cac');
+
         flash('Settings updated','success');
         return redirect()->back();
     }

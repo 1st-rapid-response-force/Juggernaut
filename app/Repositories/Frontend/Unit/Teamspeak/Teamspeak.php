@@ -54,38 +54,45 @@ class Teamspeak implements TeamspeakContract
 
         //Lets begin
         $uuids = $user->member->teamspeak;
-        foreach ($uuids as $uid) {
-            $user = $this->ts->clientDbFind($uid->uuid, true);
-            $currentGroupsRequest = collect($this->ts->serverGroupsByClientID($user['data'][0]['cldbid']));
-            $currentGroups = collect();
+        try {
+            foreach ($uuids as $uid) {
+                $user = $this->ts->clientDbFind($uid->uuid, true);
+                $currentGroupsRequest = collect($this->ts->serverGroupsByClientID($user['data'][0]['cldbid']));
+                $currentGroups = collect();
 
-            foreach ($currentGroupsRequest['data'] as $severgroup)
-            {
-                $currentGroups->push($severgroup['sgid']);
+                foreach ($currentGroupsRequest['data'] as $severgroup)
+                {
+                    $currentGroups->push($severgroup['sgid']);
+                }
+
+                // Remove items that are in the ignore list
+                $currentGroups = $currentGroups->reject(function($value, $key) use ($groupsNo) {
+                    if($groupsNo->contains($value))
+                        return true;
+                });
+
+
+                //Find groups that need to be added
+                $add = $groups->diff($currentGroups);
+
+                $remove = $currentGroups->diff($groups);
+
+                // Remove Groups
+                foreach ($remove as $group) {
+                    $this->ts->serverGroupDeleteClient($group, $user['data'][0]['cldbid']);
+                }
+                // Add Groups
+                foreach ($add as $group) {
+                    $this->ts->serverGroupAddClient($group, $user['data'][0]['cldbid']);
+                }
             }
-
-            // Remove items that are in the ignore list
-            $currentGroups = $currentGroups->reject(function($value, $key) use ($groupsNo) {
-                if($groupsNo->contains($value))
-                    return true;
-            });
-
-
-            //Find groups that need to be added
-            $add = $groups->diff($currentGroups);
-
-            $remove = $currentGroups->diff($groups);
-
-            // Remove Groups
-            foreach ($remove as $group) {
-                $this->ts->serverGroupDeleteClient($group, $user['data'][0]['cldbid']);
-            }
-            // Add Groups
-            foreach ($add as $group) {
-                $this->ts->serverGroupAddClient($group, $user['data'][0]['cldbid']);
-            }
+            return collect(['success' => true, 'message' => 'Teamspeak update successful.']);
+        } catch (\ErrorException $e) {
+            return collect(['success' => false,'error' => true, 'message' => 'Unable to add Teamspeak UUID, please verify unique id']);
         }
-        return collect(['success' => true, 'message' => 'Teamspeak update successful.']);
+
+
+
     }
     public function message($user, $message)
     {
@@ -116,17 +123,23 @@ class Teamspeak implements TeamspeakContract
         $currentGroupsRequest = collect($this->ts->serverGroupsByClientID($user['data'][0]['cldbid']));
         $currentGroups = collect();
 
-        foreach ($currentGroupsRequest['data'] as $severgroup)
-        {
-            $currentGroups->push($severgroup['sgid']);
+        try {
+            foreach ($currentGroupsRequest['data'] as $severgroup)
+            {
+                $currentGroups->push($severgroup['sgid']);
+            }
+
+
+            foreach ($currentGroups as $group) {
+                $this->ts->serverGroupDeleteClient($group, $user['data'][0]['cldbid']);
+            }
+            return collect(['success' => true, 'message' => 'Teamspeak update successful.']);
+        } catch (\ErrorException $e) {
+            return collect(['success' => false,'error' => true, 'message' => $e]);
         }
 
 
-        foreach ($currentGroups as $group) {
-            $this->ts->serverGroupDeleteClient($group, $user['data'][0]['cldbid']);
-        }
 
-        return collect(['success' => true, 'message' => 'Teamspeak update successful.']);
     }
     public function ban($user)
     {
