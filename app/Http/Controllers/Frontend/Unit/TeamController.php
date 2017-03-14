@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Frontend\Unit;
 
+use App\Models\Unit\Member;
 use App\Models\Unit\Team;
 use App\Models\Unit\TeamTimeline;
 use App\Models\Unit\TeamVideo;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -30,7 +32,7 @@ class TeamController extends Controller
     public function leader($id)
     {
         $team = Team::findOrFail($id);
-        if(!(($team->leader_id == \Auth::User()->id) || \Auth::User()->admin))
+        if(!$team->isLeader(\Auth::User()))
         {
             flash('You do not have permission to access this.','danger');
             return redirect(route('frontend.team',$team->id));
@@ -39,10 +41,41 @@ class TeamController extends Controller
         return view('frontend.team.leader.team-leader',['team'=>$team]);
     }
 
+    public function positions($id)
+    {
+        $team = Team::findOrFail($id);
+        if(!$team->isLeader(\Auth::User()))
+        {
+            flash('You do not have permission to access this.','danger');
+            return redirect(route('frontend.team',$team->id));
+        }
+
+        return view('frontend.team.leader.positions',['team'=>$team]);
+    }
+
+    public function updatePositions($id, Request $request)
+    {
+        $team = Team::findOrFail($id);
+        if(!$team->isLeader(\Auth::User()))
+        {
+            flash('You do not have permission to access this.','danger');
+            return redirect(route('frontend.team',$team->id));
+        }
+
+        foreach ($request->userForm as $input)
+        {
+            $memberModel = Member::findOrFail($input['id']);
+            $memberModel->position = $input['position'];
+            $memberModel->save();
+        }
+        flash('Team positions successfully updated.','success');
+        return redirect(route('frontend.team.leader',$id));
+    }
+
     public function updateTeamHeader($id, Request $request)
     {
         $team = Team::findOrFail($id);
-        if(!(($team->leader_id == \Auth::User()->id) || \Auth::User()->admin))
+        if(!$team->isLeader(\Auth::User()))
         {
             flash('You do not have permission to access this.','danger');
             return redirect(route('frontend.team',$team->id));
@@ -61,7 +94,7 @@ class TeamController extends Controller
     public function newEvent($id, Request $request)
     {
         $team = Team::findOrFail($id);
-        if(!(($team->leader_id == \Auth::User()->id) || \Auth::User()->admin))
+        if(!$team->isLeader(\Auth::User()))
         {
             flash('You do not have permission to access this.','danger');
             return redirect(route('frontend.team',$team->id));
@@ -96,7 +129,7 @@ class TeamController extends Controller
     public function addVideo($id)
     {
         $team = Team::findOrFail($id);
-        if(!(($team->leader_id == \Auth::User()->id) || \Auth::User()->admin))
+        if(!$team->isLeader(\Auth::User()))
         {
             flash('You do not have permission to access this.','danger');
             return redirect(route('frontend.team',$team->id));
@@ -109,7 +142,7 @@ class TeamController extends Controller
     {
         $team = Team::findOrFail($id);
         $video = TeamVideo::findOrFail($video_id);
-        if(!(($team->leader_id == \Auth::User()->id) || \Auth::User()->admin))
+        if(!$team->isLeader(\Auth::User()))
         {
             flash('You do not have permission to access this.','danger');
             return redirect(route('frontend.team',$team->id));
@@ -121,7 +154,7 @@ class TeamController extends Controller
     public function addVideoPost($id, Request $request)
     {
         $team = Team::findOrFail($id);
-        if(!(($team->leader_id == \Auth::User()->id) || \Auth::User()->admin))
+        if(!$team->isLeader(\Auth::User()))
         {
             flash('You do not have permission to access this.','danger');
             return redirect(route('frontend.team',$team->id));
@@ -149,7 +182,7 @@ class TeamController extends Controller
     {
         $team = Team::findOrFail($id);
         $video = TeamVideo::findOrFail($video_id);
-        if(!(($team->leader_id == \Auth::User()->id) || \Auth::User()->admin))
+        if(!$team->isLeader(\Auth::User()))
         {
             flash('You do not have permission to access this.','danger');
             return redirect(route('frontend.team',$team->id));

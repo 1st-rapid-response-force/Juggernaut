@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend\Unit;
 
 use App\Models\Unit\Member;
+use App\Models\Unit\Perstat;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -86,6 +87,17 @@ class FileController extends Controller
 
         flash('You have updated your ARMA face.', 'success');
         return redirect()->back();
+    }
+
+    public function reportIn(Request $request)
+    {
+        $user = \Auth()->user();
+        $perstat = Perstat::where('active','=','1')->first();
+        $user->member->perstat()->attach($perstat->id);
+        \Log::info('User has reported in', ['user'=> [$user->id,$user->email,$user->member->position,$user->member->group_id]]);
+        flash('Your report in has been filed. Make sure to report in weekly.','success');
+        return redirect()->back();
+
     }
 
 }

@@ -53,6 +53,13 @@
                         </a>
                     </li>
 
+                    <li class="{{ Active::pattern('admin/unit/perstat*') }}">
+                        <a href="{{route('admin.perstat.index')}}">
+                            <i class="fa fa-circle-o"></i>
+                            <span>PERSTAT</span>
+                        </a>
+                    </li>
+
                     <li class="{{ Active::pattern('admin/unit/programs*') }}">
                         <a href="{{route('admin.programs.index')}}">
                             <i class="fa fa-circle-o"></i>

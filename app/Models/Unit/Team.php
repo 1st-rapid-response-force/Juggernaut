@@ -50,4 +50,35 @@ class Team extends Model implements HasMedia
     {
         return '/img/arma/'.rand(1,5).'.jpg';
     }
+
+    public function childTeams()
+    {
+        return $this->hasMany('App\Models\Unit\Team','parent_id');
+    }
+
+    public function parentTeam()
+    {
+        return $this->belongsTo('App\Models\Unit\Team','parent_id');
+    }
+
+    public function isLeader($user)
+    {
+        // So we want to check a couple of things
+        // Case 1 - admin
+        if($user->admin)
+            return true;
+
+        // Case 2 - Leader ID matches
+        if($this->leader_id == $user->id)
+            return true;
+
+        //Case 3 - Check parents
+        if(isset($this->parent_id))
+        {
+            return $this->parentTeam->isLeader($user);
+        }
+
+        // If none are true then return false
+        return false;
+    }
 }

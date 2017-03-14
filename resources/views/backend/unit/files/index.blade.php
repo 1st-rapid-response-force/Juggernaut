@@ -35,6 +35,7 @@
                     <th>Position</th>
                     <th>Steam ID</th>
                     <th>Status</th>
+                    <th>Reported In</th>
                     <th>Options</th>
                 </tr>
                 </thead>
@@ -49,6 +50,11 @@
                         <td>{{$file->position}}</td>
                         <td><a href="http://steamcommunity.com/profiles/{{$file->user->steam_id}}" target="_blank" rel="noopener">{{$file->user->steam_id}}</a></td>
                         <td>{!! $file->getActive() !!}</td>
+                        <td>@if($file->hasReportedIn())
+                                <span class="label label-success">Reported in</span>
+                            @else
+                                <span class="label label-danger">Pending Report in</span>
+                            @endif</td>
                         <td>{!! $file->getActionButtonsAttribute() !!}</td>
                     </tr>
                     @endforeach

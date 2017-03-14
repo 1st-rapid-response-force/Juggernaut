@@ -43,6 +43,12 @@
                                                                         <a href="{{route('frontend.team',$member->team->id)}}">{{$member->team->name}}</a> <br/>
                                                                         Military ID: {{$member->user->steam_id}} <br/>
                                                                     </small>
+                                                                    <br>
+                                                                    @if($member->hasReportedIn())
+                                                                        <span class="label label-success">Reported in</span>
+                                                                    @else
+                                                                        <span class="label label-danger">Pending Report in</span>
+                                                                    @endif
                                                                 </h4>
 
 

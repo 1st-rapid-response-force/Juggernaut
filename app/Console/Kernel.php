@@ -18,6 +18,7 @@ class Kernel extends ConsoleKernel
         \App\Console\Commands\SquadXML::class,
         \App\Console\Commands\UpdateTeamspeak::class,
         \App\Console\Commands\CreateCAC::class,
+        \App\Console\Commands\AddNewPERSTAT::class,
     ];
 
     /**
@@ -34,6 +35,8 @@ class Kernel extends ConsoleKernel
             ->daily();
         $schedule->command('member:squadxml')
             ->daily();
+        $schedule->command('member:create-perstat')
+            ->weekly();
     }
 
     /**

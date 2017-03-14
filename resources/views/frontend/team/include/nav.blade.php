@@ -7,7 +7,7 @@
             @if((!Auth::guest()) && ($team->id == Auth::User()->member->team->id))
                 <!-- <li><a href="#"><i class="fa fa-comments-o"></i> Team Chatter</a></li> -->
             @endif
-            @if((!Auth::guest()) && (($team->leader_id == Auth::User()->id) || Auth::User()->admin))
+            @if((!Auth::guest()) && $team->isLeader(\Auth::User()))
                 <li class="{{Active::pattern('team/'.$team->id.'/leader*')}}"><a href="{{route('frontend.team.leader',$team->id)}}"><i class="fa fa-star"></i> Leader Panel</a></li>
             @endif
         </ul>

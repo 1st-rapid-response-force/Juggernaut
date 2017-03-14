@@ -43,6 +43,12 @@
                                                                         <a href="{{route('frontend.team',\Auth::User()->member->team->id)}}">{{\Auth::User()->member->team->name}}</a> <br/>
                                                                         Military ID: {{\Auth::User()->steam_id}} <br/>
                                                                     </small>
+                                                                    <br>
+                                                                    @if(\Auth::User()->member->hasReportedIn())
+                                                                        <span class="label label-success">Reported in</span>
+                                                                    @else
+                                                                        <span class="label label-danger">Pending Report in</span>
+                                                                    @endif
                                                                 </h4>
 
 
@@ -54,6 +60,9 @@
 
                                                         <div class="panel-body">
                                                             <a href="{{route('frontend.files.faces')}}" class="btn btn-info btn-block">Change Face</a>
+                                                            @if(!\Auth::User()->member->hasReportedIn())
+                                                                <button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#reportin">Report in</button>
+                                                            @endif
                                                             <hr>
                                                             <a href="{{route('frontend.paperwork.leave')}}" class="btn btn-primary btn-block">Leave of Absence Request</a>
                                                             <a href="{{route('frontend.paperwork.file-correction')}}" class="btn btn-info btn-block">Request File Correction</a>
@@ -284,3 +293,28 @@
 @endsection
 
 
+@section('after-scripts-end')
+    <!-- Modal -->
+    <div class="modal fade" id="reportin" tabindex="-1" role="dialog" aria-labelledby="reportin">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="reportinlabel">Report in</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="{{route('frontend.files.report-in.post')}}" method="POST">
+                        {!! csrf_field() !!}
+                        <p>By submitting this form you are reporting into the unit. You will need to report in on a weekly basis in order to maintain an active status.</p>
+                        <p>Failure to report will result in negative action against you. </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-success">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@endsection

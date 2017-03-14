@@ -45,9 +45,9 @@
                                     </button>
                                 </div>
                                 <div class="col-lg-6">
-                                    <h3>Selection</h3>
+                                    <h3>Team</h3>
                                     <br>
-                                    <a href="#" class="btn btn-primary btn-block disabled">Applications</a>
+                                    <a href="{{route('frontend.team.leader.positions',$team->id)}}" class="btn btn-primary btn-block">Position Management</a>
                                 </div>
                             </div>
 

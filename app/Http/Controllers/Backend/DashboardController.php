@@ -6,6 +6,9 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Application;
+use App\Models\Unit\Member;
+use App\Models\Unit\Perstat;
 
 /**
  * Class DashboardController
@@ -18,6 +21,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('backend.dashboard');
+        $members = Member::whereActive(1)->get()->count();
+        $applications = Application::whereStatus(1)->get()->count();
+        $perstat = Perstat::whereActive(1)->first();
+        return view('backend.dashboard',['members' => $members,'applications' => $applications, 'perstat' => $perstat]);
     }
 }

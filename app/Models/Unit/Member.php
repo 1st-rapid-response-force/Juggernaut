@@ -69,6 +69,16 @@ class Member extends Model
         return $this->hasMany('App\Models\Unit\Paperwork');
     }
 
+    /**
+     * Returns all PERSTATS
+     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
+     */
+    public function perstat()
+    {
+        return $this->belongsToMany('App\Models\Unit\Perstat', 'member_perstat', 'member_id', 'perstat_id');
+    }
+
+
     public function showCAC()
     {
         return '/img/faces/members/'.$this->user->steam_id.'.png';
@@ -125,4 +135,16 @@ class Member extends Model
             $this->getDeleteButtonAttribute();
     }
 
+    // Query Scopes
+    public function scopeActive($query)
+    {
+        return $query->where('active', '1');
+    }
+    public function hasReportedIn()
+    {
+        $perstat = Perstat::where('active','=','1')->first();
+        if($perstat->members->contains($this->id))
+            return true;
+        return false;
+    }
 }
