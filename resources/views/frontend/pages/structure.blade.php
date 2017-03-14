@@ -35,7 +35,7 @@
                                     @if(($command->members->count() > 0))
                                         <h4><strong>{{$command->name}}</strong></h4>
                                         @foreach($command->members as $member)
-                                            <img src="{{$member->avatar}}" class="img-circle" style="padding: 2px; height: 32px; width: 32px;"> {{$member->searchable_name}} - {{$member->position}}</br>
+                                            <img src="{{$member->avatar}}" class="img-circle" style="padding: 2px; height: 32px; width: 32px;"> <a href="{{route('frontend.files.file',$member->id)}}">{{$member->searchable_name}}  - {{$member->position}}</a></br>
                                         @endforeach
                                     @else
                                         <h4><strong>{{$command->name}}</strong></h4>
@@ -48,7 +48,7 @@
                                         @if(($group->members->count() > 0))
                                             <h4><strong>{{$group->name}}</strong></h4>
                                             @foreach($group->members as $member)
-                                                <img src="{{$member->avatar}}" class="img-circle" style="padding: 2px; height: 32px; width: 32px;"> {{$member->searchable_name}} - {{$member->position}}</br>
+                                                <img src="{{$member->avatar}}" class="img-circle" style="padding: 2px; height: 32px; width: 32px;"> <a href="{{route('frontend.files.file',$member->id)}}">{{$member->searchable_name}} - {{$member->position}}</a></br>
                                             @endforeach
                                         @else
                                             <h4><strong>{{$group->name}}</strong></h4>
@@ -62,7 +62,7 @@
                                         @if(($group->members->count() > 0))
                                             <h4><strong>{{$group->name}}</strong></h4>
                                             @foreach($group->members as $member)
-                                                <img src="{{$member->avatar}}" class="img-circle" style="padding: 2px; height: 32px; width: 32px;"> {{$member->searchable_name}} - {{$member->position}}</br>
+                                                <img src="{{$member->avatar}}" class="img-circle" style="padding: 2px; height: 32px; width: 32px;"> <a href="{{route('frontend.files.file',$member->id)}}">{{$member->searchable_name}} - {{$member->position}}</a></br>
                                             @endforeach
                                         @else
                                             <h4><strong>{{$group->name}}</strong></h4>
@@ -80,7 +80,7 @@
                                     @if(($reserve->members->count() > 0))
                                         <h4><strong>{{$reserve->name}}</strong></h4>
                                         @foreach($reserve->members as $member)
-                                            <img src="{{$member->avatar}}" class="img-circle" style="padding: 2px; height: 32px; width: 32px;"> {{$member->searchable_name}} - {{$member->position}}</br>
+                                            <img src="{{$member->avatar}}" class="img-circle" style="padding: 2px; height: 32px; width: 32px;"><a href="{{route('frontend.files.file',$member->id)}}"> {{$member->searchable_name}} - {{$member->position}}</a></br>
                                         @endforeach
                                     @else
                                         <h4><strong>{{$reserve->name}}</strong></h4>
@@ -92,7 +92,7 @@
                                     @if(($discharged->count() > 0))
                                         <h4><strong>Discharged</strong></h4>
                                         @foreach($discharged as $member)
-                                            <img src="{{$member->avatar}}" class="img-circle" style="padding: 2px; height: 32px; width: 32px;"> {{$member->searchable_name}} - {{$member->position}}</br>
+                                            <img src="{{$member->avatar}}" class="img-circle" style="padding: 2px; height: 32px; width: 32px;"><a href="{{route('frontend.files.file',$member->id)}}"> {{$member->searchable_name}} - {{$member->position}}</a></br>
                                         @endforeach
                                     @else
                                         <h4><strong>Discharged</strong></h4>
