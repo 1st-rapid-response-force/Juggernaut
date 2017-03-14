@@ -79,7 +79,7 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['web','auth']], functi
         Route::put('/my-inbox/edit-message/{id}', ['as' => 'inbox.edit.message.update', 'uses' => 'myInboxController@editMessageSave']);
 
         //Paperwork
-        Route::get('paperwork/{id}', ['as' => 'frontend.paperwork.get', 'uses' => 'PaperworkController@showPaperwork']);
+
         Route::get('paperwork/discharge', ['as' => 'frontend.paperwork.discharge', 'uses' => 'PaperworkController@showDischargeForm']);
         Route::post('paperwork/discharge', ['as' => 'frontend.paperwork.discharge.post', 'uses' => 'PaperworkController@storeDischargeForm']);
         Route::get('paperwork/file-correction', ['as' => 'frontend.paperwork.file-correction', 'uses' => 'PaperworkController@showFileCorrectionForm']);
@@ -94,7 +94,7 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['web','auth']], functi
         Route::put('paperwork/aviation/flight-plan/{id}', ['as' => 'frontend.paperwork.aviation.flight-plan.put', 'uses' => 'PaperworkController@updateFlightPlanForm']);
 
 
-
+        Route::get('paperwork/{id}', ['as' => 'frontend.paperwork.get', 'uses' => 'PaperworkController@showPaperwork']);
         Route::get('paperwork/{id}/view', ['as' => 'frontend.paperwork.show', 'uses' => 'PaperworkController@showPaperwork']);
 
     });
