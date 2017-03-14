@@ -5,6 +5,8 @@
 @section('content')
     <!-- wrapper -->
     <div id="wrapper">
+        <section class="hero hero-parallax height-450 parallax" style="background-image: url(img/pages/application.png);"></section>
+
         <section class="padding-top-50 padding-bottom-50">
             <div class="container">
                 <div class="row">
