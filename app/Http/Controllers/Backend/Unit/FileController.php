@@ -49,10 +49,10 @@ class FileController extends Controller
         $this->ts->update($user);
 
         // Call Jobs
-        \Artisan::call('member:avatar');
-        \Artisan::call('member:searchable');
-        \Artisan::call('member:squadxml');
-        \Artisan::call('member:cac');
+        \Artisan::queue('member:avatar');
+        \Artisan::queue('member:searchable');
+        \Artisan::queue('member:squadxml');
+        \Artisan::queue('member:cac');
 
         flash('You updated a members file!', 'success');
         return redirect()->back();

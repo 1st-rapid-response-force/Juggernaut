@@ -54,10 +54,10 @@ class ApplicationController extends Controller
         ]);
 
         // Call Jobs
-        \Artisan::call('member:avatar');
-        \Artisan::call('member:searchable');
-        \Artisan::call('member:squadxml');
-        \Artisan::call('member:cac');
+        \Artisan::queue('member:avatar');
+        \Artisan::queue('member:searchable');
+        \Artisan::queue('member:squadxml');
+        \Artisan::queue('member:cac');
 
         // Create all relevant records
         $app->user->member->serviceHistory()->create(['text' => 'Enlisted in the 1st Rapid Response Force','date'=> new Carbon]);
