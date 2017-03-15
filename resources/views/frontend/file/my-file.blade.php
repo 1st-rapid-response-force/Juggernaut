@@ -212,14 +212,14 @@
                                                                     <h4>Training Programs</h4>
                                                                 </div><!--panel-heading-->
                                                                 <div class="panel-body">
-                                                                    @if($member->programs->count() > 0)
+                                                                    @if(\Auth::User()->member->programs->count() > 0)
                                                                         <table class="table table-bordered table-condensed table-hover" id="serviceHistoryTable">
                                                                             <thead>
                                                                             <th>Date Completed</th>
                                                                             <th>Program Name</th>
                                                                             </thead>
                                                                             <tbody>
-                                                                            @foreach($member->programs()->get() as $program)
+                                                                            @foreach(\Auth::User()->member->programs()->get() as $program)
                                                                                 <tr>
                                                                                     <td class="col-lg-2">{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$program->pivot->completed_at)->toFormattedDateString()}}</td>
                                                                                     <td class="col-lg-10">{{$program->name}}</td>
