@@ -37,7 +37,7 @@ class CreateProgramsTable extends Migration
             $table->integer('member_id')->unsigned();
             $table->integer('program_id')->unsigned();
             $table->dateTime('completed_at');
-            $table->dateTime('paperwork_id')->nullable();
+            $table->unsignedInteger('paperwork_id')->nullable();
             $table->text('note')->nullable();
         });
     }

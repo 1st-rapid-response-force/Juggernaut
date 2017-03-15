@@ -11,11 +11,17 @@ use Illuminate\Database\Eloquent\Model;
 class Member extends Model
 {
 
+    /**
+     * @var array
+     */
     protected $fillable = [
-        'searchable_name','position','rank_id', 'team_id', 'face_id', 'bio','avatar','active'
+        'searchable_name','position','rank_id', 'team_id', 'face_id', 'current_program_id', 'bio','avatar','active'
     ];
 
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->rank->abbreviation.'. '.$this->user->last_name.'.'.$this->user->first_name[0];
@@ -29,41 +35,82 @@ class Member extends Model
         return $this->belongsTo('App\User');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function rank()
     {
         return $this->belongsTo('App\Models\Unit\Rank');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function team()
     {
         return $this->belongsTo('App\Models\Unit\Team');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function program()
+    {
+        return $this->belongsTo('App\Models\Unit\Program','current_program_id');
+    }
+
+    /**
+     * @return $this
+     */
     public function qualifications()
     {
         return $this->belongsToMany('App\Models\Unit\Qualification')->withPivot('awarded_at','note');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function serviceHistory()
     {
         return $this->hasMany('App\Models\Unit\ServiceHistory');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function programNotes()
+    {
+        return $this->hasMany('App\Models\Unit\ProgramNote');
+    }
+
+
+    /**
+     * @return $this
+     */
     public function ribbons()
     {
         return $this->belongsToMany('App\Models\Unit\Ribbon')->withPivot('awarded_at','note');
     }
 
+    /**
+     * @return $this
+     */
     public function awards()
     {
         return $this->belongsToMany('App\Models\Unit\Award')->withPivot('awarded_at','note');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function teamspeak()
     {
         return $this->hasMany('App\Models\Unit\Teamspeak');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function paperwork()
     {
         return $this->hasMany('App\Models\Unit\Paperwork');
@@ -78,12 +125,31 @@ class Member extends Model
         return $this->belongsToMany('App\Models\Unit\Perstat', 'member_perstat', 'member_id', 'perstat_id');
     }
 
+    /**
+     * @return $this
+     */
+    public function programGoals()
+    {
+        return $this->belongsToMany('App\Models\Unit\ProgramGoal', 'goal_member', 'member_id', 'goal_id')->withPivot('processor_id','note','completed_at');
+    }
 
+    public function programs()
+    {
+        return $this->belongsToMany('App\Models\Unit\Program', 'member_program', 'member_id', 'program_id')->withPivot('note','paperwork_id','completed_at');
+    }
+
+
+    /**
+     * @return string
+     */
     public function showCAC()
     {
         return '/img/faces/members/'.$this->user->steam_id.'.png';
     }
 
+    /**
+     * @return string
+     */
     public function getActive()
     {
         switch ($this->active){
@@ -136,15 +202,49 @@ class Member extends Model
     }
 
     // Query Scopes
+    /**
+     * @param $query
+     * @return mixed
+     */
     public function scopeActive($query)
     {
         return $query->where('active', '1');
     }
+
+    /**
+     * @return bool
+     */
     public function hasReportedIn()
     {
         $perstat = Perstat::where('active','=','1')->first();
         if($perstat->members->contains($this->id))
             return true;
         return false;
+    }
+
+    public function currentProgramCompletion()
+    {
+        if($this->current_program_id == 0)
+            return 'No Program Selected';
+
+        // Get current program goals count for current program
+        $completed = $this->programGoals()->where('program_id',$this->current_program_id)->get()->count();
+        $programGoalCount = Program::find($this->current_program_id)->goals->count();
+        return round(($completed/$programGoalCount)*100,2)."%";
+    }
+
+    public function completedCurrentCourse()
+    {
+        if($this->current_program_id == 0)
+            return 'No Program Selected';
+
+        // Get current program goals count for current program
+        $completed = $this->programGoals()->where('program_id',$this->current_program_id)->get()->count();
+        $programGoalCount = Program::find($this->current_program_id)->goals->count();
+
+        if($completed == $programGoalCount)
+            return 1;
+
+        return 0;
     }
 }

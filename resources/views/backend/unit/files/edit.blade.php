@@ -91,6 +91,18 @@
                     </div><!--form control-->
 
                     <div class="form-group">
+                        {{ Form::label('current_program_id', 'Current Program', ['class' => 'col-lg-2 control-label']) }}
+                        <div class="col-lg-10">
+                            <select name="member[current_program_id]" class="form-control">
+                                    <option value="0" {{($file->current_program_id == 0) ? 'selected':''}}>No Active Program</option>
+                                @foreach(\App\Models\Unit\Program::all() as $program)
+                                    <option value="{{$program->id}}" {{($program->id == $file->current_program_id) ? 'selected':''}}>{{$program->name}}</option>
+                                @endforeach
+                            </select>
+                        </div><!--col-lg-10-->
+                    </div><!--form control-->
+
+                    <div class="form-group">
                         {{ Form::label('rank_id', 'Rank', ['class' => 'col-lg-2 control-label']) }}
                         <div class="col-lg-10">
                             <select name="member[rank_id]" class="form-control">

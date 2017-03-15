@@ -40,8 +40,6 @@ class PageController extends Controller
 
     public function structure()
     {
-
-
         $command = Team::find(1);
         $infantry = Team::whereBetween('id', [3, 8])->get();
         $aviation = Team::whereBetween('id', [9, 15])->get();

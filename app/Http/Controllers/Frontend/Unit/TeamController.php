@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Frontend\Unit;
 
 use App\Models\Unit\Member;
+use App\Models\Unit\ProgramGoal;
+use App\Models\Unit\ProgramNote;
 use App\Models\Unit\Team;
 use App\Models\Unit\TeamTimeline;
 use App\Models\Unit\TeamVideo;
@@ -51,6 +53,163 @@ class TeamController extends Controller
         }
 
         return view('frontend.team.leader.positions',['team'=>$team]);
+    }
+
+    public function training($id)
+    {
+        $team = Team::findOrFail($id);
+        if(!$team->isLeader(\Auth::User()))
+        {
+            flash('You do not have permission to access this.','danger');
+            return redirect(route('frontend.team',$team->id));
+        }
+
+        return view('frontend.team.leader.training',['team'=>$team]);
+    }
+
+    public function trainingReport($id, $member)
+    {
+        $team = Team::findOrFail($id);
+        $member = Member::findOrFail($member);
+
+        if(!$team->isLeader(\Auth::User()))
+        {
+            flash('You do not have permission to access this.','danger');
+            return redirect(route('frontend.team',$team->id));
+        }
+
+        return view('frontend.team.leader.training-report',['team'=>$team,'member'=> $member]);
+    }
+
+    public function storeNewNote($id,$member, Request $request)
+    {
+        $team = Team::findOrFail($id);
+        $member = Member::findOrFail($member);
+
+        if(!$team->isLeader(\Auth::User()))
+        {
+            flash('You do not have permission to access this.','danger');
+            return redirect(route('frontend.team',$team->id));
+        }
+
+        $note = new ProgramNote;
+        $note->author_id = \Auth::User()->id;
+        $note->member_id = $member->id;
+        $note->program_id = $member->current_program_id;
+        $note->note = $request->note;
+        $note->save();
+
+        flash('Note added to file.','success');
+        return redirect()->back();
+    }
+
+    public function deleteNote($id,$member, $note_id, Request $request)
+    {
+        $team = Team::findOrFail($id);
+        $member = Member::findOrFail($member);
+        $note = ProgramNote::find($note_id);
+
+        if(!$team->isLeader(\Auth::User()))
+        {
+            flash('You do not have permission to access this.','danger');
+            return redirect(route('frontend.team',$team->id));
+        }
+        $note->delete();
+        flash('Note was deleted successfully.','success');
+        return redirect()->back();
+    }
+
+    public function markReport($id,$member, $goal)
+    {
+        $team = Team::findOrFail($id);
+        $member = Member::findOrFail($member);
+        $goal = ProgramGoal::find($goal);
+        $user = \Auth::User();
+
+        if(!$team->isLeader(\Auth::User()))
+        {
+            flash('You do not have permission to access this.','danger');
+            return redirect(route('frontend.team',$team->id));
+        }
+
+        return view('frontend.team.leader.training-mark',['team'=>$team,'member'=> $member,'goal'=>$goal]);
+    }
+
+    public function storeMarkGoal($id,$member, $goal, Request $request)
+    {
+        $team = Team::findOrFail($id);
+        $member = Member::findOrFail($member);
+        $goal = ProgramGoal::find($goal);
+        $user = \Auth::User();
+
+        if(!$team->isLeader(\Auth::User()))
+        {
+            flash('You do not have permission to access this.','danger');
+            return redirect(route('frontend.team',$team->id));
+        }
+
+        $goal->members()->attach([$member->id => ['processor_id'=> $user->id, 'note' => $request->note, 'completed_at' => new Carbon]]);
+        flash('Goal marked as completed','success');
+        return redirect(route('frontend.team.leader.training.report',[$id,$member]));
+
+    }
+
+    public function classCompletionForm($id,$member)
+    {
+        $team = Team::findOrFail($id);
+        $member = Member::findOrFail($member);
+        $user = \Auth::User();
+
+        if(!$team->isLeader(\Auth::User()))
+        {
+            flash('You do not have permission to access this.','danger');
+            return redirect(route('frontend.team',$team->id));
+        }
+        if(!$member->completedCurrentCourse())
+        {
+            flash('This member has not completed this course.','danger');
+            return redirect(route('frontend.team',$team->id));
+        }
+
+        return view('frontend.paperwork.program-completion.new',['team'=>$team,'member'=> $member]);
+    }
+
+    public function storeClassCompletionForm($id,$member, Request $request)
+    {
+        $team = Team::findOrFail($id);
+        $member = Member::findOrFail($member);
+        $user = \Auth::User();
+
+        if(!$team->isLeader(\Auth::User()))
+        {
+            flash('You do not have permission to access this.','danger');
+            return redirect(route('frontend.team',$team->id));
+        }
+
+        if(!$member->completedCurrentCourse())
+        {
+            flash('This member has not completed this course.','danger');
+            return redirect(route('frontend.team',$team->id));
+        }
+
+        // Create Paperwork
+        $form = collect($request->except('_token'));
+        $paperwork = $member->paperwork()->create(['type'=>'program-completion','paperwork'=> $form->toJson(),'status'=>2]);
+
+        // Create Program Completion
+        $member->programs()->attach([$member->current_program_id => ['paperwork_id'=> $paperwork->id, 'note' => $request->note, 'completed_at' => new Carbon]]);
+        $oldProgram = $member->program;
+        $member->current_program_id = 0;
+        $member->save();
+
+
+        //Create Service History
+        $date = new Carbon;
+        $serviceHistory = $member->serviceHistory()->create(['text'=> 'Completed Training Program - '.$oldProgram->name,'date'=> $date]);
+
+        flash('Class Completion Form filed, credit has been granted for this program.', 'success');
+        return redirect(route('frontend.files.my-file'));
+
     }
 
     public function updatePositions($id, Request $request)

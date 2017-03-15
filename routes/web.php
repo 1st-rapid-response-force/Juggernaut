@@ -23,6 +23,9 @@ Route::group(['namespace' => 'Frontend','middleware' => 'web'], function (){
 
     // File
     Route::group(['middleware' => 'auth'], function (){
+        Route::get('files/my-program', 'Unit\ProgramController@getMyProgram')->name('frontend.files.my-program');
+
+
         Route::get('files/my-file', 'Unit\FileController@getMyFile')->name('frontend.files.my-file');
         Route::get('files/my-face', 'Unit\FileController@showFaces')->name('frontend.files.faces');
         Route::post('files/my-face', 'Unit\FileController@saveFace')->name('frontend.files.faces.post');
@@ -104,6 +107,14 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['web','auth']], functi
     Route::get('team/{team}/leader', 'Unit\TeamController@leader')->name('frontend.team.leader');
     Route::get('team/{team}/leader/add-video', 'Unit\TeamController@addVideo')->name('frontend.team.leader.add-video');
     Route::get('team/{team}/leader/positions', 'Unit\TeamController@positions')->name('frontend.team.leader.positions');
+    Route::get('team/{team}/leader/training', 'Unit\TeamController@training')->name('frontend.team.leader.training');
+    Route::get('team/{team}/leader/training/{member}', 'Unit\TeamController@trainingReport')->name('frontend.team.leader.training.report');
+    Route::get('team/{team}/leader/training/{member}/program-completion', 'Unit\TeamController@classCompletionForm')->name('frontend.team.leader.training.program-completion');
+    Route::post('team/{team}/leader/training/{member}/program-completion', 'Unit\TeamController@storeClassCompletionForm')->name('frontend.team.leader.training.program-completion.post');
+    Route::get('team/{team}/leader/training/{member}/program-goal/{goal}/mark', 'Unit\TeamController@markReport')->name('frontend.team.leader.training.report.mark');
+    Route::post('team/{team}/leader/training/{member}/program-goal/{goal}/mark', 'Unit\TeamController@storeMarkGoal')->name('frontend.team.leader.training.report.mark.post');
+    Route::post('team/{team}/leader/training/{member}/new-note', 'Unit\TeamController@storeNewNote')->name('frontend.team.leader.training.report.new-note');
+    Route::delete('team/{team}/leader/training/{member}/note/{note_id}', 'Unit\TeamController@deleteNote')->name('frontend.team.leader.training.report.note.delete');
     Route::post('team/{team}/leader/positions', 'Unit\TeamController@updatePositions')->name('frontend.team.leader.positions.post');
     Route::get('team/{team}/leader/video/{video_id}/edit-video', 'Unit\TeamController@editVideo')->name('frontend.team.leader.edit-video');
     Route::post('team/{team}/leader/update-header', 'Unit\TeamController@updateTeamHeader')->name('frontend.team.leader.update-header');
@@ -141,6 +152,13 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['web','auth','admin'], 
         Route::post('members/{id}/add-ribbon', 'FileController@addRibbon')->name('admin.members.edit.add-ribbon');
         Route::post('members/{id}/add-service-history', 'FileController@addServiceHistory')->name('admin.members.edit.add-service-history');
         Route::resource('members', 'FileController', ['as' => 'admin']);
+
+        Route::delete('programs/{program}/goals/{goal}/delete', 'ProgramController@deleteProgramGoal')->name('admin.programs.program-goals.delete');
+        Route::get('programs/{id}/goals/{goal}', 'ProgramController@editProgramGoal')->name('admin.programs.program-goals.edit');
+        Route::put('programs/{id}/goals/{goal}', 'ProgramController@updateProgramGoal')->name('admin.programs.program-goals.put');
+        Route::get('programs/{id}/goals', 'ProgramController@viewProgramGoals')->name('admin.programs.program-goals');
+        Route::post('programs/{id}/goals', 'ProgramController@storeProgramGoal')->name('admin.programs.program-goals.post');
+
 
         Route::post('perstat/{id}/email', 'PerstatController@email')->name('admin.perstat.email');
         Route::resource('perstat', 'PerstatController', ['as' => 'admin']);

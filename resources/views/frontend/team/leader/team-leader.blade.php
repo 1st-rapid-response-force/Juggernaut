@@ -48,6 +48,7 @@
                                     <h3>Team</h3>
                                     <br>
                                     <a href="{{route('frontend.team.leader.positions',$team->id)}}" class="btn btn-primary btn-block">Position Management</a>
+                                    <a href="{{route('frontend.team.leader.training',$team->id)}}" class="btn btn-primary btn-block">Training Management</a>
                                 </div>
                             </div>
 

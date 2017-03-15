@@ -41,9 +41,10 @@
                         <tbody>
                         @foreach($programs as $program)
                             <tr>
-                                <td>{{$program->name}}</td>
-                                <td>
+                                <td class="col-lg-10">{{$program->name}}</td>
+                                <td class="col-lg-2">
                                     <a class="btn btn-success" href="{{ route('admin.programs.edit',array($program->id)) }}">Edit</a>
+                                    <a class="btn btn-info" href="{{ route('admin.programs.program-goals',array($program->id)) }}">Program Goals</a>
                                     <a class="btn btn-danger" href="{{ route('admin.programs.destroy',array($program->id)) }}" data-method="delete" rel="nofollow" data-confirm="Are you sure you want to delete this?">Delete</a>
                                 </td>
                             </tr>

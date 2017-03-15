@@ -23,6 +23,7 @@
                 <ul class="dropdown-menu">
                     <li><a href="{{route('frontend.team',Auth::user()->member->team_id)}}"><i class="fa fa-users"></i> My Team</a></li>
                     <li><a href="{{route('frontend.files.my-file')}}"><i class="fa fa-folder"></i> My File</a></li>
+                    <li><a href="{{route('frontend.files.my-program')}}"><i class="fa fa-university"></i> My Program</a></li>
                     <li><a href="{{route('inbox')}}"><i class="fa fa-envelope-o"></i> My Inbox {!! Auth::user()->newThreadsCount() > 0 ? '<span class="label label-info">'.Auth::user()->newThreadsCount().'</span>' : '' !!}</a></li>
                     <li><a href="{{route('frontend.settings')}}"><i class="fa fa-gear"></i> Settings</a></li>
                     @if(\Auth::User()->admin)
