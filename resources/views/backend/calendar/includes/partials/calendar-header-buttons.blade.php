@@ -9,8 +9,6 @@
             <li class="divider"></li>
 
                 <li>{{ link_to_route('admin.calendar.create.event', trans('menus.backend.unit.calendar.schedule-event')) }}</li>
-                <li>{{ link_to_route('admin.calendar.create.school', trans('menus.backend.unit.calendar.schedule-school')) }}</li>
-            <li>{{ link_to_route('admin.calendar.create.training', trans('menus.backend.unit.calendar.schedule-training')) }}</li>
         </ul>
     </div><!--btn group-->
 </div><!--pull right-->
