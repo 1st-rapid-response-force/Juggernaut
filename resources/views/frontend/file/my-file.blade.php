@@ -147,7 +147,7 @@
                                                                 </div><!--panel-heading-->
 
                                                                 <div class="panel-body">
-                                                                    @if($member->qualifications->count() > 0)
+                                                                    @if(\Auth::User()->member->qualifications->count() > 0)
                                                                         <table class="table table-bordered table-condensed table-hover" id="serviceHistoryTable">
                                                                             <thead>
                                                                             <th>Date Awarded</th>
@@ -155,7 +155,7 @@
                                                                             <th>Note</th>
                                                                             </thead>
                                                                             <tbody>
-                                                                            @foreach($member->qualifications()->get() as $qualifications)
+                                                                            @foreach(\Auth::User()->member->qualifications()->get() as $qualifications)
                                                                                 <tr>
                                                                                     <td class="col-lg-2">{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$qualifications->pivot->awarded_at)->toFormattedDateString()}}</td>
                                                                                     <td class="col-lg-4">{{$qualifications->name}}</td>
