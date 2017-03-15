@@ -254,7 +254,7 @@
                                                                             @foreach(\Auth::User()->member->paperwork()->where('type','!=', 'bad-conduct')->get() as $paperwork)
                                                                                 <tr>
                                                                                     <td class="col-lg-2">{{$paperwork->created_at->toFormattedDateString()}}</td>
-                                                                                    <td class="col-lg-5">{{$paperwork->getType()}}</td>
+                                                                                    <td class="col-lg-5"><a href="{{route('frontend.paperwork.show',$paperwork->id)}}">{{$paperwork->getType()}}</a></td>
                                                                                     <td class="col-lg-5">{!! $paperwork->getStatus() !!}</td>
                                                                                 </tr>
                                                                             @endforeach

@@ -16,16 +16,31 @@ class PaperworkController extends Controller
 
         switch ($paperwork->type){
             case 'training':
+                flash('You cannot view this paperwork at the moment.','warning');
+                return redirect()->back();
                 break;
             case 'file-correction':
+                flash('You cannot view this paperwork at the moment.','warning');
+                return redirect()->back();
                 break;
             case 'loa-request':
+                flash('You cannot view this paperwork at the moment.','warning');
+                return redirect()->back();
                 break;
             case 'assignment-change':
+                flash('You cannot view this paperwork at the moment.','warning');
+                return redirect()->back();
                 break;
             case 'bad-conduct':
+                flash('You cannot view this paperwork at the moment.','warning');
+                return redirect()->back();
                 break;
             case 'discharge':
+                flash('You cannot view this paperwork at the moment.','warning');
+                return redirect()->back();
+                break;
+            case 'program-completion':
+                return view('frontend.paperwork.program-completion.show',['form' => $paperwork]);
                 break;
             case 'flight-plan':
                 return view('frontend.paperwork.aviation.flight-plan.edit', ['paperwork' => $paperwork]);
