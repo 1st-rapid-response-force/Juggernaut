@@ -226,7 +226,7 @@
                                     </div><!--panel-heading-->
 
                                     <div class="panel-body">
-                                        @if($file->serviceHistory->count() > 0)
+                                        @if($file->qualifications->count() > 0)
                                             <table class="table table-bordered table-condensed table-hover" id="serviceHistoryTable">
                                                 <thead>
                                                 <th>Date Awarded</th>
@@ -244,7 +244,7 @@
                                                 </tbody>
                                             </table>
                                         @else
-                                            <p>No Service History for this member.</p>
+                                            <p>No Qualifications for this member.</p>
                                         @endif
                                     </div><!--panel-body-->
                                 </div><!--panel-->
@@ -260,19 +260,17 @@
                                     </div><!--panel-heading-->
 
                                     <div class="panel-body">
-                                        @if($file->serviceHistory->count() > 0)
+                                        @if($file->programs->count() > 0)
                                             <table class="table table-bordered table-condensed table-hover" id="serviceHistoryTable">
                                                 <thead>
-                                                <th>Date Awarded</th>
-                                                <th>Qualification</th>
-                                                <th>Note</th>
+                                                <th>Date Completed</th>
+                                                <th>Program Name</th>
                                                 </thead>
                                                 <tbody>
-                                                @foreach($file->qualifications()->get() as $qualifications)
+                                                @foreach($file->programs()->get() as $program)
                                                     <tr>
-                                                        <td class="col-lg-2">{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$qualifications->pivot->awarded_at)->toFormattedDateString()}}</td>
-                                                        <td class="col-lg-4">{{$qualifications->name}}</td>
-                                                        <td class="col-lg-6">{{$qualifications->pivot->note}}</td>
+                                                        <td class="col-lg-2">{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$program->pivot->completed_at)->toFormattedDateString()}}</td>
+                                                        <td class="col-lg-10">{{$program->name}}</td>
                                                     </tr>
                                                 @endforeach
                                                 </tbody>

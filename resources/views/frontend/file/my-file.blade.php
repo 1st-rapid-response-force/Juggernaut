@@ -147,7 +147,7 @@
                                                                 </div><!--panel-heading-->
 
                                                                 <div class="panel-body">
-                                                                    @if(\Auth::User()->member->qualifications->count() > 0)
+                                                                    @if($member->qualifications->count() > 0)
                                                                         <table class="table table-bordered table-condensed table-hover" id="serviceHistoryTable">
                                                                             <thead>
                                                                             <th>Date Awarded</th>
@@ -155,7 +155,7 @@
                                                                             <th>Note</th>
                                                                             </thead>
                                                                             <tbody>
-                                                                            @foreach(\Auth::User()->member->qualifications()->get() as $qualifications)
+                                                                            @foreach($member->qualifications()->get() as $qualifications)
                                                                                 <tr>
                                                                                     <td class="col-lg-2">{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$qualifications->pivot->awarded_at)->toFormattedDateString()}}</td>
                                                                                     <td class="col-lg-4">{{$qualifications->name}}</td>
@@ -165,7 +165,7 @@
                                                                             </tbody>
                                                                         </table>
                                                                     @else
-                                                                        <p>No Service History for this member.</p>
+                                                                        <p>No Qualifications for this member.</p>
                                                                     @endif
                                                                 </div><!--panel-body-->
                                                             </div><!--panel-->
@@ -211,16 +211,15 @@
                                                                 <div class="panel-heading">
                                                                     <h4>Training Programs</h4>
                                                                 </div><!--panel-heading-->
-
                                                                 <div class="panel-body">
-                                                                    @if(\Auth::User()->member->serviceHistory->count() > 0)
+                                                                    @if($member->programs->count() > 0)
                                                                         <table class="table table-bordered table-condensed table-hover" id="serviceHistoryTable">
                                                                             <thead>
                                                                             <th>Date Completed</th>
                                                                             <th>Program Name</th>
                                                                             </thead>
                                                                             <tbody>
-                                                                            @foreach(\Auth::User()->member->programs()->get() as $program)
+                                                                            @foreach($member->programs()->get() as $program)
                                                                                 <tr>
                                                                                     <td class="col-lg-2">{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$program->pivot->completed_at)->toFormattedDateString()}}</td>
                                                                                     <td class="col-lg-10">{{$program->name}}</td>
