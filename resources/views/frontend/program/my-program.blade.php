@@ -23,7 +23,18 @@
                                 <p>You are currently not enrolled in a training program.</p>
                             @else
                                 <p>{{\Auth::User()->member->program->description}}</p>
-                            <div class="well">
+                                @if(\Auth::User()->member->program->getMedia('attachments')->count())
+
+                                    <div class="attachment">
+                                        <h4>Program Files</h4>
+                                        @foreach(\Auth::User()->member->program->getMedia('attachments') as $attachment)
+                                            <a href="{{$attachment->getUrl()}}"><i class="fa fa-unlink"></i> {{$attachment->file_name}}</a><br>
+                                        @endforeach
+                                    </div>
+
+                                @endif
+                                <br><br>
+                                <div class="well">
                                 <table class="table table-condensed" id="serviceHistoryTable">
                                     <thead>
                                     <th>Training Goal</th>
