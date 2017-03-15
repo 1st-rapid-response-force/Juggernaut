@@ -33,7 +33,7 @@
                                     @foreach(\Auth::User()->member->program->goals as $goal)
                                         <tr>
                                             <td class="col-lg-8">{{$goal->goal}}</td>
-                                            <td class="col-lg-2">{!! $goal->getMemberStatus(\Auth::User()->member) !!}</td>
+                                            <td class="col-lg-2">{!! $goal->getMemberStatusButton(\Auth::User()->member) !!}</td>
                                         </tr>
                                     @endforeach
                                     </tbody>
