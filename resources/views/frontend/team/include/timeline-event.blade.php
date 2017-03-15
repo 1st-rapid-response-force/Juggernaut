@@ -12,10 +12,7 @@
 
         </div>
         <div class="timeline-footer">
-            <i class="fa fa-calendar-o"></i> {{$event->date->toFormattedDateString()}} |
-            @if((!Auth::guest()) && (($team->leader_id == Auth::User()->id) || Auth::User()->admin))
-                <a href="{{ route('frontend.team.leader.delete-timeline-event',[$team->id,$event->id]) }}" data-method="delete" rel="nofollow" data-confirm="Are you sure you want to delete this?" >Delete</a>
-            @endif
+            <i class="fa fa-calendar-o"></i> {{$event->date->toFormattedDateString()}}
 </div>
 </div>
 </li>

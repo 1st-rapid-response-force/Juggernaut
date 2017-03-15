@@ -15,6 +15,7 @@ Route::group(['namespace' => 'Frontend','middleware' => 'web'], function (){
     Route::get('/', 'PageController@home')->name('frontend.index');
 
     // Team
+    Route::get('unit-feed', 'PageController@unitFeed')->name('frontend.feed');
     Route::get('team/{team}', 'PageController@team')->name('frontend.team');
     Route::get('team/{team}/members', 'Unit\TeamController@members')->name('frontend.team.members');
     Route::get('team/{team}/videos', 'Unit\TeamController@videos')->name('frontend.team.videos');

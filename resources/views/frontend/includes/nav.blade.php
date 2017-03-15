@@ -8,6 +8,7 @@
                     <li><a href="{{route('frontend.index')}}">Home</a></li>
                     <li><a href="{{route('frontend.apply')}}">Apply</a></li>
                     <li><a href="{{route('frontend.structure')}}">Our Structure</a></li>
+                    <li><a href="{{route('frontend.feed')}}">Unit Feed</a></li>
 
                     @if(!\Auth::guest())
                     <li><a href="{{route('frontend.calendar')}}">Calendar</a></li>

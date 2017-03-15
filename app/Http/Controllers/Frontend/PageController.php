@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Models\Unit\Member;
 use App\Models\Unit\Rank;
 use App\Models\Unit\Team;
+use App\Models\Unit\TeamTimeline;
 use App\Repositories\Frontend\Unit\CalendarRepositoryContract;
 use Illuminate\Http\Request;
 
@@ -60,6 +61,12 @@ class PageController extends Controller
             'warrantRanks' => $warrantRanks,
             'enlistedRanks' => $enlistedRanks,
             ]);
+    }
+
+    public function unitFeed()
+    {
+        $events = TeamTimeline::all();
+        return view('frontend.pages.activity-feed',['events' => $events]);
     }
 
     public function mission()
