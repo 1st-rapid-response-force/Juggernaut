@@ -18,6 +18,16 @@
         </section>
 
         @include('frontend.team.include.nav')
+        <section class="bg-grey-50 border-bottom-1 border-grey-300 padding-10">
+            <div class="container">
+                <ol class="breadcrumb">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="{{route('frontend.team',$team->id)}}">{{$team->name}}</a></li>
+                    <li><a href="{{route('frontend.team.videos.view',[$team->id,$video->id])}}">{{$team->name}}</a></li>
+                    <li class="active">Members</li>
+                </ol>
+            </div>
+        </section>
 
         <section class="background-image padding-top-50 padding-bottom-50" style="background-color: #000000">
             <span class="background-overlay"></span>

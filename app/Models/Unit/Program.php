@@ -10,7 +10,7 @@ class Program extends Model implements HasMedia
 {
     use HasMediaTrait;
 
-    protected $fillable = ['name','description','video', 'document'];
+    protected $fillable = ['name','description','video', 'document','responsible_team_id'];
 
     public function goals()
     {
@@ -19,6 +19,16 @@ class Program extends Model implements HasMedia
 
     public function members()
     {
-        return $this->belongsToMany('App\Models\Unit\Program', 'member_program', 'program_id', 'member_id')->withPivot('note','paperwork_id','completed_at');
+        return $this->hasMany('App\Models\Unit\Member','current_program_id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function team()
+    {
+        return $this->belongsTo('App\Models\Unit\Team', 'responsible_team_id');
+    }
+
+
 }

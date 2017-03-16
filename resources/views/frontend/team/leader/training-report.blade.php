@@ -3,6 +3,7 @@
 @section('title','Home')
 
 @section('content')
+
     <!-- wrapper -->
     <div id="wrapper">
         <section class="hero hero-games height-600" style="background-image: url({{$team->header_image}});">
@@ -18,6 +19,19 @@
         </section>
 
         @include('frontend.team.include.nav')
+
+        <section class="bg-grey-50 border-bottom-1 border-grey-300 padding-10">
+            <div class="container">
+                <ol class="breadcrumb">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="{{route('frontend.team',$team->id)}}">{{$team->name}}</a></li>
+                    <li><a href="{{route('frontend.team.leader',$team->id)}}">Leader Panel</a></li>
+                    <li><a href="{{route('frontend.team.leader.training',$team->id)}}">Training Management</a></li>
+                    <li><a href="#">{{$member->searchable_name}}</a></li>
+                    <li class="active">Training Report</li>
+                </ol>
+            </div>
+        </section>
 
         <section>
             <div class="container">
@@ -44,6 +58,7 @@
                             @endif
                             <hr>
                                 <div class="well">
+                                    @if($member->program->goals->count() >0)
                                     <table class="table table-condensed" id="serviceHistoryTable">
                                         <thead>
                                         <th>Training Goal</th>
@@ -65,6 +80,9 @@
                                         @endforeach
                                         </tbody>
                                     </table>
+                                    @else
+                                        <p>No Goals found.</p>
+                                    @endif
                                 </div>
                             @endif
                             <br>

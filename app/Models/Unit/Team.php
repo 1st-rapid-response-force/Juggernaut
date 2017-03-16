@@ -46,6 +46,11 @@ class Team extends Model implements HasMedia
         return $this->hasMany('App\Models\Unit\TeamVideo');
     }
 
+    public function programs()
+    {
+        return $this->hasMany('App\Models\Unit\Program','responsible_team_id');
+    }
+
     public function randomHeader()
     {
         return '/img/arma/'.rand(1,5).'.jpg';

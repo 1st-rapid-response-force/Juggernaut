@@ -18,6 +18,15 @@
         </section>
 
         @include('frontend.team.include.nav')
+        <section class="bg-grey-50 border-bottom-1 border-grey-300 padding-10">
+            <div class="container">
+                <ol class="breadcrumb">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="{{route('frontend.team',$team->id)}}">{{$team->name}}</a></li>
+                    <li class="active">Videos</li>
+                </ol>
+            </div>
+        </section>
 
         <section class="padding-top-20 padding-bottom-20 border-bottom-1 border-grey-300">
             <div class="container">

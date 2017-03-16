@@ -18,6 +18,19 @@
         </section>
 
         @include('frontend.team.include.nav')
+        <section class="bg-grey-50 border-bottom-1 border-grey-300 padding-10">
+            <div class="container">
+                <ol class="breadcrumb">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="{{route('frontend.team',$team->id)}}">{{$team->name}}</a></li>
+                    <li><a href="{{route('frontend.team.leader',$team->id)}}">Leader Panel</a></li>
+                    <li><a href="{{route('frontend.team.leader.training',$team->id)}}">Training Management</a></li>
+                    <li><a href="#">{{$member->searchable_name}}</a></li>
+                    <li><a href="{{route('frontend.team.leader.training.report',$team->id)}}">Training Report</a></li>
+                    <li class="active">Class Completion Form</li>
+                </ol>
+            </div>
+        </section>
 
         <section>
             <div class="container">

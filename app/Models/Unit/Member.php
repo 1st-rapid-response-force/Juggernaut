@@ -230,6 +230,10 @@ class Member extends Model
         // Get current program goals count for current program
         $completed = $this->programGoals()->where('program_id',$this->current_program_id)->get()->count();
         $programGoalCount = Program::find($this->current_program_id)->goals->count();
+
+        //Quick division check
+        if($programGoalCount == 0)
+            return 'No Goal Completion';
         return round(($completed/$programGoalCount)*100,2)."%";
     }
 
@@ -241,6 +245,9 @@ class Member extends Model
         // Get current program goals count for current program
         $completed = $this->programGoals()->where('program_id',$this->current_program_id)->get()->count();
         $programGoalCount = Program::find($this->current_program_id)->goals->count();
+
+        if($programGoalCount == 0)
+            return 0;
 
         if($completed == $programGoalCount)
             return 1;

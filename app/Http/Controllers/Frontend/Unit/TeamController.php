@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend\Unit;
 
 use App\Models\Unit\Member;
+use App\Models\Unit\Program;
 use App\Models\Unit\ProgramGoal;
 use App\Models\Unit\ProgramNote;
 use App\Models\Unit\Team;

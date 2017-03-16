@@ -35,13 +35,15 @@
                         <thead>
                         <tr>
                             <th>Name</th>
+                            <th>Assigned to</th>
                             <th>Options</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($programs as $program)
                             <tr>
-                                <td class="col-lg-10">{{$program->name}}</td>
+                                <td class="col-lg-6">{{$program->name}}</td>
+                                <td class="col-lg-4">{{$program->team->name}}</td>
                                 <td class="col-lg-2">
                                     <a class="btn btn-success" href="{{ route('admin.programs.edit',array($program->id)) }}">Edit</a>
                                     <a class="btn btn-info" href="{{ route('admin.programs.program-goals',array($program->id)) }}">Program Goals</a>
@@ -95,6 +97,18 @@
                             <label for="name" class="col-sm-2 control-label">Document (URL): &nbsp</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="document" name="document" placeholder="Document URL - optional">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">Currently Assigned Team</label>
+                            <div class="col-sm-10">
+                                <select name="responsible_team_id" class="form-control">
+                                    <option value="0">Select Team</option>
+                                    @foreach(\App\Models\Unit\Team::all() as $team)
+                                        <option value="{{$team->id}}">{{$team->name}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
 

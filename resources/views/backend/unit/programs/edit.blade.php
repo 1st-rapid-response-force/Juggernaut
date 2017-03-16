@@ -58,6 +58,19 @@
                         </div><!--col-lg-10-->
                     </div><!--form control-->
 
+
+                    <div class="form-group">
+                        <label for="name" class="col-lg-2 control-label">Currently Assigned Team</label>
+                        <div class="col-lg-10">
+                            <select name="responsible_team_id" class="form-control">
+                                <option value="0">Select Team</option>
+                                @foreach(\App\Models\Unit\Team::all() as $team)
+                                    <option value="{{$team->id}}" {{($program->responsible_team_id == $team->id) ? 'selected':''}}>{{$team->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         {{ Form::label('file', 'Files', ['class' => 'col-lg-2 control-label']) }}
 
