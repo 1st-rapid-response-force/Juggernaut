@@ -36,14 +36,16 @@
                         <tr>
                             <th>Name</th>
                             <th>Assigned to</th>
+                            <th>status</th>
                             <th>Options</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($programs as $program)
                             <tr>
-                                <td class="col-lg-6">{{$program->name}}</td>
-                                <td class="col-lg-4">{{$program->team->name}}</td>
+                                <td class="col-lg-5">{{$program->name}}</td>
+                                <td class="col-lg-3">{{$program->team->name}}</td>
+                                <td class="col-lg-2">{!! $program->getStatus() !!}</td>
                                 <td class="col-lg-2">
                                     <a class="btn btn-success" href="{{ route('admin.programs.edit',array($program->id)) }}">Edit</a>
                                     <a class="btn btn-info" href="{{ route('admin.programs.program-goals',array($program->id)) }}">Program Goals</a>
@@ -108,6 +110,17 @@
                                     @foreach(\App\Models\Unit\Team::all() as $team)
                                         <option value="{{$team->id}}">{{$team->name}}</option>
                                     @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">Program Status</label>
+                            <div class="col-sm-10">
+                                <select name="status" class="form-control">
+                                    <option value="1">Open to Applicants</option>
+                                    <option value="2">Closed to Applicants</option>
+                                    <option value="3">Inactive</option>
                                 </select>
                             </div>
                         </div>

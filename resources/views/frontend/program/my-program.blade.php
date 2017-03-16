@@ -12,7 +12,7 @@
                             <div class="post-header">
                                 <div class="post-title">
                                     @if(!\Auth::User()->member->current_program_id)
-                                        <h2><a href="#">My Program<a></h2>
+                                        <h2><a href="#">My Program</a></h2>
                                     @else
                                         <h2>My Program - {{\Auth::User()->member->program->name}}</h2>
                                     @endif
@@ -21,6 +21,17 @@
 
                             @if(!\Auth::User()->member->current_program_id)
                                 <p>You are currently not enrolled in a training program.</p>
+                                <p>Please select a training program:</p>
+                                @foreach(\App\Models\Unit\Program::whereStatus(1)->get() as $program)
+                                <div class="well">
+                                    <h2>{{$program->name}}</h2>
+                                    <p>{{$program->description}}</p>
+                                    {{ Form::open(['route' => ['frontend.files.my-program.post'], 'role' => 'form', 'method' => 'post']) }}
+                                        <input type="hidden" name="program_id" value="{{$program->id}}">
+                                        <button type="submit" class="btn btn-primary">Enroll</button>
+                                    {{ Form::close() }}
+                                </div>
+                                @endforeach
                             @else
                                 <p>{{\Auth::User()->member->program->description}}</p>
                                 @if(\Auth::User()->member->program->getMedia('attachments')->count())

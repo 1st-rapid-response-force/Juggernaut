@@ -72,6 +72,17 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">Program Status</label>
+                        <div class="col-sm-10">
+                            <select name="status" class="form-control">
+                                <option value="1" {{($program->status == 1) ? 'selected':''}}>Open to Applicants</option>
+                                <option value="2" {{($program->status == 2) ? 'selected':''}}>Closed to Applicants</option>
+                                <option value="3" {{($program->status == 3) ? 'selected':''}}>Inactive</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         {{ Form::label('file', 'Files', ['class' => 'col-lg-2 control-label']) }}
 
                         <div class="col-lg-10">

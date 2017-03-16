@@ -10,7 +10,7 @@ class Program extends Model implements HasMedia
 {
     use HasMediaTrait;
 
-    protected $fillable = ['name','description','video', 'document','responsible_team_id'];
+    protected $fillable = ['name','description','video', 'document','responsible_team_id','status'];
 
     public function goals()
     {
@@ -28,6 +28,21 @@ class Program extends Model implements HasMedia
     public function team()
     {
         return $this->belongsTo('App\Models\Unit\Team', 'responsible_team_id');
+    }
+
+    public function getStatus()
+    {
+        switch ($this->status){
+            case 1:
+                return '<span class="label label-info">Open to Applicants</span>';
+                break;
+            case 2:
+                return '<span class="label label-danger">Closed to Applicants</span>';
+                break;
+            case 3:
+                return '<span class="label label-warning">Inactive</span>';
+                break;
+        }
     }
 
 
