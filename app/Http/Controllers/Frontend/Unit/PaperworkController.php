@@ -58,6 +58,7 @@ class PaperworkController extends Controller
     {
         $form = collect($request->except('_token'));
         $paperwork = \Auth::User()->member->paperwork()->create(['type'=>'discharge','paperwork'=> $form->toJson()]);
+        \Log::info('User filled out discharge paperwork', ['user_id' => \Auth::User()->id,'member' => \Auth::User()->member->searchable_name, 'paperwork_id' => $paperwork]);
         flash('Discharge Application has been filed, we will notify you via email.', 'success');
         return redirect(route('frontend.files.my-file'));
     }
@@ -71,6 +72,7 @@ class PaperworkController extends Controller
     {
         $form = collect($request->except('_token'));
         $paperwork = \Auth::User()->member->paperwork()->create(['type'=>'file-correction','paperwork'=> $form->toJson()]);
+        \Log::info('User filled out file correction paperwork', ['user_id' => \Auth::User()->id,'member' => \Auth::User()->member->searchable_name, 'paperwork_id' => $paperwork]);
         flash('File Correction form has been filed, We will contact you soon regarding this form.', 'success');
         return redirect(route('frontend.files.my-file'));
     }
@@ -84,6 +86,7 @@ class PaperworkController extends Controller
     {
         $form = collect($request->except('_token'));
         $paperwork = \Auth::User()->member->paperwork()->create(['type'=>'bad-conduct','paperwork'=> $form->toJson()]);
+        \Log::info('User filled out bad conduct paperwork', ['user_id' => \Auth::User()->id,'member' => \Auth::User()->member->searchable_name, 'paperwork_id' => $paperwork]);
         flash('Bad Conduct Form has been filed, We will contact you soon regarding this form.', 'success');
         return redirect(route('frontend.files.my-file'));
     }
@@ -97,6 +100,7 @@ class PaperworkController extends Controller
     {
         $form = collect($request->except('_token'));
         $paperwork = \Auth::User()->member->paperwork()->create(['type'=>'leave','paperwork'=> $form->toJson()]);
+        \Log::info('User filled out leave of absence paperwork', ['user_id' => \Auth::User()->id,'member' => \Auth::User()->member->searchable_name, 'paperwork_id' => $paperwork]);
         flash('Your Leave of Absence Request has been filed, We will contact you soon regarding this form.', 'success');
         return redirect(route('frontend.files.my-file'));
     }
@@ -111,6 +115,7 @@ class PaperworkController extends Controller
         $form = collect($request->except('_token'));
         $paperwork = \Auth::User()->member->paperwork()->create(['type'=>'flight-plan','paperwork'=> $form->toJson()]);
         flash('Your Flight Plan has been filed, it is now visible to the ATC.', 'success');
+        \Log::info('User filled out flight plan paperwork', ['user_id' => \Auth::User()->id,'member' => \Auth::User()->member->searchable_name, 'paperwork_id' => $paperwork]);
         return redirect(route('frontend.files.my-file'));
     }
 
@@ -119,6 +124,7 @@ class PaperworkController extends Controller
         $form = collect($request->except('_token'));
         $paperwork = Paperwork::findOrFail($id);
         $paperwork->update(['type'=>'flight-plan','paperwork'=> $form->toJson()]);
+        \Log::info('User updated flight-plan paperwork', ['user_id' => \Auth::User()->id,'member' => \Auth::User()->member->searchable_name, 'paperwork_id' => $paperwork]);
         flash('Your Flight Plan has been updated, it is now visible to the ATC.', 'success');
         return redirect()->back();
     }

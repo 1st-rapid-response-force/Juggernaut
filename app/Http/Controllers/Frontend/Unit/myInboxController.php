@@ -45,6 +45,8 @@ class myInboxController extends Controller
             $users = User::whereNotIn('id', $thread->participantsUserIds($user->id))->get();
             $thread->markAsRead($user->id);
 
+            \Log::info('User viewed inbox message', ['user_id' => \Auth::User()->id,'member' => \Auth::User()->member->searchable_name, 'thread_id' => $thread->id, 'thread' => $thread->subject]);
+
             return view('frontend.my-inbox.show')
                 ->with('user',$user)
                 ->with('thread',$thread)
@@ -112,6 +114,7 @@ class myInboxController extends Controller
             $thread->addParticipant($recipients);
             $this->emailUsersNewMessage($recipients,$data);
         }
+        \Log::info('User created a new message thread', ['user_id' => \Auth::User()->id,'member' => \Auth::User()->member->searchable_name, 'thread_id' => $thread->id, 'thread' => $thread->subject]);
 
         return redirect('/my-inbox/'.$thread->id);
     }
@@ -135,6 +138,7 @@ class myInboxController extends Controller
             flash('You cannot edit a message that is not yours.','danger');
             return redirect('/my-inbox');
         }
+        \Log::info('User edited inbox message', ['user_id' => \Auth::User()->id,'member' => \Auth::User()->member->searchable_name, 'message_id' => $message->id]);
         return view('frontend.my-inbox.edit-message')
             ->with('user',$user)
             ->with('message',$message)
@@ -162,6 +166,7 @@ class myInboxController extends Controller
                 'title' => $thread->subject,
                 'id' => $thread->id
             ];
+            \Log::info('User added participants to thread', ['user_id' => \Auth::User()->id,'member' => \Auth::User()->member->searchable_name, 'thread_id' => $thread->id, 'participants' => $recipients]);
             // Recipients
             if (\Request::has('autocomplete_add')) {
                 $thread->addParticipant($recipients);
@@ -186,6 +191,7 @@ class myInboxController extends Controller
                 }
 
             }
+            \Log::info('User sent a new message in thread', ['user_id' => \Auth::User()->id,'member' => \Auth::User()->member->searchable_name, 'thread_id' => $thread->id, 'message_id' => $message->id]);
 
             $data = [
                 'title' => $thread->subject,
@@ -233,6 +239,7 @@ class myInboxController extends Controller
 
         }
 
+        \Log::info('User added participants to thread', ['user_id' => \Auth::User()->id,'member' => \Auth::User()->member->searchable_name, 'thread_id' => $message->thread->id, 'message_id' => $message->id]);
         return redirect('/my-inbox/'.$message->thread->id);
     }
 

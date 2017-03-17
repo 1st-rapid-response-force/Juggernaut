@@ -26,6 +26,7 @@ class ApplicationController extends Controller
         if (!count($user->application)) {
 
             if (($type == 'officer') || $type == 'nco' || $type == 'enlisted') {
+                \Log::notice('User viewed application page', ['user_id' => \Auth::User()->id, 'steam_id' => \Auth::User()->steam_id, 'steam_url' => 'http://steamcommunity.com/profiles/'.$user->steam_id]);
                 return view('frontend.apply.application', ['type' => $type]);
             } else {
                 flash('There is no application for this type.', 'danger');
@@ -54,7 +55,7 @@ class ApplicationController extends Controller
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
         $user->save();
-
+        \Log::notice('User filled out application', ['user_id' => \Auth::User()->id,'application_id'=>$appModel->id, 'steam_id' => \Auth::User()->steam_id, 'steam_url' => 'http://steamcommunity.com/profiles/'.$user->steam_id]);
         // We need to check the type in order to redirect them accordingly (also assign interview)
         if(($request->type == 'officer') || ($request->type == 'nco'))
         {
@@ -94,6 +95,7 @@ class ApplicationController extends Controller
                 'id' => $thread->id
             ];
             $this->emailUsersNewMessage([$appModel->interview_id],$data);
+
         }
 
         return redirect(route('frontend.apply.application.success'));

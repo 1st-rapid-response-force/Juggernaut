@@ -13,12 +13,14 @@ class FileController extends Controller
 {
     public function getMyFile()
     {
+        \Log::info('User viewed file', ['user_id' => \Auth::User()->id, 'member' => \Auth::User()->member->searchable_name]);
         return view('frontend.file.my-file');
     }
 
     public function getFile($id)
     {
         $file = Member::findOrFail($id);
+        \Log::info('PUBLIC: File viewed', ['member_id' => $id,'member' => $file->searchable_name]);
         return view('frontend.file.file',['member' => $file]);
     }
     /**

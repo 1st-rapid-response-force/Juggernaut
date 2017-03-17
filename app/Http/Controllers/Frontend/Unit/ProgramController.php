@@ -10,6 +10,7 @@ class ProgramController extends Controller
 {
     public function getMyProgram()
     {
+        \Log::notice('User viewed my program page', ['user_id' => \Auth::User()->id, 'member' => \Auth::User()->member->searchable_name, 'program_id' => \Auth::User()->member->program->id, 'program' => \Auth::User()->member->program->name]);
         return view('frontend.program.my-program');
     }
 
@@ -20,6 +21,7 @@ class ProgramController extends Controller
         $user->member->current_program_id = $program->id;
         $user->push();
 
+        \Log::info('User enrolled into program', ['user_id' => \Auth::User()->id,'member' => \Auth::User()->member->searchable_name, 'program_id' => $program->id, 'program' => $program->name]);
         flash('You have enrolled in this program.','success');
         return redirect()->back();
     }

@@ -70,6 +70,7 @@ class ApplicationController extends Controller
                 'date' => new Carbon
         ]);
 
+        \Log::info('User accepted application', ['user_id' => \Auth::User()->id, 'member' => $app->user->member->searchable_name, 'application_id' => $app->id]);
         flash('Application has been approved.', 'success');
         return redirect(route('admin.applications.index'));
 
@@ -83,6 +84,7 @@ class ApplicationController extends Controller
 
         $data = [];
         $this->emailDecline($app->user,$data);
+        \Log::info('User declined application', ['user_id' => \Auth::User()->id, 'application_id' => $app->id]);
 
         flash('Application has been declined.', 'success');
         return redirect(route('admin.applications.index'));

@@ -100,6 +100,7 @@ class TeamController extends Controller
         $note->note = $request->note;
         $note->save();
 
+        \Log::info('User created new training note', ['user_id' => \Auth::User()->id,'member' => \Auth::User()->member->searchable_name, 'note_id' => $note->id,'member_note' => $note->member->searchable_name]);
         flash('Note added to file.','success');
         return redirect()->back();
     }
@@ -115,6 +116,7 @@ class TeamController extends Controller
             flash('You do not have permission to access this.','danger');
             return redirect(route('frontend.team',$team->id));
         }
+        \Log::info('User deleted  training note', ['user_id' => \Auth::User()->id,'member' => \Auth::User()->member->searchable_name, 'note_id' => $note->id,'member_note' => $note->member->searchable_name]);
         $note->delete();
         flash('Note was deleted successfully.','success');
         return redirect()->back();
@@ -150,6 +152,7 @@ class TeamController extends Controller
         }
 
         $goal->members()->attach([$member->id => ['processor_id'=> $user->id, 'note' => $request->note, 'completed_at' => new Carbon]]);
+        \Log::info('User marked goal as completed', ['user_id' => \Auth::User()->id,'member' => \Auth::User()->member->searchable_name, 'goal_id' => $goal->id,'member_goal' => $member->searchable_name]);
         flash('Goal marked as completed','success');
         return redirect(route('frontend.team.leader.training.report',[$id,$member]));
 
@@ -208,6 +211,8 @@ class TeamController extends Controller
         $date = new Carbon;
         $serviceHistory = $member->serviceHistory()->create(['text'=> 'Completed Training Program - '.$oldProgram->name,'date'=> $date]);
 
+        \Log::info('User filled out program completion form.', ['user_id' => \Auth::User()->id,'member' => \Auth::User()->member->searchable_name, 'paperwork_id' => $paperwork->id,'program' => $oldProgram->name]);
+
         flash('Class Completion Form filed, credit has been granted for this program.', 'success');
         return redirect(route('frontend.files.my-file'));
 
@@ -228,6 +233,7 @@ class TeamController extends Controller
             $memberModel->position = $input['position'];
             $memberModel->save();
         }
+        \Log::info('User updated team positions', ['user_id' => \Auth::User()->id,'member' => \Auth::User()->member->searchable_name, 'team_id' => $team->id]);
         flash('Team positions successfully updated.','success');
         return redirect(route('frontend.team.leader',$id));
     }
