@@ -75,7 +75,7 @@
                     <div class="form-group">
                         {{ Form::label('position', 'Position', ['class' => 'col-lg-2 control-label']) }}
                         <div class="col-lg-10">
-                            {{ Form::text('member[position]', $file->position, ['class' => 'form-control', 'placeholder' => 'Steam ID']) }}
+                            {{ Form::text('member[position]', $file->position, ['class' => 'form-control', 'placeholder' => 'Position']) }}
                         </div><!--col-lg-10-->
                     </div><!--form control-->
 
