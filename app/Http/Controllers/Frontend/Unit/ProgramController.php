@@ -10,7 +10,7 @@ class ProgramController extends Controller
 {
     public function getMyProgram()
     {
-        \Log::notice('User viewed my program page', ['user_id' => \Auth::User()->id, 'member' => \Auth::User()->member->searchable_name, 'program_id' => \Auth::User()->member->program->id, 'program' => \Auth::User()->member->program->name]);
+        \Log::info('User viewed my program page', ['user_id' => \Auth::User()->id, 'member' => \Auth::User()->member->searchable_name, 'program_id' => \Auth::User()->member->program->id, 'program' => \Auth::User()->member->program->name]);
         return view('frontend.program.my-program');
     }
 
