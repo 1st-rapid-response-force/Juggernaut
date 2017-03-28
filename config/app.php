@@ -176,7 +176,7 @@ return [
         HieuLe\Active\ActiveServiceProvider::class,
         Spatie\MediaLibrary\MediaLibraryServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-        //Arcanedev\LogViewer\LogViewerServiceProvider::class,
+        Arcanedev\LogViewer\LogViewerServiceProvider::class,
 
 
 
