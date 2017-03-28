@@ -10,7 +10,7 @@ class PrismController extends Controller
 {
     public function index()
     {
-        $threads = Thread::all();
+        $threads = Thread::orderBy('id','desc')->get();
         return view('backend.prism.index', ['threads' =>$threads]);
     }
 
