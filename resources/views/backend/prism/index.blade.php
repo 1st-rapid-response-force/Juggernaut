@@ -34,6 +34,7 @@
                             <th>ID</th>
                             <th>Subject</th>
                             <th>Sender</th>
+                            <th>Last Updated</th>
                             <th>Options</th>
                         </tr>
                         </thead>
@@ -43,8 +44,9 @@
                                 <td>{{$thread->id}}</td>
                                 <td>{{$thread->subject}}</td>
                                 <td>{{$thread->creator()->member->searchable_name}}</td>
+                                <td>{{$thread->latestMessage->updated_at->diffForHumans()}}</td>
                                 <td>
-                                    <a class="btn btn-success" href="{{ route('admin.prism.show',array($thread->id)) }}">View</a>
+                                    <a class="btn btn-info" href="{{ route('admin.prism.show',array($thread->id)) }}"><i class="fa fa-search" aria-hidden="true"></i></a>
                                 </td>
                             </tr>
                         @endforeach
