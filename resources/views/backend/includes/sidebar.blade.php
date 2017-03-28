@@ -32,6 +32,11 @@
                 <a href="{{route('admin.calendar.index')}}"> <i class="fa fa-calendar" aria-hidden="true"></i> {{trans('menus.backend.unit.calendar.name')}}</a>
             </li>
 
+            <li class="{{ Active::pattern('admin/prism*') }}">
+                <a href="{{route('admin.prism.index')}}"> <i class="fa fa-eye" aria-hidden="true"></i> Prism</a>
+            </li>
+
+
             <li class="{{ Active::pattern('admin/unit/*') }} treeview">
                 <a href="#">
                     <i class="fa fa-sitemap"></i>

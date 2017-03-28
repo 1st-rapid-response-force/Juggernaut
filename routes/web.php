@@ -140,6 +140,12 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['web','auth','admin'], 
         Route::get('applications/{id}/decline', 'ApplicationController@declineApplicant')->name('admin.applications.decline');
     });
 
+    Route::group(['namespace' => 'Prism'], function (){
+        Route::get('prism', 'PrismController@index')->name('admin.prism.index');
+        Route::get('prism/{id}', 'PrismController@viewThread')->name('admin.prism.show');
+    });
+
+
     Route::group(['namespace' => 'Unit\Calendar'], function (){
         Route::resource('calendar', 'CalendarController', ['except' => ['show','create'], 'as' => 'admin']);
         Route::get('create/event', 'CalendarController@createEvent')->name('admin.calendar.create.event');
