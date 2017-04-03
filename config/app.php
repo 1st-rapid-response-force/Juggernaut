@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Combat Development Group',
+    'name' => '1st Rapid Response Force',
 
     /*
     |--------------------------------------------------------------------------

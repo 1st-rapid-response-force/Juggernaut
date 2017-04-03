@@ -65,7 +65,7 @@ class PageController extends Controller
 
     public function unitFeed()
     {
-        $events = TeamTimeline::all();
+        $events = TeamTimeline::orderBy('date','desc')->get();
         return view('frontend.pages.activity-feed',['events' => $events]);
     }
 

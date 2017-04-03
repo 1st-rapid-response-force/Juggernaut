@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend\Unit;
 
 use App\Models\Unit\Paperwork;
 use Illuminate\Http\Request;
+use App\Models\Unit\Team;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -36,6 +37,10 @@ class PaperworkController extends Controller
                 return redirect()->back();
                 break;
             case 'discharge':
+                flash('You cannot view this paperwork at the moment.','warning');
+                return redirect()->back();
+                break;
+            case 'aar':
                 flash('You cannot view this paperwork at the moment.','warning');
                 return redirect()->back();
                 break;
@@ -127,5 +132,17 @@ class PaperworkController extends Controller
         \Log::info('User updated flight-plan paperwork', ['user_id' => \Auth::User()->id,'member' => \Auth::User()->member->searchable_name, 'paperwork_id' => $paperwork]);
         flash('Your Flight Plan has been updated, it is now visible to the ATC.', 'success');
         return redirect()->back();
+    }
+
+    public function showAfterActionReport($id)
+    {
+        $team = Team::findOrFail($id);
+        return view('frontend.paperwork.aar.new', ['team' => $team]);
+    }
+
+    public function storeAfterActionReport($id, Request $request)
+    {
+        $form = collect($request->except('_token'));
+        $paperwork = \Auth::User()->member->paperwork()->create(['type'=>'aar','paperwork'=> $form->toJson(),'team_id' => $request->team_id]);
     }
 }

@@ -13,7 +13,7 @@ class Paperwork extends Model
     /**
      * @var array
      */
-    protected $fillable = ['processor_id','type','paperwork','status'];
+    protected $fillable = ['processor_id','type','paperwork','status','team_id'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -21,6 +21,14 @@ class Paperwork extends Model
     public function member()
     {
         return $this->belongsTo('App\Models\Unit\Member');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function team()
+    {
+        return $this->belongsTo('App\Models\Unit\Team');
     }
 
     /**
@@ -59,6 +67,12 @@ class Paperwork extends Model
                 break;
             case 'program-completion':
                 return 'Program Completion Form';
+                break;
+            case 'flight-plan':
+                return 'Flight Plan';
+                break;
+            case 'aar':
+                return 'After Action Report';
                 break;
         }
     }
