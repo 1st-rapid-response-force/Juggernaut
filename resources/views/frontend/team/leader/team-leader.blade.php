@@ -89,6 +89,12 @@
                         </div><!--form control-->
 
                         <div class="form-group">
+                            {{ Form::label('date', 'Date:', ['class' => 'control-label']) }}
+
+                            {{ Form::text('date', null, ['class' => 'form-control', 'placeholder' => 'YYYY-MM-DD' ,'required' => 'required']) }}
+                        </div><!--form control-->
+
+                        <div class="form-group">
                             {{ Form::label('type', 'Event Type:', ['class' => 'control-label']) }}
 
                             {{ Form::select('type', ['new-member' => 'New Member', 'member-left' => 'Member Left', 'star' => 'Star', 'newspaper'  => 'News' ], null, ['class' => 'form-control','required' => 'required']) }}

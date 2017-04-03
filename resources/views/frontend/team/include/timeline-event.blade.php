@@ -8,7 +8,7 @@
             @endif
         </div>
         <div class="timeline-body">
-            <p>{{$event->body}}</p>
+            <p>{!! $event->body !!}</p>
 
         </div>
         <div class="timeline-footer">
