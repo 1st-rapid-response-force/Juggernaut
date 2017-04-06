@@ -106,7 +106,7 @@
                             <label for="name" class="col-sm-2 control-label">Currently Assigned Team</label>
                             <div class="col-sm-10">
                                 <select name="responsible_team_id" class="form-control">
-                                    <option value="0">Select Team</option>
+                                    <option value="1">Select Team</option>
                                     @foreach(\App\Models\Unit\Team::all() as $team)
                                         <option value="{{$team->id}}">{{$team->name}}</option>
                                     @endforeach

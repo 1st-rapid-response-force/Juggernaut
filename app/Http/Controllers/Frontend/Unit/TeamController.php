@@ -367,9 +367,29 @@ class TeamController extends Controller
 
     public function deleteTimelineEvent($team_id, $timeline_id)
     {
+        $team = Team::findOrFail($team_id);
+
+        if(!$team->isLeader(\Auth::User()))
+        {
+            flash('You do not have permission to access this.','danger');
+            return redirect(route('frontend.team',$team->id));
+        }
+
         $event = TeamTimeline::findOrFail($timeline_id);
         $event->delete();
         flash('Timeline deleted successfully.','success');
         return redirect()->back();
+    }
+
+    public function showAllAfterActionReports($team_id)
+    {
+        $team = Team::findOrFail($team_id);
+        if(!$team->isLeader(\Auth::User()))
+        {
+            flash('You do not have permission to access this.','danger');
+            return redirect(route('frontend.team',$team->id));
+        }
+        return view('frontend.team.leader.after-action-reports',['team'=>$team]);
+
     }
 }

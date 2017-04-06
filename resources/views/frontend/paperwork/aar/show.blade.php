@@ -1,6 +1,6 @@
 @extends('frontend.templates.master')
 
-@section('title','Program Completion')
+@section('title','After Action Report')
 
 @section('after-styles-end')
     <link rel="stylesheet" type="text/css" href="/plugins/gridforms/gridforms.css">
@@ -16,37 +16,37 @@
                         <div class="post post-single">
                             <div class="post-header">
                                 <div class="post-title">
-                                    <h2><a href="#">Program Completion Form</a></h2>
+                                    <h2><a href="#">After Action Report - {{$form->getPaperwork()->date}} - #RRF-AAR-{{$form->id}}</a></h2>
                                 </div>
                             </div>
                             <div class="well">
-                                <form class="grid-form" method="post">
+                                <form class="grid-form">
                                     {!! csrf_field() !!}
-                                    <div class="text-center"><legend><strong>PROGRAM COMPLETION FORM</strong><br> 1ST RAPID RESPONSE FORCE<br><br></legend></div>
+                                    <div class="text-center"><legend><strong>AFTER ACTION REPORT FORM</strong><br> 1ST RAPID RESPONSE FORCE<br><br></legend></div>
                                     <div class="text-center"><h3>PRIVACY ACT STATEMENT</h3></div>
                                     <p><strong>AUTHORITY: </strong> 1ST-RRF-POLICIES-PROCEDURES</p>
-                                    <p><strong>PRINCIPAL PURPOSE(S): </strong> Used to credit members for the completion of a training program.</p>
-                                    <p><strong>ROUTINE USE(S): </strong> Credit for program completion, stored on member file.</p>
+                                    <p><strong>PRINCIPAL PURPOSE(S): </strong> Used to record and reflect on operations and training events.</p>
+                                    <p><strong>ROUTINE USE(S): </strong> Credit for operation/training completion, stored on team file.</p>
                                     <fieldset>
                                         <legend>A. IDENTIFICATION DATA</legend>
                                         <div data-row-span="6">
                                             <div data-field-span="2">
                                                 <label>NAME</label>
-                                                <input type="text" name="name" readonly value="{{$form->getPaperwork()->name or ''}}">
+                                                <input type="text" name="name" readonly value="{{$form->getPaperwork()->name}}">
                                             </div>
                                             <div data-field-span="1">
                                                 <label>RANK</label>
-                                                <input type="text" name="grade" readonly value="{{$form->getPaperwork()->grade or ''}}">
+                                                <input type="text" name="grade" readonly value="{{$form->getPaperwork()->grade}}">
                                             </div>
                                         </div>
                                         <div data-row-span="3">
                                             <div data-field-span="2">
                                                 <label>MILITARY IDENTIFICATION NUMBER</label>
-                                                <input type="text" name="military_id" readonly value="{{$form->getPaperwork()->military_id or ''}}">
+                                                <input type="text" name="military_id" readonly value="{{$form->getPaperwork()->military_id}}">
                                             </div>
                                             <div data-field-span="1">
                                                 <label>CURRENT DATE</label>
-                                                <input type="text" id="date" name="date" placeholder="01/01/2000" readonly value="{{$form->getPaperwork()->date or ''}}">
+                                                <input type="text" id="date" name="date" placeholder="01/01/2000" readonly value="{{$form->getPaperwork()->date}}">
                                             </div>
                                         </div>
                                         <div data-row-span="4">
@@ -58,33 +58,43 @@
                                     </fieldset>
                                     <br>
                                     <fieldset>
-                                        <legend>B. PROGRAM</legend>
+                                        <legend>B. REPORT</legend>
                                         <div data-row-span="1">
-                                            <div data-field-span="2">
-                                                <label>PROGRAM NAME</label>
-                                                <input type="text" name="program" readonly value="{{$form->getPaperwork()->program or ''}}">
-                                            </div>
-                                        </div>
-                                        <div data-row-span="4">
-                                            <div data-field-span="2">
-                                                <label>INSTRUCTOR</label>
-                                                <input type="text" name="instructor" readonly value="{{$form->getPaperwork()->instructor or ''}}">
-                                            </div>
-                                            <div data-field-span="2">
-                                                <label>INSTRUCTOR</label>
-                                                <input type="text" name="instructor_rank" readonly value="{{$form->getPaperwork()->instructor_rank or ''}}">
+                                            <div data-field-span="1">
+                                                <label>EVENT NAME</label>
+                                                <input type="text" name="event_name" readonly value="{{$form->getPaperwork()->event_name}}">
                                             </div>
                                         </div>
                                         <div data-row-span="1">
                                             <div data-field-span="1">
-                                                <label>REMARKS</label>
-                                                <textarea name="program_remarks" rows="15" readonly placeholder="">{{$form->getPaperwork()->program_remarks or ''}}</textarea>
+                                                <label>ATTENDEES</label>
+                                                <textarea name="event_attendees" rows="5" placeholder="Who attended this event?">{{$form->getPaperwork()->event_attendees}}</textarea>
+                                            </div>
+                                        </div>
+                                        <div data-row-span="1">
+                                            <div data-field-span="1">
+                                                <label>PROS</label>
+                                                <textarea name="event_pros" rows="6" placeholder="">{{$form->getPaperwork()->event_pros}}</textarea>
+                                            </div>
+                                        </div>
+                                        <div data-row-span="1">
+                                            <div data-field-span="1">
+                                                <label>CONS</label>
+                                                <textarea name="event_cons" rows="6" placeholder="">{{$form->getPaperwork()->event_cons}}</textarea>
+                                            </div>
+                                        </div>
+                                        <div data-row-span="1">
+                                            <div data-field-span="1">
+                                                <label>OTHER REMARKS</label>
+                                                <textarea name="event_remarks" rows="6" placeholder="">{{$form->getPaperwork()->event_remarks}}</textarea>
                                             </div>
                                         </div>
 
 
                                     </fieldset>
                                     <br><br>
+                                    <hr>
+                                    <div class="clearfix"></div>
                                 </form>
                             </div>
 

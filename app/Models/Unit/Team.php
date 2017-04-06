@@ -33,6 +33,14 @@ class Team extends Model implements HasMedia
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
+    public function paperwork()
+    {
+        return $this->hasMany('App\Models\Unit\Paperwork','team_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function timeline()
     {
         return $this->hasMany('App\Models\Unit\TeamTimeline');

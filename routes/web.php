@@ -110,8 +110,9 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['web','auth']], functi
     Route::get('team/{team}/leader/add-video', 'Unit\TeamController@addVideo')->name('frontend.team.leader.add-video');
     Route::get('team/{team}/leader/positions', 'Unit\TeamController@positions')->name('frontend.team.leader.positions');
     Route::get('team/{team}/leader/training', 'Unit\TeamController@training')->name('frontend.team.leader.training');
-    Route::get('team/{team}/leader/after-action-report', 'Unit\PaperworkController@showAfterActionReport')->name('frontend.team.leader.aar');
-    Route::post('team/{team}/leader/after-action-report', 'Unit\PaperworkController@storeAfterActionReport')->name('frontend.team.leader.aar.post');
+    Route::get('team/{team}/leader/after-action-report', 'Unit\TeamController@showAllAfterActionReports')->name('frontend.team.leader.aar.team');
+    Route::get('team/{team}/leader/after-action-report/new', 'Unit\PaperworkController@showAfterActionReport')->name('frontend.team.leader.aar');
+    Route::post('team/{team}/leader/after-action-report/new', 'Unit\PaperworkController@storeAfterActionReport')->name('frontend.team.leader.aar.post');
     Route::get('team/{team}/leader/training/{member}', 'Unit\TeamController@trainingReport')->name('frontend.team.leader.training.report');
     Route::get('team/{team}/leader/training/{member}/program-completion', 'Unit\TeamController@classCompletionForm')->name('frontend.team.leader.training.program-completion');
     Route::post('team/{team}/leader/training/{member}/program-completion', 'Unit\TeamController@storeClassCompletionForm')->name('frontend.team.leader.training.program-completion.post');

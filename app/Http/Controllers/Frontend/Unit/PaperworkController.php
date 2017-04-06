@@ -41,8 +41,7 @@ class PaperworkController extends Controller
                 return redirect()->back();
                 break;
             case 'aar':
-                flash('You cannot view this paperwork at the moment.','warning');
-                return redirect()->back();
+                return view('frontend.paperwork.aar.show',['form' => $paperwork]);
                 break;
             case 'program-completion':
                 return view('frontend.paperwork.program-completion.show',['form' => $paperwork]);
