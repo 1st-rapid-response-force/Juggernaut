@@ -172,11 +172,13 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['web','auth','admin'], 
 
 
         Route::post('perstat/{id}/email', 'PerstatController@email')->name('admin.perstat.email');
+
         Route::resource('perstat', 'PerstatController', ['as' => 'admin']);
         Route::resource('programs', 'ProgramController', ['as' => 'admin']);
         Route::resource('awards', 'AwardController', ['as' => 'admin']);
         Route::resource('ribbons', 'RibbonController', ['as' => 'admin']);
         Route::resource('qualifications', 'QualificationController', ['as' => 'admin']);
+        Route::resource('paperwork', 'PaperworkController', ['as' => 'admin']);
     });
 
     Route::group(['namespace' => 'Unit', 'prefix'=>'paperwork'], function (){

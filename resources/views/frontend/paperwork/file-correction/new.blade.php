@@ -69,7 +69,7 @@
                                         </div>
                                     </fieldset>
                                     <br><br>
-                                    <p>Under unit policy all personnel files must be accurate. All VPF file corrections are viewed and processed within 48HRS per policy.</p>
+                                    <p>Under unit policy all personnel files must be accurate. All member file corrections are viewed and processed within 48HRS per policy.</p>
                                    <hr>
                                     <div class="pull-right">
                                         {{ Form::submit('Sign and Submit', ['class' => 'btn btn-success']) }}

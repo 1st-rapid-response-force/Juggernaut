@@ -23,6 +23,7 @@
                                 <form class="grid-form">
                                     {!! csrf_field() !!}
                                     <div class="text-center"><legend><strong>AFTER ACTION REPORT FORM</strong><br> 1ST RAPID RESPONSE FORCE<br><br></legend></div>
+                                    <div class="text-center"> <p>{!! $form->getStatus() !!}</p></div>
                                     <div class="text-center"><h3>PRIVACY ACT STATEMENT</h3></div>
                                     <p><strong>AUTHORITY: </strong> 1ST-RRF-POLICIES-PROCEDURES</p>
                                     <p><strong>PRINCIPAL PURPOSE(S): </strong> Used to record and reflect on operations and training events.</p>

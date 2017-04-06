@@ -63,7 +63,7 @@ class Paperwork extends Model
                 return 'Bad Conduct Form';
                 break;
             case 'leave':
-                return 'Member File Correction Form';
+                return 'Leave of Absence Form';
                 break;
             case 'program-completion':
                 return 'Program Completion Form';
@@ -88,6 +88,12 @@ class Paperwork extends Model
                 break;
             case 2:
                 return '<span class="label label-info">REVIEWED</span>';
+                break;
+            case 3:
+                return '<span class="label label-info">ARCHIVED</span>';
+                break;
+            case 4:
+                return '<span class="label label-warning">MORE INFORMATION NEEDED</span>';
                 break;
         }
     }

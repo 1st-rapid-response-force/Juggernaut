@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Frontend\Unit;
 use App\Models\Unit\Paperwork;
 use Illuminate\Http\Request;
 use App\Models\Unit\Team;
-
+use Carbon\Carbon;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -21,20 +21,24 @@ class PaperworkController extends Controller
                 return redirect()->back();
                 break;
             case 'file-correction':
-                flash('You cannot view this paperwork at the moment.','warning');
-                return redirect()->back();
+                return view('frontend.paperwork.file-correction.show',['form' => $paperwork]);
                 break;
-            case 'loa-request':
-                flash('You cannot view this paperwork at the moment.','warning');
-                return redirect()->back();
+            case 'leave':
+                return view('frontend.paperwork.leave.show',['form' => $paperwork]);
                 break;
             case 'assignment-change':
                 flash('You cannot view this paperwork at the moment.','warning');
                 return redirect()->back();
                 break;
             case 'bad-conduct':
-                flash('You cannot view this paperwork at the moment.','warning');
-                return redirect()->back();
+                // Checks if user viewing content has access to the report - Leadership and Admin
+                $team = Team::findOrFail($paperwork->team_id);
+                if(!$team->isLeader(\Auth::User()))
+                {
+                    flash('You do not have permission to access this.','danger');
+                    return redirect()->back();
+                }
+                return view('frontend.paperwork.leave.show',['form' => $paperwork]);
                 break;
             case 'discharge':
                 flash('You cannot view this paperwork at the moment.','warning');
@@ -47,7 +51,15 @@ class PaperworkController extends Controller
                 return view('frontend.paperwork.program-completion.show',['form' => $paperwork]);
                 break;
             case 'flight-plan':
-                return view('frontend.paperwork.aviation.flight-plan.edit', ['paperwork' => $paperwork]);
+                $date = new Carbon($paperwork->getPaperwork()->date);
+                $now = new Carbon();
+
+                if($date->addWeek(1) > $now)
+                {
+                    return view('frontend.paperwork.aviation.flight-plan.edit', ['paperwork' => $paperwork]);
+                } else {
+                    return view('frontend.paperwork.aviation.flight-plan.show', ['paperwork' => $paperwork]);
+                }
                 break;
 
         }
