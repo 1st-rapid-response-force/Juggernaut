@@ -153,6 +153,9 @@ class Member extends Model
     public function getActive()
     {
         switch ($this->active){
+            case 2:
+                return '<span class="label label-info">Leave of Absence</span>';
+                break;
             case 1:
                 return '<span class="label label-success">Active</span>';
                 break;
