@@ -199,17 +199,17 @@ class TeamController extends Controller
         // Create Paperwork
         $form = collect($request->except('_token'));
         $paperwork = $member->paperwork()->create(['type'=>'program-completion','paperwork'=> $form->toJson(),'status'=>2]);
+        $now = Carbon::now();
 
         // Create Program Completion
-        $member->programs()->attach([$member->current_program_id => ['paperwork_id'=> $paperwork->id, 'note' => $request->note, 'completed_at' => new Carbon]]);
+        $member->programs()->attach([$member->current_program_id => ['paperwork_id'=> $paperwork->id, 'note' => $request->note, 'completed_at' => $now]]);
         $oldProgram = $member->program;
         $member->current_program_id = 0;
         $member->save();
 
 
         //Create Service History
-        $date = new Carbon;
-        $serviceHistory = $member->serviceHistory()->create(['text'=> 'Completed Training Program - '.$oldProgram->name,'date'=> $date]);
+        $serviceHistory = $member->serviceHistory()->create(['text'=> 'Completed Training Program - '.$oldProgram->name,'date'=> $now]);
 
         \Log::info('User filled out program completion form.', ['user_id' => \Auth::User()->id,'member' => \Auth::User()->member->searchable_name, 'paperwork_id' => $paperwork->id,'program' => $oldProgram->name]);
 
