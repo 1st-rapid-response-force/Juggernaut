@@ -26,7 +26,7 @@
                     <li><a href="{{route('frontend.team.leader',$team->id)}}">Leader Panel</a></li>
                     <li><a href="{{route('frontend.team.leader.training',$team->id)}}">Training Management</a></li>
                     <li><a href="#">{{$member->searchable_name}}</a></li>
-                    <li><a href="{{route('frontend.team.leader.training.report',$team->id)}}">Training Report</a></li>
+                    <li><a href="{{route('frontend.team.leader.training.report',[$team->id,$member->id])}}">Training Report</a></li>
                     <li class="active">Class Completion Form</li>
                 </ol>
             </div>
