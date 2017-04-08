@@ -94,4 +94,14 @@ class Team extends Model implements HasMedia
         // If none are true then return false
         return false;
     }
+
+    public function isAviation()
+    {
+        if($this->id >= 9 && $this->id <= 15)
+        {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

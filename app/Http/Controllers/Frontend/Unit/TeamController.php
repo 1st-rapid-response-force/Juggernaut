@@ -392,4 +392,9 @@ class TeamController extends Controller
         return view('frontend.team.leader.after-action-reports',['team'=>$team]);
 
     }
+
+    public function aviationDashboard()
+    {
+        return view('frontend.aviation.dashboard');
+    }
 }

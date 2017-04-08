@@ -37,7 +37,7 @@
                                             </div>
                                             <div data-field-span="2">
                                                 <label>Aircraft Callsign</label>
-                                                <input type="text" name="name" value="">
+                                                <input type="text" name="aircraft_callsign" value="">
                                             </div>
                                         </div>
                                         <div data-row-span="3">

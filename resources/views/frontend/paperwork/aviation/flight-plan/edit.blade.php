@@ -24,7 +24,7 @@
                                     <input type="hidden" name="_method" value="PUT">
                                     {!! csrf_field() !!}
                                     <div class="text-center"><legend><strong>FLIGHT PLAN FORM</strong><br> 1ST RAPID RESPONSE FORCE<br><br></legend></div>
-                                    <div class="text-center"> <p>{!! $form->getStatus() !!}</p></div>
+                                    <div class="text-center"> <p>{!! $paperwork->getStatus() !!}</p></div>
                                     <div class="text-center"><h3>PRIVACY ACT STATEMENT</h3></div>
                                     <p><strong>AUTHORITY: </strong> 1ST-RRF-POLICIES-PROCEDURES</p>
                                     <p><strong>PRINCIPAL PURPOSE(S): </strong> To aid in accurate identification of personnel participating in the filed flight.</p>
