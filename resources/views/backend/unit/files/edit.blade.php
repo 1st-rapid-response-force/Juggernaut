@@ -167,12 +167,21 @@
                                                 <thead>
                                                 <th>Date</th>
                                                 <th>Note</th>
+                                                <th>Options</th>
                                                 </thead>
                                                 <tbody>
                                                 @foreach($file->serviceHistory()->orderBy('date','desc')->get() as $serviceHistory)
                                                     <tr>
                                                         <td class="col-lg-2">{{\Carbon\Carbon::createFromFormat('Y-m-d',$serviceHistory->date)->toFormattedDateString()}}</td>
-                                                        <td class="col-lg-10">{{$serviceHistory->text}}</td>
+                                                        <td class="col-lg-8">{{$serviceHistory->text}}</td>
+                                                        <td class="col-lg-2">
+                                                            <a href="{{route('admin.members.edit.delete-service-history',[$file->id,$serviceHistory->id])}}"
+                                                               data-method="delete"
+                                                               data-trans-button-cancel="Cancel"
+                                                               data-trans-button-confirm="Delete"
+                                                               data-trans-title="Are you sure?"
+                                                               class="btn btn-xs btn-danger"><i class="fa fa-trash" data-toggle="tooltip" data-placement="top" title="Delete"></i></a>
+                                                        </td>
                                                     </tr>
                                                 @endforeach
                                                 </tbody>

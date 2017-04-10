@@ -6,6 +6,7 @@ use App\Models\Unit\Award;
 use App\Models\Unit\Member;
 use App\Models\Unit\Rank;
 use App\Models\Unit\Team;
+use App\Models\Unit\ServiceHistory;
 use App\Repositories\Frontend\Unit\Teamspeak\TeamspeakContract;
 use App\User;
 use Carbon\Carbon;
@@ -101,6 +102,15 @@ class FileController extends Controller
         $serviceHistory = $file->serviceHistory()->create(['text'=> $request->text,'date'=> $date]);
 
         flash('You added a service history to this members file!', 'success');
+        return redirect()->back();
+    }
+    public function deleteServiceHistory($id, $service,Request $request)
+    {
+        $file = Member::findOrFail($id);
+        $service = ServiceHistory::findOrFail($service);
+        $service->delete();
+
+        flash('You deleted this service history entry!', 'success');
         return redirect()->back();
     }
 }

@@ -164,6 +164,7 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['web','auth','admin'], 
         Route::post('members/{id}/add-training', 'FileController@addTraining')->name('admin.members.edit.add-training');
         Route::post('members/{id}/add-ribbon', 'FileController@addRibbon')->name('admin.members.edit.add-ribbon');
         Route::post('members/{id}/add-service-history', 'FileController@addServiceHistory')->name('admin.members.edit.add-service-history');
+        Route::delete('members/{id}/service-history/{service}', 'FileController@deleteServiceHistory')->name('admin.members.edit.delete-service-history');
         Route::resource('members', 'FileController', ['as' => 'admin']);
 
         Route::delete('programs/{program}/goals/{goal}/delete', 'ProgramController@deleteProgramGoal')->name('admin.programs.program-goals.delete');
