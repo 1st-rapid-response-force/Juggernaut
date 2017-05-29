@@ -1,0 +1,20 @@
+version: '2'
+services:
+  dev:
+    image: eboraas/laravel
+    ports:
+      - "4040:443"
+    volumes:
+      - .:/var/www/laravel/
+    links:
+      - mariadb
+
+  mariadb:
+    image: mariadb
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=juggernaut
+      - MYSQL_USER=juggernaut
+      - MYSQL_PASSWORD=juggernaut
+      - MYSQL_DATABASE=juggernaut

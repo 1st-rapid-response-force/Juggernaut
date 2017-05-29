@@ -1,0 +1,1 @@
+docker exec -i -t juggernaut_dev_1 /bin/bash
