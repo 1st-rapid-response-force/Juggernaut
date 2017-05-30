@@ -124,11 +124,13 @@
                                     <label><input type="radio" name="agreement_milsim" value="1" {{$app->getApplication()->dishonorable_discharge == 1 ? 'checked' : ''}}> YES</label> &nbsp;
                                     <label><input type="radio" name="agreement_milsim" value="0" {{$app->getApplication()->dishonorable_discharge == 0 ? 'checked' : ''}}> NO</label> &nbsp;
                                 </div>
+                                @if(isset($app->getApplication()->agreement_guidelines))
                                 <div data-field-span="1">
                                     <label>I UNDERSTAND THAT BY SUBMITTING THIS FORM, IT WILL IN EFFECT CHANGE MY STATUS AS A CIVILIAN TO A MEMBER OF THE 1ST RRF AND WILL BE HELD TO UNIT GUIDELINES</label>
                                     <label><input type="radio" name="agreement_guidelines" value="1" {{$app->getApplication()->agreement_guidelines == 1 ? 'checked' : ''}}> YES</label> &nbsp;
                                     <label><input type="radio" name="agreement_guidelines" value="0" {{$app->getApplication()->agreement_guidelines == 0 ? 'checked' : ''}}> NO</label> &nbsp;
                                 </div>
+                                @endif
                             </div>
                             <div data-row-span="2">
                                 <div data-field-span="1">
