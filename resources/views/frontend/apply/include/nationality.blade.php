@@ -1,4 +1,4 @@
-<select class="form-control" name="nationality">
+<select name="nationality">
     <option value="United States" title="United States" selected>United States</option>
     <option value="United Kingdom" title="United Kingdom">United Kingdom</option>
     <option value="placeholder" >==============</option>
