@@ -66,7 +66,7 @@
                                             </div>
                                             <div data-field-span="2">
                                                 <label>MILITARY IDENTIFICATION NUMBER</label>
-                                                <input type="text" name="steam_id" readonly value="{{\Auth::User()->steam_id }}">
+                                                <input type="text" name="steam_id" readonly value="{{\Auth::User()->steam_id or ""}}">
                                             </div>
                                         </div>
                                         <div data-row-span="3">
@@ -82,7 +82,7 @@
                                         <div data-row-span="4">
                                             <div data-field-span="4" data-field-error="Please enter a valid email address">
                                                 <label>E-mail</label>
-                                                <input type="email" name="email" readonly value="{{\Auth::User()->email}}">
+                                                <input type="email" name="email" readonly value="{{\Auth::User()->email or ""}}">
                                             </div>
                                         </div>
                                     </fieldset>
@@ -103,7 +103,16 @@
                                                     <label><input type="radio" name="dishonorable_discharge" value="0" checked> NO</label> &nbsp;
                                                 </div>
                                             </div>
+                                            <div data-row-span="1">
+                                                <div data-field-span="1">
+                                                    <label>REASONING FOR JOINING THE 1ST RRF</label>
+                                                    <textarea name="reason_for_joining" rows="3" placeholder=""></textarea>
+                                                </div>
+                                            </div>
                                         </fieldset>
+
+
+
                                         <div data-row-span="1">
                                             <div data-field-span="1">
                                                 <label>WHAT GROUPS HAVE YOU BEEN A PART OF:</label>

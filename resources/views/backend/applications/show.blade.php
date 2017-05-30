@@ -26,19 +26,12 @@
         <div class="box-body">
             <div class="container">
                 <div class="well">
-                    <div class="text-center"><legend><strong>ENLISTMENT/REENLISTMENT DOCUMENT</strong><br> 1ST RAPID RESPONSE FORCE<br><br></legend></div>
-                    <div class="text-center"><h3>PRIVACY ACT STATEMENT</h3></div>
-                    <p><strong>AUTHORITY: </strong> 1ST-RRF-POLICIES-PROCEDURES</p>
-                    <p><strong>PRINCIPAL PURPOSE(S): </strong> To record enlistment or reenlistment into the 1st Rapid Response Force. This information becomes a part of the subject's military personnel records which are used to document promotion, reassignment, training, medical support, and other personnel management actions.</p>
-                    <p><strong>ROUTINE USE(S): </strong> This form becomes a part of the Service's Enlisted Master File and Field Personnel File.</p>
-                    <p><strong>DISCLOSURE: </strong> Voluntary; however, failure to furnish personal identification information may negate the enlistment/reenlistment application</p>
-                    <legend>A. ENLISTEE/REENLISTEE IDENTIFICATION DATA</legend>
                     {{ Form::open(['route' => 'frontend.apply.application.post', 'class' => 'grid-form', 'role' => 'form', 'method' => 'post']) }}
                     {!! csrf_field() !!}
                     <div class="text-center"><legend><strong>ENLISTMENT/REENLISTMENT DOCUMENT</strong><br> 1ST RAPID RESPONSE FORCE<br><br></legend></div>
                     <div class="text-center"><h3>PRIVACY ACT STATEMENT</h3></div>
                     <p><strong>AUTHORITY: </strong> 1ST-RRF-POLICIES-PROCEDURES</p>
-                    <p><strong>PRINCIPAL PURPOSE(S): </strong> To record enlistment or reenlistment into the 1st Rapid Response Force. This information becomes a part of the subject'smilitary personnel records which are used to document promotion, reassignment, training, medical support, and other personnel management actions.</p>
+                    <p><strong>PRINCIPAL PURPOSE(S): </strong> To record enlistment or reenlistment into the 1st Rapid Response Force. This information becomes a part of the subject's military personnel records which are used to document promotion, reassignment, training, medical support, and other personnel management actions.</p>
                     <p><strong>ROUTINE USE(S): </strong> This form becomes a part of the Service's Enlisted Master File and Field Personnel File.</p>
                     <p><strong>DISCLOSURE: </strong> Voluntary; however, failure to furnish personal identification information may negate the enlistment/reenlistment application</p>
                     <fieldset>
@@ -54,7 +47,7 @@
                             </div>
                             <div data-field-span="2">
                                 <label>MILITARY IDENTIFICATION NUMBER</label>
-                                <input type="text" name="steam_id" readonly value="{{$app->getApplication()->steam_id }}">
+                                <input type="text" name="steam_id" readonly value="{{$app->getApplication()->steam_id or ''}}">
                             </div>
                         </div>
                         <div data-row-span="3">
@@ -64,13 +57,13 @@
                             </div>
                             <div data-field-span="2">
                                 <label>Nationality</label>
-                                <input type="text" name="nationality" readonly value="{{$app->getApplication()->nationality }}">
+                                <input type="text" name="nationality" readonly value="{{$app->getApplication()->nationality}}">
                             </div>
                         </div>
                         <div data-row-span="4">
                             <div data-field-span="4" data-field-error="Please enter a valid email address">
                                 <label>E-mail</label>
-                                <input type="email" name="email" readonly value="{{$app->getApplication()->email}}">
+                                <input type="email" name="email" readonly value="{{$app->getApplication()->email or ''}}">
                             </div>
                         </div>
                     </fieldset>
@@ -91,7 +84,15 @@
                                     <label><input type="radio" name="dishonorable_discharge" value="0" {{$app->getApplication()->dishonorable_discharge == 0 ? 'checked' : ''}}> NO</label> &nbsp;
                                 </div>
                             </div>
+                            <div data-row-span="1">
+                                <div data-field-span="1">
+                                    <label>REASONING FOR JOINING THE 1ST RRF</label>
+                                    <textarea name="reason_for_joining" rows="3" placeholder="">{{$app->getApplication()->reason_for_joining}}</textarea>
+                                </div>
+                            </div>
                         </fieldset>
+
+
                         <div data-row-span="1">
                             <div data-field-span="1">
                                 <label>WHAT GROUPS HAVE YOU BEEN A PART OF:</label>
