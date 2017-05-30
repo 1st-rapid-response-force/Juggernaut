@@ -39,6 +39,9 @@
                                 </div>
                             </li>
                             <div class="clearfix pull-none"></div>
+                            <div class="text-center">
+                                {{$events->links()}}
+                            </div>
                         </ul>
 
                     </div>
