@@ -12,7 +12,7 @@
 
                     @if(!\Auth::guest())
                     <li><a href="{{route('frontend.calendar')}}">Calendar</a></li>
-                    @endif
+
                     @if(count(\Auth::User()->member))
                     <div class="visible-xs visible-sm">
                         <li><a href="{{route('frontend.team',Auth::user()->member->team_id)}}"><i class="fa fa-users"></i> My Team</a></li>
@@ -26,6 +26,7 @@
                         <li class="divider"></li>
                         <li><a href="{{route('auth.logout')}}"><i class="fa fa-power-off"></i> Sign Out</a></li>
                     </div>
+                    @endif
                     @endif
 
                 </ul>
