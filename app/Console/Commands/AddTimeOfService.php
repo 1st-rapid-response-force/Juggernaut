@@ -41,8 +41,20 @@ class AddTimeOfService extends Command
         $members = Member::whereActive(1)->get();
         foreach($members as $member)
         {
-                $member->time_in_service = $member->time_in_service+1;
-                $member->save();
+                if($member->hasReportedIn())
+                {
+                    $member->time_in_service = $member->time_in_service+1;
+                    $member->save();
+                } else {
+                    $member->time_in_service = $member->time_in_service-7;
+
+                    if($member->time_in_service < 0)
+                    $member->time_in_service = 0;
+
+                    $member->save();
+                    \Log::notice('CATALYST - Deducted 7 days, failed to report in', ['member'=> $member->searchable_name,'member_id' => $member->id]);
+                }
+
         }
         \Log::info('CATALYST - Credited all active members for Time in Service (+1)');
     }

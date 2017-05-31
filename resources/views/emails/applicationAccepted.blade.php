@@ -217,7 +217,7 @@
                                         You have been accepted into the 1st Rapid Response Force! To ensure you are hitting the ground running, follow the steps below:
                                         <ol>
                                             <li>Add your Teamspeak ID to your Settings to obtain your rank and permissions on Teamspeak - <a href="http://1st-rrf.com/settings/teamspeak">Manage your Teamspeak IDs</a></li>
-                                            <li>Download and Setup the Modpack - <a href="http://1st-rrf.com/modpack">Installing the Modpack</a></li>
+                                            <li>Download and Setup the Modpack</li>
                                             <li>Add the SquadXML to your ingame character -<a href="http://1st-rrf.com/settings">View SquadXML URL</a> </li>
                                             <li>Last but not least, be active and get to know your fellow members!</li>
                                         </ol>

@@ -38,13 +38,13 @@ class Kernel extends ConsoleKernel
         $schedule->command('member:searchable')
             ->daily();
         $schedule->command('catalyst:credit-tig')
-            ->daily();
+            ->daily()->saturdays()->at('5:00');;
         $schedule->command('member:squadxml')
             ->daily();
         $schedule->command('aviation:flight-plan-archive')
             ->daily();
         $schedule->command('member:create-perstat')
-            ->weekly();
+            ->weekly()->saturdays()->at('6:00');
     }
 
     /**

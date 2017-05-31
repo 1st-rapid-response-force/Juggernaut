@@ -215,9 +215,9 @@
                                         <br>
                                         <strong>If you have filed for Leave of Absence and it was approved, you can disregard this message.</strong>
                                         <br><br>
-                                        You are receiving this message as you have failed to report in. Due to this, we have automatically created an bad conduct report for this incident.
+                                        You are receiving this message as you have failed to report in. Your Time in Service has been deducted 7 days for failing to report in.
                                         <br><br>
-                                        If you no longer want to be a part of the 1st RRF and unsubscribe from our messages, you can request a formal discharge via this link: <a href="http://rrf.app/paperwork/discharge">Discharge Form.</a>
+                                        If you no longer want to be a part of the 1st RRF and unsubscribe from our messages, you can request a formal discharge via this link: <a href="http://1st-rrf.com/paperwork/discharge">Discharge Form.</a>
                                         <br><br>
                                         If you fail to report in after this warning, we will administratively discharge you from our rosters.
                                         <br><br>

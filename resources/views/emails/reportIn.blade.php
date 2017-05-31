@@ -213,7 +213,7 @@
                                     <td align="left" class="mobile-padding" style="padding:20px 20px 0">
                                         <h1>Report In</h1>
                                         <br>
-                                        Our records indicate you have not reported in. To avoid disciplinary action, report in via the Squad panel.
+                                        Our records indicate you have not reported in. To avoid disciplinary action, report in via your File.
                                         <br><br>
                                         <a href="http://1st-rrf.com/files/my-file">My File - Report In</a>
                                         <br><br>
