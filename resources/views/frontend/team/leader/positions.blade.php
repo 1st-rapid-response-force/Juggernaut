@@ -53,7 +53,7 @@
                                             <input type="hidden" name="userForm[{{$member->id}}][id]" value="{{$member->id}}">
                                             <tr>
                                                 <td>{{$member->searchable_name}}</td>
-                                                <td><input type="text" name="userForm[{{$member->id}}][position]" class="form-control" value="{{$member->position}}"></td>
+                                                <td>@include('frontend.team.leader.include.positions')</td>
                                             </tr>
                                         @endforeach
                                         </tbody>

@@ -48,7 +48,7 @@
 </head>
 
 <body class="fixed-header">
-@include('frontend.includes.nav')
+@include('frontend.include.nav')
 @include('flash::message')
 @if (count($errors) > 0)
     <div class="alert alert-danger">
@@ -63,8 +63,8 @@
 
 
 
-@include('frontend.includes.footer')
-@include('frontend.includes.sign-up')
+@include('frontend.include.footer')
+@include('frontend.include.sign-up')
 
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
