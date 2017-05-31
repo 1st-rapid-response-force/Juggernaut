@@ -38,7 +38,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('member:searchable')
             ->daily();
         $schedule->command('catalyst:credit-tig')
-            ->daily()->saturdays()->at('5:00');;
+            ->daily();
         $schedule->command('member:squadxml')
             ->daily();
         $schedule->command('aviation:flight-plan-archive')
