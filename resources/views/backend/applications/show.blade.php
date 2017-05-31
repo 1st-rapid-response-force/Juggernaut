@@ -45,10 +45,12 @@
                                 <label>LAST NAME</label>
                                 <input type="text" name="last_name" readonly  value="{{$app->getApplication()->last_name}}" required>
                             </div>
+                            @if(isset($app->getApplication()->steam_id))
                             <div data-field-span="2">
                                 <label>MILITARY IDENTIFICATION NUMBER</label>
                                 <input type="text" name="steam_id" readonly value="{{$app->getApplication()->steam_id}}">
                             </div>
+                            @endif
                         </div>
                         <div data-row-span="3">
                             <div data-field-span="1">
