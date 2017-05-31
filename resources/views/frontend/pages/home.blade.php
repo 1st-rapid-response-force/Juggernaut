@@ -17,8 +17,8 @@
                     <img src="img/arma/1.jpg" alt="">
                     <div class="container">
                         <div class="carousel-caption">
-                            <h1 data-animation="animated animate1 bounceInDown">Combined Operations</h1>
-                            <p data-animation="animated animate7 fadeInUp">Infantry, Vehicle, Air, and Sea. The 1st RRF uses all elements to accomplish the missions.</p>
+                            <h1 data-animation="animated animate1 bounceInDown">Combined Arms Military Simulation</h1>
+                            <p data-animation="animated animate7 fadeInUp">The 1st RRF provides a well trained combined arms task force inside of ARMA III</p>
                         </div>
                     </div>
                 </div>
@@ -27,8 +27,8 @@
                     <img src="img/arma/2.jpg" alt="">
                     <div class="container">
                         <div class="carousel-caption">
-                            <h1 data-animation="animated animate1 fadeInDown">Positions and Roles to fit your playstyle</h1>
-                            <p data-animation="animated animate7 fadeIn">Enlisted, NCO, Officer</p>
+                            <h1 data-animation="animated animate1 fadeInDown">Regular and Consistent Operations</h1>
+                            <p data-animation="animated animate7 fadeIn">The 1st RRF has official operations every Saturday at 2200 UTC and many more throughout the week</p>
                         </div>
                     </div>
                 </div>
@@ -37,8 +37,8 @@
                     <img src="img/arma/3.jpg" alt="">
                     <div class="container">
                         <div class="carousel-caption">
-                            <h1 data-animation="animated animate1 fadeIn">Striving for Realism</h1>
-                            <p data-animation="animated animate7 fadeIn">We strive to play as realistically as possible</p>
+                            <h1 data-animation="animated animate1 fadeIn">High Quality Training</h1>
+                            <p data-animation="animated animate7 fadeIn">The 1st RRF uses a well written and flexible training program to teach authentic tactics and skills</p>
                         </div>
                     </div>
                 </div>
@@ -47,8 +47,8 @@
                     <img src="img/arma/4.jpg" alt="">
                     <div class="container">
                         <div class="carousel-caption">
-                            <h1 data-animation="animated animate1 fadeIn">Best simulation</h1>
-                            <p data-animation="animated animate7 fadeIn">Using custom built technology we provide an experience no other unit can.</p>
+                            <h1 data-animation="animated animate1 fadeIn">Stable and Experienced Leadership</h1>
+                            <p data-animation="animated animate7 fadeIn">The 1st RRF has been run by the same command team for over four years and provides structured leadership development for new players</p>
                         </div>
                     </div>
                 </div>
