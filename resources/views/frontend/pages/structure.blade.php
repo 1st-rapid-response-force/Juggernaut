@@ -6,6 +6,14 @@
     <!-- wrapper -->
     <div id="wrapper">
         <section class="hero hero-parallax height-450 parallax" style="background-image: url(img/pages/structure.png);"></section>
+        <section class="bg-grey-50 border-bottom-1 border-grey-300 padding-10">
+            <div class="container">
+                <ol class="breadcrumb">
+                    <li><a href="/">Home</a></li>
+                    <li class="active">Our Structure</li>
+                </ol>
+            </div>
+        </section>
 
         <section class="padding-top-50 padding-bottom-50">
             <div class="container">
@@ -44,10 +52,13 @@
                                 </div>
 
                                 <div role="tabpanel" class="tab-pane" id="infantry">
-                                    @foreach($infantryGroups as $group)
+                                    <h4><strong><a href="{{route('frontend.team',3)}}">1st Platoon - Command</a></strong></h4>
+                                    <img src="{{$oges->avatar}}" class="img-circle" style="padding: 2px; height: 32px; width: 32px;"> <a href="{{route('frontend.files.file',$oges->id)}}">{{$oges->searchable_name}} - Platoon Leader</a></br>
+
+                                @foreach($infantryGroups as $group)
                                         @if(($group->members->count() > 0))
                                             <h4><strong><a href="{{route('frontend.team',$group->id)}}">{{$group->name}}</a></strong></h4>
-                                            @foreach($group->members as $member)
+                                        @foreach($group->members as $member)
                                                 <img src="{{$member->avatar}}" class="img-circle" style="padding: 2px; height: 32px; width: 32px;"> <a href="{{route('frontend.files.file',$member->id)}}">{{$member->searchable_name}} - {{$member->position}}</a></br>
                                             @endforeach
                                         @else

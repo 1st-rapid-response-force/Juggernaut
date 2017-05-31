@@ -59,6 +59,13 @@ class AddNewPERSTAT extends Command
         $inactives = $perstatOld->pendingReportIn();
         foreach($inactives as $member)
         {
+            // TIS penalty
+            $member->time_in_service = $member->time_in_service-7;
+            if($member->time_in_service < 0)
+                $member->time_in_service = 0;
+            $member->save();
+            \Log::notice('CATALYST - Deducted 7 days, failed to report in', ['member'=> $member->searchable_name,'member_id' => $member->id]);
+
             // Email, and Create an infraction report
             $this->emailFailureToReportIn($member->user);
         }

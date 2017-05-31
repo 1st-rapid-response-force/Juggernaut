@@ -27,7 +27,7 @@ class Team extends Model implements HasMedia
      */
     public function members()
     {
-        return $this->hasMany('App\Models\Unit\Member');
+        return $this->hasMany('App\Models\Unit\Member')->orderBy('rank_id', 'desc');
     }
 
     /**

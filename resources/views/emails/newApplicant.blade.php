@@ -211,18 +211,16 @@
                             <table cellpadding="0" cellspacing="0" width="600" class="w320">
                                 <tr>
                                     <td align="left" class="mobile-padding" style="padding:20px 20px 0">
-                                        <h2>New Report In Period</h2>
+
+                                        <h1>{{$data['title']}}</h1>
                                         <br>
-                                        ALCON,
+                                        A new member has completed an application for the 1st RRF  - <strong>{{$data['applicant']}}</strong>
                                         <br><br>
-                                        We have issued a new report in period, please report in:
-                                        <a href="http://1st-rrf.com/files/my-file">My File - Report In</a>
+                                        You can view their application here - <a href="{{$data['application']}}">Application URL</a>.
                                         <br><br>
-                                        Don't forget that tonight at (2200UTC) is our weekly operation.
-                                        <br><br>
-                                        If you have already reported in, you can disregard this message.
+                                        You can view their steam community profile here - <a href="{{$data['steam_url']}}">Steam URL</a>
                                         <br>
-                                        <small>We are a gaming MILSIM group for ARMA 3 - we are not affiliated or represent any real world entity</small>
+                                        <small>We are a gaming group for ARMA 3 - we are not affiliated or represent any real world entity</small>
                                         <br><br>
                                     </td>
                                 </tr>

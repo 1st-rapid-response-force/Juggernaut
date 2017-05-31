@@ -36,8 +36,16 @@ class ApplicationController extends Controller
     {
         // Sets application to accepted
         $app = Application::findOrFail($id);
+
+        if ($app->status == 3) {
+            flash('This application has already been processed.', 'warning');
+            return redirect()->back();
+        }
+
         $app->status = 3;
         $app->save();
+
+
 
         // Email User
         $data = [

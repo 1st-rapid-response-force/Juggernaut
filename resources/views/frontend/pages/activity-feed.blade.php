@@ -5,6 +5,14 @@
 @section('content')
     <!-- wrapper -->
     <div id="wrapper">
+        <section class="bg-grey-50 border-bottom-1 border-grey-300 padding-10">
+            <div class="container">
+                <ol class="breadcrumb">
+                    <li><a href="/">Home</a></li>
+                    <li class="active">Unit Feed</li>
+                </ol>
+            </div>
+        </section>
         <section class="padding-top-50 padding-bottom-50">
             <div class="container">
                 <div class="row">
@@ -31,6 +39,9 @@
                                 </div>
                             </li>
                             <div class="clearfix pull-none"></div>
+                            <div class="text-center">
+                                {{$events->links()}}
+                            </div>
                         </ul>
 
                     </div>

@@ -54,7 +54,7 @@ class PaperworkController extends Controller
                 $date = new Carbon($paperwork->getPaperwork()->date);
                 $now = new Carbon();
 
-                if($date->addWeek(1) > $now)
+                if($date->addDay(1) > $now)
                 {
                     return view('frontend.paperwork.aviation.flight-plan.edit', ['paperwork' => $paperwork]);
                 } else {

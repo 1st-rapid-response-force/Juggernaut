@@ -5,6 +5,8 @@
 @section('content')
     <div id="wrapper">
         <section class="padding-top-50 padding-bottom-50">
+
+
             <div class="container">
                 <div class="row">
                     <div class="col-md-10 col-md-offset-1">

@@ -4,6 +4,15 @@
 
 @section('content')
     <!-- wrapper -->
+    <section class="bg-grey-50 border-bottom-1 border-grey-300 padding-10">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li><a href="{{route('frontend.files.my-file')}}">{{\Auth::User()->member}}</a></li>
+                <li class="active">Settings</li>
+            </ol>
+        </div>
+    </section>
         <section>
             <div class="container">
                 <div class="row">

@@ -42,7 +42,8 @@ class PageController extends Controller
     public function structure()
     {
         $command = Team::find(1);
-        $infantry = Team::whereBetween('id', [3, 8])->get();
+        $oges = Member::find(1);
+        $infantry = Team::whereBetween('id', [4, 8])->get();
         $aviation = Team::whereBetween('id', [9, 15])->get();
         $reserve = Team::find(2);
         $discharged = Member::whereNull('team_id')->get();
@@ -60,12 +61,13 @@ class PageController extends Controller
             'officerRanks' => $officerRanks,
             'warrantRanks' => $warrantRanks,
             'enlistedRanks' => $enlistedRanks,
+            'oges' => $oges
             ]);
     }
 
     public function unitFeed()
     {
-        $events = TeamTimeline::orderBy('date','desc')->get();
+        $events = TeamTimeline::orderBy('date','desc')->paginate(15);
         return view('frontend.pages.activity-feed',['events' => $events]);
     }
 

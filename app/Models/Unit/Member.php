@@ -24,7 +24,7 @@ class Member extends Model
      */
     public function __toString()
     {
-        return $this->rank->abbreviation.'. '.$this->user->last_name.'.'.$this->user->first_name[0];
+        return $this->rank->abbreviation.' '.$this->user->last_name.', '.$this->user->first_name[0].'.';
     }
 
     /**

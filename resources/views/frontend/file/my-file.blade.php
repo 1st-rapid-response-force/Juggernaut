@@ -5,6 +5,14 @@
 @section('content')
     <!-- wrapper -->
     <div id="wrapper">
+        <section class="bg-grey-50 border-bottom-1 border-grey-300 padding-10">
+            <div class="container">
+                <ol class="breadcrumb">
+                    <li><a href="/">Home</a></li>
+                    <li class="active">{{\Auth::User()->member}}</li>
+                </ol>
+            </div>
+        </section>
         <section class="padding-top-50 padding-bottom-50">
             <div class="container">
                 <div class="row">
@@ -42,6 +50,7 @@
                                                                         {{\Auth::User()->member->position}}<br/>
                                                                         <a href="{{route('frontend.team',\Auth::User()->member->team->id)}}">{{\Auth::User()->member->team->name}}</a> <br/>
                                                                         Military ID: {{\Auth::User()->steam_id}} <br/>
+                                                                        Time in Service: {{\Auth::User()->member->time_in_service}} days<br/>
                                                                     </small>
                                                                     <br>
                                                                     @if(\Auth::User()->member->hasReportedIn())
@@ -251,7 +260,7 @@
                                                                             <th>Status</th>
                                                                             </thead>
                                                                             <tbody>
-                                                                            @foreach(\Auth::User()->member->paperwork()->where('type','!=', 'bad-conduct')->get() as $paperwork)
+                                                                            @foreach(\Auth::User()->member->paperwork()->where('type','!=', 'bad-conduct')->orderBy('created_at','desc')->get() as $paperwork)
                                                                                 <tr>
                                                                                     <td class="col-lg-2">{{$paperwork->created_at->toFormattedDateString()}}</td>
                                                                                     <td class="col-lg-5"><a href="{{route('frontend.paperwork.show',$paperwork->id)}}">{{$paperwork->getType()}}</a></td>

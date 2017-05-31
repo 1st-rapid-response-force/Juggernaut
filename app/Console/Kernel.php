@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use App\Console\Commands\AddTimeOfService;
+use App\Console\Commands\ArchiveFlightPlans;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -19,6 +21,8 @@ class Kernel extends ConsoleKernel
         \App\Console\Commands\UpdateTeamspeak::class,
         \App\Console\Commands\CreateCAC::class,
         \App\Console\Commands\AddNewPERSTAT::class,
+        ArchiveFlightPlans::class,
+        AddTimeOfService::class,
     ];
 
     /**
@@ -33,10 +37,14 @@ class Kernel extends ConsoleKernel
             ->daily();
         $schedule->command('member:searchable')
             ->daily();
+        $schedule->command('catalyst:credit-tig')
+            ->daily();
         $schedule->command('member:squadxml')
             ->daily();
+        $schedule->command('aviation:flight-plan-archive')
+            ->daily();
         $schedule->command('member:create-perstat')
-            ->weekly();
+            ->weekly()->saturdays()->at('6:00');
     }
 
     /**
