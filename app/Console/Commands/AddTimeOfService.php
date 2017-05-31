@@ -41,7 +41,7 @@ class AddTimeOfService extends Command
         $members = Member::whereActive(1)->get();
         foreach($members as $member)
         {
-            $member->time_in_service = $member->time_in_service+7;
+            $member->time_in_service = $member->time_in_service+1;
             $member->save();
         }
         \Log::info('CATALYST - Credited all active members for Time in Service (+1)');
