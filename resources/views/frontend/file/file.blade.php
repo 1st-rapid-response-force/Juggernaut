@@ -50,7 +50,7 @@
                                                                         {{$member->position}}<br/>
                                                                         <a href="{{route('frontend.team',$member->team->id)}}">{{$member->team->name}}</a> <br/>
                                                                         Military ID: {{$member->user->steam_id}} <br/>
-                                                                        Time in Service: {{\Auth::User()->member->time_in_service}} days<br/>
+                                                                        Time in Service: {{$member->time_in_service}} days<br/>
                                                                     </small>
                                                                     <br>
                                                                     @if($member->hasReportedIn())
