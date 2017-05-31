@@ -31,7 +31,7 @@
                             </a>
                         </div>
                         <div class="media-body">
-                            <h4 class="media-heading"><a href="/roster/{{$par->user->member->id}}">{{$par->user->member}}</a></h4>
+                            <h4 class="media-heading"><a href="/files/{{$par->user->member->id}}">{{$par->user->member}}</a></h4>
                             <p><small>Last Viewed: {{(null !== $par->last_read) ? $par->last_read->diffForHumans() : "Unread"}}</small></p>
                         </div>
                     </div>
