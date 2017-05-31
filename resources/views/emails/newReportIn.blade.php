@@ -218,6 +218,8 @@
                                         We have issued a new report in period, please report in:
                                         <a href="http://1st-rrf.com/files/my-file">My File - Report In</a>
                                         <br><br>
+                                        Don't forget that tonight at (2200UTC) is our weekly operation.
+                                        <br><br>
                                         If you have already reported in, you can disregard this message.
                                         <br>
                                         <small>We are a gaming MILSIM group for ARMA 3 - we are not affiliated or represent any real world entity</small>
