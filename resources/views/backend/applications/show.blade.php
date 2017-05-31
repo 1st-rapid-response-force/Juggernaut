@@ -125,8 +125,8 @@
                             <div data-row-span="2">
                                 <div data-field-span="1">
                                     <label>I UNDERSTAND THAT I AM JOINING A MILITARY SIMULATION UNIT</label>
-                                    <label><input type="radio" name="agreement_milsim" value="1" {{$app->getApplication()->dishonorable_discharge == 1 ? 'checked' : ''}}> YES</label> &nbsp;
-                                    <label><input type="radio" name="agreement_milsim" value="0" {{$app->getApplication()->dishonorable_discharge == 0 ? 'checked' : ''}}> NO</label> &nbsp;
+                                    <label><input type="radio" name="agreement_milsim" value="1" {{$app->getApplication()->agreement_milsim == 1 ? 'checked' : ''}}> YES</label> &nbsp;
+                                    <label><input type="radio" name="agreement_milsim" value="0" {{$app->getApplication()->agreement_milsim == 0 ? 'checked' : ''}}> NO</label> &nbsp;
                                 </div>
                                 @if(isset($app->getApplication()->agreement_guidelines))
                                 <div data-field-span="1">
