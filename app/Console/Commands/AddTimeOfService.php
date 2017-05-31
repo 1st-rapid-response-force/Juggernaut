@@ -43,7 +43,7 @@ class AddTimeOfService extends Command
         {
                 if($member->hasReportedIn())
                 {
-                    $member->time_in_service = $member->time_in_service+1;
+                    $member->time_in_service = $member->time_in_service+7;
                     $member->save();
                 } else {
                     $member->time_in_service = $member->time_in_service-7;
