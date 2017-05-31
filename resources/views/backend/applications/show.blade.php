@@ -62,12 +62,14 @@
                                 <input type="text" name="nationality" readonly value="{{$app->getApplication()->nationality}}">
                             </div>
                         </div>
+                        @if(isset($app->getApplication()->steam_id))
                         <div data-row-span="4">
                             <div data-field-span="4" data-field-error="Please enter a valid email address">
                                 <label>E-mail</label>
                                 <input type="email" name="email" readonly value="{{$app->getApplication()->email}}">
                             </div>
                         </div>
+                        @endif
                     </fieldset>
                     <br>
                     <fieldset>
