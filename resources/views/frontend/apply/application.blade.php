@@ -59,7 +59,7 @@
                                             </div>
                                             <div data-field-span="2">
                                                 <label>MILITARY IDENTIFICATION NUMBER</label>
-                                                <input type="text" name="steam_id" readonly value="{{\Auth::User()->steam_id or ""}}">
+                                                <input type="text" name="steam_id" readonly value="{{\Auth::User()->steam_id}}">
                                             </div>
                                         </div>
                                         <div data-row-span="3">
@@ -75,7 +75,7 @@
                                         <div data-row-span="4">
                                             <div data-field-span="4" data-field-error="Please enter a valid email address">
                                                 <label>E-mail</label>
-                                                <input type="email" name="email" readonly value="{{\Auth::User()->email or ""}}">
+                                                <input type="email" name="email" readonly value="{{\Auth::User()->email}}">
                                             </div>
                                         </div>
                                     </fieldset>
