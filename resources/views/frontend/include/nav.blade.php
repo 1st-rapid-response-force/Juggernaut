@@ -37,7 +37,7 @@
         @if(!\Auth::guest())
             @if(count(\Auth::User()->member))
             <div class="nav-profile dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span><img src="{{\Auth::User()->member->avatar}}" alt=""> {{\Auth::User()->member}}</span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span><img src="{{\Auth::User()->member->avatar}}" alt=""> {{\Auth::User()->member}} {!! Auth::user()->newThreadsCount() > 0 ? '<span class="label label-info">'.Auth::user()->newThreadsCount().'</span>' : '' !!}</span></a>
                 <ul class="dropdown-menu">
                     <li><a href="{{route('frontend.team',Auth::user()->member->team_id)}}"><i class="fa fa-users"></i> My Team</a></li>
                     <li><a href="{{route('frontend.files.my-file')}}"><i class="fa fa-folder"></i> My File</a></li>
