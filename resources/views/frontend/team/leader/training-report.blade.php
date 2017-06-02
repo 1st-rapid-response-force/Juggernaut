@@ -43,10 +43,6 @@
                                     <h2>Team Training - {{$member->searchable_name}} - Detailed Report</h2>
                                 </div>
                             </div>
-                            @if(!$member->current_program_id)
-                                <p>You are currently not enrolled in a training program.</p>
-                            @else
-                                <p>{{$member->program->description}}</p>
                                 <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#newTrainingNote">
                                     New Training Note
                                 </button>
@@ -94,7 +90,6 @@
                                     </div>
                                     </hr>
                                 </div>
-                            @endif
                             <br>
                             <hr>
                                 <h3>Training Notes:</h3>
