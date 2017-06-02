@@ -57,7 +57,7 @@
                                                 <td>@include('frontend.team.leader.include.positions')</td>
                                                 <td class="col-lg-1">
                                                     <input type="hidden" name="userForm[{{$member->id}}][team_leader]" value="0">
-                                                    <input type="checkbox" name="userForm[{{$member->id}}][team_leader]" value="1" {{$member->team_leader ? 'checked' : ''}} {{($team->leader_id == $member->id) ? 'disabled' : ''}}>
+                                                    <input type="checkbox" name="userForm[{{$member->id}}][team_leader]" value="1" {{$member->team_leader ? 'checked' : ''}} {{($team->leader_id == $member->user->id) ? 'disabled' : ''}}>
                                                 </td>
                                             </tr>
                                         @endforeach
