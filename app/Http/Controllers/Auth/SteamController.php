@@ -45,8 +45,8 @@ class SteamController extends Controller
     {
         $user = User::create($request->all());
         \Auth::login($user,true);
-        Alert::success('You have successfully created an account, You can now apply!');
-        return redirect(route('frontend.apply'));
+        Alert::success('Your account has been created, please fill out the application.');
+        return redirect(route('frontend.apply.application','infantry'));
 
     }
 }

@@ -15,7 +15,7 @@ class Member extends Model
      * @var array
      */
     protected $fillable = [
-        'searchable_name','position','rank_id', 'team_id', 'face_id', 'current_program_id', 'bio','avatar','active'
+        'searchable_name','position','rank_id', 'team_id', 'face_id', 'current_program_id', 'bio','avatar','active','team_leader'
     ];
 
 

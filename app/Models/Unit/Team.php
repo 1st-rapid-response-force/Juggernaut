@@ -85,13 +85,25 @@ class Team extends Model implements HasMedia
         if($this->leader_id == $user->id)
             return true;
 
-        //Case 3 - Check parents
+
+        //Case 4 - Check parents
         if(isset($this->parent_id))
         {
             return $this->parentTeam->isLeader($user);
         }
 
         // If none are true then return false
+        return false;
+    }
+
+    public function isTeamLeader($user)
+    {
+
+        if(($user->member->team_leader) && ($this->id == $user->member->team_id))
+        {
+            return true;
+        }
+
         return false;
     }
 

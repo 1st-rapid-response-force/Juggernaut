@@ -31,7 +31,7 @@
                             <ul>
                                 <li>Hop onto <a href="ts3server://ts.1st-rrf.com?port=9987&addbookmark=1st Rapid Response Force">Teamspeak Server</a> and get to know everyone</li>
                                 <li>Sign up to the <a href="http://steamcommunity.com/groups/1st-rrf">1st RRF Steam group</a> and get notifications when the public server is running an organized event.</li>
-                                <li>Download the Modpack - Add <a href="http://steamcommunity.com/id/1rrfmod/"><strong>1RRF-Mod-Group</strong></a> as a friend on Steam. Once accepted, you will be able to <a href="http://steamcommunity.com/sharedfiles/filedetails/?id=928980735"><strong>view and subscribe to our modpack</strong></a>.</li>
+                                <li>Download the Modpack - Contact 1LT Rodriguez, G, or SGT Striker, A. for the modpack - It is downloadable via steam but requires invite</a>.</li>
                                 <li>Play on the Public Server and Check out the training server.</li>
                             </ul>
                             <p>See you on the Battlefield.</p>

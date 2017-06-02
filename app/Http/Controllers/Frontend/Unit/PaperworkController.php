@@ -155,5 +155,21 @@ class PaperworkController extends Controller
     {
         $form = collect($request->except('_token'));
         $paperwork = \Auth::User()->member->paperwork()->create(['type'=>'aar','paperwork'=> $form->toJson(),'team_id' => $request->team_id]);
+        flash('Your AAR has been filed.', 'success');
+        \Log::notice('User filled out change request paperwork', ['user_id' => \Auth::User()->id,'member' => \Auth::User()->member->searchable_name, 'paperwork_id' => $paperwork]);
+        return redirect(route('frontend.team',\Auth::User()->member->team_id));
+    }
+
+    public function showChangeForm()
+    {
+        return view('frontend.paperwork.change-request.new');
+    }
+
+    public function storeChangeForm(Request $request)
+    {
+        $form = collect($request->except('_token'));
+        $paperwork = \Auth::User()->member->paperwork()->create(['type'=>'change-request','paperwork'=> $form->toJson()]);
+        flash('Your Change Request has been filed.', 'success');
+        \Log::notice('User filled out change request paperwork', ['user_id' => \Auth::User()->id,'member' => \Auth::User()->member->searchable_name, 'paperwork_id' => $paperwork]);
     }
 }

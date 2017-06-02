@@ -35,7 +35,7 @@ class TeamController extends Controller
     public function leader($id)
     {
         $team = Team::findOrFail($id);
-        if(!$team->isLeader(\Auth::User()))
+        if(!($team->isLeader(\Auth::User()) || $team->isTeamLeader(\Auth::User())))
         {
             flash('You do not have permission to access this.','danger');
             return redirect(route('frontend.team',$team->id));
@@ -59,7 +59,7 @@ class TeamController extends Controller
     public function training($id)
     {
         $team = Team::findOrFail($id);
-        if(!$team->isLeader(\Auth::User()))
+        if(!($team->isLeader(\Auth::User()) || $team->isTeamLeader(\Auth::User())))
         {
             flash('You do not have permission to access this.','danger');
             return redirect(route('frontend.team',$team->id));
@@ -73,7 +73,7 @@ class TeamController extends Controller
         $team = Team::findOrFail($id);
         $member = Member::findOrFail($member);
 
-        if(!$team->isLeader(\Auth::User()))
+        if(!($team->isLeader(\Auth::User()) || $team->isTeamLeader(\Auth::User())))
         {
             flash('You do not have permission to access this.','danger');
             return redirect(route('frontend.team',$team->id));
@@ -87,7 +87,7 @@ class TeamController extends Controller
         $team = Team::findOrFail($id);
         $member = Member::findOrFail($member);
 
-        if(!$team->isLeader(\Auth::User()))
+        if(!($team->isLeader(\Auth::User()) || $team->isTeamLeader(\Auth::User())))
         {
             flash('You do not have permission to access this.','danger');
             return redirect(route('frontend.team',$team->id));
@@ -111,7 +111,7 @@ class TeamController extends Controller
         $member = Member::findOrFail($member);
         $note = ProgramNote::find($note_id);
 
-        if(!$team->isLeader(\Auth::User()))
+        if(!($team->isLeader(\Auth::User()) || $team->isTeamLeader(\Auth::User())))
         {
             flash('You do not have permission to access this.','danger');
             return redirect(route('frontend.team',$team->id));
@@ -129,7 +129,7 @@ class TeamController extends Controller
         $goal = ProgramGoal::find($goal);
         $user = \Auth::User();
 
-        if(!$team->isLeader(\Auth::User()))
+        if(!($team->isLeader(\Auth::User()) || $team->isTeamLeader(\Auth::User())))
         {
             flash('You do not have permission to access this.','danger');
             return redirect(route('frontend.team',$team->id));
@@ -145,7 +145,7 @@ class TeamController extends Controller
         $goal = ProgramGoal::find($goal);
         $user = \Auth::User();
 
-        if(!$team->isLeader(\Auth::User()))
+        if(!($team->isLeader(\Auth::User()) || $team->isTeamLeader(\Auth::User())))
         {
             flash('You do not have permission to access this.','danger');
             return redirect(route('frontend.team',$team->id));
@@ -231,6 +231,7 @@ class TeamController extends Controller
         {
             $memberModel = Member::findOrFail($input['id']);
             $memberModel->position = $input['position'];
+            $memberModel->team_leader = $input['team_leader'];
             $memberModel->save();
         }
         \Log::info('User updated team positions', ['user_id' => \Auth::User()->id,'member' => \Auth::User()->member->searchable_name, 'team_id' => $team->id]);
@@ -384,7 +385,7 @@ class TeamController extends Controller
     public function showAllAfterActionReports($team_id)
     {
         $team = Team::findOrFail($team_id);
-        if(!$team->isLeader(\Auth::User()))
+        if(!($team->isLeader(\Auth::User()) || $team->isTeamLeader(\Auth::User())))
         {
             flash('You do not have permission to access this.','danger');
             return redirect(route('frontend.team',$team->id));

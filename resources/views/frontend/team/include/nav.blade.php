@@ -11,7 +11,7 @@
             @if(($team->isAviation()))
                 <li><a href="{{route('frontend.aviation')}}"><i class="fa fa-fighter-jet"></i> Aviation Dashboard</a></li>
             @endif
-            @if((!Auth::guest()) && $team->isLeader(\Auth::User()))
+            @if((!Auth::guest()) && ($team->isLeader(\Auth::User()) || $team->isTeamLeader(\Auth::User())))
                 <li class="{{Active::pattern('team/'.$team->id.'/leader*')}}"><a href="{{route('frontend.team.leader',$team->id)}}"><i class="fa fa-star"></i> Leader Panel</a></li>
             @endif
         </ul>

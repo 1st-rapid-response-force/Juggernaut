@@ -44,20 +44,20 @@
                                     <h3>Content</h3>
                                     <br>
 
-                                    <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#newTimelineEvent">
+                                    <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#newTimelineEvent" {{$team->isTeamLeader(\Auth::User()) ? 'disabled' : '' }}>
                                         New Timeline Event
                                     </button>
 
-                                    <a href="{{route('frontend.team.leader.add-video',$team->id)}}" class="btn btn-primary btn-block">New Video</a>
+                                    <a href="{{route('frontend.team.leader.add-video',$team->id)}}" class="btn btn-primary btn-block"  {{$team->isTeamLeader(\Auth::User()) ? 'disabled' : '' }}>New Video</a>
 
-                                    <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#uploadHeaderImage">
+                                    <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#uploadHeaderImage"  {{$team->isTeamLeader(\Auth::User()) ? 'disabled' : '' }}>
                                         Upload Team Header
                                     </button>
                                 </div>
                                 <div class="col-lg-6">
                                     <h3>Team</h3>
                                     <br>
-                                    <a href="{{route('frontend.team.leader.positions',$team->id)}}" class="btn btn-primary btn-block">Position Management</a>
+                                    <a href="{{route('frontend.team.leader.positions',$team->id)}}" class="btn btn-primary btn-block"  {{$team->isTeamLeader(\Auth::User()) ? 'disabled' : '' }}>Position Management</a>
                                     <a href="{{route('frontend.team.leader.training',$team->id)}}" class="btn btn-primary btn-block">Training Management</a>
                                     <a href="{{route('frontend.team.leader.aar.team',$team->id)}}" class="btn btn-primary btn-block">After Action Reports</a>
                                 </div>
