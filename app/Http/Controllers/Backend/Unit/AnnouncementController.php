@@ -45,6 +45,14 @@ class AnnouncementController extends Controller
 
     }
 
+    public function destroy($id)
+    {
+        $announcement = Announcement::findOrFail($id);
+        $announcement->delete();
+        flash('Your announcement has been deleted!', 'success');
+        return redirect(route('admin.announcements.index'));
+    }
+
     public function edit($id)
     {
         $announcement = Announcement::findOrFail($id);
