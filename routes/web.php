@@ -24,7 +24,7 @@ Route::group(['namespace' => 'Frontend','middleware' => 'web'], function (){
 
     // File
     Route::group(['middleware' => 'auth'], function (){
-        Route::get('files/my-program', 'Unit\ProgramController@getMyProgram')->name('frontend.files.my-program');
+        Route::get('files/my-qualifications', 'Unit\ProgramController@getMyProgram')->name('frontend.files.my-program');
         Route::post('files/my-program/enroll', 'Unit\ProgramController@enrollInProgram')->name('frontend.files.my-program.post');
 
 

@@ -20,58 +20,45 @@
                         <div class="post post-single">
                             <div class="post-header">
                                 <div class="post-title">
-                                    @if(!\Auth::User()->member->current_program_id)
-                                        <h2><a href="#">My Program</a></h2>
-                                    @else
-                                        <h2>My Program - {{\Auth::User()->member->program->name}}</h2>
-                                    @endif
+                                        <h2><a href="#">My Qualifications</a></h2>
                                 </div>
                             </div>
-
-                            @if(!\Auth::User()->member->current_program_id)
-                                <p>You are currently not enrolled in a training program.</p>
-                                <p>Please select a training program:</p>
-                                @foreach(\App\Models\Unit\Program::whereStatus(1)->get() as $program)
                                 <div class="well">
-                                    <h2>{{$program->name}}</h2>
-                                    <p>{{$program->description}}</p>
-                                    {{ Form::open(['route' => ['frontend.files.my-program.post'], 'role' => 'form', 'method' => 'post']) }}
-                                        <input type="hidden" name="program_id" value="{{$program->id}}">
-                                        <button type="submit" class="btn btn-primary">Enroll</button>
-                                    {{ Form::close() }}
-                                </div>
-                                @endforeach
-                            @else
-                                <p>{{\Auth::User()->member->program->description}}</p>
-                                @if(\Auth::User()->member->program->getMedia('attachments')->count())
+                                    <hr>
+                                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                        @foreach(\App\Models\Unit\Program::all() as $program)
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading" role="tab" id="headingOne">
+                                                    <h4 class="panel-title">
+                                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$program->id}}" aria-expanded="true" aria-controls="collapse{{$program->id}}">
+                                                            {{$program->name}}
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                                <div id="collapse{{$program->id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{$program->id}}">
+                                                    <div class="panel-body">
+                                                        <table class="table table-condensed" id="serviceHistoryTable">
+                                                            <thead>
+                                                            <th>Training Goal</th>
+                                                            <th>Status</th>
+                                                            </thead>
+                                                            <tbody>
+                                                            @foreach($program->goals as $goal)
+                                                                <tr>
+                                                                    <td class="col-lg-10">{{$goal->goal}}</td>
+                                                                    <td class="col-lg-2">{!! $goal->getMemberStatusButton(\Auth::User()->member) !!}</td>
 
-                                    <div class="attachment">
-                                        <h4>Program Files</h4>
-                                        @foreach(\Auth::User()->member->program->getMedia('attachments') as $attachment)
-                                            <a href="{{$attachment->getUrl()}}"><i class="fa fa-unlink"></i> {{$attachment->file_name}}</a><br>
+                                                                </tr>
+                                                            @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         @endforeach
                                     </div>
-
-                                @endif
-                                <br><br>
-                                <div class="well">
-                                <table class="table table-condensed" id="serviceHistoryTable">
-                                    <thead>
-                                    <th>Training Goal</th>
-                                    <th>Status</th>
-                                    </thead>
-                                    <tbody>
-                                    @foreach(\Auth::User()->member->program->goals as $goal)
-                                        <tr>
-                                            <td class="col-lg-8">{{$goal->goal}}</td>
-                                            <td class="col-lg-2">{!! $goal->getMemberStatusButton(\Auth::User()->member) !!}</td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-
-                            @endif
-                        </div>
+                                    </hr>
+                                </div>
                                 <br>
                                 <hr>
                                 <h3>Training Notes:</h3>
