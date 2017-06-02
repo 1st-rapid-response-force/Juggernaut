@@ -45,6 +45,12 @@
                 </a>
 
                 <ul class="treeview-menu {{ Active::pattern('admin/unit/*', 'menu-open') }}" style="display: none; {{ Active::pattern('admin/unit/*', 'display: block;') }}">
+                    <li class="{{ Active::pattern('admin/unit/announcements*') }}">
+                        <a href="{{route('admin.announcements.index')}}">
+                            <i class="fa fa-circle-o"></i>
+                            <span>Announcements</span>
+                        </a>
+                    </li>
                     <li class="{{ Active::pattern('admin/unit/awards*') }}">
                         <a href="{{route('admin.awards.index')}}">
                             <i class="fa fa-circle-o"></i>

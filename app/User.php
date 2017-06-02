@@ -46,6 +46,11 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\Unit\Member');
     }
 
+    public function announcement()
+    {
+        return $this->hasMany('App\Models\Unit\Announcement');
+    }
+
     public function videos()
     {
         return $this->hasMany('App\Models\Unit\TeamVideo');
