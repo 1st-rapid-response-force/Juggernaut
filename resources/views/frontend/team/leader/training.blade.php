@@ -45,25 +45,19 @@
                                         <thead>
                                         <tr>
                                             <th>Name</th>
-                                            <th>Program</th>
-                                            <th>Program Completion</th>
                                             <th>Options</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($team->programs as $program)
-                                            @foreach($program->members as $member)
+                                            @foreach($team->members as $member)
                                                 <input type="hidden" name="userForm[{{$member->id}}][id]" value="{{$member->id}}">
                                                 <tr>
                                                     <td>{{$member->searchable_name}}</td>
-                                                    <td>{{$member->program->name}}</td>
-                                                    <td>{{$member->currentProgramCompletion()}}</td>
                                                     <td>
                                                         <a href="{{route('frontend.team.leader.training.report',[$team->id,$member->id])}}" class="btn btn-xs btn-info"><i class="fa fa-search" data-toggle="tooltip" data-placement="top" title="View Detailed Report"></i></a>
                                                     </td>
                                                 </tr>
                                             @endforeach
-                                        @endforeach
                                         </tbody>
                                     </table>
                                 @else

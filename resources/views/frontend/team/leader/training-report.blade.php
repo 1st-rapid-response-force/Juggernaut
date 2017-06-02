@@ -50,39 +50,49 @@
                                 <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#newTrainingNote">
                                     New Training Note
                                 </button>
-
-                            @if($member->completedCurrentCourse())
-                                    <a href="{{route('frontend.team.leader.training.program-completion',[$team->id, $member->id])}}" class="btn btn-primary btn-sm">
-                                        File Program Completion Form
-                                    </a>
-                            @endif
                             <hr>
                                 <div class="well">
-                                    @if($member->program->goals->count() >0)
-                                    <table class="table table-condensed" id="serviceHistoryTable">
-                                        <thead>
-                                        <th>Training Goal</th>
-                                        <th>Status</th>
-                                        <th>Options</th>
-                                        </thead>
-                                        <tbody>
-                                        @foreach($member->program->goals as $goal)
-                                            <tr>
-                                                <td class="col-lg-8">{{$goal->goal}}</td>
-                                                <td class="col-lg-2">{!! $goal->getMemberStatusButton($member) !!}</td>
-                                                <td class="col-lg-2">
-                                                    @if(!$goal->getMemberStatus($member))
-                                                    <a href="{{route('frontend.team.leader.training.report.mark',[$team->id,$member->id,$goal->id])}}" class="btn btn-xs btn-info"><i class="fa fa-plus-square-o" data-toggle="tooltip" data-placement="top" title="Mark as Completed"></i></a>
-                                                    @endif
+                                    <h2>Qualifications</h2>
+                                    <hr>
+                                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                    @foreach(\App\Models\Unit\Program::all() as $program)
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading" role="tab" id="headingOne">
+                                                    <h4 class="panel-title">
+                                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$program->id}}" aria-expanded="true" aria-controls="collapse{{$program->id}}">
+                                                            {{$program->name}}
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                                <div id="collapse{{$program->id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{$program->id}}">
+                                                    <div class="panel-body">
+                                                        <table class="table table-condensed" id="serviceHistoryTable">
+                                                            <thead>
+                                                            <th>Training Goal</th>
+                                                            <th>Status</th>
+                                                            <th>Options</th>
+                                                            </thead>
+                                                            <tbody>
+                                                            @foreach($program->goals as $goal)
+                                                                <tr>
+                                                                    <td class="col-lg-8">{{$goal->goal}}</td>
+                                                                    <td class="col-lg-2">{!! $goal->getMemberStatusButton($member) !!}</td>
+                                                                    <td class="col-lg-2">
+                                                                        @if(!$goal->getMemberStatus($member))
+                                                                            <a href="{{route('frontend.team.leader.training.report.mark',[$team->id,$member->id,$goal->id])}}" class="btn btn-xs btn-info"><i class="fa fa-plus-square-o" data-toggle="tooltip" data-placement="top" title="Mark as Completed"></i></a>
+                                                                        @endif
 
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
-                                    @else
-                                        <p>No Goals found.</p>
-                                    @endif
+                                                                    </td>
+                                                                </tr>
+                                                            @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    @endforeach
+                                    </div>
+                                    </hr>
                                 </div>
                             @endif
                             <br>

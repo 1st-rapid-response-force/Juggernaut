@@ -9,7 +9,7 @@
 
 @section('page-header')
     <h1>
-        Program
+        Qualification Program
     </h1>
 @endsection
 
@@ -17,7 +17,7 @@
     <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Edit Program</h3>
+            <h3 class="box-title">Edit Qualification Program</h3>
 
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -43,66 +43,6 @@
                             {{ Form::text('description', $program->description, ['class' => 'form-control', 'placeholder' => 'Name']) }}
                         </div><!--col-lg-10-->
                     </div><!--form control-->
-
-                    <div class="form-group">
-                        {{ Form::label('video', 'Video (URL)', ['class' => 'col-lg-2 control-label']) }}
-                        <div class="col-lg-10">
-                            {{ Form::text('video', $program->video, ['class' => 'form-control', 'placeholder' => 'Video URL - optional']) }}
-                        </div><!--col-lg-10-->
-                    </div><!--form control-->
-
-                    <div class="form-group">
-                        {{ Form::label('video', 'Document (URL)', ['class' => 'col-lg-2 control-label']) }}
-                        <div class="col-lg-10">
-                            {{ Form::text('document', $program->document, ['class' => 'form-control', 'placeholder' => 'Document URL - optional']) }}
-                        </div><!--col-lg-10-->
-                    </div><!--form control-->
-
-
-                    <div class="form-group">
-                        <label for="name" class="col-lg-2 control-label">Currently Assigned Team</label>
-                        <div class="col-lg-10">
-                            <select name="responsible_team_id" class="form-control">
-                                <option value="0">Select Team</option>
-                                @foreach(\App\Models\Unit\Team::all() as $team)
-                                    <option value="{{$team->id}}" {{($program->responsible_team_id == $team->id) ? 'selected':''}}>{{$team->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">Program Status</label>
-                        <div class="col-sm-10">
-                            <select name="status" class="form-control">
-                                <option value="1" {{($program->status == 1) ? 'selected':''}}>Open to Applicants</option>
-                                <option value="2" {{($program->status == 2) ? 'selected':''}}>Closed to Applicants</option>
-                                <option value="3" {{($program->status == 3) ? 'selected':''}}>Inactive</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        {{ Form::label('file', 'Files', ['class' => 'col-lg-2 control-label']) }}
-
-                        <div class="col-lg-10">
-                            <input type="file" name="file[]" accept="media_type" multiple>
-                            <small>New Files will replace other attachments</small><br>
-                            @if($program->getMedia('attachments')->count())
-
-                                <div class="attachment">
-                                    <h4>Attachment</h4>
-                                    @foreach($program->getMedia('attachments') as $attachment)
-                                        <a href="{{$attachment->getUrl()}}"><i class="fa fa-unlink"></i> {{$attachment->file_name}}</a><br>
-                                    @endforeach
-                                </div>
-
-                            @endif
-                        </div><!--col-lg-10-->
-                    </div><!--form control-->
-
-
-
                 </div>
 
                 <div class="clearfix"></div>

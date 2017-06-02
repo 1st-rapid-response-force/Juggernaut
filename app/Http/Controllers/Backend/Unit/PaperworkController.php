@@ -29,4 +29,9 @@ class PaperworkController extends Controller
         return redirect(route('frontend.files.my-file'));
     }
 
+    public function reviewFlightPlan(Request $request)
+    {
+
+    }
+
 }

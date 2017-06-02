@@ -30,8 +30,8 @@
         @include('includes.partials.logged-in-as')
 
         <div class="wrapper">
-            @include('backend.includes.header')
-            @include('backend.includes.sidebar')
+            @include('backend.include.header')
+            @include('backend.include.sidebar')
 
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
@@ -57,7 +57,7 @@
                 </section><!-- /.content -->
             </div><!-- /.content-wrapper -->
 
-            @include('backend.includes.footer')
+            @include('backend.include.footer')
         </div><!-- ./wrapper -->
 
         <!-- JavaScripts -->
