@@ -35,7 +35,7 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        {!! str_limit($announcement->message,100) !!}
+                                        {!! str_limit($announcement->message,250) !!}
                                     </div>
                                 </div>
                                 <div class="panel-footer">
