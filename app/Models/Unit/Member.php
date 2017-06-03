@@ -257,4 +257,21 @@ class Member extends Model
 
         return 0;
     }
+
+    public function completedCourse($id)
+    {
+        $course = Program::find($id);
+
+        // Get current program goals count for current program
+        $completed = $this->programGoals()->where('program_id',$course->id)->get()->count();
+        $programGoalCount = $course->goals->count();
+
+        if($programGoalCount == 0)
+            return 0;
+
+        if($completed == $programGoalCount)
+            return 1;
+
+        return 0;
+    }
 }

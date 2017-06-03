@@ -7,7 +7,7 @@
 
     <!-- wrapper -->
     <div id="wrapper">
-        <section class="hero hero-games height-600" style="background-image: url({{$team->header_image}});">
+        <section class="hero hero-games height-600" style="background-image: url({{$team->header_image or $team->randomHeader()}});">
             <div class="hero-bg"></div>
             <div class="container">
                 <div class="page-header">
