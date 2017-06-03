@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend\Unit;
 
 use App\Models\Unit\Paperwork;
+use App\Models\Unit\PaperworkMessage;
 use Illuminate\Http\Request;
 use App\Models\Unit\Team;
 use Carbon\Carbon;
@@ -25,6 +26,9 @@ class PaperworkController extends Controller
                 break;
             case 'leave':
                 return view('frontend.paperwork.leave.show',['form' => $paperwork]);
+                break;
+            case 'change-request':
+                return view('frontend.paperwork.change-request.show',['form' => $paperwork]);
                 break;
             case 'assignment-change':
                 flash('You cannot view this paperwork at the moment.','warning');
@@ -169,7 +173,36 @@ class PaperworkController extends Controller
     {
         $form = collect($request->except('_token'));
         $paperwork = \Auth::User()->member->paperwork()->create(['type'=>'change-request','paperwork'=> $form->toJson()]);
-        flash('Your Change Request has been filed.', 'success');
+        flash('Your Change Request has been filed, you can monitor the status of this paperwork via your file.', 'success');
         \Log::notice('User filled out change request paperwork', ['user_id' => \Auth::User()->id,'member' => \Auth::User()->member->searchable_name, 'paperwork_id' => $paperwork]);
+        return redirect(route('frontend.files.my-file'));
+    }
+
+    public function createNote($id, Request $request)
+    {
+        $note = new PaperworkMessage;
+        $note->member_id = \Auth::User()->member->id;
+        $note->paperwork_id = $id;
+        $note->message = $request->message;
+        $note->save();
+        flash('Paperwork note added successfully.', 'success');
+        return redirect()->back();
+    }
+
+    public function deleteNote($id, $note)
+    {
+        $noteModel = PaperworkMessage::findOrFail($note);
+        $noteModel->delete();
+        flash('Paperwork note deleted successfully.', 'success');
+        return redirect()->back();
+    }
+
+    public function storeAdminOptions($id, Request $request)
+    {
+        $paperwork = Paperwork::findOrFail($id);
+        $paperwork->status = $request->status;
+        $paperwork->save();
+        flash('Paperwork has been updated.', 'success');
+        return redirect()->back();
     }
 }

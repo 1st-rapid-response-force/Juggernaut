@@ -39,6 +39,11 @@ class Paperwork extends Model
         return $this->belongsTo('App\Models\Unit\Member','processor_id');
     }
 
+    public function notes()
+    {
+        return $this->hasMany('App\Models\Unit\PaperworkMessage','paperwork_id');
+    }
+
     /**
      * @return mixed
      */
@@ -71,6 +76,9 @@ class Paperwork extends Model
             case 'flight-plan':
                 return 'Flight Plan';
                 break;
+            case 'change-request':
+                return 'Change Request';
+                break;
             case 'aar':
                 return 'After Action Report';
                 break;
@@ -94,6 +102,15 @@ class Paperwork extends Model
                 break;
             case 4:
                 return '<span class="label label-warning">MORE INFORMATION NEEDED</span>';
+                break;
+            case 10:
+                return '<span class="label label-success">CHANGE IMPLEMENTED</span>';
+                break;
+            case 11:
+                return '<span class="label label-warning">CHANGE ON HOLD</span>';
+                break;
+            case 12:
+                return '<span class="label label-danger">CHANGE DECLINED</span>';
                 break;
         }
     }
