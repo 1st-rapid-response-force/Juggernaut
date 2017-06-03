@@ -39,10 +39,10 @@ class CreateCAC extends Command
      */
     public function handle()
     {
-        $membersFaces = 'frontend/images/faces/members';
+        $membersFaces = '/faces/members';
         //Destroy all images
-        \Storage::disk('public')->deleteDirectory($membersFaces);
-        \Storage::disk('public')->makeDirectory($membersFaces);
+        \Storage::disk('images')->deleteDirectory($membersFaces);
+        \Storage::disk('images')->makeDirectory($membersFaces);
         Member::chunk(10, function ($vpfs) {
             foreach ($vpfs as $vpf) {
                 $user = User::find($vpf->user->id);
