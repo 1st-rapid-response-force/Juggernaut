@@ -90,8 +90,9 @@ class CreateCAC extends Command
                     'ximi.png',
                 ];
                 $images = public_path().'/img/faces/';
+                $faceDir = '/img/faces/';
                 $faces = '/img/faces/members/';
-                $face=\Image::make($images.$faces_array[$user->member->face_id])->resize(106,139);
+                $face=\Image::make($faceDir.$faces_array[$user->member->face_id])->resize(106,139);
                 // Create Image
                 $img = \Image::canvas(223,340);
                 $img->insert($images.'background.png');
