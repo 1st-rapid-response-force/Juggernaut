@@ -73,7 +73,7 @@ class CreateCAC extends Command
                     'jeoung.png',
                     'jesus.png',
                     'johnson.png',
-                    'kenelloupou.png',
+                    'kano.png',
                     'kelly.png',
                     'kirby.png',
                     'martinez.png',
