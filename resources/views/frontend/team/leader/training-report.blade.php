@@ -62,11 +62,6 @@
                                                 </div>
                                                 <div id="collapse{{$program->id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{$program->id}}">
                                                     <div class="panel-body">
-                                                        @if($member->completedCourse($program->id))
-                                                            Member has completed this course
-                                                        @else
-                                                            <p>Member has not completed this course</p>
-                                                        @endif
                                                         <table class="table table-condensed" id="serviceHistoryTable">
                                                             <thead>
                                                             <th>Training Goal</th>
