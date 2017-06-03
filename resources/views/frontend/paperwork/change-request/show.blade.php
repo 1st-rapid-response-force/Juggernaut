@@ -113,7 +113,7 @@
                                         </div>
                                     </fieldset>
                                     <br><br>
-                                    <hr>
+
                                     <div class="pull-right">
 
                                     </div><!--pull-right-->
