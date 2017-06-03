@@ -76,7 +76,7 @@
                                         </div>
                                         <div data-row-span="1">
                                             <div data-field-span="1">
-                                                <label>Desired Change</label>
+                                                <label>Justification</label>
                                                 <textarea name="justification" rows="5" placeholder="Why do you need this capability, facility, etc.; must tie to our unit structure, policies, and doctrine; changes or additions to doctrine or policy must include effects to existing processes, capabilites"></textarea>
                                             </div>
                                         </div>
