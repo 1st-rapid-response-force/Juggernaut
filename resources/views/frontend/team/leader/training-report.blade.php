@@ -6,7 +6,7 @@
 
     <!-- wrapper -->
     <div id="wrapper">
-        <section class="hero hero-games height-600" style="background-image: url({{$team->header_image}});">
+        <section class="hero hero-games height-600" style="background-image: url({{$team->header_image or $team->randomHeader()}});">
             <div class="hero-bg"></div>
             <div class="container">
                 <div class="page-header">
@@ -62,6 +62,11 @@
                                                 </div>
                                                 <div id="collapse{{$program->id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{$program->id}}">
                                                     <div class="panel-body">
+                                                        @if($member->completedCourse($program->id))
+                                                            Member has completed this course
+                                                        @else
+                                                            <p>Member has not completed this course</p>
+                                                        @endif
                                                         <table class="table table-condensed" id="serviceHistoryTable">
                                                             <thead>
                                                             <th>Training Goal</th>
