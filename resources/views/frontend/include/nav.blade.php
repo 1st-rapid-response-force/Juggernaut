@@ -13,7 +13,7 @@
                     <li><a href="{{route('frontend.feed')}}">Unit Feed</a></li>
 
                     @if(!\Auth::guest())
-                    <li><a href="{{route('frontend.calendar')}}">Calendar</a></li>
+                    <li><a href="http://steamcommunity.com/groups/1st-rrf#events">Calendar</a></li>
 
                     @if(count(\Auth::User()->member))
                     <div class="visible-xs visible-sm">
