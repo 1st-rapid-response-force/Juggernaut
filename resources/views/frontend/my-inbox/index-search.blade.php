@@ -23,6 +23,10 @@
                         <button type="submit" class="btn btn-link color-grey-700 padding-top-10"><i class="fa fa-search"></i></button>
                     </div>
                     {{ Form::close() }}
+
+                    <div class="text-center">
+                        <p><a href="{{route('inbox')}}">Go back to inbox (remove search filter)</a></p>
+                    </div>
                 </div>
                 <br>
                 <form action="{{route('inbox.removeThreads')}}" method="post">
@@ -59,7 +63,7 @@
                             </tr>
                         @endif
                         </tbody>
-                        <p><a href="{{route('inbox')}}">Go back to inbox (remove search filter)</a></p>
+
                     </table><!-- /.table -->
                     </form>
                     <div class="text-center">
