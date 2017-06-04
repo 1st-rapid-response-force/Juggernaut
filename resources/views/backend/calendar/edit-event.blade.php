@@ -52,15 +52,6 @@
             </div><!--form control-->
 
             <div class="form-group">
-                {{ Form::label('full_day', trans('validation.attributes.backend.unit.calendar.events.all_day'), ['class' => 'col-lg-2 control-label']) }}
-
-                <div class="col-lg-1">
-                    {{ Form::hidden('full_day',0) }}
-                    {{ Form::checkbox('full_day', '1', $event->full_day) }}
-                </div><!--col-lg-1-->
-            </div><!--form control-->
-
-            <div class="form-group">
                 {{ Form::label('url', trans('validation.attributes.backend.unit.calendar.events.url'), ['class' => 'col-lg-2 control-label']) }}
 
                 <div class="col-lg-10">
