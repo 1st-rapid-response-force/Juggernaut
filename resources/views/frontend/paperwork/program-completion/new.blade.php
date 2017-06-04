@@ -71,7 +71,7 @@
                                                 <input type="text" name="instructor" readonly value="{{\Auth::User()->last_name.', '.\Auth::User()->first_name}}">
                                             </div>
                                             <div data-field-span="2">
-                                                <label>INSTRUCTOR</label>
+                                                <label>INSTRUCTOR RANK</label>
                                                 <input type="text" name="instructor_rank" readonly value="{{\Auth::User()->member->rank->name}}">
                                             </div>
                                         </div>

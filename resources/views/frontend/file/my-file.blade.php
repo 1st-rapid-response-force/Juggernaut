@@ -162,14 +162,14 @@
                                                                             <thead>
                                                                             <th>Date Awarded</th>
                                                                             <th>Qualification</th>
-                                                                            <th>Note</th>
+                                                                            <th></th>
                                                                             </thead>
                                                                             <tbody>
                                                                             @foreach(\Auth::User()->member->qualifications()->get() as $qualifications)
                                                                                 <tr>
                                                                                     <td class="col-lg-2">{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$qualifications->pivot->awarded_at)->toFormattedDateString()}}</td>
-                                                                                    <td class="col-lg-4">{{$qualifications->name}}</td>
-                                                                                    <td class="col-lg-6">{{$qualifications->pivot->note}}</td>
+                                                                                    <td class="col-lg-8">{{$qualifications->name}}</td>
+                                                                                    <td class="col-lg-2"><img src="{{$qualifications->getImage()}}"></td>
                                                                                 </tr>
                                                                             @endforeach
                                                                             </tbody>
@@ -210,36 +210,6 @@
                                                                         </table>
                                                                     @else
                                                                         <p>No Awards for this member.</p>
-                                                                    @endif
-                                                                </div><!--panel-body-->
-                                                            </div><!--panel-->
-                                                        </div><!--col-xs-12-->
-                                                    </div><!--row-->
-                                                    <br>
-                                                    <div class="row">
-                                                        <div class="col-xs-12">
-                                                            <div class="panel panel-default">
-                                                                <div class="panel-heading">
-                                                                    <h4>Training Programs</h4>
-                                                                </div><!--panel-heading-->
-                                                                <div class="panel-body">
-                                                                    @if(\Auth::User()->member->programs->count() > 0)
-                                                                        <table class="table table-bordered table-condensed table-hover" id="serviceHistoryTable">
-                                                                            <thead>
-                                                                            <th>Date Completed</th>
-                                                                            <th>Program Name</th>
-                                                                            </thead>
-                                                                            <tbody>
-                                                                            @foreach(\Auth::User()->member->programs()->get() as $program)
-                                                                                <tr>
-                                                                                    <td class="col-lg-2">{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$program->pivot->completed_at)->toFormattedDateString()}}</td>
-                                                                                    <td class="col-lg-10">{{$program->name}}</td>
-                                                                                </tr>
-                                                                            @endforeach
-                                                                            </tbody>
-                                                                        </table>
-                                                                    @else
-                                                                        <p>No Training Programs for this member.</p>
                                                                     @endif
                                                                 </div><!--panel-body-->
                                                             </div><!--panel-->

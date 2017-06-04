@@ -6,6 +6,7 @@ use App\Models\Unit\Member;
 use App\Models\Unit\Program;
 use App\Models\Unit\ProgramGoal;
 use App\Models\Unit\ProgramNote;
+use App\Models\Unit\Qualification;
 use App\Models\Unit\Team;
 use App\Models\Unit\TeamTimeline;
 use App\Models\Unit\TeamVideo;
@@ -177,7 +178,46 @@ class TeamController extends Controller
             \Log::info('User marked goal as completed', ['user_id' => \Auth::User()->id,'member' => \Auth::User()->member->searchable_name, 'goal_id' => $goalModel->id,'member_goal' => $member->searchable_name]);
         }
 
-        flash('Marked all goals as completed','success');
+        // Adding class check here
+        foreach (Program::all() as $program)
+        {
+            // If they have completed the course lets credit them
+            if(($member->completedCourse($program->id) && !$member->qualifications->contains($program->id)) )
+            {
+                $now = Carbon::now();
+                $qualification = Qualification::find($program->qualification_id);
+
+                // Create Paperwork
+                $form = collect([
+                    'name' => $member->searchable_name,
+                    'grade' => $member->rank->name,
+                    'military_id' => $member->user->steam_id,
+                    'date' => Carbon::now(),
+                    'organization' => '1st Rapid Response Force',
+                    'program' => $member->program,
+                    'instructor' => \Auth::User()->member,
+                    'instructor_rank' => \Auth::User()->member->rank->name,
+                    'program_remarks' => 'Completed Course'
+                ]);
+
+                // Create Paperwork
+                $paperwork = $member->paperwork()->create(['type'=>'program-completion','paperwork'=> $form->toJson(),'status'=>2]);
+                $now = Carbon::now();
+
+                // Add Qualification
+                $member->qualifications()->attach([$program->qualification_id => ['awarded_at' => $now]]);
+
+                //Create Service History
+                $serviceHistory = $member->serviceHistory()->create(['text'=> 'Awarded Qualification - '.$qualification->name,'date'=> $now]);
+
+                \Log::info('CATALYST - Credited User with Qualification.', ['user_id' => \Auth::User()->id,'member' => \Auth::User()->member->searchable_name, 'paperwork_id' => $paperwork->id,'program' => $program->name]);
+
+                flash('Member has been credited with a qualification.', 'success');
+
+            }
+
+        }
+
         return redirect(route('frontend.team.leader.training.report',[$id,$member]));
 
     }
