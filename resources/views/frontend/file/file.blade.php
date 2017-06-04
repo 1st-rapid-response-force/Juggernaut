@@ -181,7 +181,7 @@
                                                                             <th>Note</th>
                                                                             </thead>
                                                                             <tbody>
-                                                                            @foreach(\Auth::User()->member->qualifications()->get() as $qualifications)
+                                                                            @foreach($member->qualifications as $qualifications)
                                                                                 <tr>
                                                                                     <td class="col-lg-2">{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$qualifications->pivot->awarded_at)->toFormattedDateString()}}</td>
                                                                                     <td class="col-lg-8">{{$qualifications->name}}</td>
