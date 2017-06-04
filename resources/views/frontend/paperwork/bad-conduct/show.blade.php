@@ -16,9 +16,21 @@
                         <div class="post post-single">
                             <div class="post-header">
                                 <div class="post-title">
-                                    <h2><a href="#">Bad Conduct - {{$form->getPaperwork()->date}} - #RRF-BC-{{$form->id}}</a></h2>
+                                    <h2><a href="#">Bad Conduct - {{$form->created_at->toDateString()}} - #RRF-BC-{{$form->id}}</a></h2>
                                 </div>
                             </div>
+                                <br>
+                                <div class="pull-right">
+                                    <h3>Options</h3>
+                                    <form class="grid-form" method="post" action="{{route('frontend.paperwork.admin.post',$form->id)}}">
+                                        {{csrf_field()}}
+                                        {{Form::select('status',['1' => 'Pending Review', '2' => 'Reviewed', '3' => 'Archived', '4' => 'More Information Needed'],$form->status)}}
+                                        {{ Form::submit('Sign and Submit', ['class' => 'btn btn-sm btn-success']) }}
+                                    </form>
+                                </div>
+                                <div class="clearfix"></div>
+                                <br><br>
+
                             <div class="well">
                                 <form class="grid-form" >
                                     {!! csrf_field() !!}
@@ -35,13 +47,13 @@
                                         <div data-row-span="4">
                                             <div data-field-span="4">
                                                 <label>VIOLATOR NAME:</label>
-                                                <input type="text" name="violator_name" value="{{$paperwork->getPaperwork()->violator_name or ''}}">
+                                                <input type="text" name="violator_name" value="{{$form->getPaperwork()->violator_name or ''}}">
                                             </div>
                                         </div>
                                         <div data-row-span="1">
                                             <div data-field-span="1">
                                                 <label>SUMMARY OF INTERACTION</label>
-                                                <textarea name="violation_summary" rows="15">{{$paperwork->getPaperwork()->violation_summary}}</textarea>
+                                                <textarea name="violation_summary" rows="15">{{$form->getPaperwork()->violation_summary}}</textarea>
                                             </div>
                                         </div>
                                     </fieldset>
@@ -50,6 +62,34 @@
                                     <div class="clearfix"></div>
                                 </form>
                             </div>
+
+                            <br>
+                            <hr>
+                            <h3>Paperwork Notes:</h3>
+                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#newPaperworkNote">
+                                New Paperwork Note
+                            </button>
+                            <br><br>
+
+                            @if($form->notes->count() > 0)
+                                @foreach($form->notes as $note)
+                                    <div class="well">
+                                        <strong>{{$note->member}}</strong>
+                                        <hr>
+                                        {{$note->message}}
+                                        <hr>
+                                        {{$note->created_at->toDateTimeString()}} | <a href="{{route('frontend.paperwork.note.delete',[$form->id,$note->id])}}"
+                                                                                       data-method="delete"
+                                                                                       data-trans-button-cancel="Cancel"
+                                                                                       data-trans-button-confirm="Delete"
+                                                                                       data-trans-title="Are you sure?"
+                                                                                       class="btn btn-xs btn-danger"><i class="fa fa-trash" data-toggle="tooltip" data-placement="top" title="Delete"></i></a>
+                                    </div>
+                                @endforeach
+                            @else
+                                <p>No Program Notes</p>
+                            @endif
+
 
 
                         </div>
@@ -61,6 +101,33 @@
     <!-- /#wrapper -->
 @endsection
 
+
 @section('after-scripts-end')
     <script type="text/javascript" src="/plugins/gridforms/gridforms.js"></script>
+
+    <div class="modal fade" id="newPaperworkNote" tabindex="-1" role="dialog" aria-labelledby="newPaperworkLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="newPaperworkNoteLabel">New Paperwork Note</h4>
+                </div>
+                <div class="modal-body">
+                {{ Form::open(['route' => ['frontend.paperwork.note.store',$form->id], 'role' => 'form', 'method' => 'post']) }}
+                <!-- Form would go here -->
+                    <div class="form-group">
+                        {{ Form::label('note', 'Paperwork Note:', ['class' => 'control-label']) }}
+
+                        {{ Form::textarea('message', null, ['class' => 'form-control','required' => 'required']) }}
+                    </div><!--form control-->
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    {{ Form::close() }}
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

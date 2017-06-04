@@ -462,4 +462,15 @@ class TeamController extends Controller
     {
         return view('frontend.aviation.dashboard');
     }
+
+    public function disciplinary($team)
+    {
+        $team = Team::findOrFail($team);
+        if(!($team->isLeader(\Auth::User()) || $team->isTeamLeader(\Auth::User())))
+        {
+            flash('You do not have permission to access this.','danger');
+            return redirect(route('frontend.team',$team->id));
+        }
+        return view('frontend.team.leader.disciplinary',['team'=>$team]);
+    }
 }

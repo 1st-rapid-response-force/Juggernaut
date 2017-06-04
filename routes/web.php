@@ -44,6 +44,14 @@ Route::group(['namespace' => 'Frontend','middleware' => 'web'], function (){
     Route::get('our-process', 'PageController@process')->name('frontend.process');
     Route::get('infil', 'PageController@infil')->name('frontend.infil');
 
+
+    // Disciplinary Pages
+    Route::get('disciplinary/ncs/{id}', 'Unit\PaperworkController@viewPublicNCS')->name('frontend.disciplinary.ncs');
+    Route::get('disciplinary/article-15/{id}', 'Unit\PaperworkController@viewPublicArticle')->name('frontend.disciplinary.article');
+    Route::post('disciplinary/appeal/admin/{id}', 'Unit\PaperworkController@storeAppealOptions')->name('frontend.disciplinary.appeal.admin.post');
+    Route::post('disciplinary/appeal/{id}', 'Unit\PaperworkController@appeal')->name('frontend.disciplinary.appeal.post');
+
+
     // Application
     Route::get('apply', 'ApplicationController@showApply')->name('frontend.apply');
     Route::group(['middleware' => ['auth']], function()
@@ -81,6 +89,10 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['web','auth']], functi
         Route::put('/my-inbox/edit-message/{id}', ['as' => 'inbox.edit.message.update', 'uses' => 'myInboxController@editMessageSave']);
 
         //Paperwork
+        Route::get('paperwork/disciplinary/ncs/{id}', ['as' => 'frontend.paperwork.disciplinary.ncs', 'uses' => 'PaperworkController@showNCSForm']);
+        Route::post('paperwork/disciplinary/ncs/{id}', ['as' => 'frontend.paperwork.disciplinary.ncs.post', 'uses' => 'PaperworkController@storeNCSForm']);
+        Route::get('paperwork/disciplinary/article-15/{id}', ['as' => 'frontend.paperwork.disciplinary.article', 'uses' => 'PaperworkController@showArticleForm']);
+        Route::post('paperwork/disciplinary/article-15/{id}', ['as' => 'frontend.paperwork.disciplinary.article.post', 'uses' => 'PaperworkController@storeArticleForm']);
         Route::get('paperwork/change-request', ['as' => 'frontend.paperwork.change-request', 'uses' => 'PaperworkController@showChangeForm']);
         Route::post('paperwork/change-request', ['as' => 'frontend.paperwork.change-request.post', 'uses' => 'PaperworkController@storeChangeForm']);
         Route::get('paperwork/discharge', ['as' => 'frontend.paperwork.discharge', 'uses' => 'PaperworkController@showDischargeForm']);
@@ -117,6 +129,7 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['web','auth']], functi
     Route::get('aviation/dashboard', 'Unit\TeamController@aviationDashboard')->name('frontend.aviation');
 
     Route::get('team/{team}/leader', 'Unit\TeamController@leader')->name('frontend.team.leader');
+    Route::get('team/{team}/leader/disciplinary', 'Unit\TeamController@disciplinary')->name('frontend.team.leader.disciplinary');
     Route::get('team/{team}/leader/add-video', 'Unit\TeamController@addVideo')->name('frontend.team.leader.add-video');
     Route::get('team/{team}/leader/positions', 'Unit\TeamController@positions')->name('frontend.team.leader.positions');
     Route::get('team/{team}/leader/training', 'Unit\TeamController@training')->name('frontend.team.leader.training');

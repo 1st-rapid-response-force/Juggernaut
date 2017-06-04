@@ -1,6 +1,6 @@
 @extends('frontend.templates.master')
 
-@section('title','Home')
+@section('title','Disciplinary Management')
 
 @section('content')
     <!-- wrapper -->
@@ -24,7 +24,7 @@
                     <li><a href="/">Home</a></li>
                     <li><a href="{{route('frontend.team',$team->id)}}">{{$team->name}}</a></li>
                     <li><a href="{{route('frontend.team.leader',$team->id)}}">Leader Panel</a></li>
-                    <li class="active"><a href="{{route('frontend.team.leader.training',$team->id)}}">Training Management</a></li>
+                    <li class="active"><a href="{{route('frontend.team.leader.training',$team->id)}}">Disciplinary Management</a></li>
                 </ol>
             </div>
         </section>
@@ -36,9 +36,10 @@
                         <div class="post post-fl">
                             <div class="post-header">
                                 <div class="post-title">
-                                    <h2>Training Management - <small>for all assigned Programs</small></h2>
+                                    <h2>Disciplinary Management</h2>
                                 </div>
                             </div>
+                            <h4>Members:</h4>
                             @if (count($team->members) != 0)
                                 @if (count($team->members) != 0)
                                     <table id="table" class="table table-condensed">
@@ -54,7 +55,8 @@
                                                 <tr>
                                                     <td>{{$member->searchable_name}}</td>
                                                     <td>
-                                                        <a href="{{route('frontend.team.leader.training.report',[$team->id,$member->id])}}" class="btn btn-xs btn-info"><i class="fa fa-search" data-toggle="tooltip" data-placement="top" title="View Detailed Report"></i></a>
+                                                        <a href="{{route('frontend.paperwork.disciplinary.ncs',$member->id)}}" class="btn btn-xs btn-warning">NCS</a>
+                                                        <a href="{{route('frontend.paperwork.disciplinary.article',$member->id)}}" class="btn btn-xs btn-danger">Article 15</a>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -65,6 +67,36 @@
                                 @endif
                             @endif
 
+                            <hr>
+                            <h4>Bad Conduct Reports:</h4>
+                                @if (count(\App\Models\Unit\Paperwork::where('type','bad-conduct')->where('disciplinary_team_id',$team->id)->whereStatus(1)->get()) != 0)
+                                    <table id="table" class="table table-condensed">
+                                        <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Report</th>
+                                            <th>Against</th>
+                                            <th>Filed By</th>
+                                            <th>Options</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach(\App\Models\Unit\Paperwork::where('type','bad-conduct')->where('disciplinary_team_id',$team->id)->whereStatus(1)->get() as $badconduct)
+                                            <tr>
+                                                <td>{{$badconduct->created_at->toDateString()}}</td>
+                                                <td>{{$badconduct->getType()}}</td>
+                                                <td>{{$badconduct->getPaperwork()->violator_name}}</td>
+                                                <td>{{$badconduct->member->searchable_name}}</td>
+                                                <td>
+                                                    <a href="{{route('frontend.paperwork.show',$badconduct->id)}}" class="btn btn-xs btn-info"><i class="fa fa-search" data-toggle="tooltip" data-placement="top" title="View Bad Conduct Report"></i></a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                @else
+                                    <p>There is no bad conduct reports.</p>
+                                @endif
 
                         </div>
                     </div>

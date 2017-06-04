@@ -199,6 +199,41 @@
                                                         </div><!--col-xs-12-->
                                                     </div><!--row-->
 
+                                                    <br>
+                                                    <div class="row">
+                                                        <div class="col-xs-12">
+                                                            <div class="panel panel-default">
+                                                                <div class="panel-heading">
+                                                                    <h4>Disciplinary History</h4>
+                                                                </div><!--panel-heading-->
+
+                                                                <div class="panel-body">
+                                                                    @if(\App\Models\Unit\Paperwork::disciplinary()->where('disciplinary_member_id',$member->id)->get()->count() > 0)
+                                                                        <table class="table table-bordered table-condensed table-hover" id="serviceHistoryTable">
+                                                                            <thead>
+                                                                            <th>Date Filed</th>
+                                                                            <th>Type</th>
+                                                                            <th>Status</th>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                            @foreach(\App\Models\Unit\Paperwork::disciplinary()->where('disciplinary_member_id',$member->id)->orderBy('created_at','desc')->get() as $paperwork)
+                                                                                <tr>
+                                                                                    <td class="col-lg-2">{{$paperwork->created_at->toFormattedDateString()}}</td>
+                                                                                    <td class="col-lg-5"><a href="{{route($paperwork->getDisciplinaryRoute(),$paperwork->id)}}">{{$paperwork->getType()}}</a></td>
+                                                                                    <td class="col-lg-5">{!! $paperwork->getStatus() !!}</td>
+                                                                                </tr>
+                                                                            @endforeach
+                                                                            </tbody>
+                                                                        </table>
+                                                                    @else
+                                                                        <p>No Disciplinary Record.</p>
+                                                                    @endif
+
+                                                                </div><!--panel-body-->
+                                                            </div><!--panel-->
+                                                        </div><!--col-xs-12-->
+                                                    </div><!--row-->
+
                                                 </div><!--col-md-8-->
 
                                             </div><!--row-->

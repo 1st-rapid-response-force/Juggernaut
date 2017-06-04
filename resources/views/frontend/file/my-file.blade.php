@@ -224,7 +224,7 @@
                                                                 </div><!--panel-heading-->
 
                                                                 <div class="panel-body">
-                                                                    @if(\Auth::User()->member->paperwork->count() > 0)
+                                                                    @if(\Auth::User()->member->paperwork()->standard()->get()->count() > 0)
                                                                         <table class="table table-bordered table-condensed table-hover" id="serviceHistoryTable">
                                                                             <thead>
                                                                             <th>Date Filed</th>
@@ -232,7 +232,7 @@
                                                                             <th>Status</th>
                                                                             </thead>
                                                                             <tbody>
-                                                                            @foreach(\Auth::User()->member->paperwork()->where('type','!=', 'bad-conduct')->orderBy('created_at','desc')->get() as $paperwork)
+                                                                            @foreach(\Auth::User()->member->paperwork()->standard()->orderBy('created_at','desc')->get() as $paperwork)
                                                                                 <tr>
                                                                                     <td class="col-lg-2">{{$paperwork->created_at->toFormattedDateString()}}</td>
                                                                                     <td class="col-lg-5"><a href="{{route('frontend.paperwork.show',$paperwork->id)}}">{{$paperwork->getType()}}</a></td>
@@ -243,6 +243,40 @@
                                                                         </table>
                                                                     @else
                                                                         <p>No Paperwork for this member.</p>
+                                                                    @endif
+
+                                                                </div><!--panel-body-->
+                                                            </div><!--panel-->
+                                                        </div><!--col-xs-12-->
+                                                    </div><!--row-->
+                                                    <br>
+                                                    <div class="row">
+                                                        <div class="col-xs-12">
+                                                            <div class="panel panel-default">
+                                                                <div class="panel-heading">
+                                                                    <h4>Disciplinary History</h4>
+                                                                </div><!--panel-heading-->
+
+                                                                <div class="panel-body">
+                                                                    @if(\Auth::User()->member->paperwork()->disciplinary(\Auth::User()->member->id)->where('disciplinary_member_id',\Auth::User()->member->id)->get()->count() > 0)
+                                                                        <table class="table table-bordered table-condensed table-hover" id="serviceHistoryTable">
+                                                                            <thead>
+                                                                            <th>Date Filed</th>
+                                                                            <th>Type</th>
+                                                                            <th>Status</th>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                            @foreach(\Auth::User()->member->paperwork()->disciplinary(\Auth::User()->member->id)->where('disciplinary_member_id',\Auth::User()->member->id)->orderBy('created_at','desc')->get() as $paperwork)
+                                                                                <tr>
+                                                                                    <td class="col-lg-2">{{$paperwork->created_at->toFormattedDateString()}}</td>
+                                                                                    <td class="col-lg-5"><a href="{{route($paperwork->getDisciplinaryRoute(),$paperwork->id)}}">{{$paperwork->getType()}}</a></td>
+                                                                                    <td class="col-lg-5">{!! $paperwork->getStatus() !!}</td>
+                                                                                </tr>
+                                                                            @endforeach
+                                                                            </tbody>
+                                                                        </table>
+                                                                    @else
+                                                                        <p>No Disciplinary Record.</p>
                                                                     @endif
 
                                                                 </div><!--panel-body-->
