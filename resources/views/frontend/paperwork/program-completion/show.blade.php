@@ -62,7 +62,7 @@
                                         <div data-row-span="1">
                                             <div data-field-span="2">
                                                 <label>PROGRAM NAME</label>
-                                                <input type="text" name="program" readonly value="{{$form->getPaperwork()->program or ''}}">
+                                                <input type="text" name="program" readonly value="{{$form->getPaperwork()->program->name}}">
                                             </div>
                                         </div>
                                         <div data-row-span="4">
