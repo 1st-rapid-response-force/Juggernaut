@@ -190,6 +190,7 @@
                                                                             @endforeach
                                                                             </tbody>
                                                                         </table>
+                                                                        <small><a href="https://icons8.com">Icon pack by Icons8</a></small>
                                                                     @else
                                                                         <p>No Qualifications for this member.</p>
                                                                     @endif
