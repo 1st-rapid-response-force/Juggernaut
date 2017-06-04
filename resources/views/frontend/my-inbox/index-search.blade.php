@@ -59,6 +59,7 @@
                             </tr>
                         @endif
                         </tbody>
+                        <p><a href="{{route('inbox')}}">Go back to inbox (remove search filter)</a></p>
                     </table><!-- /.table -->
                     </form>
                     <div class="text-center">

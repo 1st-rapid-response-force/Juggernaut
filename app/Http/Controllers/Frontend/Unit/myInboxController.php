@@ -25,6 +25,16 @@ class myInboxController extends Controller
             ->with('user',$user);
     }
 
+    public function search(Request $request)
+    {
+        $user = \Auth::user();
+        $currentUserId = \Auth::user()->id;
+        $threads = Thread::where('subject', 'LIKE', '%'.$request->search.'%')->latest('updated_at')->paginate(15);
+        return view('frontend.my-inbox.index-search', compact('threads', 'cu
+        rrentUserId'))
+            ->with('user',$user);
+    }
+
     /**
      * Shows a message thread
      *
