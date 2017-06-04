@@ -16,7 +16,7 @@
                         <div class="post post-single">
                             <div class="post-header">
                                 <div class="post-title">
-                                    <h2><a href="#">Program Completion Form - {{$form->getPaperwork()->date}} - #RRF-PC-{{$form->id}}</a></h2>
+                                    <h2><a href="#">Program Completion Form - {{\Carbon\Carbon::parse($form->getPaperwork()->date->date)->toDateString()}} - #RRF-PC-{{$form->id}}</a></h2>
                                 </div>
                             </div>
                             <div class="well">
@@ -46,7 +46,7 @@
                                             </div>
                                             <div data-field-span="1">
                                                 <label>CURRENT DATE</label>
-                                                <input type="text" id="date" name="date" placeholder="01/01/2000" readonly value="{{$form->getPaperwork()->date or ''}}">
+                                                <input type="text" id="date" name="date" placeholder="01/01/2000" readonly value="{{\Carbon\Carbon::parse($form->getPaperwork()->date->date)->toDateString()}}">
                                             </div>
                                         </div>
                                         <div data-row-span="4">
@@ -68,7 +68,7 @@
                                         <div data-row-span="4">
                                             <div data-field-span="2">
                                                 <label>INSTRUCTOR</label>
-                                                <input type="text" name="instructor" readonly value="{{$form->getPaperwork()->instructor or ''}}">
+                                                <input type="text" name="instructor" readonly value="{{$form->getPaperwork()->instructor->searchable_name or ''}}">
                                             </div>
                                             <div data-field-span="2">
                                                 <label>INSTRUCTOR</label>
