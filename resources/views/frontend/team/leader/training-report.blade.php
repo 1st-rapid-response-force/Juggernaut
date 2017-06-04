@@ -73,7 +73,7 @@
                                                             <thead>
                                                             <th>Training Goal</th>
                                                             <th>Status</th>
-                                                            <th>Options</th>
+                                                            <th>Completed</th>
 
                                                             </thead>
                                                             <tbody>
@@ -81,15 +81,9 @@
                                                                 <tr>
                                                                     <td class="col-lg-8">{{$goal->goal}}</td>
                                                                     <td class="col-lg-2">{!! $goal->getMemberStatusButton($member) !!}</td>
-                                                                    <td class="col-lg-1">
-                                                                        @if(!$goal->getMemberStatus($member))
-                                                                            <a href="{{route('frontend.team.leader.training.report.mark',[$team->id,$member->id,$goal->id])}}" class="btn btn-xs btn-info"><i class="fa fa-plus-square-o" data-toggle="tooltip" data-placement="top" title="Mark as Completed"></i></a>
-                                                                        @endif
-
-                                                                    </td>
-                                                                    <td class="col-lg-1">
+                                                                    <td class="col-lg-2">
                                                                         @if($goal->getMemberStatus($member))
-                                                                          <input checked disabled="" type="checkbox">
+                                                                            <input checked disabled="" type="checkbox">
                                                                         @else
                                                                             {{Form::checkbox('goal[]', $goal->id,$goal->getMemberStatus($member))}}
                                                                         @endif
