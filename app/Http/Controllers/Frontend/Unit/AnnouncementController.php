@@ -10,7 +10,7 @@ class AnnouncementController extends Controller
 {
     public function index()
     {
-        $announcements = Announcement::paginate(4);
+        $announcements = Announcement::orderBy('created_at','desc')->paginate(4);
         return view('frontend.announcements.index',['announcements' => $announcements]);
     }
 
