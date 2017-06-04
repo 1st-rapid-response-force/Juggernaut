@@ -5,6 +5,8 @@
 
 namespace App\Repositories\Frontend\Unit;
 
+use App\Models\Application;
+use App\Models\Unit\Member;
 use Carbon\Carbon;
 use App\Models\Unit\Event;
 use App\Models\Unit\PublicEvent;
@@ -35,7 +37,35 @@ class EloquentCalendarRepository implements CalendarRepositoryContract {
             $event->end_time = $event->end_time->setTimezone($this->timezone);
         }
 
-        return \Calendar::addEvents($events);
+        $calendar = \Calendar::addEvents($events);
+
+        $birthdays = collect();
+        foreach (Member::whereActive(1)->get() as $mem)
+        {
+            if(isset($mem->user->application))
+            {
+                $dob = Carbon::parse($mem->user->application->getApplication()->dob)->year(Carbon::now()->year);
+                $birthdays->push(\Calendar::event(
+                    $mem.' -  Birthday', //event title
+                    true, //full day event?
+                    $dob,
+                    $dob,
+                    rand(9000,10000),
+                    [
+                        'color' => '#4B870C'
+                    ]
+                ));
+            }
+
+        }
+        $calendar = \Calendar::addEvents($birthdays);
+
+        return $calendar->setOptions([
+            'timeFormat' => 'H(:mm)'
+        ]);
+
+
+
     }
 
 }

@@ -108,4 +108,7 @@ class PageController extends Controller
         return redirect()->route('frontend.calendar');
     }
 
+
+
+
 }
