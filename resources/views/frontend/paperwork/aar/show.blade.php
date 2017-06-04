@@ -19,7 +19,7 @@
                                     <h2><a href="#">After Action Report - {{$form->getPaperwork()->date}} - #RRF-AAR-{{$form->id}}</a></h2>
                                 </div>
                             </div>
-                            @if(\Auth::User()->admin)
+                            @if((\Auth::User()->admin))
                                 <br>
                                 <div class="pull-right">
                                     <h3>Admin Options</h3>
