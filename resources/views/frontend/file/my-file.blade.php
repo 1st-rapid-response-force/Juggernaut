@@ -51,6 +51,7 @@
                                                                         <a href="{{route('frontend.team',\Auth::User()->member->team->id)}}">{{\Auth::User()->member->team->name}}</a> <br/>
                                                                         Military ID: {{\Auth::User()->steam_id}} <br/>
                                                                         Time in Service: {{\Auth::User()->member->time_in_service}} days<br/>
+                                                                        Roster Number: RRF-{{\Auth::User()->member->id}} <br/>
                                                                     </small>
                                                                     <br>
                                                                     @if(\Auth::User()->member->hasReportedIn())
