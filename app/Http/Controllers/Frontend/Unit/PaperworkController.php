@@ -234,12 +234,16 @@ class PaperworkController extends Controller
         if(isset($discipline->team->parentTeam))
         {
             $paperwork->disciplinary_team_id = $discipline->team->parentTeam->id;
+            flash('This disciplinary item has been appealed someone should get in touch soon regarding this issue.', 'success');
+        } else {
+            $paperwork->appeal = 3;
+            flash('Appeal Limit reached - No Higher COC, appeal is denied.', 'danger');
         }
 
         // Save it
         $paperwork->save();
 
-        flash('This disciplinary item has been appealed someone should get in touch soon regarding this issue.', 'success');
+
         return redirect()->back();
 
     }
@@ -285,7 +289,7 @@ class PaperworkController extends Controller
     {
         $leader = Team::all()->pluck('leader_id')->contains(\Auth::User()->id);
 
-        if(!(\Auth::User()->admin || $leader))
+        if(!(\Auth::User()->admin))
         {
             flash('You do not have permission to access this.','danger');
             return redirect(route('frontend.files.my-file'));
@@ -297,10 +301,9 @@ class PaperworkController extends Controller
 
     public function storeArticleForm($id, Request $request)
     {
-        $leader = Team::all()->pluck('leader_id')->contains(\Auth::User()->id);
         $discipline = Member::findOrFail($id);
 
-        if(!(\Auth::User()->admin || $leader))
+        if(!(\Auth::User()->admin ))
         {
             flash('You do not have permission to access this.','danger');
             return redirect(route('frontend.files.my-file'));
