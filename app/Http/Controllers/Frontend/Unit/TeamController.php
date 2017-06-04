@@ -158,6 +158,30 @@ class TeamController extends Controller
 
     }
 
+    public function storeMarkBulkGoal($id, $member, Request $request)
+    {
+        $team = Team::findOrFail($id);
+        $member = Member::findOrFail($member);
+
+        if(!($team->isLeader(\Auth::User()) || $team->isTeamLeader(\Auth::User())))
+        {
+            flash('You do not have permission to access this.','danger');
+            return redirect(route('frontend.team',$team->id));
+        }
+
+        $goals = collect($request->goal);
+        foreach ($goals as $goal)
+        {
+            $goalModel =  ProgramGoal::find($goal);
+            $goalModel->members()->attach([$member->id => ['processor_id'=> \Auth::User()->id, 'note' => 'Filled out via BULK Functionality', 'completed_at' => new Carbon]]);
+            \Log::info('User marked goal as completed', ['user_id' => \Auth::User()->id,'member' => \Auth::User()->member->searchable_name, 'goal_id' => $goalModel->id,'member_goal' => $member->searchable_name]);
+        }
+
+        flash('Marked all goals as completed','success');
+        return redirect(route('frontend.team.leader.training.report',[$id,$member]));
+
+    }
+
     public function classCompletionForm($id,$member)
     {
         $team = Team::findOrFail($id);

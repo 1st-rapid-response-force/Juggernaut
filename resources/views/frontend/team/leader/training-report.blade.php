@@ -51,6 +51,12 @@
                                     <h2>Qualifications</h2>
                                     <hr>
                                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                    {{ Form::open(['route' => ['frontend.team.leader.training.report.mark.bulk.post',$team->id,$member->id], 'role' => 'form', 'method' => 'post']) }}
+                                        <div class="pull-right">
+                                            <th><button type="submit" class="btn btn-sm btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i></button> </th>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <hr>
                                     @foreach(\App\Models\Unit\Program::all() as $program)
                                             <div class="panel panel-default">
                                                 <div class="panel-heading" role="tab" id="headingOne">
@@ -62,31 +68,42 @@
                                                 </div>
                                                 <div id="collapse{{$program->id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{$program->id}}">
                                                     <div class="panel-body">
+
                                                         <table class="table table-condensed" id="serviceHistoryTable">
                                                             <thead>
                                                             <th>Training Goal</th>
                                                             <th>Status</th>
                                                             <th>Options</th>
+
                                                             </thead>
                                                             <tbody>
                                                             @foreach($program->goals as $goal)
                                                                 <tr>
                                                                     <td class="col-lg-8">{{$goal->goal}}</td>
                                                                     <td class="col-lg-2">{!! $goal->getMemberStatusButton($member) !!}</td>
-                                                                    <td class="col-lg-2">
+                                                                    <td class="col-lg-1">
                                                                         @if(!$goal->getMemberStatus($member))
                                                                             <a href="{{route('frontend.team.leader.training.report.mark',[$team->id,$member->id,$goal->id])}}" class="btn btn-xs btn-info"><i class="fa fa-plus-square-o" data-toggle="tooltip" data-placement="top" title="Mark as Completed"></i></a>
                                                                         @endif
 
                                                                     </td>
+                                                                    <td class="col-lg-1">
+                                                                        @if($goal->getMemberStatus($member))
+                                                                          <input checked disabled="" type="checkbox">
+                                                                        @else
+                                                                            {{Form::checkbox('goal[]', $goal->id,$goal->getMemberStatus($member))}}
+                                                                        @endif
+                                                                    </td>
                                                                 </tr>
                                                             @endforeach
                                                             </tbody>
                                                         </table>
+
                                                     </div>
                                                 </div>
                                             </div>
                                     @endforeach
+                                        {{Form::close()}}
                                     </div>
                                     </hr>
                                 </div>

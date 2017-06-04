@@ -128,6 +128,7 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['web','auth']], functi
     Route::post('team/{team}/leader/training/{member}/program-completion', 'Unit\TeamController@storeClassCompletionForm')->name('frontend.team.leader.training.program-completion.post');
     Route::get('team/{team}/leader/training/{member}/program-goal/{goal}/mark', 'Unit\TeamController@markReport')->name('frontend.team.leader.training.report.mark');
     Route::post('team/{team}/leader/training/{member}/program-goal/{goal}/mark', 'Unit\TeamController@storeMarkGoal')->name('frontend.team.leader.training.report.mark.post');
+    Route::post('team/{team}/leader/training/{member}/program-goal/bulk', 'Unit\TeamController@storeMarkBulkGoal')->name('frontend.team.leader.training.report.mark.bulk.post');
     Route::post('team/{team}/leader/training/{member}/new-note', 'Unit\TeamController@storeNewNote')->name('frontend.team.leader.training.report.new-note');
     Route::delete('team/{team}/leader/training/{member}/note/{note_id}', 'Unit\TeamController@deleteNote')->name('frontend.team.leader.training.report.note.delete');
     Route::post('team/{team}/leader/positions', 'Unit\TeamController@updatePositions')->name('frontend.team.leader.positions.post');
