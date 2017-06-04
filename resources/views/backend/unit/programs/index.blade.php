@@ -83,6 +83,16 @@
                                 <textarea class="form-control" name="description"></textarea>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="qualification_id" class="col-sm-2 control-label">Qualification: &nbsp</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" name="qualification_id">
+                                    @foreach(\App\Models\Unit\Qualification::all() as $qualification)
+                                        <option value="{{$qualification->id}}">{{$qualification->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
 
                         <input type="hidden" name="responsible_team_id" value="1">
                         <input type="hidden" name="status" value="1">

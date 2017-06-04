@@ -43,6 +43,17 @@
                             {{ Form::text('description', $program->description, ['class' => 'form-control', 'placeholder' => 'Name']) }}
                         </div><!--col-lg-10-->
                     </div><!--form control-->
+
+                    <div class="form-group">
+                        {{ Form::label('qualification_id', 'Qualification', ['class' => 'col-lg-2 control-label']) }}
+                        <div class="col-lg-10">
+                            <select class="form-control" name="qualification_id">
+                                @foreach(\App\Models\Unit\Qualification::all() as $qualification)
+                                    <option value="{{$qualification->id}}" {{$qualification->id == $program->qualification_id ? 'selected' : ''}}>{{$qualification->name}}</option>
+                                @endforeach
+                            </select>
+                        </div><!--col-lg-10-->
+                    </div><!--form control-->
                 </div>
 
                 <div class="clearfix"></div>

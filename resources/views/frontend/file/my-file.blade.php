@@ -174,6 +174,7 @@
                                                                             @endforeach
                                                                             </tbody>
                                                                         </table>
+                                                                        <small><a href="https://icons8.com">Icon pack by Icons8</a></small>
                                                                     @else
                                                                         <p>No Qualifications for this member.</p>
                                                                     @endif
@@ -273,6 +274,7 @@
                                                                     @else
                                                                         <p>No Paperwork for this member.</p>
                                                                     @endif
+
                                                                 </div><!--panel-body-->
                                                             </div><!--panel-->
                                                         </div><!--col-xs-12-->

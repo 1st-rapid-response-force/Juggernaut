@@ -10,7 +10,7 @@ class Program extends Model implements HasMedia
 {
     use HasMediaTrait;
 
-    protected $fillable = ['name','description','video', 'document','responsible_team_id','status'];
+    protected $fillable = ['name','description','video', 'document','responsible_team_id','status','qualification_id'];
 
     public function goals()
     {
