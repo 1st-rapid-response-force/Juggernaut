@@ -194,7 +194,7 @@ class TeamController extends Controller
                     'military_id' => $member->user->steam_id,
                     'date' => Carbon::now(),
                     'organization' => '1st Rapid Response Force',
-                    'program' => $member->program,
+                    'program' => $program,
                     'instructor' => \Auth::User()->member,
                     'instructor_rank' => \Auth::User()->member->rank->name,
                     'program_remarks' => 'Completed Course'
