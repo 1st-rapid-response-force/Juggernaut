@@ -115,7 +115,6 @@ class EloquentCalendarRepository implements CalendarRepositoryContract {
         $event->title             = $input['title'];
         $event->start_time        = $start_time;
         $event->end_time          = $end_time;
-        $event->full_day          = $input['full_day'];
         $event->url               = $input['url'];
         $event->color             = $input['color'];
 
