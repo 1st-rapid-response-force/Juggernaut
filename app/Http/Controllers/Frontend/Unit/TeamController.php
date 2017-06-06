@@ -182,7 +182,7 @@ class TeamController extends Controller
         foreach (Program::all() as $program)
         {
             // If they have completed the course lets credit them
-            if(($member->completedCourse($program->id) && !$member->qualifications->contains($program->id)) )
+            if(($member->completedCourse($program->id) && !$member->qualifications->contains($program->qualification_id)) )
             {
                 $now = Carbon::now();
                 $qualification = Qualification::find($program->qualification_id);
@@ -194,7 +194,7 @@ class TeamController extends Controller
                     'military_id' => $member->user->steam_id,
                     'date' => Carbon::now(),
                     'organization' => '1st Rapid Response Force',
-                    'program' => $member->program,
+                    'program' => $program,
                     'instructor' => \Auth::User()->member,
                     'instructor_rank' => \Auth::User()->member->rank->name,
                     'program_remarks' => 'Completed Course'
