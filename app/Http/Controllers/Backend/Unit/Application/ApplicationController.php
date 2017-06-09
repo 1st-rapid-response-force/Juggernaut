@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\Unit\Application;
 
 use App\Models\Application;
+use App\Models\Unit\Perstat;
 use App\Models\Unit\TeamTimeline;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -70,6 +71,8 @@ class ApplicationController extends Controller
         // Create all relevant records
         $app->user->member->serviceHistory()->create(['text' => 'Enlisted in the 1st Rapid Response Force','date'=> new Carbon]);
 
+
+        // Create Timeline
         TeamTimeline::create([
                 'team_id' => 2,
                 'name' => $app->user->member.' has joined the 1st RRF',
@@ -77,6 +80,12 @@ class ApplicationController extends Controller
                 'body' => $app->user->member.' has been accepted and has joined the 1st Rapid Response Force!',
                 'date' => new Carbon
         ]);
+
+
+        // Report in
+        $perstat = Perstat::where('active','=','1')->first();
+        $app->user->member->perstat()->attach($perstat->id);
+        $app->user->member->ribbons()->attach([1 => ['awarded_at' =>  new Carbon]]);
 
         \Log::info('User accepted application', ['user_id' => \Auth::User()->id, 'member' => $app->user->member->searchable_name, 'application_id' => $app->id]);
         flash('Application has been approved.', 'success');

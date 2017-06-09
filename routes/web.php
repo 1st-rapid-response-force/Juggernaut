@@ -189,6 +189,8 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['web','auth','admin'], 
         Route::delete('members/{id}/service-history/{service}', 'FileController@deleteServiceHistory')->name('admin.members.edit.delete-service-history');
         Route::resource('members', 'FileController', ['as' => 'admin']);
 
+        Route::get('promotions', 'PromotionController@index')->name('admin.promotions');
+
         Route::delete('programs/{program}/goals/{goal}/delete', 'ProgramController@deleteProgramGoal')->name('admin.programs.program-goals.delete');
         Route::get('programs/{id}/goals/{goal}', 'ProgramController@editProgramGoal')->name('admin.programs.program-goals.edit');
         Route::put('programs/{id}/goals/{goal}', 'ProgramController@updateProgramGoal')->name('admin.programs.program-goals.put');

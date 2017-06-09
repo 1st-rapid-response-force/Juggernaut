@@ -86,6 +86,13 @@
                         </a>
                     </li>
 
+                    <li class="{{ Active::pattern('admin/unit/promotions*') }}">
+                        <a href="{{route('admin.promotions')}}">
+                            <i class="fa fa-circle-o"></i>
+                            <span>Promotion Eligibility List</span>
+                        </a>
+                    </li>
+
                     <li class="{{ Active::pattern('admin/unit/qualifications*') }}">
                         <a href="{{route('admin.qualifications.index')}}">
                             <i class="fa fa-circle-o"></i>

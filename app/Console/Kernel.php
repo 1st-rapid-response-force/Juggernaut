@@ -45,6 +45,8 @@ class Kernel extends ConsoleKernel
             ->daily();
         $schedule->command('member:create-perstat')
             ->weekly()->saturdays()->at('6:00');
+        $schedule->command('backup:clean')->weekly()->at('01:00');
+        $schedule->command('backup:run')->weekly()->at('02:00');
     }
 
     /**

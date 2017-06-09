@@ -1,7 +1,5 @@
 @extends('frontend.templates.master')
 
-disciplinaryle','Home')
-
 @section('content')
 
 

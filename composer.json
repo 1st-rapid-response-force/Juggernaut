@@ -18,7 +18,9 @@
         "uxweb/sweet-alert": "~1.1",
         "hieu-le/active": "~2.0",
         "par0noid/ts3admin": "1.0.2.1",
-        "arcanedev/log-viewer": "4.2.*"
+        "arcanedev/log-viewer": "4.2.*",
+        "spatie/laravel-backup": "^4.17",
+        "guzzlehttp/guzzle": "^6.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -177,6 +177,7 @@ return [
         Spatie\MediaLibrary\MediaLibraryServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Arcanedev\LogViewer\LogViewerServiceProvider::class,
+        Spatie\Backup\BackupServiceProvider::class,
 
 
 

@@ -22,22 +22,6 @@
                             @foreach($events as $event)
                                 @include('frontend.team.include.timeline-event')
                             @endforeach
-
-                            <li>
-                                <div class="timeline-badge primary"></div>
-                                <div class="timeline-panel">
-                                    <div class="timeline-heading">
-                                        <h4><a href="#"><i class="star"></i> 1st Rapid Response Force - Founded</a></h4>
-                                    </div>
-                                    <div class="timeline-body">
-                                        <p>The 1st Rapid Response Force was launched on March 15th, 2017</p>
-
-                                    </div>
-                                    <div class="timeline-footer">
-                                        <i class="fa fa-calendar-o"></i> March 15, 2017
-                                    </div>
-                                </div>
-                            </li>
                             <div class="clearfix pull-none"></div>
                             <div class="text-center">
                                 {{$events->links()}}
