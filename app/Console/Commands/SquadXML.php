@@ -56,7 +56,7 @@ class SquadXML extends Command
             {
                 $xml .= '<member id="'.$member->user->steam_id.'" nick="'.$member.'">'. PHP_EOL;
                 $xml .= '<name>'.$member->user->first_name.' '.$member->user->last_name.'</name>'. PHP_EOL;
-                $xml .= '<email>'.$member->user->email.'</email>'. PHP_EOL;
+                $xml .= '<email></email>'. PHP_EOL;
                 $xml .= '<icq>N/A</icq>'. PHP_EOL;
                 $xml .= '<remark>1st Rapid Response Force - '.$member->team->name.'</remark>'. PHP_EOL;
                 $xml .= '</member>'. PHP_EOL;
