@@ -38,7 +38,7 @@
                                 <ul>
                                     <li>Members must own a legal copy of ARMA 3.</li>
                                     <li>Members must have a clean Steam VAC and BattlEye Record</li>
-                                    <li>Members must be over the age of 16+ </li>
+                                    <li>Members must be over the age of 18+ </li>
                                     <li>Members will need to be able to commit to a weekly operations and training schedule.</li>
                                     <li>Members will need speak english in order to properly communicate with the unit.</li>
                                 </ul>
