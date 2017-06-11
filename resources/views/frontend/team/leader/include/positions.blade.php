@@ -20,4 +20,6 @@
     'Pilot' => 'Pilot',
     'Co-Pilot' => 'Co-Pilot',
     'ATC' => 'ATC',
+    'Recruit' => 'Recruit',
+    'Reserve' => 'Reserve',
     ], $member->position, ['class' => 'form-control'])}}
