@@ -30,10 +30,10 @@ class UserController extends Controller
         $user->member()->update(['bio' => $request->get('bio')]);
 
         // Call Jobs
-        \Artisan::call('member:avatar');
-        \Artisan::call('member:searchable');
-        \Artisan::call('member:squadxml');
-        \Artisan::call('member:cac');
+        \Artisan::queue('member:avatar');
+        \Artisan::queue('member:searchable');
+        \Artisan::queue('member:squadxml');
+        \Artisan::queue('member:cac');
 
         flash('Settings updated','success');
         return redirect()->back();
