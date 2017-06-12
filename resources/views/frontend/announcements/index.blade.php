@@ -44,8 +44,9 @@
                                     </ul>
                                 </div>
                             </div>
-                        @endforeach
 
+                        @endforeach
+                    </div>
 
                         <div class="text-center">
                             {!! $announcements->links() !!}
