@@ -23,8 +23,8 @@
                 <ol class="breadcrumb">
                     <li><a href="/">Home</a></li>
                     <li><a href="{{route('frontend.team',$team->id)}}">{{$team->name}}</a></li>
-                    <li><a href="{{route('frontend.team.videos.view',[$team->id,$video->id])}}">{{$team->name}}</a></li>
-                    <li class="active">Members</li>
+                    <li><a href="{{route('frontend.team.videos',[$team->id])}}">Videos</a></li>
+                    <li class="active">{{$video->name}}</li>
                 </ol>
             </div>
         </section>
