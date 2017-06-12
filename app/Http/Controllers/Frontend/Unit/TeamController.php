@@ -353,6 +353,8 @@ class TeamController extends Controller
     {
         $team = Team::findOrFail($id);
         $video = TeamVideo::findOrFail($video_id);
+        $video->viewer_count =+1;
+        $video->save();
 
         return view('frontend.team.team-video',['team'=>$team,'video' => $video]);
     }
@@ -455,7 +457,6 @@ class TeamController extends Controller
             return redirect(route('frontend.team',$team->id));
         }
         return view('frontend.team.leader.after-action-reports',['team'=>$team]);
-
     }
 
     public function aviationDashboard()
