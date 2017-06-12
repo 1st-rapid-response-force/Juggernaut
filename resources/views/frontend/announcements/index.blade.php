@@ -18,9 +18,6 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-10 col-lg-offset-1">
-
-
-
                         @foreach($announcements as $announcement)
                             <div class="panel panel-default panel-post">
                                 <div class="panel-body">
@@ -48,9 +45,8 @@
                         @endforeach
                     </div>
 
-                        <div class="text-center">
-                            {!! $announcements->links() !!}
-                        </div>
+                    <div class="text-center">
+                        {!! $announcements->links() !!}
                     </div>
                 </div>
             </div>
