@@ -203,6 +203,7 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['web','auth','admin'], 
         Route::resource('announcements', 'AnnouncementController', ['as' => 'admin']);
         Route::resource('perstat', 'PerstatController', ['as' => 'admin']);
         Route::resource('programs', 'ProgramController', ['as' => 'admin']);
+        Route::resource('loadouts', 'LoadoutController', ['as' => 'admin']);
         Route::resource('awards', 'AwardController', ['as' => 'admin']);
         Route::resource('ribbons', 'RibbonController', ['as' => 'admin']);
         Route::resource('qualifications', 'QualificationController', ['as' => 'admin']);
