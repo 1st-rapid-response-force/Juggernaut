@@ -32,4 +32,9 @@ class Qualification extends Model implements HasMedia
     {
         return $this->belongsToMany('App\Models\Unit\Member')->withPivot('awarded_at','note');
     }
+
+    public function loadoutItems()
+    {
+        return $this->hasMany('App\Models\Unit\Loadout','qualification_id','id');
+    }
 }

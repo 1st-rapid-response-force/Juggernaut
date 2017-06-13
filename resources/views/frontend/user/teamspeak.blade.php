@@ -1,6 +1,6 @@
 @extends('frontend.templates.master')
 
-@section('title','Home')
+@section('title','Teamspeak')
 
 @section('content')
     <!-- wrapper -->

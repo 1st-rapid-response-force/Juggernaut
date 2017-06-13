@@ -23,8 +23,15 @@ class Loadout extends Model implements HasMedia
         {
             return $this->getMedia('image')->first()->getUrl();
         }
-        return '/img/ribbons/blank.jpg';
+        return '/img/blank.jpg';
     }
+
+
+    public function member()
+    {
+        return $this->belongsToMany('App\Models\Unit\Loadout', 'loadouts_members', 'loadout_id', 'member_id');
+    }
+
 
     public function qualification()
     {

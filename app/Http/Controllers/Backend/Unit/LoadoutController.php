@@ -55,7 +55,7 @@ class LoadoutController extends Controller
 
         if($request->hasFile('img'))
         {
-            $loadout->addMedia($request->img)->toCollection('loadout');
+            $loadout->addMedia($request->img)->toCollection('image');
         }
 
         flash('Loadout item was added successfully','success');
@@ -105,7 +105,7 @@ class LoadoutController extends Controller
         if($request->hasFile('img'))
         {
             $loadout->clearMediaCollection('image');
-            $loadout->addMedia($request->file('img'))->toCollection('loadout');
+            $loadout->addMedia($request->file('img'))->toCollection('image');
         }
 
 
@@ -119,7 +119,6 @@ class LoadoutController extends Controller
     public function destroy($id)
     {
         $loadout = Loadout::find($id);
-        $this->image->delete($loadout);
         $loadout->delete();
 
         flash('Loadout item was deleted successfully','success');

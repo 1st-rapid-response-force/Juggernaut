@@ -115,6 +115,8 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['web','auth']], functi
     });
 
     // Settings
+    Route::get('loadout', ['as' => 'frontend.loadout', 'uses' => 'Unit\LoadoutController@index']);
+    Route::post('loadout', ['as' => 'frontend.loadout.post', 'uses' => 'Unit\LoadoutController@saveLoadout']);
     Route::get('settings', ['as' => 'frontend.settings', 'uses' => 'UserController@settings']);
     Route::get('settings/teamspeak', ['as' => 'frontend.settings.teamspeak', 'uses' => 'UserController@teamspeak']);
     Route::delete('settings/teamspeak/{id}/delete', ['as' => 'frontend.settings.teamspeak.delete', 'uses' => 'UserController@deleteTeamspeak']);
