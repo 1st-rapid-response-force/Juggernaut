@@ -23,7 +23,7 @@ class Loadout extends Model implements HasMedia
         {
             return $this->getMedia('image')->first()->getUrl();
         }
-        return '/img/blank.jpg';
+        return '/img/blank.JPG';
     }
 
 
