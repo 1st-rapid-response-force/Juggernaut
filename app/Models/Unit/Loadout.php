@@ -6,13 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 
-class Qualification extends Model implements HasMedia
+class Loadout extends Model implements HasMedia
 {
     use HasMediaTrait;
 
-    protected $fillable = ['name','description','published'];
-
-
+    protected $guarded = [];
     public function hasImage()
     {
         if($this->getMedia('image')->count() > 0)
@@ -25,16 +23,19 @@ class Qualification extends Model implements HasMedia
         {
             return $this->getMedia('image')->first()->getUrl();
         }
-        return '/img/ribbons/blank.jpg';
+        return '/img/blank.jpg';
     }
+
 
     public function member()
     {
-        return $this->belongsToMany('App\Models\Unit\Member')->withPivot('awarded_at','note');
+        return $this->belongsToMany('App\Models\Unit\Loadout', 'loadouts_members', 'loadout_id', 'member_id');
     }
 
-    public function loadoutItems()
+
+    public function qualification()
     {
-        return $this->hasMany('App\Models\Unit\Loadout','qualification_id','id');
+        return $this->belongsTo('App\Models\Unit\Qualification');
     }
+
 }

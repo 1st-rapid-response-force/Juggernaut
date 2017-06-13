@@ -17,8 +17,9 @@ class DatabaseSeeder extends Seeder
         $this->call(RanksTableSeeder::class);
         $this->call(TeamTableSeeder::class);
         $this->call(TimelineSeeder::class);
+        $this->call(FixPerstat::class);
         */
 
-        $this->call(FixPerstat::class);
+        $this->call(AddLoadout::class);
     }
 }

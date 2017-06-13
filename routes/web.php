@@ -115,6 +115,8 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['web','auth']], functi
     });
 
     // Settings
+    Route::get('loadout', ['as' => 'frontend.loadout', 'uses' => 'Unit\LoadoutController@index']);
+    Route::post('loadout', ['as' => 'frontend.loadout.post', 'uses' => 'Unit\LoadoutController@saveLoadout']);
     Route::get('settings', ['as' => 'frontend.settings', 'uses' => 'UserController@settings']);
     Route::get('settings/teamspeak', ['as' => 'frontend.settings.teamspeak', 'uses' => 'UserController@teamspeak']);
     Route::delete('settings/teamspeak/{id}/delete', ['as' => 'frontend.settings.teamspeak.delete', 'uses' => 'UserController@deleteTeamspeak']);
@@ -203,6 +205,7 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['web','auth','admin'], 
         Route::resource('announcements', 'AnnouncementController', ['as' => 'admin']);
         Route::resource('perstat', 'PerstatController', ['as' => 'admin']);
         Route::resource('programs', 'ProgramController', ['as' => 'admin']);
+        Route::resource('loadouts', 'LoadoutController', ['as' => 'admin']);
         Route::resource('awards', 'AwardController', ['as' => 'admin']);
         Route::resource('ribbons', 'RibbonController', ['as' => 'admin']);
         Route::resource('qualifications', 'QualificationController', ['as' => 'admin']);

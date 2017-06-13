@@ -57,6 +57,14 @@
                             <span>Awards</span>
                         </a>
                     </li>
+
+                    <li class="{{ Active::pattern('admin/unit/loadouts*') }}">
+                        <a href="{{route('admin.loadouts.index')}}">
+                            <i class="fa fa-circle-o"></i>
+                            <span>Loadouts</span>
+                        </a>
+                    </li>
+
                     <li class="{{ Active::pattern('admin/unit/files*') }}">
                         <a href="{{route('admin.members.index')}}">
                             <i class="fa fa-circle-o"></i>

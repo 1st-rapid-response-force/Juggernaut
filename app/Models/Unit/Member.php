@@ -59,6 +59,11 @@ class Member extends Model
         return $this->belongsTo('App\Models\Unit\Program','current_program_id');
     }
 
+    public function loadout()
+    {
+        return $this->belongsToMany('App\Models\Unit\Loadout', 'loadouts_members', 'member_id', 'loadout_id');
+    }
+
     /**
      * @return $this
      */
