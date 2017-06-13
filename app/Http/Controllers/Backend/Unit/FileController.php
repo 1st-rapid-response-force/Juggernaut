@@ -132,6 +132,7 @@ class FileController extends Controller
         $file->team_id = 17;
         $file->active = 0;
         $file->rank_id = 1;
+        $file->position = $request->discharge_type;
         $file->save();
 
         \Artisan::queue('member:searchable');
