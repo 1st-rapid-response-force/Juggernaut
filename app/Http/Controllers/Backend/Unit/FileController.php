@@ -113,4 +113,46 @@ class FileController extends Controller
         flash('You deleted this service history entry!', 'success');
         return redirect()->back();
     }
+
+    public function processDischarge($id, Request $request)
+    {
+        $file = Member::findOrFail($id);
+        $date = new Carbon();
+
+        // Record discharge change in Service History
+        $serviceHistory = $file->serviceHistory()->create(['text'=> $request->discharge_type." from the 1st Rapid Response Force",'date'=> $date]);
+
+        // Delete all Teamspeak IDs
+        foreach($file->teamspeak as $ts)
+        {
+            $this->ts->delete($ts->uuid);
+        }
+
+        // Set Member info to discharged
+        $file->team_id = 17;
+        $file->active = 0;
+        $file->rank_id = 1;
+        $file->save();
+
+        \Artisan::queue('member:searchable');
+        \Artisan::queue('member:squadxml');
+
+        $data = collect(['discharge_type'=> $request->discharge_type]);
+        $this->emailDischarge($file->user, $data);
+
+        flash('You have discharged this member','success');
+
+        return redirect()->back();
+
+    }
+
+    private function emailDischarge($user,$data)
+    {
+        \Mail::send('emails.discharge', ['user' => $user,'data' =>$data], function ($m) use ($user,$data) {
+            $m->to($user->email, $user->member);
+            $m->subject('1st RRF - You have been discharged');
+            $m->from('no-reply@1st-rrf.com','1st Rapid Response Force');
+            $m->sender('no-reply@1st-rrf.com','1st Rapid Response Force');
+        });
+    }
 }

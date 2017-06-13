@@ -46,7 +46,7 @@ class PageController extends Controller
         $infantry = Team::whereBetween('id', [5, 8])->get();
         $aviation = Team::whereBetween('id', [9, 15])->get();
         $reserve = Team::find(2);
-        $discharged = Member::whereNull('team_id')->get();
+        $discharged = Member::where('team_id',17)->get();
 
         $officerRanks = Rank::whereBetween('id', [19, 24])->get();
         $warrantRanks = Rank::whereBetween('id', [14, 18])->get();

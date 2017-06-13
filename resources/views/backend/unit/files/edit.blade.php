@@ -20,7 +20,7 @@
             <h3 class="box-title">Edit Member File</h3>
 
             <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" Separationlapse">
                     <i class="fa fa-minus"></i></button>
             </div>
         </div>
@@ -304,6 +304,7 @@
                         <div class="col-lg-6">
                             <button type="button" class="btn btn-success btn-sm btn-block" data-toggle="modal" data-target="#addRibbon">Add Ribbon</button>
                             <button type="button" class="btn btn-success btn-sm btn-block" data-toggle="modal" data-target="#addServiceHistory">Add Service History</button>
+                            <button type="button" class="btn btn-danger btn-sm btn-block" data-toggle="modal" data-target="#processDischarge">Discharge</button>
                         </div>
                     </div>
                     <br>
@@ -532,6 +533,44 @@
                                 <small>Make sure to follow the format YYYY-MM-DD</small>
                             </div><!--col-lg-10-->
                         </div><!--form control-->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <input class="btn btn-primary" type="submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Ribbon -->
+    <div class="modal fade" id="processDischarge" tabindex="-1" role="dialog" aria-labelledby="processDischargeModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="processDischargeModal">Process Discharge</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" action="{{route('admin.members.edit.process-discharge',$file->id)}}" method="POST" enctype="multipart/form-data">
+                        {{csrf_field()}}
+                        <div class="form-group">
+                            {{ Form::label('discharge_type', 'Discharge Type', ['class' => 'col-lg-2 control-label']) }}
+                            <div class="col-lg-10">
+                               {{Form::select('discharge_type',
+                               [
+                                    'Administrative Discharge' => 'Administrative Discharge',
+                                    'General Discharge' => 'General Discharge',
+                                    'Other Than Honorable Discharge' => 'Other Than Honorable Discharge',
+                                    'Bad Conduct Discharge' => 'Bad Conduct Discharge',
+                                    'Dishonorable Discharge' => 'Dishonorable Discharge',
+                                    'Retired Discharge' => 'Retire Discharge',
+                                    'Entry-Level Separation' => 'Entry-Level Separation',
+                               ]
+                               , null, ['class'=> 'form-control'])}}
+                            </div><!--col-lg-10-->
+                        </div><!--form control-->
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
