@@ -73,7 +73,7 @@ class LoadoutController extends Controller
     {
         $loadout = Loadout::find($id);
         $qualifications = Qualification::all();
-        return view('backend.loadout.edit')
+        return view('backend.unit.loadout.edit')
             ->with('loadout',$loadout)
             ->with('qualifications',$qualifications);
     }
