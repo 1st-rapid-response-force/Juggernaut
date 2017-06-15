@@ -13,4 +13,4 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('loadout/{steam_id}', 'Frontend\Unit\LoadoutController@getLoadout')->name('api.loadout.get');
+Route::get('loadout/{steam_id}', 'Frontend\Unit\LoadoutController@getLoadoutAPI')->name('api.loadout.get');
