@@ -56,6 +56,22 @@ class LoadoutController extends Controller
         return redirect(route('frontend.loadout'));
     }
 
+    public function getLoadoutAPI($uuid)
+    {
+        $user = User::where('steam_id','=', $uuid)->first();
+        //If not user found
+        if(is_null($user))
+        {
+            abort('404');
+        }
+        $loadout = collect([
+            'steam_id' => $user->steam_id,
+            'vpf_name' => $user->vpf->__toString(),
+            'loadout' => $user->vpf->loadout()->where('empty','=',0)->get()
+        ]);
+        return $loadout->toJson();
+    }
+
     /**
      * Returns a array object with all primary weapons formatted for ddslick display
      */
@@ -157,7 +173,7 @@ class LoadoutController extends Controller
         $loadout->push($this->formatLoadout($items,$currentLoadout)); //13
 
 
-        return response()->json($loadout->toArray());
+        return $loadout;
     }
 
 
