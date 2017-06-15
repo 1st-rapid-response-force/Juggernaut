@@ -157,7 +157,7 @@ class LoadoutController extends Controller
         $loadout->push($this->formatLoadout($items,$currentLoadout)); //13
 
 
-        return $loadout;
+        return response()->json($loadout->toArray());
     }
 
 
