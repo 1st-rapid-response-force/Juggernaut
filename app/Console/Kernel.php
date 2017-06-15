@@ -4,6 +4,7 @@ namespace App\Console;
 
 use App\Console\Commands\AddTimeOfService;
 use App\Console\Commands\ArchiveFlightPlans;
+use App\Console\Commands\ClearLoadout;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -23,6 +24,7 @@ class Kernel extends ConsoleKernel
         \App\Console\Commands\AddNewPERSTAT::class,
         ArchiveFlightPlans::class,
         AddTimeOfService::class,
+        ClearLoadout::class,
     ];
 
     /**

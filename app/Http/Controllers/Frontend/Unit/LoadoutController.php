@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend\Unit;
 
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -52,7 +53,7 @@ class LoadoutController extends Controller
         $user->member->loadout()->sync($loadoutMerged->all());
 
         \Log::info('LOADOUT: User has changed their loadout', ['member'=> $user->member->searchable_name]);
-        flash('Your loadout have been saved, you can now obtain it from the armorer on base','success');
+        flash('Your loadout have been saved.','success');
         return redirect(route('frontend.loadout'));
     }
 
@@ -60,16 +61,17 @@ class LoadoutController extends Controller
     {
         $user = User::where('steam_id','=', $uuid)->first();
         //If not user found
-        if(is_null($user))
+        if(!isset($user))
         {
             abort('404');
         }
+
         $loadout = collect([
             'steam_id' => $user->steam_id,
-            'vpf_name' => $user->vpf->__toString(),
-            'loadout' => $user->vpf->loadout()->where('empty','=',0)->get()
+            'member_name' => $user->member->__toString(),
+            'loadout' => $user->member->loadout()->where('empty','=',0)->get()
         ]);
-        return $loadout->toJson();
+        return response()->json($loadout->toArray());
     }
 
     /**
