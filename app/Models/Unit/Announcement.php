@@ -4,6 +4,30 @@ namespace App\Models\Unit;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\Unit\Announcement
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property string $subject
+ * @property string $message
+ * @property string $category
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read string $action_buttons
+ * @property-read string $delete_button
+ * @property-read string $edit_button
+ * @property-read string $show_button
+ * @property-read \App\User $user
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Announcement whereCategory($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Announcement whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Announcement whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Announcement whereMessage($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Announcement whereSubject($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Announcement whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Announcement whereUserId($value)
+ * @mixin \Eloquent
+ */
 class Announcement extends Model
 {
 

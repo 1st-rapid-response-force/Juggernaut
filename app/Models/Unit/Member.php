@@ -6,7 +6,59 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Member
+ *
  * @package App\Models\Unit
+ * @property int $id
+ * @property int $user_id
+ * @property string $searchable_name
+ * @property string $position
+ * @property int $rank_id
+ * @property int $team_id
+ * @property int $face_id
+ * @property int $current_program_id
+ * @property int $time_in_service
+ * @property int $team_leader
+ * @property string $bio
+ * @property string $avatar
+ * @property int $active
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Unit\Award[] $awards
+ * @property-read string $action_buttons
+ * @property-read string $delete_button
+ * @property-read string $edit_button
+ * @property-read string $show_button
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Unit\Loadout[] $loadout
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Unit\Paperwork[] $paperwork
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Unit\Perstat[] $perstat
+ * @property-read \App\Models\Unit\Program $program
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Unit\ProgramGoal[] $programGoals
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Unit\ProgramNote[] $programNotes
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Unit\Program[] $programs
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Unit\Qualification[] $qualifications
+ * @property-read \App\Models\Unit\Rank $rank
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Unit\Ribbon[] $ribbons
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Unit\ServiceHistory[] $serviceHistory
+ * @property-read \App\Models\Unit\Team $team
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Unit\Teamspeak[] $teamspeak
+ * @property-read \App\User $user
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Member active()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Member whereActive($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Member whereAvatar($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Member whereBio($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Member whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Member whereCurrentProgramId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Member whereFaceId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Member whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Member wherePosition($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Member whereRankId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Member whereSearchableName($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Member whereTeamId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Member whereTeamLeader($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Member whereTimeInService($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Member whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Member whereUserId($value)
+ * @mixin \Eloquent
  */
 class Member extends Model
 {

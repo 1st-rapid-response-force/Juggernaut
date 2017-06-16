@@ -8,7 +8,37 @@ use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 
 /**
  * Class Team
+ *
  * @package App\Models\Unit
+ * @property int $id
+ * @property int $leader_id
+ * @property string $name
+ * @property string $motto
+ * @property string $header_image
+ * @property string $team_image
+ * @property int $parent_id
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Unit\Team[] $childTeams
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\MediaLibrary\Media[] $media
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Unit\Member[] $members
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Unit\Paperwork[] $paperwork
+ * @property-read \App\Models\Unit\Team $parentTeam
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Unit\Program[] $programs
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Unit\TeamTimeline[] $timeline
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Unit\TeamVideo[] $videos
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Team whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Team whereHeaderImage($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Team whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Team whereLeaderId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Team whereMotto($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Team whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Team whereParentId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Team whereTeamImage($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Team whereUpdatedAt($value)
+ * @mixin \Eloquent
+ * @property string $schedule
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Team whereSchedule($value)
  */
 class Team extends Model implements HasMedia
 {
@@ -54,16 +84,25 @@ class Team extends Model implements HasMedia
         return $this->hasMany('App\Models\Unit\TeamVideo');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function programs()
     {
         return $this->hasMany('App\Models\Unit\Program','responsible_team_id');
     }
 
+    /**
+     * @return string
+     */
     public function randomHeader()
     {
         return '/img/arma/'.rand(1,5).'.jpg';
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function childTeams()
     {
         return $this->hasMany('App\Models\Unit\Team','parent_id');
@@ -72,6 +111,11 @@ class Team extends Model implements HasMedia
     public function parentTeam()
     {
         return $this->belongsTo('App\Models\Unit\Team','parent_id');
+    }
+
+    public function getSchedule()
+    {
+        return json_decode($this->schedule);
     }
 
     public function isLeader($user)

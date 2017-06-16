@@ -4,6 +4,33 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\Application
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property string $application
+ * @property bool $interview_required
+ * @property int $interview_id
+ * @property int $status
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read string $action_buttons
+ * @property-read string $delete_button
+ * @property-read string $edit_button
+ * @property-read string $show_button
+ * @property-read \App\User $interviewer
+ * @property-read \App\User $user
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Application whereApplication($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Application whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Application whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Application whereInterviewId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Application whereInterviewRequired($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Application whereStatus($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Application whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Application whereUserId($value)
+ * @mixin \Eloquent
+ */
 class Application extends Model
 {
     protected $fillable = ['application'];

@@ -7,6 +7,7 @@ namespace App\Repositories\Frontend\Unit;
 
 use App\Models\Application;
 use App\Models\Unit\Member;
+use App\Models\Unit\Team;
 use Carbon\Carbon;
 use App\Models\Unit\Event;
 use App\Models\Unit\PublicEvent;
@@ -30,6 +31,7 @@ class EloquentCalendarRepository implements CalendarRepositoryContract {
         $this->timezone = $user->timezone;
         session(['timezone' => $this->timezone]);
 
+        // Public Events
         $events = PublicEvent::all();
         foreach ($events as $event)
         {
@@ -39,6 +41,7 @@ class EloquentCalendarRepository implements CalendarRepositoryContract {
 
         $calendar = \Calendar::addEvents($events);
 
+        // Birthdays
         $birthdays = collect();
         foreach (Member::whereActive(1)->get() as $mem)
         {
@@ -58,7 +61,44 @@ class EloquentCalendarRepository implements CalendarRepositoryContract {
             }
 
         }
+
+        // Team Scheduling
+        $scheduling = collect();
+        foreach (Team::all() as $team)
+        {
+            // Make sure the schedule is valid
+            if(isset($team->schedule))
+            {
+                Carbon::setWeekStartsAt(Carbon::SUNDAY);
+                $date = Carbon::now($team->getSchedule()->timezone)
+                    ->startOfWeek()
+                    ->addDay($team->getSchedule()->day)
+                    ->addHour($team->getSchedule()->hour)
+                    ->addMinute($team->getSchedule()->minute)
+                    ->setTimezone($this->timezone);
+                $endDate = Carbon::now($team->getSchedule()->timezone)
+                    ->startOfWeek()
+                    ->addDay($team->getSchedule()->day)
+                    ->addHour($team->getSchedule()->hour)
+                    ->addMinute($team->getSchedule()->minute)
+                    ->addHour(1)
+                    ->setTimezone($this->timezone);
+
+                $scheduling->push(\Calendar::event(
+                    $team->name.' -  Training', //event title
+                    false, //full day event?
+                    $date,
+                    $endDate,
+                    rand(5000,6000),
+                    [
+                        'color' => '#33a400'
+                    ]
+                ));
+            }
+        }
+
         $calendar = \Calendar::addEvents($birthdays);
+        $calendar = \Calendar::addEvents($scheduling);
 
         return $calendar->setOptions([
             'timeFormat' => 'H(:mm)'

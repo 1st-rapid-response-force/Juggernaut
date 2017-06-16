@@ -56,6 +56,7 @@
                                     <h3>Team</h3>
                                     <br>
                                     <a href="{{route('frontend.team.leader.positions',$team->id)}}" class="btn btn-primary btn-block"  {{$team->isTeamLeader(\Auth::User()) ? 'disabled' : '' }}>Position Management</a>
+                                    <a href="{{route('frontend.team.leader.schedule',$team->id)}}" class="btn btn-primary btn-block"  {{$team->isTeamLeader(\Auth::User()) ? 'disabled' : '' }}>Team Training Schedule</a>
                                     <a href="{{route('frontend.team.leader.training',$team->id)}}" class="btn btn-primary btn-block">Training Management</a>
                                     <a href="{{route('frontend.team.leader.disciplinary',$team->id)}}" class="btn btn-primary btn-block"  {{$team->isTeamLeader(\Auth::User()) ? 'disabled' : '' }}>Disciplinary Management</a>
                                     <a href="{{route('frontend.team.leader.aar.team',$team->id)}}" class="btn btn-primary btn-block">After Action Reports</a>

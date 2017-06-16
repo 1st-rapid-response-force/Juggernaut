@@ -8,7 +8,41 @@ use Cmgmyr\Messenger\Traits\Messagable;
 
 /**
  * Class User
+ *
  * @package App
+ * @property int $id
+ * @property string $first_name
+ * @property string $last_name
+ * @property string $email
+ * @property string $steam_id
+ * @property string $timezone
+ * @property bool $admin
+ * @property string $signature
+ * @property bool $board_member
+ * @property string $remember_token
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Unit\Announcement[] $announcement
+ * @property-read \App\Models\Application $application
+ * @property-read \App\Models\Unit\Member $member
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Message[] $messages
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Cmgmyr\Messenger\Models\Participant[] $participants
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Cmgmyr\Messenger\Models\Thread[] $threads
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Unit\TeamVideo[] $videos
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereAdmin($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereBoardMember($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereEmail($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereFirstName($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereLastName($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereRememberToken($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereSignature($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereSteamId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereTimezone($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class User extends Authenticatable
 {

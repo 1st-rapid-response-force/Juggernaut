@@ -57,6 +57,41 @@ class TeamController extends Controller
         return view('frontend.team.leader.positions',['team'=>$team]);
     }
 
+    public function schedule($id)
+    {
+        $team = Team::findOrFail($id);
+        if(!$team->isLeader(\Auth::User()))
+        {
+            flash('You do not have permission to access this.','danger');
+            return redirect(route('frontend.team',$team->id));
+        }
+
+        return view('frontend.team.leader.schedule',['team'=>$team]);
+    }
+
+    public function postSchedule($id, Request $request)
+    {
+        $team = Team::findOrFail($id);
+        if(!$team->isLeader(\Auth::User()))
+        {
+            flash('You do not have permission to access this.','danger');
+            return redirect(route('frontend.team',$team->id));
+        }
+        //dd($request);
+
+        $schedule = collect([
+           'day' => $request->day,
+            'hour' => $request->hour,
+            'minute' => $request->minute,
+            'timezone' => \Auth::User()->timezone
+        ]);
+
+        $team->schedule = $schedule->toJson();
+        $team->save();
+        flash('Team Training Schedule saved successfully.','success');
+        return redirect()->back();
+    }
+
     public function training($id)
     {
         $team = Team::findOrFail($id);

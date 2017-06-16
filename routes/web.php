@@ -131,6 +131,8 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['web','auth']], functi
     Route::get('aviation/dashboard', 'Unit\TeamController@aviationDashboard')->name('frontend.aviation');
 
     Route::get('team/{team}/leader', 'Unit\TeamController@leader')->name('frontend.team.leader');
+    Route::get('team/{team}/leader/schedule', 'Unit\TeamController@schedule')->name('frontend.team.leader.schedule');
+    Route::post('team/{team}/leader/schedule', 'Unit\TeamController@postSchedule')->name('frontend.team.leader.schedule.post');
     Route::get('team/{team}/leader/disciplinary', 'Unit\TeamController@disciplinary')->name('frontend.team.leader.disciplinary');
     Route::get('team/{team}/leader/add-video', 'Unit\TeamController@addVideo')->name('frontend.team.leader.add-video');
     Route::get('team/{team}/leader/positions', 'Unit\TeamController@positions')->name('frontend.team.leader.positions');

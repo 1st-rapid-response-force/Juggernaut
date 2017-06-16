@@ -6,7 +6,39 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Paperwork
+ *
  * @package App\Models\Unit
+ * @property int $id
+ * @property int $member_id
+ * @property int $processor_id
+ * @property string $type
+ * @property string $paperwork
+ * @property int $status
+ * @property int $team_id
+ * @property int $appeal
+ * @property int $disciplinary_team_id
+ * @property int $disciplinary_member_id
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \App\Models\Unit\Member $member
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Unit\PaperworkMessage[] $notes
+ * @property-read \App\Models\Unit\Member $processor
+ * @property-read \App\Models\Unit\Team $team
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Paperwork disciplinary()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Paperwork standard()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Paperwork whereAppeal($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Paperwork whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Paperwork whereDisciplinaryMemberId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Paperwork whereDisciplinaryTeamId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Paperwork whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Paperwork whereMemberId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Paperwork wherePaperwork($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Paperwork whereProcessorId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Paperwork whereStatus($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Paperwork whereTeamId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Paperwork whereType($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Paperwork whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class Paperwork extends Model
 {

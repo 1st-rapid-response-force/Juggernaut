@@ -11,7 +11,31 @@ use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 
 /**
  * Class Event
+ *
  * @package App\Models\Unit
+ * @property int $id
+ * @property string $title
+ * @property \Carbon\Carbon $start_time
+ * @property \Carbon\Carbon $end_time
+ * @property bool $full_day
+ * @property string $url
+ * @property string $color
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property string $deleted_at
+ * @property-read string $delete_button
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\MediaLibrary\Media[] $media
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Event whereColor($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Event whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Event whereDeletedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Event whereEndTime($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Event whereFullDay($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Event whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Event whereStartTime($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Event whereTitle($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Event whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Unit\Event whereUrl($value)
+ * @mixin \Eloquent
  */
 class Event extends Model implements HasMedia, \MaddHatter\LaravelFullcalendar\Event
 {
