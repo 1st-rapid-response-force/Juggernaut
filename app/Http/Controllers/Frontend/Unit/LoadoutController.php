@@ -66,11 +66,12 @@ class LoadoutController extends Controller
             abort('404');
         }
 
-        $loadout = collect([
-            'steam_id' => $user->steam_id,
-            'member_name' => $user->member->__toString(),
-            'loadout' => $user->member->loadout()->where('empty','=',0)->get()
-        ]);
+
+        $loadout = collect();
+        foreach($user->member->loadout()->where('empty','=',0)->get() as $item)
+        {
+            $loadout->push($item->class_name);
+        }
         return response()->json($loadout->toArray());
     }
 
