@@ -91,7 +91,7 @@ class EloquentCalendarRepository implements CalendarRepositoryContract {
                     $endDate,
                     rand(5000,6000),
                     [
-                        'color' => '#33a400'
+                        'color' => '#8B0000'
                     ]
                 ));
             }
