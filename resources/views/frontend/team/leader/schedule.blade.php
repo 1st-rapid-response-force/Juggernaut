@@ -53,7 +53,7 @@
                                     {{ Form::select('day', ['0'=> "Sunday",'1'=>'Monday','2'=>'Tuesday','3'=> 'Wednesday', '4'=>'Thursday','5'=>'Friday','6'=> 'Saturday'], null, ['class' => 'form-control', 'placeholder' => 'Day of the Week','required' => 'required']) }}
                                 </div><!--col-lg-10-->
                             </div><!--form control-->
-                            <p>Times below should be scheduled in UTC, once in the system it will auto convert to everyone's specific timezone in the Calendar.</p>
+                            <p>Times below should be scheduled in your timezone, once in the system it will auto convert to everyone's specific timezone in the Calendar.</p>
                             <hr>
 
                                 <div class="form-group">
