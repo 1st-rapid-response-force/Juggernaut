@@ -22,7 +22,8 @@
         "spatie/laravel-backup": "^4.17",
         "guzzlehttp/guzzle": "^6.2",
         "barryvdh/laravel-ide-helper": "^2.3",
-        "doctrine/dbal": "^2.5"
+        "doctrine/dbal": "^2.5",
+        "cybercog/laravel-ban": "^2.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

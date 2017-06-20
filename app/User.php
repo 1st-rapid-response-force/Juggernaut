@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Cmgmyr\Messenger\Traits\Messagable;
+use Cog\Ban\Contracts\HasBans as HasBansContract;
+use Cog\Ban\Traits\HasBans;
 
 /**
  * Class User
@@ -44,10 +46,11 @@ use Cmgmyr\Messenger\Traits\Messagable;
  * @method static \Illuminate\Database\Query\Builder|\App\User whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class User extends Authenticatable
+class User extends Authenticatable implements HasBansContract
 {
     use Notifiable;
     use Messagable;
+    use HasBans;
 
     /**
      * The attributes that are mass assignable.

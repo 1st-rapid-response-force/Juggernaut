@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\banCheck;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -53,5 +54,6 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'admin' => \App\Http\Middleware\AdminCheck::class,
+        'forbid-banned-user' => banCheck::class,
     ];
 }

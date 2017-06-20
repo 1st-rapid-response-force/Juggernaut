@@ -108,6 +108,10 @@ class PageController extends Controller
         return redirect()->route('frontend.calendar');
     }
 
+    public function banned()
+    {
+        return view('frontend.pages.banned');
+    }
 
 
 

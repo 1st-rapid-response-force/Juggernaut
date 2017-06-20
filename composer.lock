@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "1b89294b50e8f21c9b90917ffe042973",
+    "content-hash": "f2ac4a46e09937592dd22d6fa45cd139",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -400,6 +400,139 @@
                 "user messaging"
             ],
             "time": "2017-05-08T18:55:23+00:00"
+        },
+        {
+            "name": "cybercog/laravel-ban",
+            "version": "2.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cybercog/laravel-ban.git",
+                "reference": "763f55cef4f5b1b0cef22cf4c9ee3d2a7a4aa381"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cybercog/laravel-ban/zipball/763f55cef4f5b1b0cef22cf4c9ee3d2a7a4aa381",
+                "reference": "763f55cef4f5b1b0cef22cf4c9ee3d2a7a4aa381",
+                "shasum": ""
+            },
+            "require": {
+                "cybercog/laravel-ownership": "^3.0",
+                "illuminate/database": "~5.1.20|~5.2.0|~5.3.0|~5.4.0",
+                "illuminate/events": "~5.1.20|~5.2.0|~5.3.0|~5.4.0",
+                "illuminate/support": "~5.1.20|~5.2.0|~5.3.0|~5.4.0",
+                "php": "^5.6|^7.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^1.11",
+                "mockery/mockery": "^0.9.8",
+                "orchestra/database": "~3.4.0",
+                "orchestra/testbench": "~3.4.0",
+                "phpunit/phpunit": "^5.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Cog\\Ban\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anton Komarev",
+                    "email": "a.komarev@cybercog.su",
+                    "homepage": "http://ell.folio.su",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel Ban simplify blocking and banning Eloquent models.",
+            "homepage": "https://github.com/cybercog/laravel-ban",
+            "keywords": [
+                "Justice",
+                "arrest",
+                "ban",
+                "block",
+                "cog",
+                "cybercog",
+                "eloquent",
+                "forbid",
+                "jail",
+                "laravel",
+                "restrict",
+                "trait",
+                "user"
+            ],
+            "time": "2017-04-10T21:01:48+00:00"
+        },
+        {
+            "name": "cybercog/laravel-ownership",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cybercog/laravel-ownership.git",
+                "reference": "850775e13ebff5e96d38a12e8407f9557dc71c02"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cybercog/laravel-ownership/zipball/850775e13ebff5e96d38a12e8407f9557dc71c02",
+                "reference": "850775e13ebff5e96d38a12e8407f9557dc71c02",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "~5.2.0|~5.3.0|~5.4.0",
+                "illuminate/support": "~5.2.0|~5.3.0|~5.4.0",
+                "php": "^5.6|^7.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^1.11",
+                "mockery/mockery": "^0.9.8",
+                "orchestra/database": "~3.4.0",
+                "orchestra/testbench": "~3.4.0",
+                "phpunit/phpunit": "^5.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Cog\\Ownership\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anton Komarev",
+                    "email": "a.komarev@cybercog.su",
+                    "homepage": "http://ell.folio.su",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel Ownership simplify management of Eloquent model's owner.",
+            "homepage": "https://github.com/cybercog/laravel-ownership",
+            "keywords": [
+                "author",
+                "cog",
+                "copyright",
+                "creator",
+                "cybercog",
+                "domain",
+                "eloquent",
+                "laravel",
+                "maker",
+                "master",
+                "morph",
+                "ownable",
+                "owned",
+                "owner",
+                "ownership",
+                "polymorphic",
+                "proprietor",
+                "trait"
+            ],
+            "time": "2017-04-10T20:57:39+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",

@@ -11,7 +11,8 @@
 |
 */
 // Public Pages
-Route::group(['namespace' => 'Frontend','middleware' => 'web'], function (){
+Route::get('banned', 'Frontend\PageController@banned')->name('banned');
+Route::group(['namespace' => 'Frontend','middleware' => ['web','forbid-banned-user']], function (){
     Route::get('/', 'PageController@home')->name('frontend.index');
 
     // Team
@@ -65,7 +66,7 @@ Route::group(['namespace' => 'Frontend','middleware' => 'web'], function (){
 });
 
 // Authentication Pages
-Route::group(['namespace' => 'Auth','middleware' => 'web'], function (){
+Route::group(['namespace' => 'Auth','middleware' => ['web','forbid-banned-user']], function (){
     Route::get('auth/validate', 'SteamController@validateSteam')->name('auth.validate');
     Route::get('login', 'SteamController@loginPage')->name('auth.login');
     Route::post('register', 'SteamController@registerUser')->name('frontend.user.register.post');
@@ -74,7 +75,7 @@ Route::group(['namespace' => 'Auth','middleware' => 'web'], function (){
 });
 
 // Authenticated Frontend
-Route::group(['namespace' => 'Frontend', 'middleware' => ['web','auth']], function (){
+Route::group(['namespace' => 'Frontend', 'middleware' => ['web','auth','forbid-banned-user']], function (){
     Route::group(['namespace' => 'Unit'], function()
     {
         //My Inbox
@@ -161,7 +162,7 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['web','auth']], functi
 });
 
 // Authenticated Backend (Admin)
-Route::group(['namespace' => 'Backend', 'middleware' => ['web','auth','admin'], 'prefix' => 'admin'], function (){
+Route::group(['namespace' => 'Backend', 'middleware' => ['web','auth','admin','forbid-banned-user'], 'prefix' => 'admin'], function (){
     Route::get('/', ['as' => 'admin.index', 'uses' => 'DashboardController@index']);
     Route::get('/dashboard', ['as' => 'admin.dashboard', 'uses' => 'DashboardController@index']);
 
