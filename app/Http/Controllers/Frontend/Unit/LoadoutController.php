@@ -67,11 +67,12 @@ class LoadoutController extends Controller
         }
 
 
-        $loadout = collect();
-        foreach($user->member->loadout()->where('empty','=',0)->get() as $item)
-        {
-            $loadout->push($item->class_name);
-        }
+        $loadout = collect([
+            'steam_id' => $user->steam_id,
+            'member_name' => $user->member->__toString(),
+            'member_position' => $user->member->position,
+            'loadout' => $user->member->loadout()->where('empty','=',0)->get()
+         ]);
         return response()->json($loadout->toArray());
     }
 
