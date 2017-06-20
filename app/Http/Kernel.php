@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\banCheck;
+use App\Http\Middleware\reportInCheck;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -55,5 +56,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'admin' => \App\Http\Middleware\AdminCheck::class,
         'forbid-banned-user' => banCheck::class,
+        'report-in' => reportInCheck::class
     ];
 }
