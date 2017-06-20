@@ -39,8 +39,11 @@ class reportInCheck
             if(isset($user->member) && !$user->member->hasReportedIn())
             {
                 flash('You have not reported in, please report in!','danger');
+                \Log::info('User was directed to report in by system.', ['user_id' => $user->id,'member' =>$user->member->searchable_name]);
+
+                return redirect(route('frontend.files.my-file'));
             }
-            return redirect(route('frontend.files.my-file'));
+
         }
 
         return $next($request);

@@ -14,8 +14,9 @@
 Route::get('banned', 'Frontend\PageController@banned')->name('banned');
 
 // File
-Route::group(['middleware' => ['web','forbid-banned-user','auth']], function (){
-    Route::get('files/my-file', 'Frontend\Unit\FileController@getMyFile')->name('frontend.files.my-file');
+Route::group(['namespace' => 'Frontend','middleware' => ['web','forbid-banned-user','auth']], function (){
+    Route::get('files/my-file', 'Unit\FileController@getMyFile')->name('frontend.files.my-file');
+    Route::post('files/report-in', 'Unit\FileController@reportIn')->name('frontend.files.report-in.post');
 });
 
 
@@ -36,7 +37,6 @@ Route::group(['namespace' => 'Frontend','middleware' => ['web','forbid-banned-us
         Route::post('files/my-program/enroll', 'Unit\ProgramController@enrollInProgram')->name('frontend.files.my-program.post');
         Route::get('files/my-face', 'Unit\FileController@showFaces')->name('frontend.files.faces');
         Route::post('files/my-face', 'Unit\FileController@saveFace')->name('frontend.files.faces.post');
-        Route::post('files/report-in', 'Unit\FileController@reportIn')->name('frontend.files.report-in.post');
     });
 
     Route::get('files/{id}', 'Unit\FileController@getFile')->name('frontend.files.file');
