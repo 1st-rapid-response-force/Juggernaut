@@ -96,10 +96,6 @@
                         </div>
                     </div>
                     <br>
-                    <div class="pull-right">
-                        <a class="btn btn-danger" href="{{ route('admin.loadouts.index') }}">Cancel</a>
-                        <input class="btn btn-primary" type="submit">
-                    </div>
                 </div>
 
                 <div class="clearfix"></div>
@@ -117,7 +113,7 @@
     <div class="box box-success">
         <div class="box-body">
             <div class="pull-left">
-                {{ link_to_route('admin.awards.index', 'Cancel', [], ['class' => 'btn btn-danger btn-xs']) }}
+                {{ link_to_route('admin.loadouts.index', 'Cancel', [], ['class' => 'btn btn-danger btn-xs']) }}
             </div><!--pull-left-->
 
             <div class="pull-right">

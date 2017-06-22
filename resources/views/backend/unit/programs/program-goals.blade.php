@@ -3,8 +3,7 @@
 @section ('title', 'Program Goals')
 
 @section('after-styles-end')
-    {{ Html::style("css/backend/plugin/datatables/dataTables.bootstrap.min.css") }}
-    {{ Html::style("plugins/fullcalendar/fullcalendar.min.css") }}
+    {{ Html::style("plugins/footable/css/footable.bootstrap.css") }}
 @stop
 
 @section('page-header')

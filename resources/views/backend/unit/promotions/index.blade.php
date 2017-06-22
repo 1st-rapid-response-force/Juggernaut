@@ -65,4 +65,19 @@
 
 @section('after-scripts-end')
     {{ HTML::script("plugins/footable/js/footable.js") }}
+    <script>
+        jQuery(function($){
+            $('.table').footable({
+                "paging": {
+                    "enabled": true
+                },
+                "filtering": {
+                    "enabled": true
+                },
+                "sorting": {
+                    "enabled": true
+                }
+            });
+        });
+    </script>
 @stop

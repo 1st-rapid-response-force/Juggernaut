@@ -3,8 +3,7 @@
 @section ('title', 'Prism')
 
 @section('after-styles-end')
-    {{ Html::style("css/backend/plugin/datatables/dataTables.bootstrap.min.css") }}
-    {{ Html::style("plugins/fullcalendar/fullcalendar.min.css") }}
+    {{ Html::style("plugins/footable/css/footable.bootstrap.css") }}
 @stop
 
 @section('page-header')
@@ -62,4 +61,21 @@
 @stop
 
 @section('after-scripts-end')
+    {{ HTML::script('plugins/footable/js/footable.js') }}
+
+    <script>
+        jQuery(function($){
+            $('.table').footable({
+                "paging": {
+                    "enabled": true
+                },
+                "filtering": {
+                    "enabled": true
+                },
+                "sorting": {
+                    "enabled": true
+                }
+            });
+        });
+    </script>
 @stop
