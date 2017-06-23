@@ -33,6 +33,9 @@ Route::group(['namespace' => 'Frontend','middleware' => ['web','forbid-banned-us
 
     // File
     Route::group(['middleware' => 'auth'], function (){
+
+        Route::get('files/leave-of-absence', ['as' => 'frontend.paperwork.leave', 'uses' => 'Unit\FileController@showLeaveForm']);
+        Route::post('files/leave-of-absence', ['as' => 'frontend.paperwork.leave.post', 'uses' => 'Unit\FileController@storeLeaveForm']);
         Route::get('files/my-qualifications', 'Unit\ProgramController@getMyProgram')->name('frontend.files.my-program');
         Route::post('files/my-program/enroll', 'Unit\ProgramController@enrollInProgram')->name('frontend.files.my-program.post');
         Route::get('files/my-face', 'Unit\FileController@showFaces')->name('frontend.files.faces');
@@ -106,8 +109,6 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['web','auth','forbid-b
         Route::post('paperwork/file-correction', ['as' => 'frontend.paperwork.file-correction.post', 'uses' => 'PaperworkController@storeFileCorrectionForm']);
         Route::get('paperwork/bad-conduct', ['as' => 'frontend.paperwork.bad-conduct', 'uses' => 'PaperworkController@showBadConductForm']);
         Route::post('paperwork/bad-conduct', ['as' => 'frontend.paperwork.bad-conduct.post', 'uses' => 'PaperworkController@storeBadConductForm']);
-        Route::get('paperwork/leave', ['as' => 'frontend.paperwork.leave', 'uses' => 'PaperworkController@showLeaveForm']);
-        Route::post('paperwork/leave', ['as' => 'frontend.paperwork.leave.post', 'uses' => 'PaperworkController@storeLeaveForm']);
         Route::get('paperwork/aviation/flight-plan', ['as' => 'frontend.paperwork.aviation.flight-plan', 'uses' => 'PaperworkController@showFlightPlanForm']);
         Route::post('paperwork/aviation/flight-plan', ['as' => 'frontend.paperwork.aviation.flight-plan.post', 'uses' => 'PaperworkController@storeFlightPlanForm']);
         Route::put('paperwork/aviation/flight-plan/{id}', ['as' => 'frontend.paperwork.aviation.flight-plan.put', 'uses' => 'PaperworkController@updateFlightPlanForm']);
@@ -116,6 +117,8 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['web','auth','forbid-b
         Route::post('paperwork/{id}/view/admin', ['as' => 'frontend.paperwork.admin.post', 'uses' => 'PaperworkController@storeAdminOptions']);
         Route::delete('paperwork/{id}/view/{note}', ['as' => 'frontend.paperwork.note.delete', 'uses' => 'PaperworkController@deleteNote']);
         Route::post('paperwork/{id}/view/new-note', ['as' => 'frontend.paperwork.note.store', 'uses' => 'PaperworkController@createNote']);
+
+
 
     });
 

@@ -5,12 +5,20 @@ namespace App\Http\Controllers\Frontend\Unit;
 use App\Models\Unit\Member;
 use App\Models\Unit\Perstat;
 use Illuminate\Http\Request;
+use App\Repositories\Frontend\Unit\Teamspeak\TeamspeakContract;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 class FileController extends Controller
 {
+    protected $ts;
+
+    public function __construct(TeamspeakContract $ts)
+    {
+        $this->ts = $ts;
+    }
+
     public function getMyFile()
     {
         \Log::info('User viewed file', ['user_id' => \Auth::User()->id, 'member' => \Auth::User()->member->searchable_name]);
@@ -100,6 +108,32 @@ class FileController extends Controller
         flash('Your report in has been filed. Make sure to report in weekly.','success');
         return redirect()->back();
 
+    }
+
+    public function showLeaveForm()
+    {
+        return view('frontend.paperwork.leave.new');
+    }
+
+    public function storeLeaveForm(Request $request)
+    {
+        $member = \Auth::User()->member;
+        if($request->loa)
+        {
+            // Process the request
+            $member->update($request->all());
+            flash('Your Leave of Absence Settings have been updated.', 'success');
+        } else {
+            // If LOA is not check then make sure to clear return date
+            $member->update(['loa' => $request->loa,'loa_return' => null]);
+            flash('Leave of Absence settings were updated.', 'success');
+        }
+
+        //Update TS just to be safe
+        // Update Teamspeak to add LOA tag
+        $this->ts->update(\Auth::User());
+
+        return redirect(route('frontend.files.my-file'));
     }
 
 }

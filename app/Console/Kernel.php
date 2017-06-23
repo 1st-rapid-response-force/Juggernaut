@@ -4,6 +4,7 @@ namespace App\Console;
 
 use App\Console\Commands\AddTimeOfService;
 use App\Console\Commands\ArchiveFlightPlans;
+use App\Console\Commands\ClearLOA;
 use App\Console\Commands\ClearLoadout;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -25,6 +26,7 @@ class Kernel extends ConsoleKernel
         ArchiveFlightPlans::class,
         AddTimeOfService::class,
         ClearLoadout::class,
+        ClearLOA::class,
     ];
 
     /**
@@ -35,18 +37,26 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+
+        // Member
         $schedule->command('member:avatar')
             ->daily();
         $schedule->command('member:searchable')
             ->daily();
-        $schedule->command('catalyst:credit-tig')
+        $schedule->command('member:clear-loa')
             ->daily();
         $schedule->command('member:squadxml')
             ->daily();
-        $schedule->command('aviation:flight-plan-archive')
-            ->daily();
         $schedule->command('member:create-perstat')
             ->weekly()->saturdays()->at('6:00');
+
+        // MISC
+        $schedule->command('catalyst:credit-tig')
+            ->daily();
+        $schedule->command('aviation:flight-plan-archive')
+            ->daily();
+
+        // BACKUP
         $schedule->command('backup:clean')->weekly()->at('01:00');
         $schedule->command('backup:run')->weekly()->at('02:00');
     }

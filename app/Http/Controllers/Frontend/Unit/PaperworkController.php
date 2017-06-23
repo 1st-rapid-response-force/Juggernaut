@@ -118,20 +118,6 @@ class PaperworkController extends Controller
         return redirect(route('frontend.files.my-file'));
     }
 
-    public function showLeaveForm()
-    {
-        return view('frontend.paperwork.leave.new');
-    }
-
-    public function storeLeaveForm(Request $request)
-    {
-        $form = collect($request->except('_token'));
-        $paperwork = \Auth::User()->member->paperwork()->create(['type' => 'leave', 'paperwork' => $form->toJson()]);
-        \Log::info('User filled out leave of absence paperwork', ['user_id' => \Auth::User()->id, 'member' => \Auth::User()->member->searchable_name, 'paperwork_id' => $paperwork]);
-        flash('Your Leave of Absence Request has been filed, We will contact you soon regarding this form.', 'success');
-        return redirect(route('frontend.files.my-file'));
-    }
-
     public function showFlightPlanForm()
     {
         return view('frontend.paperwork.aviation.flight-plan.new');

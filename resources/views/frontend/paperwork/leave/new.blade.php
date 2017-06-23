@@ -3,100 +3,87 @@
 @section('title','Leave')
 
 @section('after-styles-end')
-    <link rel="stylesheet" type="text/css" href="/plugins/gridforms/gridforms.css">
-@endsection
+    {{ Html::style("plugins/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css") }}
+@stop
 
 @section('content')
+
     <!-- wrapper -->
-    <div id="wrapper">
-        <section class="padding-top-50 padding-bottom-50">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-10 col-md-offset-1">
-                        <div class="post post-single">
-                            <div class="post-header">
-                                <div class="post-title">
-                                    <h2><a href="#">Request Leave of Absence</a></h2>
-                                </div>
+    <section class="bg-grey-50 border-bottom-1 border-grey-300 padding-10">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li><a href="{{route('frontend.files.my-file')}}">{{\Auth::User()->member}}</a></li>
+                <li class="active">Leave of Absence</li>
+            </ol>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="post post-fl">
+                        <div class="post-header">
+                            <div class="post-title">
+                                <h2>Leave of Absence</h2>
                             </div>
-                            <div class="well">
-                                <form class="grid-form" method="post" action="{{route('frontend.paperwork.leave.post')}}">
-                                    {!! csrf_field() !!}
-                                    <div class="text-center"><legend><strong>LEAVE OF ABSENCE FORM</strong><br> 1ST RAPID RESPONSE FORCE<br><br></legend></div>
-                                    <div class="text-center"><h3>PRIVACY ACT STATEMENT</h3></div>
-                                    <p><strong>AUTHORITY: </strong> 1ST-RRF-POLICIES-PROCEDURES</p>
-                                    <p><strong>PRINCIPAL PURPOSE(S): </strong> Used to report leave from the unit.</p>
-                                    <p><strong>ROUTINE USE(S): </strong> This form is used to formally request leave.</p>
-                                    <p><strong>DISCLOSURE: </strong> Voluntary; information distributed to all relevant leadership to inform of formal leave</p>
-                                    <fieldset>
-                                        <legend>A. IDENTIFICATION DATA</legend>
-                                        <div data-row-span="6">
-                                            <div data-field-span="2">
-                                                <label>NAME</label>
-                                                <input type="text" name="name" readonly value="{{\Auth::User()->last_name.', '.\Auth::User()->first_name}}">
-                                            </div>
-                                            <div data-field-span="1">
-                                                <label>RANK</label>
-                                                <input type="text" name="rank" readonly value="{{\Auth::User()->member->rank->name}}">
-                                            </div>
-
-                                        </div>
-                                        <div data-row-span="3">
-                                            <div data-field-span="2">
-                                                <label>MILITARY IDENTIFICATION NUMBER</label>
-                                                <input type="text" name="military_id" readonly value="{{\Auth::User()->steam_id}}">
-                                            </div>
-                                            <div data-field-span="1">
-                                                <label>CURRENT DATE</label>
-                                                <input type="text" id="date" name="date" placeholder="01/01/2000" readonly value="{{\Carbon\Carbon::now()->toDateString()}}">
-                                            </div>
-                                        </div>
-                                        <div data-row-span="4">
-                                            <div data-field-span="4">
-                                                <label>ORGANIZATION</label>
-                                                <input type="text" name="organization" readonly value="1st Rapid Response Force">
-                                            </div>
-                                        </div>
-                                    </fieldset>
-                                    <fieldset>
-                                        <legend>B. LEAVE REQUEST</legend>
-                                        <div data-row-span="4">
-                                            <div data-field-span="2">
-                                                <label>START DATE</label>
-                                                <input type="text" name="start_date" placeholder="YYYY-MM-DD">
-                                            </div>
-                                            <div data-field-span="2">
-                                                <label>END DATE</label>
-                                                <input type="text" name="end_date" placeholder="YYYY-MM-DD">
-                                            </div>
-                                        </div>
-
-                                        <div data-row-span="1">
-                                            <div data-field-span="1">
-                                                <label>REASON FOR LEAVE</label>
-                                                <textarea name="leave_reason" rows="15" placeholder=""></textarea>
-                                            </div>
-                                        </div>
-                                    </fieldset>
-                                    <br><br>
-                                   <hr>
-                                    <div class="pull-right">
-                                        {{ Form::submit('Sign and Submit', ['class' => 'btn btn-success']) }}
-                                    </div><!--pull-right-->
-                                    <div class="clearfix"></div>
-                                </form>
-                            </div>
-
-
                         </div>
+                        <p>You can mark yourself on leave if you will be unable to participate actively or are unable to attend an operation. Upon marking yourself on leave your leadership will be notified and your Teamspeak, File, and Team rosters will indicate that you are on leave.</p>
+
+                    {{ Form::open(['class' => 'form-horizontal', 'role' => 'form', 'method' => 'post', 'files' => false]) }}
+                    <!-- Form would go here -->
+                        <div class="form-group">
+                            {{ Form::label('loa', ' On Leave', ['class' => 'col-lg-2 control-label']) }}
+
+                            <div class="col-lg-10">
+                                <input type="hidden" name="loa" value="0">
+                                {{ Form::checkbox('loa',1, Auth::user()->member->loa) }}<br>
+                                <small>Checking this box sets your status to "On Leave", you can manually turn it off or the system will automatically clear the LOA once your anticipated return date arrives.</small>
+                            </div><!--col-lg-10-->
+                        </div><!--form control-->
+
+                        <div class="form-group">
+                            {{ Form::label('loa_return', ' Anticipated Return Date', ['class' => 'col-lg-2 control-label']) }}
+
+                            <div class="col-lg-10">
+                                {{ Form::text('loa_return', Auth::User()->member->loa_return, ['class' => 'form-control', 'placeholder' => 'YYYY-MM-DD','required' => 'required','id' => 'anticipatedReturn']) }}
+                            </div><!--col-lg-10-->
+                        </div><!--form control-->
+                        <br>
+                        <hr>
+                        <br>
+                        <div class="form-group pull-left">
+                            <a href="{{route('frontend.files.my-file')}}" class="btn btn-danger">Cancel </a>
+                        </div>
+
+                        <div class="form-group pull-right">
+                            <input type="submit" class="btn btn-primary">
+                        </div>
+                        {{ Form::close() }}
+
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
+
     </div>
     <!-- /#wrapper -->
+
 @endsection
 
 @section('after-scripts-end')
-    <script type="text/javascript" src="/plugins/gridforms/gridforms.js"></script>
+    {{ Html::script("plugins/fullcalendar/lib/moment.min.js") }}
+    {{ Html::script("plugins/jquery-minicolors/jquery.minicolors.min.js") }}
+    {{ Html::script("plugins/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js") }}
+    {{ Html::script("plugins/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js") }}
+    <script type="text/javascript">
+        $(function () {
+            $('#anticipatedReturn').datetimepicker({
+                format: "YYYY-MM-DD",
+                inline: true,
+                keepOpen: true
+            });
+        });
+    </script>
 @endsection

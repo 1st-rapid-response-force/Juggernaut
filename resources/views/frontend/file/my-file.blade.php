@@ -59,6 +59,9 @@
                                                                     @else
                                                                         <span class="label label-danger">Pending Report in</span>
                                                                     @endif
+                                                                    @if(\Auth::User()->member->onLOA())
+                                                                        {!! \Auth::User()->member->getLOAStatus() !!}
+                                                                    @endif
                                                                 </h4>
 
 
@@ -74,7 +77,7 @@
                                                                 <button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#reportin">Report in</button>
                                                             @endif
                                                             <hr>
-                                                            <a href="{{route('frontend.paperwork.leave')}}" class="btn btn-primary btn-block">Leave of Absence Request</a>
+                                                            <a href="{{route('frontend.paperwork.leave')}}" class="btn btn-primary btn-block">Leave of Absence</a>
                                                             <a href="{{route('frontend.paperwork.file-correction')}}" class="btn btn-info btn-block">Request File Correction</a>
                                                             <a href="{{route('frontend.paperwork.bad-conduct')}}" class="btn btn-danger btn-block">Bad Conduct Report</a>
                                                             <a href="{{route('frontend.paperwork.discharge')}}" class="btn btn-danger btn-block">Discharge Request</a>

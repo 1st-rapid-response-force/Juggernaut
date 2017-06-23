@@ -47,6 +47,20 @@ class Teamspeak implements TeamspeakContract
             //Admin Check - Rod and Striker and Oges
             if (($user->id == 1) || ($user->id == 2) || ($user->id == 3))
                 $groups->push(6);
+
+            //Check if User is on LOA
+            if($user->member->loa)
+            {
+                $groups->push(52);
+            }
+
+            //Check if user is in Reserve
+            if($user->member->reserve)
+            {
+                $groups->push(53);
+            }
+
+
         } else {
             $groups->push(38);
         }
