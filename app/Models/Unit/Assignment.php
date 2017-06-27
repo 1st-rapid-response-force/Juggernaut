@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Models\Unit;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Assignment extends Model
+{
+    protected $fillable = ['name','team_id','order','enabled'];
+
+    public function team()
+    {
+        return $this->belongsTo('App\Models\Unit\Team');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function members()
+    {
+        return $this->hasMany('App\Models\Unit\Member');
+    }
+}

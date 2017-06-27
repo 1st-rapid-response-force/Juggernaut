@@ -51,6 +51,7 @@
                             <span>Announcements</span>
                         </a>
                     </li>
+
                     <li class="{{ Active::pattern('admin/unit/awards*') }}">
                         <a href="{{route('admin.awards.index')}}">
                             <i class="fa fa-circle-o"></i>
@@ -105,6 +106,12 @@
                         <a href="{{route('admin.qualifications.index')}}">
                             <i class="fa fa-circle-o"></i>
                             <span>Qualifications</span>
+                        </a>
+                    </li>
+                    <li class="{{ Active::pattern('admin/unit/teams*') }}">
+                        <a href="{{route('admin.teams.index')}}">
+                            <i class="fa fa-circle-o"></i>
+                            <span>Teams</span>
                         </a>
                     </li>
                     <li class="{{ Active::pattern('admin/unit/ribbons*') }}">

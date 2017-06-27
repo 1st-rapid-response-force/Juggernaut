@@ -67,7 +67,7 @@ class Member extends Model
      * @var array
      */
     protected $fillable = [
-        'searchable_name','position','rank_id', 'team_id', 'face_id', 'current_program_id', 'bio','avatar','active','team_leader'
+        'searchable_name','position','rank_id', 'team_id', 'face_id', 'current_program_id', 'bio','avatar','active','team_leader','loa','loa_return','reserve'
     ];
 
 
@@ -93,6 +93,14 @@ class Member extends Model
     public function rank()
     {
         return $this->belongsTo('App\Models\Unit\Rank');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function assignment()
+    {
+        return $this->belongsTo('App\Models\Unit\Assignment');
     }
 
     /**
@@ -280,6 +288,27 @@ class Member extends Model
         if($perstat->members->contains($this->id))
             return true;
         return false;
+    }
+
+    public function onLOA()
+    {
+        if($this->loa)
+        {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getLOAStatus()
+    {
+        if($this->loa)
+        {
+            return '<span class="label label-warning">Currently on LOA</span>';
+        } else {
+            return '';
+        }
+
     }
 
     public function currentProgramCompletion()

@@ -163,6 +163,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+
         /*
          * Package Service Providers...
          */
@@ -180,7 +181,7 @@ return [
         Spatie\Backup\BackupServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Cog\Ban\Providers\BanServiceProvider::class,
-
+        Laravel\Passport\PassportServiceProvider::class,
 
 
         /*

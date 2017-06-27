@@ -58,6 +58,10 @@
                                                                     @else
                                                                         <span class="label label-danger">Pending Report in</span>
                                                                     @endif
+
+                                                                    @if($member->onLOA())
+                                                                        {!! $member->getLOAStatus() !!}
+                                                                    @endif
                                                                 </h4>
 
 

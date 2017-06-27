@@ -33,6 +33,9 @@ Route::group(['namespace' => 'Frontend','middleware' => ['web','forbid-banned-us
 
     // File
     Route::group(['middleware' => 'auth'], function (){
+
+        Route::get('files/leave-of-absence', ['as' => 'frontend.paperwork.leave', 'uses' => 'Unit\FileController@showLeaveForm']);
+        Route::post('files/leave-of-absence', ['as' => 'frontend.paperwork.leave.post', 'uses' => 'Unit\FileController@storeLeaveForm']);
         Route::get('files/my-qualifications', 'Unit\ProgramController@getMyProgram')->name('frontend.files.my-program');
         Route::post('files/my-program/enroll', 'Unit\ProgramController@enrollInProgram')->name('frontend.files.my-program.post');
         Route::get('files/my-face', 'Unit\FileController@showFaces')->name('frontend.files.faces');
@@ -106,8 +109,6 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['web','auth','forbid-b
         Route::post('paperwork/file-correction', ['as' => 'frontend.paperwork.file-correction.post', 'uses' => 'PaperworkController@storeFileCorrectionForm']);
         Route::get('paperwork/bad-conduct', ['as' => 'frontend.paperwork.bad-conduct', 'uses' => 'PaperworkController@showBadConductForm']);
         Route::post('paperwork/bad-conduct', ['as' => 'frontend.paperwork.bad-conduct.post', 'uses' => 'PaperworkController@storeBadConductForm']);
-        Route::get('paperwork/leave', ['as' => 'frontend.paperwork.leave', 'uses' => 'PaperworkController@showLeaveForm']);
-        Route::post('paperwork/leave', ['as' => 'frontend.paperwork.leave.post', 'uses' => 'PaperworkController@storeLeaveForm']);
         Route::get('paperwork/aviation/flight-plan', ['as' => 'frontend.paperwork.aviation.flight-plan', 'uses' => 'PaperworkController@showFlightPlanForm']);
         Route::post('paperwork/aviation/flight-plan', ['as' => 'frontend.paperwork.aviation.flight-plan.post', 'uses' => 'PaperworkController@storeFlightPlanForm']);
         Route::put('paperwork/aviation/flight-plan/{id}', ['as' => 'frontend.paperwork.aviation.flight-plan.put', 'uses' => 'PaperworkController@updateFlightPlanForm']);
@@ -116,6 +117,8 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['web','auth','forbid-b
         Route::post('paperwork/{id}/view/admin', ['as' => 'frontend.paperwork.admin.post', 'uses' => 'PaperworkController@storeAdminOptions']);
         Route::delete('paperwork/{id}/view/{note}', ['as' => 'frontend.paperwork.note.delete', 'uses' => 'PaperworkController@deleteNote']);
         Route::post('paperwork/{id}/view/new-note', ['as' => 'frontend.paperwork.note.store', 'uses' => 'PaperworkController@createNote']);
+
+
 
     });
 
@@ -140,7 +143,7 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['web','auth','forbid-b
     Route::post('team/{team}/leader/schedule', 'Unit\TeamController@postSchedule')->name('frontend.team.leader.schedule.post');
     Route::get('team/{team}/leader/disciplinary', 'Unit\TeamController@disciplinary')->name('frontend.team.leader.disciplinary');
     Route::get('team/{team}/leader/add-video', 'Unit\TeamController@addVideo')->name('frontend.team.leader.add-video');
-    Route::get('team/{team}/leader/positions', 'Unit\TeamController@positions')->name('frontend.team.leader.positions');
+    Route::get('team/{team}/leader/assignments', 'Unit\TeamController@positions')->name('frontend.team.leader.assignments');
     Route::get('team/{team}/leader/training', 'Unit\TeamController@training')->name('frontend.team.leader.training');
     Route::get('team/{team}/leader/after-action-report', 'Unit\TeamController@showAllAfterActionReports')->name('frontend.team.leader.aar.team');
     Route::get('team/{team}/leader/after-action-report/new', 'Unit\PaperworkController@showAfterActionReport')->name('frontend.team.leader.aar');
@@ -218,6 +221,9 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['web','auth','admin','f
         Route::resource('ribbons', 'RibbonController', ['as' => 'admin']);
         Route::resource('qualifications', 'QualificationController', ['as' => 'admin']);
         Route::resource('paperwork', 'PaperworkController', ['as' => 'admin']);
+        Route::resource('change-requests', 'ChangeController', ['as' => 'admin']);
+        Route::resource('teams', 'TeamController', ['as' => 'admin']);
+        Route::resource('assignments', 'ChangeController', ['as' => 'admin']);
     });
 
     Route::group(['namespace' => 'Unit', 'prefix'=>'paperwork'], function (){
