@@ -42,6 +42,8 @@ use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
  */
 class Team extends Model implements HasMedia
 {
+    protected $fillable = ['name'];
+
     use HasMediaTrait;
 
     /**
@@ -74,6 +76,14 @@ class Team extends Model implements HasMedia
     public function timeline()
     {
         return $this->hasMany('App\Models\Unit\TeamTimeline');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function assignments()
+    {
+        return $this->hasMany('App\Models\Unit\Assignment');
     }
 
     /**
@@ -160,4 +170,45 @@ class Team extends Model implements HasMedia
             return false;
         }
     }
+
+
+    /**
+     * @return string
+     */
+    public function getShowButtonAttribute()
+    {
+        return '<a href="'.route('admin.teams.show', $this).'" class="btn btn-xs btn-info"><i class="fa fa-search" data-toggle="tooltip" data-placement="top" title="View"></i></a> ';
+    }
+    /**
+     * @return string
+     */
+    public function getEditButtonAttribute()
+    {
+        return '<a href="'.route('admin.teams.edit', $this).'" class="btn btn-xs btn-primary"><i class="fa fa-pencil" data-toggle="tooltip" data-placement="top" title="Edit"></i></a> ';
+    }
+
+    /**
+     * @return string
+     */
+    public function getDeleteButtonAttribute()
+    {
+        return '<a href="'.route('admin.teams.destroy', $this).'"
+             data-method="delete"
+             data-trans-button-cancel="Cancel"
+             data-trans-button-confirm="Delete"
+             data-trans-title="Are you sure?"
+             class="btn btn-xs btn-danger"><i class="fa fa-trash" data-toggle="tooltip" data-placement="top" title="Delete"></i></a> ';
+
+    }
+
+    /**
+     * @return string
+     */
+    public function getActionButtonsAttribute()
+    {
+        return
+            //$this->getShowButtonAttribute().
+            $this->getEditButtonAttribute();
+    }
+
 }

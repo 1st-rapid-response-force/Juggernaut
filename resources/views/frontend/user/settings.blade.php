@@ -90,10 +90,20 @@
                             {{ Form::close() }}
                             <hr>
                             <div class="row">
+                                @if(\Auth::User()->admin)
+                                    <h3>Personal Access Tokens</h3> <br>
+                                    <div id="vue">
+                                        <passport-personal-access-tokens></passport-personal-access-tokens>
+                                        <br><small>This is only viewable to administrators</small>
+                                    </div>
+                                    <hr>
+                                @endif
                                 <h3>Other</h3> <br>
                                 <div class="col-lg-6">
                                     <a href="{{route('frontend.settings.teamspeak')}}" class="btn btn-primary btn-block">Manage Teamspeak</a>
                                 </div>
+
+
                             </div>
 
                         </div>

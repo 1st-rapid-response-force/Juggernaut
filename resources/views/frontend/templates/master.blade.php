@@ -79,11 +79,17 @@
 
 <!-- Javascript -->
 @yield('before-scripts-end')
+<script>
+    window.Laravel = <?php echo json_encode([
+        'csrfToken' => csrf_token(),
+    ]); ?>
+</script>
 <script src="/plugins/jquery/jquery-3.1.0.min.js"></script>
 <script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
 <script src="/js/core.min.js"></script>
 <script src="/js/plugins.js"></script>
 <script src="/plugins/sweetalert/sweetalert.min.js"></script>
+{{ Html::script(elixir('js/app.js')) }}
 @include('sweet::alert')
 @yield('after-scripts-end')
 

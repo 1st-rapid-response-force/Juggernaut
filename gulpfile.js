@@ -1,5 +1,6 @@
 var elixir = require('laravel-elixir');
 require('./elixir-extensions');
+require('laravel-elixir-vue-2');
 
 elixir(function(mix) {
     mix
@@ -51,10 +52,16 @@ elixir(function(mix) {
         ], 'public/js/backend.js')
 
         /**
+         * Vue Components
+         */
+        .webpack('app.js')
+
+        /**
          * Apply version control
          */
         .version([
             "public/css/backend.css",
             "public/js/backend.js",
+            "public/js/app.js",
         ]);
 });

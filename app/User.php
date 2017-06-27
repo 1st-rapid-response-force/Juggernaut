@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Cmgmyr\Messenger\Traits\Messagable;
 use Cog\Ban\Contracts\HasBans as HasBansContract;
 use Cog\Ban\Traits\HasBans;
+use Laravel\Passport\HasApiTokens;
 
 /**
  * Class User
@@ -48,6 +49,7 @@ use Cog\Ban\Traits\HasBans;
  */
 class User extends Authenticatable implements HasBansContract
 {
+    use HasApiTokens;
     use Notifiable;
     use Messagable;
     use HasBans;

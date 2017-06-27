@@ -143,7 +143,7 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['web','auth','forbid-b
     Route::post('team/{team}/leader/schedule', 'Unit\TeamController@postSchedule')->name('frontend.team.leader.schedule.post');
     Route::get('team/{team}/leader/disciplinary', 'Unit\TeamController@disciplinary')->name('frontend.team.leader.disciplinary');
     Route::get('team/{team}/leader/add-video', 'Unit\TeamController@addVideo')->name('frontend.team.leader.add-video');
-    Route::get('team/{team}/leader/positions', 'Unit\TeamController@positions')->name('frontend.team.leader.positions');
+    Route::get('team/{team}/leader/assignments', 'Unit\TeamController@positions')->name('frontend.team.leader.assignments');
     Route::get('team/{team}/leader/training', 'Unit\TeamController@training')->name('frontend.team.leader.training');
     Route::get('team/{team}/leader/after-action-report', 'Unit\TeamController@showAllAfterActionReports')->name('frontend.team.leader.aar.team');
     Route::get('team/{team}/leader/after-action-report/new', 'Unit\PaperworkController@showAfterActionReport')->name('frontend.team.leader.aar');
@@ -221,6 +221,9 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['web','auth','admin','f
         Route::resource('ribbons', 'RibbonController', ['as' => 'admin']);
         Route::resource('qualifications', 'QualificationController', ['as' => 'admin']);
         Route::resource('paperwork', 'PaperworkController', ['as' => 'admin']);
+        Route::resource('change-requests', 'ChangeController', ['as' => 'admin']);
+        Route::resource('teams', 'TeamController', ['as' => 'admin']);
+        Route::resource('assignments', 'ChangeController', ['as' => 'admin']);
     });
 
     Route::group(['namespace' => 'Unit', 'prefix'=>'paperwork'], function (){

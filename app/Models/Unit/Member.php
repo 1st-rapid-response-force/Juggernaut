@@ -98,6 +98,14 @@ class Member extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
+    public function assignment()
+    {
+        return $this->belongsTo('App\Models\Unit\Assignment');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function team()
     {
         return $this->belongsTo('App\Models\Unit\Team');
