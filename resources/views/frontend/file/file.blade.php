@@ -47,7 +47,7 @@
                                                                 <h4 class="media-heading">
                                                                     {{$member}}<br/>
                                                                     <small>
-                                                                        {{$member->position}}<br/>
+                                                                        {{$member->assignment->name or ''}}<br/>
                                                                         <a href="{{route('frontend.team',$member->team->id)}}">{{$member->team->name}}</a> <br/>
                                                                         Military ID: {{$member->user->steam_id}} <br/>
                                                                         Time in Service: {{$member->time_in_service}} days<br/>
