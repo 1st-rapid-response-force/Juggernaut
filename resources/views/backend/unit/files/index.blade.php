@@ -53,7 +53,7 @@
                         <td>{!! $file->getActive() !!}</td>
                         <td>{!! $file->getLOAStatus() !!}</td>
 
-                        <td>@if($member->reserve)
+                        <td>@if($file->reserve)
                                 <span class="label label-info">Reserve</span>
                             @endif</td>
                         <td>@if($file->hasReportedIn())
