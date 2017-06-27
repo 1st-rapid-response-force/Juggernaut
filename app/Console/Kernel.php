@@ -41,6 +41,8 @@ class Kernel extends ConsoleKernel
         // Member
         $schedule->command('member:avatar')
             ->daily();
+        $schedule->command('member:cac')
+            ->daily();
         $schedule->command('member:searchable')
             ->daily();
         $schedule->command('member:clear-loa')

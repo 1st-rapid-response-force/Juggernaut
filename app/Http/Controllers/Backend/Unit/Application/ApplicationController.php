@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend\Unit\Application;
 
 use App\Models\Application;
 use App\Models\Unit\Perstat;
+use App\Models\Unit\Team;
 use App\Models\Unit\TeamTimeline;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -56,21 +57,33 @@ class ApplicationController extends Controller
         $this->emailApprove($app->user,$data);
 
         //Create member
-        $app->user->member()->create([
+        $mem = $app->user->member()->create([
             'position' => 'Recruit',
             'rank_id' => 2,
             'team_id' => 2,
         ]);
+
+        // Determine if Active or Reserve
+        if($app->getApplication()->reserve)
+        {
+            $mem->reserve = 1;
+        } else {
+            $pending = Team::whereName('Pending Assignment')->first();
+            $mem->team_id = $pending->id;
+        }
+
+        $mem->save();
+
 
         // Sync empty
         $app->user->member->loadout()->sync([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]);
 
 
         // Call Jobs
-        \Artisan::queue('member:avatar');
+        //\Artisan::queue('member:avatar');
         \Artisan::queue('member:searchable');
         \Artisan::queue('member:squadxml');
-        \Artisan::queue('member:cac');
+        //\Artisan::queue('member:cac');
 
         // Create all relevant records
         $app->user->member->serviceHistory()->create(['text' => 'Enlisted in the 1st Rapid Response Force','date'=> new Carbon]);

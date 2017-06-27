@@ -16,6 +16,10 @@
         @if($member->onLOA())
             {!! $member->getLOAStatus() !!}
         @endif
+
+        @if($member->reserve)
+            <span class="label label-info">Reserve</span>
+        @endif
         <br>
         {{$member->bio}}
     </div>

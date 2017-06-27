@@ -62,6 +62,9 @@
                                                                     @if(\Auth::User()->member->onLOA())
                                                                         {!! \Auth::User()->member->getLOAStatus() !!}
                                                                     @endif
+                                                                    @if(\Auth::User()->member->reserve)
+                                                                        <span class="label label-info">Reserve</span>
+                                                                    @endif
                                                                 </h4>
 
 

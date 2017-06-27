@@ -71,11 +71,28 @@
                         </div>
                     </div><!--form control-->
 
+                    <div class="form-group">
+                        {{ Form::label('loa', 'Leave of Absence', ['class' => 'col-lg-2 control-label']) }}
+                        <div class="col-lg-10">
+                            {{ Form::radio('member[loa]', '1', $file->loa) }} Yes <br>
+                            {{ Form::radio('member[loa]', '0', !$file->loa) }} No
+                        </div>
+                    </div><!--form control-->
+
+
+                    <div class="form-group">
+                        {{ Form::label('reserve', 'Reserve', ['class' => 'col-lg-2 control-label']) }}
+                        <div class="col-lg-10">
+                            {{ Form::radio('member[reserve]', '1', $file->reserve) }} Yes <br>
+                            {{ Form::radio('member[reserve]', '0', !$file->reserve) }} No
+                        </div>
+                    </div><!--form control-->
+
                     <legend>RRF Member</legend>
                     <div class="form-group">
-                        {{ Form::label('position', 'Position', ['class' => 'col-lg-2 control-label']) }}
+                        {{ Form::label('assignment', 'Assignment', ['class' => 'col-lg-2 control-label']) }}
                         <div class="col-lg-10">
-                            {{ Form::text('member[position]', $file->position, ['class' => 'form-control', 'placeholder' => 'Position']) }}
+                            {{$file->assignment->name}}
                         </div><!--col-lg-10-->
                     </div><!--form control-->
 
@@ -119,7 +136,7 @@
                             <select name="member[active]" class="form-control">
                                 <option value="1" {{(1 == $file->active) ? 'selected':''}}>Active</option>
                                 <option value="0" {{(0 == $file->active) ? 'selected':''}}>Not Active</option>
-                                <option value="2" {{(2 == $file->active) ? 'selected':''}}>Leave of Absence</option>
+                                <option value="2" {{(5 == $file->active) ? 'selected':''}}>Discharged</option>
                             </select>
                         </div><!--col-lg-10-->
                     </div><!--form control-->

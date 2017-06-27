@@ -27,15 +27,9 @@
                                 <li>Your name must be realistic but does not need to be your real name - an example of this would be "James Edward"</li>
                                 <li>The age field must be accurate. Failure to disclose your actual age will result in discharge from the unit.</li>
                             </ul>
-                            @if($type == 'enlisted')
-                                <p>You are currently applying as an enlisted member. You must be atleast 16 years of age or older</p>
-                            @endif
-                            @if($type == 'nco')
-                                <p>You are currently applying as an NCO. You must be atleast 18 years of age or older</p>
-                            @endif
-                            @if($type == 'officer')
-                                <p>You are currently applying as an Officer. You must be atleast 20 years of age or older</p>
-                            @endif
+                            <div class="alert alert-warning">
+                                <p>The 1st Rapid Response Force does not allow dual-claning within active membership, you can still join the unit and participate in operations but you will be limited to the Reserve Pool.</p>
+                            </div>
                             <HR>
                             <div class="well">
                                 {{ Form::open(['route' => 'frontend.apply.application.post', 'class' => 'grid-form', 'role' => 'form', 'method' => 'post']) }}
@@ -94,6 +88,13 @@
                                                     <label>HAVE YOU BEEN DISHONORABLY DISCHARGED/REMOVED FROM A UNIT</label>
                                                     <label><input type="radio" name="dishonorable_discharge" value="1"> YES</label> &nbsp;
                                                     <label><input type="radio" name="dishonorable_discharge" value="0" checked> NO</label> &nbsp;
+                                                </div>
+                                            </div>
+                                            <div data-row-span="1">
+                                                <div data-field-span="1">
+                                                    <label>ACTIVE DUTY OR RESERVE</label>
+                                                    <label><input type="radio" name="reserve" value="0" checked> ACTIVE DUTY</label> &nbsp;
+                                                    <label><input type="radio" name="reserve" value="1"> RESERVE</label> &nbsp;
                                                 </div>
                                             </div>
                                             <div data-row-span="1">
