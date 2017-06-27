@@ -94,7 +94,7 @@
                                     @if((\App\Models\Unit\Member::active()->where('reserve',1)->get()->count() > 0))
                                         <h4><strong><a href="{{route('frontend.team',$reserve->id)}}">{{$reserve->name}}</a></strong></h4>
                                         @foreach(\App\Models\Unit\Member::active()->where('reserve',1)->get() as $member)
-                                            <img src="{{$member->avatar}}" class="img-circle" style="padding: 2px; height: 32px; width: 32px;"><a href="{{route('frontend.files.file',$member->id)}}"> {{$member->searchable_name}} - {{$member->position}}</a></br>
+                                            <img src="{{$member->avatar}}" class="img-circle" style="padding: 2px; height: 32px; width: 32px;"><a href="{{route('frontend.files.file',$member->id)}}"> {{$member->searchable_name}} - Reserve</a></br>
                                         @endforeach
                                     @else
                                         <h4><strong><a href="{{route('frontend.team',$reserve->id)}}">{{$reserve->name}}</a></strong></h4>
