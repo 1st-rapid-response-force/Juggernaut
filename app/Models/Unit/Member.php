@@ -306,7 +306,13 @@ class Member extends Model
     {
         if($this->loa)
         {
-            return '<span class="label label-warning">Currently on LOA - '.$this->loa_return->toFormattedDateString().'</span>';
+            if(isset($this->loa_return))
+            {
+                return '<span class="label label-warning">Currently on LOA - '.$this->loa_return->toFormattedDateString().'</span>';
+            } else{
+                return '<span class="label label-warning">Currently on LOA</span>';
+            }
+
         } else {
             return '';
         }
