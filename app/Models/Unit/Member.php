@@ -70,6 +70,8 @@ class Member extends Model
         'searchable_name','position','rank_id', 'team_id', 'face_id', 'current_program_id', 'bio','avatar','active','team_leader','loa','loa_return','reserve'
     ];
 
+    protected $dates = ['loa_return'];
+
 
     /**
      * @return string
@@ -304,7 +306,7 @@ class Member extends Model
     {
         if($this->loa)
         {
-            return '<span class="label label-warning">Currently on LOA</span>';
+            return '<span class="label label-warning">Currently on LOA - '.$this->loa_return->toFormattedDateString().'</span>';
         } else {
             return '';
         }
