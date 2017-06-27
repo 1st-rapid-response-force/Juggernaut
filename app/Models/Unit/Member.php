@@ -316,7 +316,6 @@ class Member extends Model
         } else {
             return '';
         }
-
     }
 
     public function currentProgramCompletion()

@@ -31,9 +31,11 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Team</th>
-                    <th>Position</th>
+                    <th>Assignment</th>
                     <th>Steam ID</th>
                     <th>Status</th>
+                    <th>LOA</th>
+                    <th>Reserve</th>
                     <th>Reported In</th>
                     <th>Options</th>
                 </tr>
@@ -46,9 +48,14 @@
                         <td>{{$file->id}}</td>
                         <td>{{$file}}</td>
                         <td>{{$file->team->name}}</td>
-                        <td>{{$file->position}}</td>
+                        <td>{{$file->assignment->name or ''}}</td>
                         <td><a href="http://steamcommunity.com/profiles/{{$file->user->steam_id}}" target="_blank" rel="noopener">{{$file->user->steam_id}}</a></td>
                         <td>{!! $file->getActive() !!}</td>
+                        <td>{!! $file->getLOAStatus() !!}</td>
+
+                        <td>@if($member->reserve)
+                                <span class="label label-info">Reserve</span>
+                            @endif</td>
                         <td>@if($file->hasReportedIn())
                                 <span class="label label-success">Reported in</span>
                             @else
