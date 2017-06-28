@@ -75,6 +75,8 @@
                             </div>
                         </div>
                         @endif
+
+
                     </fieldset>
                     <br>
                     <fieldset>
@@ -99,6 +101,21 @@
                                     <textarea name="reason_for_joining" rows="3" placeholder="">{{$app->getApplication()->reason_for_joining}}</textarea>
                                 </div>
                             </div>
+
+                            @if(isset($app->getApplication()->steam_id))
+                                <div data-row-span="2">
+                                    <div data-field-span="1">
+                                        <label>ACTIVE DUTY OR RESERVE</label>
+                                        <label><input type="radio" name="reserve" value="0"  {{$app->getApplication()->reserve == 0 ? 'checked' : ''}}> ACTIVE DUTY</label> &nbsp;
+                                        <label><input type="radio" name="reserve" value="1" {{$app->getApplication()->reserve == 1 ? 'checked' : ''}}> RESERVE</label> &nbsp;
+                                    </div>
+                                    <div data-field-span="1">
+                                        <label>INFANTRY OR AVIATION</label>
+                                        <label><input type="radio" name="role" value="INFANTRY" {{$app->getApplication()->role == 'INFANTRY' ? 'checked' : ''}}> INFANTRY</label> &nbsp;
+                                        <label><input type="radio" name="role" value="AVIATION" {{$app->getApplication()->role == 'AVIATION' ? 'checked' : ''}}> AVIATION</label> &nbsp;
+                                    </div>
+                                </div>
+                            @endif
                         </fieldset>
 
 

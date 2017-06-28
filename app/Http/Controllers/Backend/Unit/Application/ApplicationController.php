@@ -16,7 +16,7 @@ class ApplicationController extends Controller
 {
     public function index()
     {
-        $applications = Application::all();
+        $applications = Application::orderBy('id','asd')->get();
         return view('backend.applications.index',['applications' => $applications]);
     }
 

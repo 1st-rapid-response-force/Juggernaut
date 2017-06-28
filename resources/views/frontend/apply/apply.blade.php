@@ -50,12 +50,10 @@
                             </ol>
                             <hr>
                             <div class="row text-center">
-                                <div class="col-lg-6">
-                                    <a class="btn btn-primary" href="{{route('frontend.apply.application','infantry')}}">Infantry Application</a>
+                                <div class="col-lg-12">
+                                    <a class="btn btn-primary" href="{{route('frontend.apply.application','infantry')}}">Application</a>
                                 </div>
-                                <div class="col-lg-6">
-                                    <a class="btn btn-warning" disabled="" href="#">Aviation Application</a>
-                                </div>
+
                             </div>
 
                         </div>

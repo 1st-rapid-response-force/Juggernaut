@@ -18,7 +18,7 @@ class PerstatController extends Controller
 
     public function index()
     {
-        $perstats = Perstat::all();
+        $perstats = Perstat::orderBy('id','asd')->get();
         // Deal with new PERSTAT Logic
         $perstatOld = Perstat::where('active','=','1')->first();
         $date = Carbon::createFromFormat('Y-m-d', $perstatOld->to);
