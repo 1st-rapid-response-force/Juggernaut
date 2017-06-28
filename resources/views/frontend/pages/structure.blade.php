@@ -86,14 +86,13 @@
                                 </div>
 
                                 <div role="tabpanel" class="tab-pane" id="special">
-                                    <h4><strong>Pending Assignment</strong></h4>
                                     @if((\App\Models\Unit\Team::find(19)->count() > 0))
-                                        <h4><strong>Discharged</strong></h4>
+                                        <h4><strong>Pending Assignment</strong></h4>
                                         @foreach(\App\Models\Unit\Team::find(19)->members as $member)
                                             <img src="{{$member->avatar}}" class="img-circle" style="padding: 2px; height: 32px; width: 32px;"><a href="{{route('frontend.files.file',$member->id)}}"> {{$member->searchable_name}} - {{$member->position}}</a></br>
                                         @endforeach
                                     @else
-                                        <h4><strong>Discharged</strong></h4>
+                                        <h4><strong>Pending Assignment</strong></h4>
                                         <p>There are currently no members in this group.</p>
                                     @endif
                                 </div>
