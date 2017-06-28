@@ -130,7 +130,7 @@
                                         $striker = \App\Models\Unit\Member::find(3);
 
                                     ?>
-                                    <h4><strong><a href="#">Unit Advisory Board</a></strong></h4>
+                                    <h4><strong><a href="#">Board of Operations</a></strong></h4>
                                     @foreach(\App\User::where('board_member',1)->get() as $user)
                                         <img src="{{$user->member->avatar}}" class="img-circle" style="padding: 2px; height: 32px; width: 32px;"><a href="{{route('frontend.files.file',$user->member->id)}}"> {{$user->member->searchable_name}} - Board Member</a></br>
                                     @endforeach
