@@ -35,7 +35,7 @@
                                 <li role="presentation"><a href="#special" aria-controls="structure" role="tab" data-toggle="tab">Pending Assignment</a></li>
                                 <li role="presentation"><a href="#reserve" aria-controls="structure" role="tab" data-toggle="tab">Reserve Pool</a></li>
                                 <li role="presentation"><a href="#discharged" aria-controls="structure" role="tab" data-toggle="tab">Discharges</a></li>
-                                <li role="presentation"><a href="#board" aria-controls="structure" role="tab" data-toggle="tab">Unit Board & Support</a></li>
+                                <li role="presentation"><a href="#board" aria-controls="structure" role="tab" data-toggle="tab">Board Of Operations & Support</a></li>
                             </ul>
 
                             <!-- Tab panes -->
@@ -86,9 +86,9 @@
                                 </div>
 
                                 <div role="tabpanel" class="tab-pane" id="special">
-                                    @if((\App\Models\Unit\Team::find(19)->count() > 0))
+                                    @if((\App\Models\Unit\Team::whereName('Pending Assignment')->first()->count() > 0))
                                         <h4><strong>Pending Assignment</strong></h4>
-                                        @foreach(\App\Models\Unit\Team::find(19)->members as $member)
+                                        @foreach(\App\Models\Unit\Team::whereName('Pending Assignment')->first()->members as $member)
                                             <img src="{{$member->avatar}}" class="img-circle" style="padding: 2px; height: 32px; width: 32px;"><a href="{{route('frontend.files.file',$member->id)}}"> {{$member->searchable_name}} - {{$member->position}}</a></br>
                                         @endforeach
                                     @else
@@ -122,7 +122,7 @@
                                 </div>
 
                                 <div role="tabpanel" class="tab-pane" id="board">
-                                    <p>The Unit Board is in charge of providing oversight, electing the unit commander, and dealing with unit wide issues.</p>
+                                    <p>The Board of Operations is in charge of providing oversight, electing the unit commander, and dealing with unit wide issues.</p>
                                     <?php
 
                                         $oges = \App\Models\Unit\Member::find(1);

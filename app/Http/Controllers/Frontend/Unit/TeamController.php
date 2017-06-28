@@ -388,7 +388,7 @@ class TeamController extends Controller
     {
         $team = Team::findOrFail($id);
         $video = TeamVideo::findOrFail($video_id);
-        $video->viewer_count =+1;
+        $video->viewer_count =$video->viewer_count+1;
         $video->save();
 
         return view('frontend.team.team-video',['team'=>$team,'video' => $video]);
