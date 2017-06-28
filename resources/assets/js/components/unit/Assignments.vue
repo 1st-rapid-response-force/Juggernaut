@@ -56,8 +56,16 @@
                                 </td>
 
                                 <!-- Client Name -->
-                                <td style="vertical-align: middle;" class="col-lg-8">
+                                <td style="vertical-align: middle;" class="col-lg-4">
                                     {{ assignment.name }}
+                                </td>
+                                <!-- Client Name -->
+                                <td style="vertical-align: middle;" class="col-lg-4">
+                                    <ul id="members">
+                                        <li v-for="item in assignment.members_list">
+                                            {{ item }}
+                                        </li>
+                                    </ul>
                                 </td>
 
                                 <!-- Buttons -->
@@ -465,6 +473,7 @@
                         this.formMembers.members = [];
                         this.formMembers.errors = [];
                         $('#modal-edit-members').modal('hide');
+                        this.getAssignments();
                         this.messages = ['Assignment members saved.'];
                     })
                     .catch(response => {
