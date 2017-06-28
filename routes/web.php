@@ -51,6 +51,7 @@ Route::group(['namespace' => 'Frontend','middleware' => ['web','forbid-banned-us
     Route::get('our-history', 'PageController@history')->name('frontend.history');
     Route::get('our-process', 'PageController@process')->name('frontend.process');
     Route::get('infil', 'PageController@infil')->name('frontend.infil');
+    Route::get('videos', 'PageController@videos')->name('frontend.videos');
 
 
     // Disciplinary Pages

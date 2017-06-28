@@ -11,6 +11,7 @@
                     <li><a href="{{route('frontend.structure')}}">Our Structure</a></li>
                     <li><a href="https://documentation.1st-rrf.com/">Documentation</a></li>
                     <li><a href="{{route('frontend.feed')}}">Unit Feed</a></li>
+                    <li><a href="{{route('frontend.videos')}}">Videos</a></li>
 
                     @if(!\Auth::guest())
                     <li><a href="{{route('frontend.calendar')}}">Calendar</a></li>

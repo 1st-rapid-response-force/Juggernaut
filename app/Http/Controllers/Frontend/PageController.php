@@ -6,6 +6,7 @@ use App\Models\Unit\Member;
 use App\Models\Unit\Rank;
 use App\Models\Unit\Team;
 use App\Models\Unit\TeamTimeline;
+use App\Models\Unit\TeamVideo;
 use App\Repositories\Frontend\Unit\CalendarRepositoryContract;
 use Illuminate\Http\Request;
 
@@ -37,6 +38,12 @@ class PageController extends Controller
         $team = Team::find($team);
         return view('frontend.team.team-page',['team' => $team,'events' => $team->timeline()->orderBy('id','desc')->get()]);
 
+    }
+
+    public function videos()
+    {
+        $videos = TeamVideo::orderBy('id','asd')->paginate(15);
+        return view('frontend.pages.videos',['videos' => $videos]);
     }
 
     public function structure()

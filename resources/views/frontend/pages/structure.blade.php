@@ -32,7 +32,7 @@
                                 <li role="presentation" class="active"><a href="#command" aria-controls="assignments" role="tab" data-toggle="tab">Command</a></li>
                                 <li role="presentation"><a href="#infantry" aria-controls="structure" role="tab" data-toggle="tab">Infantry</a></li>
                                 <li role="presentation"><a href="#aviation" aria-controls="structure" role="tab" data-toggle="tab">Aviation</a></li>
-                                <li role="presentation"><a href="#special" aria-controls="structure" role="tab" data-toggle="tab">Special Operations</a></li>
+                                <li role="presentation"><a href="#special" aria-controls="structure" role="tab" data-toggle="tab">Pending Assignment</a></li>
                                 <li role="presentation"><a href="#reserve" aria-controls="structure" role="tab" data-toggle="tab">Reserve Pool</a></li>
                                 <li role="presentation"><a href="#discharged" aria-controls="structure" role="tab" data-toggle="tab">Discharges</a></li>
                                 <li role="presentation"><a href="#board" aria-controls="structure" role="tab" data-toggle="tab">Unit Board & Support</a></li>
@@ -86,8 +86,16 @@
                                 </div>
 
                                 <div role="tabpanel" class="tab-pane" id="special">
-                                    <h4><strong>Special Operations</strong></h4>
-                                    <p>This group is currently closed.</p>
+                                    <h4><strong>Pending Assignment</strong></h4>
+                                    @if((\App\Models\Unit\Team::find(19)->count() > 0))
+                                        <h4><strong>Discharged</strong></h4>
+                                        @foreach(\App\Models\Unit\Team::find(19)->members as $member)
+                                            <img src="{{$member->avatar}}" class="img-circle" style="padding: 2px; height: 32px; width: 32px;"><a href="{{route('frontend.files.file',$member->id)}}"> {{$member->searchable_name}} - {{$member->position}}</a></br>
+                                        @endforeach
+                                    @else
+                                        <h4><strong>Discharged</strong></h4>
+                                        <p>There are currently no members in this group.</p>
+                                    @endif
                                 </div>
 
                                 <div role="tabpanel" class="tab-pane" id="reserve">
