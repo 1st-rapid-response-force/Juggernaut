@@ -73,6 +73,7 @@
                 "paging": {
                     "enabled": true,
                     "size": 100
+                    
                 },
                 "filtering": {
                     "enabled": true
