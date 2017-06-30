@@ -50,7 +50,7 @@ class PageController extends Controller
     {
         $command = Team::find(1);
         $oges = Member::find(1);
-        $infantry = Team::whereBetween('id', [5, 8])->get();
+        $infantry = Team::whereBetween('id', [4, 8])->get();
         $aviation = Team::whereBetween('id', [9, 15])->get();
         $reserve = Team::find(2);
         $discharged = Member::where('team_id',17)->get();
