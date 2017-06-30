@@ -29,7 +29,7 @@
                     <li><a href="/">Home</a></li>
                     <li><a href="{{route('frontend.team',$team->id)}}">{{$team->name}}</a></li>
                     <li><a href="{{route('frontend.team.leader',$team->id)}}">Leader Panel</a></li>
-                    <li class="active"><a href="{{route('frontend.team.leader.positions',$team->id)}}">Training Schedule</a></li>
+                    <li class="active"><a href="{{route('frontend.team.leader.schedule',$team->id)}}">Training Schedule</a></li>
                 </ol>
             </div>
         </section>
