@@ -81,7 +81,8 @@
         jQuery(function($){
             $('.table').footable({
                 "paging": {
-                    "enabled": true
+                    "enabled": true,
+                    "size": 100
                 },
                 "filtering": {
                     "enabled": true
