@@ -98,7 +98,63 @@ class PromotionController extends Controller
                         $pel->push($member);
                     }
                     break;
+                // WO1 -> CW2
+                case 14:
+                    $qualification = Qualification::whereName('Airframe Pilot')->first();
+                    if(($member->qualifications->contains($qualification->id)))
+                    {
+                        $pel->push($member);
+                    }
+                    break;
+                // CW2 -> CW3
+                case 15:
+                    $qualification = Qualification::whereName('Rotary Transport')->first();
+                    $qualification2 = Qualification::whereName('Fixed-Wing Combat')->first();
+                    if(($member->time_in_service >= 40) && ($member->qualifications->contains($qualification->id) || $member->qualifications->contains($qualification2->id)))
+                    {
+                        $pel->push($member);
+                    }
+                    break;
+                // CW3 -> CW4
+                case 16:
+                    if(($member->time_in_service >= 56))
+                    {
+                        $pel->push($member);
+                    }
+                    break;
+                // CW4 -> CW5
+                case 17:
+                    if(($member->time_in_service >= 70))
+                    {
+                        $pel->push($member);
+                    }
+                    break;
+
+                // 2LT -> 1LT
+                case 19:
+                    if(($member->time_in_service >= 115))
+                    {
+                        $pel->push($member);
+                    }
+                    break;
+
+                // 1LT -> CPT
+                case 20:
+                    if(($member->time_in_service >= 200))
+                    {
+                        $pel->push($member);
+                    }
+                    break;
+
+                // CPT -> MAJ
+                case 21:
+                    if(($member->time_in_service >= 360))
+                    {
+                        $pel->push($member);
+                    }
+                    break;
             }
+
         }
         return $pel;
     }
