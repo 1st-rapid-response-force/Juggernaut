@@ -102,7 +102,7 @@
                                 </div>
                             </div>
 
-                            @if(isset($app->getApplication()->steam_id))
+                            @if(isset($app->getApplication()->reserve) && ($app->getApplication()->reserve))
                                 <div data-row-span="2">
                                     <div data-field-span="1">
                                         <label>ACTIVE DUTY OR RESERVE</label>
