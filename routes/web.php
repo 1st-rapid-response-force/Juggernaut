@@ -218,6 +218,10 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['web','auth','admin','f
         Route::post('perstat/{id}/email', 'PerstatController@email')->name('admin.perstat.email');
 
         Route::delete('operations/{id}/attachment/{attachment_id}', 'OperationController@deleteAttachment')->name('admin.operations.attachment.destroy');
+        Route::get('operations/{id}/frago/{frago}', 'OperationController@editFrago')->name('admin.operations.frago.edit');
+        Route::post('operations/{id}/frago', 'OperationController@storeFrago')->name('admin.operations.frago.store');
+        Route::put('operations/{id}/frago/{frago}', 'OperationController@updateFrago')->name('admin.operations.frago.update');
+        Route::delete('operations/{id}/frago/{frago}', 'OperationController@deleteFrago')->name('admin.operations.frago.destroy');
 
         Route::resource('announcements', 'AnnouncementController', ['as' => 'admin']);
         Route::resource('perstat', 'PerstatController', ['as' => 'admin']);

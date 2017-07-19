@@ -109,20 +109,36 @@
                         </div><!--col-lg-10-->
                     </div><!--form control-->
 
+                    <div class="form-group">
+                        {{ Form::label('mission', 'Mission PBO', ['class' => 'col-lg-1 control-label']) }}
+                        <div class="col-lg-11">
+                            <input type="file" name="mission" accept="media_type">
+                            <ul>
+                                @foreach($operation->getMedia('mission') as $attachment)
+                                    <li style="padding-top:5px"><a href="{{$attachment->getUrl()}}"><i class="fa fa-unlink"></i> {{$attachment->file_name}}</a> {!! $operation->getDeleteAttachment($operation->id,$attachment->id) !!}</li>
+                                @endforeach
+                            </ul>
+                            <small>You can upload the final mission PBO here, reuploading it will overwrite the previous file.</small>
+                        </div><!--col-lg-10-->
+                    </div><!--form control-->
+
                     <hr>
                     <div>
 
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs" role="tablist">
-                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Operation Brief</a></li>
+                            <li role="presentation" class="active"><a href="#accountability" aria-controls="settings" role="tab" data-toggle="tab">Attendance/Accountability</a></li>
+                            <li role="presentation"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Operation Brief</a></li>
                             <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Training Focus</a></li>
                             <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Admin Notes</a></li>
                             <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Credit</a></li>
+                            <li role="presentation"><a href="#fragos" aria-controls="settings" role="tab" data-toggle="tab">FRAGOs</a></li>
+
                         </ul>
 
                         <!-- Tab panes -->
                         <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane active" id="home">
+                            <div role="tabpanel" class="tab-pane" id="home">
                                 {{ Form::textarea('description', $operation->description, ['class' => 'form-control', 'placeholder' => '']) }}
                             </div>
                             <div role="tabpanel" class="tab-pane" id="profile">
@@ -134,7 +150,72 @@
                             <div role="tabpanel" class="tab-pane" id="settings">
                                 {{ Form::textarea('credit', $operation->credit, ['class' => 'form-control', 'placeholder' => '']) }}
                             </div>
+                            <div role="tabpanel" class="tab-pane" id="fragos">
+                                <br>
+                                <p><button type="button" class="btn btn-success" data-toggle="modal" data-target="#newFRAGO">New FRAGO</button>
+                                <br>
+
+                                @if (count($operation->fragos) != 0)
+                                    @if (count($operation->fragos) != 0)
+                                        <table id="table" class="table table-bordered table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Date</th>
+                                                <th>Author</th>
+                                                <th>Options</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($operation->fragos as $frago)
+                                                <tr>
+                                                    <td class="col-lg-4">FRAGO #{{$loop->iteration}}</td>
+                                                    <td class="col-lg-2">{{$frago->created_at->toDayDateTimeString()}}</td>
+                                                    <td class="col-lg-4">
+                                                        {{$frago->member->searchable_name}}
+                                                    </td>
+                                                    <td class="col-lg-4">
+                                                        {!! $frago->getActionButtonsAttribute() !!}
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                    @endif
+                                @else
+                                    <p>There is no FRAGOS for this operation, add one by using the Administrator tools.</p>
+                                @endif
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane active" id="accountability">
+                                <h3>Required Elements</h3>
+                                @foreach($operation->getAccountability()['required'] as $group)
+                                    <h4><strong><a href="{{route('frontend.team',$group->id)}}">{{$group->name}}</a></strong></h4>
+                                    @foreach($group->assignments()->orderBy('order')->get() as $assignment)
+                                        @if($assignment->members->count() >0)
+                                            @foreach($assignment->members as $member)
+                                                <img src="{{$member->avatar}}" class="img-circle" style="padding: 2px; height: 32px; width: 32px;"> <a href="{{route('frontend.files.file',$member->id)}}">{{$assignment->name}} - {{$member->searchable_name}}</a> - {!! $operation->getOperationalStatus($member->id) !!}</br>
+                                            @endforeach
+                                        @else
+                                        @endif
+                                    @endforeach
+                                @endforeach
+                                <h3>Optional Elements</h3>
+                                @foreach($operation->getAccountability()['optional'] as $group)
+                                    <h4><strong><a href="{{route('frontend.team',$group->id)}}">{{$group->name}}</a></strong></h4>
+                                    @foreach($group->assignments()->orderBy('order')->get() as $assignment)
+                                        @if($assignment->members->count() >0)
+                                            @foreach($assignment->members as $member)
+                                                <img src="{{$member->avatar}}" class="img-circle" style="padding: 2px; height: 32px; width: 32px;"> <a href="{{route('frontend.files.file',$member->id)}}">{{$assignment->name}} - {{$member->searchable_name}}</a> - {!! $operation->getOperationalStatus($member->id) !!}</br>
+                                            @endforeach
+                                        @else
+                                        @endif
+                                    @endforeach
+                                @endforeach
+                            </div>
                         </div>
+
+
 
                     </div>
                 </div><!--form control-->
@@ -164,6 +245,31 @@
 @stop
 
 @section('after-scripts-end')
+    <!-- Modal -->
+    <div class="modal fade" id="newFRAGO" tabindex="-1" role="dialog" aria-labelledby="newProgramModal">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="newProgramModal">New FRAGO</h4>
+                </div>
+                <div class="modal-body">
+                        <form class="form-horizontal" action="{{route('admin.operations.frago.store',$operation->id)}}" method="POST" enctype="multipart/form-data">
+                            <div class="form-group">
+                                {{ Form::textarea('message', null, ['class' => 'form-control', 'placeholder' => '']) }}
+                            </div>
+
+                        {{csrf_field()}}
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <input class="btn btn-primary" type="submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     {{ Html::script("plugins/fullcalendar/lib/moment.min.js") }}
     {{ Html::script("plugins/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js") }}
     <script type="text/javascript">

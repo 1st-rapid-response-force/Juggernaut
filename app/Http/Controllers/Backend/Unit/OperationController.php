@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\Unit;
 
 use App\Models\Unit\Operation;
+use App\Models\Unit\OperationFrago;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
@@ -105,6 +106,10 @@ class OperationController extends Controller
             }
 
         }
+        if($request->hasFile('mission')) {
+            $operation->clearMediaCollection('mission');
+            $operation->addMedia($request->file('mission'))->toCollection('mission');
+        }
 
         flash('You have updated the Operation!', 'success');
         return redirect()->back();
@@ -119,8 +124,45 @@ class OperationController extends Controller
         return redirect()->back();
     }
 
+    public function editFrago($id, $frago, Request $request)
+    {
+        $operation = Operation::findOrFail($id);
+        $frago = OperationFrago::findOrFail($frago);
+        return view('backend.unit.operations.edit-frago',['operation' => $operation, 'frago' => $frago]);
+    }
+
+    public function storeFrago($id, Request $request)
+    {
+        $operation = Operation::findOrFail($id);
+        $operation->fragos()->create(['message' => $request->message,'member_id'=>\Auth::User()->member->id]);
+        flash('You have created a Frago for this Operation!', 'success');
+        return redirect()->back();
+    }
+
+    public function updateFrago($id, $frago, Request $request)
+    {
+        $operation = Operation::findOrFail($id);
+        $frago = OperationFrago::findOrFail($frago);
+
+        $frago->update(['message'=> $request->message]);
+        flash('You have updated a Frago for this Operation!', 'success');
+        return redirect(route('admin.operations.edit',$id));
+    }
+
+    public function deleteFrago($id, $frago, Request $request)
+    {
+        $operation = Operation::findOrFail($id);
+        $frago = OperationFrago::findOrFail($frago);
+        $frago->delete();
+        flash('You have deleted that FRAGO!', 'success');
+        return redirect()->back();
+    }
+
     public function delete($id)
     {
-
+        $operation = Operation::findOrFail($id);
+        $operation->delete();
+        flash('You have deleted the Operation!', 'success');
+        return redirect()->back();
     }
 }

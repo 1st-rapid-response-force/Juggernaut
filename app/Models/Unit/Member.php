@@ -89,6 +89,11 @@ class Member extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function fragos()
+    {
+        return $this->hasMany('App\Models\Unit\OperationFrago');
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -192,6 +197,11 @@ class Member extends Model
         return $this->belongsToMany('App\Models\Unit\Perstat', 'member_perstat', 'member_id', 'perstat_id');
     }
 
+    public function operations()
+    {
+        return $this->belongsToMany('App\Models\Unit\Operation', 'member_operation', 'member_id', 'operation_id');
+    }
+
     /**
      * @return $this
      */
@@ -286,8 +296,8 @@ class Member extends Model
      */
     public function hasReportedIn()
     {
-        $perstat = Perstat::where('active','=','1')->first();
-        if($perstat->members->contains($this->id))
+        $perstat = Perstat::where('active', '=', '1')->first();
+        if ($perstat->members->contains($this->id))
             return true;
         return false;
     }

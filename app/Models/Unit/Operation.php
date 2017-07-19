@@ -29,6 +29,11 @@ class Operation extends Model implements HasMedia
         return $this->hasMany('App\Models\Unit\OperationFrago');
     }
 
+    public function members()
+    {
+        return $this->belongsToMany('App\Models\Unit\Member', 'member_operation', 'operation_id', 'member_id')->withPivot('status');
+    }
+
     public function requiredElement($id)
     {
         $elements = collect(explode(',',$this->required_elements));
@@ -49,6 +54,31 @@ class Operation extends Model implements HasMedia
         }
         return false;
 
+    }
+
+    public function hasReportedForOperation($member)
+    {
+        if($this->members->contains($member))
+            return true;
+        return false;
+    }
+
+    public function getOperationalStatus($member)
+    {
+        if($this->hasReportedForOperation($member))
+        {
+            switch ($this->members()->find($member)->pivot->status){
+                case 1:
+                    return '<span class="label label-success">Will Attend</span>';
+                    break;
+                case 0:
+                    return '<span class="label label-warning">Not able to attend</span>';
+                    break;
+            }
+
+        } else {
+            return '<span class="label label-danger">Pending Response</span>';
+        }
     }
 
     /**
@@ -82,6 +112,19 @@ class Operation extends Model implements HasMedia
              data-trans-title="Are you sure?"
              class="btn btn-xs btn-danger"><i class="fa fa-trash" data-toggle="tooltip" data-placement="top" title="Delete"></i></a> ';
 
+    }
+
+    public function getAccountability()
+    {
+        //Grab Required
+        $required = explode(',',$this->required_elements);
+        $requiredTeams = Team::whereIn('id', $required)
+            ->get();
+        $optional = explode(',',$this->optional_elements);
+        $optionalTeams = Team::whereIn('id', $optional)
+            ->get();
+        $accountability = collect(['required' => $requiredTeams, 'optional' => $optionalTeams]);
+        return $accountability;
     }
 
     /**
