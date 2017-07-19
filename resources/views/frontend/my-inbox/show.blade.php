@@ -83,7 +83,7 @@
                                             <div class="attachment">
                                                 <h4>Attachment</h4>
                                                 @foreach($message->getMedia('attachments') as $attachment)
-                                                <a href="{{$attachment->getUrl()}}"><i class="fa fa-unlink"></i> {{$attachment->file_name}}</a><br>
+                                                <a href="{{$attachment->getUrl()}}"><i class="fa fa-unlink"></i> {{$attachment->file_name}}</a> {!! $message->getDeleteAttachment($message->id,$attachment->id) !!}<br>
                                                 @endforeach
                                             </div>
 

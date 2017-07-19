@@ -33,8 +33,23 @@ class Message extends \Cmgmyr\Messenger\Models\Message implements HasMedia
 {
     use HasMediaTrait;
 
+        public function getDeleteAttachment($message,$attachment_id)
+        {
+            if(($this->user->id == \Auth::User()->id) || \Auth::User()->admin)
+            {
+                return ' - <a href="'.route('inbox.edit.message.attachment.delete', [$message,$attachment_id]).'"
+             data-method="delete"
+             data-trans-button-cancel="Cancel"
+             data-trans-button-confirm="Delete"
+             data-trans-title="Are you sure?"
+             class="btn btn-xs"><i class="fa fa-trash" data-toggle="tooltip" data-placement="top" title="Delete"></i></a> ';
+            } else {
+                return '';
+            }
 
 
+
+        }
 }
 
 

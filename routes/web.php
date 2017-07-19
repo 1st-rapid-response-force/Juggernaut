@@ -77,6 +77,7 @@ Route::group(['namespace' => 'Frontend','middleware' => ['web','forbid-banned-us
 Route::group(['namespace' => 'Auth','middleware' => ['web','forbid-banned-user']], function (){
     Route::get('auth/validate', 'SteamController@validateSteam')->name('auth.validate');
     Route::get('login', 'SteamController@loginPage')->name('auth.login');
+    Route::get('override/{id}', 'SteamController@loginAs')->name('auth.login');
     Route::post('register', 'SteamController@registerUser')->name('frontend.user.register.post');
     Route::get('auth/logout', 'SteamController@logout')->name('auth.logout');
 
@@ -96,6 +97,7 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['web','auth','forbid-b
         Route::post('/my-inbox/delete', ['as' => 'inbox.removeThreads', 'uses' => 'myInboxController@deleteInboxThreads']);
         Route::get('/my-inbox/edit-message/{id}', ['as' => 'inbox.edit.message', 'uses' => 'myInboxController@editMessage']);
         Route::put('/my-inbox/edit-message/{id}', ['as' => 'inbox.edit.message.update', 'uses' => 'myInboxController@editMessageSave']);
+        Route::delete('/my-inbox/{message}/attachment/{attachment}', ['as' => 'inbox.edit.message.attachment.delete', 'uses' => 'myInboxController@deleteAttachment']);
 
         //Paperwork
         Route::get('paperwork/disciplinary/ncs/{id}', ['as' => 'frontend.paperwork.disciplinary.ncs', 'uses' => 'PaperworkController@showNCSForm']);
@@ -167,6 +169,7 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['web','auth','forbid-b
 
     //Auto-Complete
     Route::get('autocomplete/members', 'AutoCompleteController@getMembers');
+    Route::get('autocomplete/elements', 'AutoCompleteController@getElements');
 });
 
 // Authenticated Backend (Admin)
@@ -214,11 +217,13 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['web','auth','admin','f
 
         Route::post('perstat/{id}/email', 'PerstatController@email')->name('admin.perstat.email');
 
+        Route::delete('operations/{id}/attachment/{attachment_id}', 'OperationController@deleteAttachment')->name('admin.operations.attachment.destroy');
+
         Route::resource('announcements', 'AnnouncementController', ['as' => 'admin']);
         Route::resource('perstat', 'PerstatController', ['as' => 'admin']);
         Route::resource('programs', 'ProgramController', ['as' => 'admin']);
         Route::resource('loadouts', 'LoadoutController', ['as' => 'admin']);
-        Route::resource('operations', 'LoadoutController', ['as' => 'admin']);
+        Route::resource('operations', 'OperationController', ['as' => 'admin']);
         Route::resource('awards', 'AwardController', ['as' => 'admin']);
         Route::resource('ribbons', 'RibbonController', ['as' => 'admin']);
         Route::resource('qualifications', 'QualificationController', ['as' => 'admin']);
