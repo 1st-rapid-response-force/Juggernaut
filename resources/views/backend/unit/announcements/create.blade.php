@@ -5,6 +5,22 @@
 @section('after-styles-end')
     {{ Html::style("css/backend/plugin/datatables/dataTables.bootstrap.min.css") }}
     {{ Html::style("plugins/fullcalendar/fullcalendar.min.css") }}
+    <script src="/plugins/tinymce/tinymce.min.js"></script>
+    <script>tinymce.init({
+            selector: 'textarea',
+            height: 500,
+            theme: 'modern',
+            browser_spellcheck: true,
+            plugins: [
+                'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+                'searchreplace wordcount visualblocks visualchars code fullscreen',
+                'insertdatetime media nonbreaking save table contextmenu directionality',
+                'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc help'
+            ],
+            toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+            toolbar2: 'print preview media | forecolor backcolor emoticons | codesample help',
+            image_advtab: true
+        });</script>
 @stop
 
 @section('page-header')
@@ -85,12 +101,4 @@
 @stop
 
 @section('after-scripts-end')
-    <script src="/plugins/ckeditor/ckeditor.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            CKEDITOR.replace( 'message', {
-                height: 400
-            });
-        });
-    </script>
 @stop
