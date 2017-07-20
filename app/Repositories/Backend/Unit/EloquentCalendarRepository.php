@@ -36,8 +36,6 @@ class EloquentCalendarRepository implements CalendarRepositoryContract {
             $event->end_time = $event->end_time->setTimezone($this->timezone);
         }
 
-
-
         // Birthdays
         $birthdays = collect();
         foreach (Member::whereActive(1)->get() as $mem)
@@ -56,7 +54,6 @@ class EloquentCalendarRepository implements CalendarRepositoryContract {
                     ]
                 ));
             }
-
         }
 
         // Team Scheduling
