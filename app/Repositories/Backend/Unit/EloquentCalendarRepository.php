@@ -5,6 +5,9 @@
 
 namespace App\Repositories\Backend\Unit;
 
+use App\Models\Unit\Member;
+use App\Models\Unit\Operation;
+use App\Models\Unit\Team;
 use Carbon\Carbon;
 use App\Models\Unit\Event;
 use App\Models\Unit\PersonnelFile\Award;
@@ -83,7 +86,8 @@ class EloquentCalendarRepository implements CalendarRepositoryContract {
                     $endDate,
                     rand(5000,6000),
                     [
-                        'color' => '#8B0000'
+                        'color' => '#8B0000',
+                        'url' => route('frontend.team.leader.schedule',$team->id)
                     ]
                 ));
             }
