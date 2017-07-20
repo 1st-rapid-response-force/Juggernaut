@@ -36,13 +36,13 @@
                             {!! $operation->description !!}
 
                             <h3>Training Focus</h3>
-                            {!! $operation->description !!}
+                            {!! $operation->training !!}
 
                             <h3>Admin Notes</h3>
-                            {!! $operation->description !!}
+                            {!! $operation->admin !!}
 
                             <h3>Operation Credit</h3>
-                            {!! $operation->description !!}
+                            {!! $operation->credit !!}
 
                             <h3>FRAGOS</h3>
                             @if (count($operation->fragos) != 0)
