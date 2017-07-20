@@ -10,7 +10,8 @@
                 <ol class="breadcrumb">
                     <li><a href="/">Home</a></li>
                     <li><a href="{{route('frontend.operations')}}">Operations</a> </li>
-                    <li class="active">{{$operation->name}}</li>
+                    <li><a href="{{route('frontend.operations.show', $operation->id)}}">{{$operation->name}}</a></li>
+                    <li class="active">FRAGO - {{$operation->name}}</li>
                 </ol>
             </div>
         </section>
@@ -22,67 +23,13 @@
                         <div class="post post-single">
                             <div class="post-header">
                                 <div class="post-title">
-                                    <h2><a href="#">{{$operation->name}}</a></h2>
+                                    <h2><a href="#">{{$operation->name}} - FRAGO </a></h2>
                                     <ul class="post-meta">
                                         <li><i class="fa fa-calendar-o"></i> {{$operation->start_time->toFormattedDateString()}}</li>
                                     </ul>
                                 </div>
                             </div>
-                            @if(\Carbon\Carbon::now() < $operation->start_time)
-                                <h3><strong>Time until Operation: </strong>{{$operation->start_time->diffForHumans()}}</h3>
-                            @endif
-                            <hr>
-                            <h3>Operation Briefing</h3>
-                            {!! $operation->description !!}
-
-                            <h3>Training Focus</h3>
-                            {!! $operation->description !!}
-
-                            <h3>Admin Notes</h3>
-                            {!! $operation->description !!}
-
-                            <h3>Operation Credit</h3>
-                            {!! $operation->description !!}
-
-                            <h3>FRAGOS</h3>
-                            @if (count($operation->fragos) != 0)
-                                @if (count($operation->fragos) != 0)
-                                    <table id="table" class="table table-bordered">
-                                        <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Date</th>
-                                            <th>Author</th>
-                                            <th>Options</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        @foreach($operation->fragos as $frago)
-                                            <tr>
-                                                <td class="col-lg-4">FRAGO #{{$loop->iteration}}</td>
-                                                <td class="col-lg-2">{{$frago->created_at->toDayDateTimeString()}}</td>
-                                                <td class="col-lg-4">
-                                                    {{$frago->member->searchable_name}}
-                                                </td>
-                                                <td class="col-lg-4">
-                                                    <a href="{{route('frontend.operations.frago.show',[$operation->id, $frago->id])}}">View Frago</a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
-                                @endif
-                            @else
-                                <p>There is not FRAGOs for this Operation</p>
-                            @endif
-
-                            <h3>Operation Attachments</h3>
-                            <div class="attachment">
-                                <h4>Attachment</h4>
-                                @foreach($operation->getMedia('attachments') as $attachment)
-                                    <a href="{{$attachment->getUrl()}}"><i class="fa fa-unlink"></i> {{$attachment->file_name}}</a><br>
-                                @endforeach
-                            </div>
+                            {!! $frago->message !!}
                         </div>
                     </div>
 

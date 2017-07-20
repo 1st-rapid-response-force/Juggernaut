@@ -37,7 +37,7 @@ class OperationController extends Controller
         $operation = Operation::create(
             [
                 'name' => $request->name,
-                'published' => 1,
+                'published' => 0,
                 'required_elements' => $required,
                 'optional_elements' => $optional,
                 'start_time' => $start_time,
@@ -89,7 +89,7 @@ class OperationController extends Controller
         $operation->update(
             [
                 'name' => $request->name,
-                'published' => 0,
+                'published' => $request->published,
                 'required_elements' => $required,
                 'optional_elements' => $optional,
                 'start_time' => $start_time,

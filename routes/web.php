@@ -141,6 +141,7 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['web','auth','forbid-b
     // Operations
     Route::get('operations', 'Unit\OperationController@index')->name('frontend.operations');
     Route::get('operations/{id}', 'Unit\OperationController@show')->name('frontend.operations.show');
+    Route::get('operations/{id}/frago/{frago}', 'Unit\OperationController@showFrago')->name('frontend.operations.frago.show');
     Route::post('operations/{id}/status', 'Unit\OperationController@storeStatusMember')->name('frontend.operations.store.status');
 
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend\Unit;
 
 use App\Models\Unit\Operation;
+use App\Models\Unit\OperationFrago;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -42,7 +43,12 @@ class OperationController extends Controller
             flash('You have updated your operational status!', 'success');
             return redirect()->back();
         }
+    }
 
-
+    public function showFrago($id, $frago)
+    {
+        $operation = Operation::findOrFail($id);
+        $frago = OperationFrago::findOrFail($frago);
+        return view('frontend.operations.frago',['operation' => $operation,'frago' => $frago]);
     }
 }
