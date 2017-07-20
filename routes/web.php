@@ -145,8 +145,12 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['web','auth','forbid-b
     Route::get('operations/{id}/frago/{frago}', 'Unit\OperationController@showFrago')->name('frontend.operations.frago.show');
     Route::post('operations/{id}/status', 'Unit\OperationController@storeStatusMember')->name('frontend.operations.store.status');
 
-
-
+    Route::get('team/{team}/leader', 'Unit\TeamController@leader')->name('frontend.team.leader');
+    Route::get('team/{team}/leader/schedule', 'Unit\TeamController@schedule')->name('frontend.team.leader.schedule');
+    Route::post('team/{team}/leader/schedule', 'Unit\TeamController@postSchedule')->name('frontend.team.leader.schedule.post');
+    Route::get('team/{team}/leader/disciplinary', 'Unit\TeamController@disciplinary')->name('frontend.team.leader.disciplinary');
+    Route::get('team/{team}/leader/add-video', 'Unit\TeamController@addVideo')->name('frontend.team.leader.add-video');
+    Route::get('team/{team}/leader/assignments', 'Unit\TeamController@positions')->name('frontend.team.leader.assignments');
     Route::get('team/{team}/leader/training', 'Unit\TeamController@training')->name('frontend.team.leader.training');
     Route::get('team/{team}/leader/after-action-report', 'Unit\TeamController@showAllAfterActionReports')->name('frontend.team.leader.aar.team');
     Route::get('team/{team}/leader/after-action-report/new', 'Unit\PaperworkController@showAfterActionReport')->name('frontend.team.leader.aar');
