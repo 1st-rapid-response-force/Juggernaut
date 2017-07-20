@@ -7,6 +7,7 @@ namespace App\Repositories\Frontend\Unit;
 
 use App\Models\Application;
 use App\Models\Unit\Member;
+use App\Models\Unit\Operation;
 use App\Models\Unit\Team;
 use Carbon\Carbon;
 use App\Models\Unit\Event;
@@ -97,8 +98,26 @@ class EloquentCalendarRepository implements CalendarRepositoryContract {
             }
         }
 
+        // Add Operations
+        $operations = collect();
+
+        foreach (Operation::wherePublished(1)->get() as $op)
+        {
+            $scheduling->push(\Calendar::event(
+                $op->name, //event title
+                false, //full day event?
+                $op->start_time->setTimezone($this->timezone),
+                $op->end_time->setTimezone($this->timezone),
+                rand(5000,6000),
+                [
+                    'color' => '#000000'
+                ]
+            ));
+        }
+
         $calendar = \Calendar::addEvents($birthdays);
         $calendar = \Calendar::addEvents($scheduling);
+        $calendar = \Calendar::addEvents($operations);
 
         return $calendar->setOptions([
             'timeFormat' => 'H(:mm)'
