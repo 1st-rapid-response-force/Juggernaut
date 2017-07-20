@@ -138,6 +138,7 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['web','auth','forbid-b
     Route::get('calendar', 'PageController@calendar')->name('frontend.calendar');
     Route::post('calendar', 'PageController@setCalendar')->name('frontend.calendar.timezone');
 
+    Route::get('aviation/dashboard', 'Unit\TeamController@aviationDashboard')->name('frontend.aviation');
     // Operations
     Route::get('operations', 'Unit\OperationController@index')->name('frontend.operations');
     Route::get('operations/{id}', 'Unit\OperationController@show')->name('frontend.operations.show');
