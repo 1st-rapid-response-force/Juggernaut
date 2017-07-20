@@ -138,15 +138,13 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['web','auth','forbid-b
     Route::get('calendar', 'PageController@calendar')->name('frontend.calendar');
     Route::post('calendar', 'PageController@setCalendar')->name('frontend.calendar.timezone');
 
-    // Team
-    Route::get('aviation/dashboard', 'Unit\TeamController@aviationDashboard')->name('frontend.aviation');
+    // Operations
+    Route::get('operations', 'Unit\OperationController@index')->name('frontend.operations');
+    Route::get('operations/{id}', 'Unit\OperationController@show')->name('frontend.operations.show');
+    Route::post('operations/{id}/status', 'Unit\OperationController@storeStatusMember')->name('frontend.operations.store.status');
 
-    Route::get('team/{team}/leader', 'Unit\TeamController@leader')->name('frontend.team.leader');
-    Route::get('team/{team}/leader/schedule', 'Unit\TeamController@schedule')->name('frontend.team.leader.schedule');
-    Route::post('team/{team}/leader/schedule', 'Unit\TeamController@postSchedule')->name('frontend.team.leader.schedule.post');
-    Route::get('team/{team}/leader/disciplinary', 'Unit\TeamController@disciplinary')->name('frontend.team.leader.disciplinary');
-    Route::get('team/{team}/leader/add-video', 'Unit\TeamController@addVideo')->name('frontend.team.leader.add-video');
-    Route::get('team/{team}/leader/assignments', 'Unit\TeamController@positions')->name('frontend.team.leader.assignments');
+
+
     Route::get('team/{team}/leader/training', 'Unit\TeamController@training')->name('frontend.team.leader.training');
     Route::get('team/{team}/leader/after-action-report', 'Unit\TeamController@showAllAfterActionReports')->name('frontend.team.leader.aar.team');
     Route::get('team/{team}/leader/after-action-report/new', 'Unit\PaperworkController@showAfterActionReport')->name('frontend.team.leader.aar');

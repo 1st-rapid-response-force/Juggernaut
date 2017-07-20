@@ -58,6 +58,11 @@ class OperationController extends Controller
 
         }
 
+        if($request->hasFile('banner')) {
+            $operation->clearMediaCollection('banner');
+            $operation->addMedia($request->file('banner'))->toCollection('banner');
+        }
+
         flash('You created a Operation!', 'success');
         return redirect(route('admin.operations.index'));
     }
@@ -84,7 +89,7 @@ class OperationController extends Controller
         $operation->update(
             [
                 'name' => $request->name,
-                'published' => 1,
+                'published' => 0,
                 'required_elements' => $required,
                 'optional_elements' => $optional,
                 'start_time' => $start_time,
@@ -111,6 +116,10 @@ class OperationController extends Controller
             $operation->addMedia($request->file('mission'))->toCollection('mission');
         }
 
+        if($request->hasFile('banner')) {
+            $operation->clearMediaCollection('banner');
+            $operation->addMedia($request->file('banner'))->toCollection('banner');
+        }
         flash('You have updated the Operation!', 'success');
         return redirect()->back();
     }
@@ -165,4 +174,6 @@ class OperationController extends Controller
         flash('You have deleted the Operation!', 'success');
         return redirect()->back();
     }
+
+
 }

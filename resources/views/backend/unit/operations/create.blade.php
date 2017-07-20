@@ -81,6 +81,17 @@
                     </div><!--form control-->
 
                     <div class="form-group">
+                        {{ Form::label('published', 'Published', ['class' => 'col-lg-1 control-label']) }}
+
+                        <div class="col-lg-11">
+                            <select name="published" class="form-control">
+                                <option value="1">Published</option>
+                                <option value="0" selected>Un-Published</option>
+                            </select>
+                        </div><!--col-lg-10-->
+                    </div><!--form control-->
+
+                    <div class="form-group">
                         {{ Form::label('start_time', trans('validation.attributes.backend.unit.calendar.events.start_date'), ['class' => 'col-lg-1 control-label']) }}
 
                         <div class="col-lg-11">
@@ -103,6 +114,15 @@
                             <input type="file" name="file[]" accept="media_type" multiple>
                         </div><!--col-lg-10-->
                     </div><!--form control-->
+
+                    <div class="form-group">
+                        {{ Form::label('banner', 'Timeline Image', ['class' => 'col-lg-1 control-label']) }}
+                        <div class="col-lg-11">
+                            <input type="file" name="banner" accept="media_type">
+                            <small>This image is used for the Unit Operation timeline. Reuploading will overwrite the previous file.</small>
+                        </div>
+                    </div><!--form control-->
+
 
                     <hr>
                     <div>

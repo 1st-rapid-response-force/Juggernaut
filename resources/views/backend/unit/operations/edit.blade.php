@@ -81,6 +81,17 @@
                     </div><!--form control-->
 
                     <div class="form-group">
+                        {{ Form::label('published', 'Published', ['class' => 'col-lg-1 control-label']) }}
+
+                        <div class="col-lg-11">
+                            <select name="published" class="form-control">
+                                <option value="1" {{$operation->published == 1 ? 'selected' : ''}}>Published</option>
+                                <option value="0" {{$operation->published == 0 ? 'selected' : ''}}>Un-Published</option>
+                            </select>
+                        </div><!--col-lg-10-->
+                    </div><!--form control-->
+
+                    <div class="form-group">
                         {{ Form::label('start_time', trans('validation.attributes.backend.unit.calendar.events.start_date'), ['class' => 'col-lg-1 control-label']) }}
 
                         <div class="col-lg-11">
@@ -120,6 +131,18 @@
                             </ul>
                             <small>You can upload the final mission PBO here, reuploading it will overwrite the previous file.</small>
                         </div><!--col-lg-10-->
+                    </div><!--form control-->
+
+                    <div class="form-group">
+                        {{ Form::label('banner', 'Timeline Image', ['class' => 'col-lg-1 control-label']) }}
+                        <div class="col-lg-11">
+                            <input type="file" name="banner" accept="media_type">
+
+                        @foreach($operation->getMedia('banner') as $attachment)
+                            <li style="padding-top:5px"><a href="{{$attachment->getUrl()}}"><i class="fa fa-unlink"></i> {{$attachment->file_name}}</a> {!! $operation->getDeleteAttachment($operation->id,$attachment->id) !!}</li>
+                        @endforeach
+                        <small>This image is used for the Unit Operation timeline. Reuploading will overwrite the previous file.</small>
+                        </div>
                     </div><!--form control-->
 
                     <hr>

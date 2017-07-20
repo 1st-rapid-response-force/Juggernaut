@@ -24,6 +24,20 @@ class Operation extends Model implements HasMedia
 
     protected $dates = ['start_time','end_time'];
 
+    /**
+     * @return bool
+     */
+    public function hasPhoto()
+    {
+        if($this->getMedia('banner')->count())
+        {
+            return true;
+        } else
+        {
+            return false;
+        }
+    }
+
     public function fragos()
     {
         return $this->hasMany('App\Models\Unit\OperationFrago');
@@ -56,6 +70,11 @@ class Operation extends Model implements HasMedia
 
     }
 
+    static public function randomHeader()
+    {
+        return '/img/arma/'.rand(1,5).'.jpg';
+    }
+
     public function hasReportedForOperation($member)
     {
         if($this->members->contains($member))
@@ -78,6 +97,24 @@ class Operation extends Model implements HasMedia
 
         } else {
             return '<span class="label label-danger">Pending Response</span>';
+        }
+    }
+
+    public function getOperationalStatusCode($member)
+    {
+        if($this->hasReportedForOperation($member))
+        {
+            switch ($this->members()->find($member)->pivot->status){
+                case 1:
+                    return 1;
+                    break;
+                case 0:
+                    return 0;
+                    break;
+            }
+
+        } else {
+            return 50;
         }
     }
 

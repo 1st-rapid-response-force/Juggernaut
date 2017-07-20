@@ -1,6 +1,6 @@
 @extends('frontend.templates.master')
 
-@section('title','Our Mission')
+@section('title',$announcement->subject)
 
 @section('content')
     <!-- wrapper -->
@@ -21,7 +21,7 @@
                     <div class="col-md-9 leftside">
                         <div class="post post-single">
                             <div class="post-header post-author">
-                                <a href="#" class="author" data-toggle="tooltip" title="YAKUZI"><img src="{{$announcement->user->member->avatar}}" alt="" /></a>
+                                <a href="#" class="author" data-toggle="tooltip"  title="{{$announcement->user->member}}"><img src="{{$announcement->user->member->avatar}}" alt="" /></a>
                                 <div class="post-title">
                                     <h2><a href="#">{{$announcement->subject}}</a></h2>
                                     <ul class="post-meta">
