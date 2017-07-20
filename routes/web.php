@@ -208,6 +208,7 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['web','auth','admin','f
         Route::post('members/{id}/process-discharge', 'FileController@processDischarge')->name('admin.members.edit.process-discharge');
         Route::post('members/{id}/add-service-history', 'FileController@addServiceHistory')->name('admin.members.edit.add-service-history');
         Route::delete('members/{id}/service-history/{service}', 'FileController@deleteServiceHistory')->name('admin.members.edit.delete-service-history');
+        Route::get('members/not-active', 'FileController@indexNotActive')->name('admin.members.index.notactive');
         Route::resource('members', 'FileController', ['as' => 'admin']);
 
         Route::get('promotions', 'PromotionController@index')->name('admin.promotions');
