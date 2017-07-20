@@ -65,7 +65,7 @@
                                                     {{$frago->member->searchable_name}}
                                                 </td>
                                                 <td class="col-lg-4">
-                                                    {!! $frago->getActionButtonsAttribute() !!}
+
                                                 </td>
                                             </tr>
                                         @endforeach
