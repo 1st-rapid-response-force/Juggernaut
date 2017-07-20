@@ -32,7 +32,8 @@ class myInboxController extends Controller
         $currentUserId = \Auth::user()->id;
         $threads = $user->threads()->where('subject', 'LIKE', '%'.$request->search.'%')->latest('updated_at')->paginate(15);
         return view('frontend.my-inbox.index-search', compact('threads', 'currentUserId'))
-            ->with('user',$user);
+            ->with('user',$user)
+            ->with('search',$request->search);
     }
 
     /**

@@ -17,7 +17,7 @@
         <section class="padding-top-50 padding-bottom-50 padding-top-sm-30">
             <div class="container">
                 <div class="widget margin-bottom-35">
-                    {{ Form::open(['route' => ['inbox.search'], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'post']) }}
+                    {{ Form::open(['route' => ['inbox.search'], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'get']) }}
                     <div class="btn-inline">
                         <input type="text" name="search" class="form-control padding-right-40"  placeholder="Search Subject">
                         <button type="submit" class="btn btn-link color-grey-700 padding-top-10"><i class="fa fa-search"></i></button>
@@ -67,7 +67,7 @@
                     </table><!-- /.table -->
                     </form>
                     <div class="text-center">
-                        {!! $threads->render() !!}
+                        {{ $threads->appends(['search' => $search])->links() }}
                     </div>
                 </div>
             </div>

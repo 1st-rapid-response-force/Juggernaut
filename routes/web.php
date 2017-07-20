@@ -89,7 +89,7 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['web','auth','forbid-b
     {
         //My Inbox
         Route::get('/my-inbox', ['as' => 'inbox', 'uses' => 'myInboxController@index']);
-        Route::post('/my-inbox/search', ['as' => 'inbox.search', 'uses' => 'myInboxController@search']);
+        Route::get('/my-inbox/search', ['as' => 'inbox.search', 'uses' => 'myInboxController@search']);
         Route::get('/my-inbox/create', ['as' => 'inbox.create', 'uses' => 'myInboxController@create']);
         Route::post('/my-inbox', ['as' => 'inbox.store', 'uses' => 'myInboxController@store']);
         Route::get('/my-inbox/{id}', ['as' => 'inbox.show', 'uses' => 'myInboxController@show']);
