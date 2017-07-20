@@ -101,7 +101,8 @@ class EloquentCalendarRepository implements CalendarRepositoryContract {
                 $op->end_time->setTimezone($this->timezone),
                 rand(5000,6000),
                 [
-                    'color' => '#000000'
+                    'color' => '#000000',
+                    'url' => route('admin.operations.edit',$op->id)
                 ]
             ));
         }
