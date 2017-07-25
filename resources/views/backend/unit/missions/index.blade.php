@@ -35,8 +35,8 @@
                         <tr>
                             <th>Name</th>
                             <th>Uploaded By</th>
-                            <th>Created On</th>
                             <th>Checksum</th>
+                            <th>Created On</th>
                             <th>Options</th>
                         </tr>
                         </thead>
@@ -45,8 +45,8 @@
                             <tr>
                                 <td>{{$mission->name}}</td>
                                 <td>{{$mission->user->member}}</td>
-                                <td>{{$mission->created_at}}</td>
                                 <td><pre>{{$mission->checksum}}</pre></td>
+                                <td>{{$mission->created_at}}</td>
                                 <td>{!! $mission->getActionButtonsAttribute() !!}</td>
                             </tr>
                         @endforeach
