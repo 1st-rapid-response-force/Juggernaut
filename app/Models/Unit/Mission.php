@@ -10,7 +10,7 @@ class Mission extends Model implements HasMedia
 {
     use HasMediaTrait;
     protected $fillable = ['name','checksum','user_id'];
-    protected $appends = ['download'];
+    protected $appends = ['download','filename'];
     protected $hidden = ['media'];
 
 
@@ -22,6 +22,11 @@ class Mission extends Model implements HasMedia
     public function getDownloadAttribute()
     {
         return 'https://1st-rrf.com'.$this->getMedia('mission')->first()->getUrl();
+    }
+
+    public function getFilenameAttribute()
+    {
+        return $this->getMedia('mission')->first()->file_name;
     }
 
     /**
