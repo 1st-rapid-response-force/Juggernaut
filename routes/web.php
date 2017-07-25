@@ -239,6 +239,7 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['web','auth','admin','f
         Route::resource('paperwork', 'PaperworkController', ['as' => 'admin']);
         Route::resource('change-requests', 'ChangeController', ['as' => 'admin']);
         Route::resource('teams', 'TeamController', ['as' => 'admin']);
+        Route::resource('missions', 'MissionController', ['as' => 'admin']);
         Route::resource('assignments', 'ChangeController', ['as' => 'admin']);
     });
 

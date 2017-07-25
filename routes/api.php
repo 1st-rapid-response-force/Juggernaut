@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 */
 
 Route::get('loadout/{steam_id}', 'Frontend\Unit\LoadoutController@getLoadoutAPI')->name('api.loadout.get');
+Route::get('missions', 'Backend\Unit\MissionController@getMissionsAPI')->name('api.missions.get');
 
 
 
