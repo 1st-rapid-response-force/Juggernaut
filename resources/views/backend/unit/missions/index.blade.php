@@ -23,10 +23,12 @@
 
         <div class="box-body">
             <p>These files are PBO files that are automatically uploaded to the server.</p>
+
             <h4>Administrative Options</h4>
             <p><button type="button" class="btn btn-success" data-toggle="modal" data-target="#newMission">New Mission</button>
             </p>
             <hr>
+            <h1>Time until next deployment: {{$deploymentTime->diffForHumans()}}</h1>
             <br>
             @if (count($missions) != 0)
                 @if (count($missions) != 0)

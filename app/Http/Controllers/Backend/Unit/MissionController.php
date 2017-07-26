@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\Unit;
 
 use App\Models\Unit\Mission;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -11,7 +12,12 @@ class MissionController extends Controller
     public function index()
     {
         $missions = Mission::all();
-        return view('backend.unit.missions.index',['missions' => $missions]);
+        $hour = Carbon::now();
+        $hour->second = 0;
+        $hour->minute = 0;
+        $hour->addHour(1);
+
+        return view('backend.unit.missions.index',['missions' => $missions,'deploymentTime' => $hour]);
     }
 
     public function store(Request $request)
