@@ -72,11 +72,18 @@
                             <span>Member Files</span>
                         </a>
                     </li>
-
-                    <li class="{{ Active::pattern('admin/unit/operations*') }}">
-                        <a href="{{route('admin.operations.index')}}">
+                    
+                    <li class="{{ Active::pattern('admin/unit/files*') }}">
+                        <a href="{{route('admin.members.index')}}">
                             <i class="fa fa-circle-o"></i>
-                            <span>Operations</span>
+                            <span>Member Files</span>
+                        </a>
+                    </li>
+
+                    <li class="{{ Active::pattern('admin/unit/missions*') }}">
+                        <a href="{{route('admin.missions.index')}}">
+                            <i class="fa fa-circle-o"></i>
+                            <span>Server Missions</span>
                         </a>
                     </li>
 
