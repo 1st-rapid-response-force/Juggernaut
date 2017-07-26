@@ -28,7 +28,9 @@
             <p><button type="button" class="btn btn-success" data-toggle="modal" data-target="#newMission">New Mission</button>
             </p>
             <hr>
+            @if ($deploy)
             <h1>Time until next deployment: {{$deploymentTime->diffForHumans()}}</h1>
+            @endif
             <br>
             @if (count($missions) != 0)
                 @if (count($missions) != 0)
