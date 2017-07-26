@@ -18,9 +18,9 @@ class MissionController extends Controller
         $hour->addHour(1);
         $deploy = false;
 
-        $missions = Mission::whereDeploy(1)->get();
+        $deployMissions = Mission::whereDeploy(1)->get();
 
-        if($missions->count() > 0)
+        if($deployMissions->count() > 0)
             $deploy = true;
 
         return view('backend.unit.missions.index',['missions' => $missions,'deploymentTime' => $hour,'deploy' => $deploy]);
