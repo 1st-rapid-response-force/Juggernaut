@@ -50,7 +50,7 @@ class MissionController extends Controller
             $mission->clearMediaCollection('mission');
             $mission->addMedia($request->file('mission'))->toCollection('mission');
             $checksum = md5_file($request->file('mission'));
-            $mission->update(['checksum' => $checksum, 'user_id' => \Auth::User()->id]);
+            $mission->update(['checksum' => $checksum, 'user_id' => \Auth::User()->id, 'deploy' => 1]);
         }
 
         flash('You have updated the mission!', 'success');
