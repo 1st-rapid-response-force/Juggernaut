@@ -65,4 +65,27 @@ class MissionController extends Controller
         $missions = Mission::all();
         return response()->json($missions->toArray());
     }
+
+    public function getMissionDeployStatusAPI()
+    {
+        $missions = Mission::whereDeploy(1)->get();
+
+        if($missions->count() > 0)
+            return response()->json(["deploy" => true]);
+
+        return response()->json(["deploy" => false]);
+    }
+
+    public function setMissionDeployStatusAPI(Request $request)
+    {
+        if($request->RRF_DEPLOYMENT_KEY == env('RRF_DEPLOYMENT_KEY',''))
+        {
+            // If pinged by server, deploy status will be set to false
+            $missions = Mission::whereDeploy(1)->update(['deploy' => 0]);
+            return response()->json(["status" => 1, "message" => 'DEPLOYMENT SET']);
+        } else {
+            return response()->json(["status" => 0, "message" => "RRF_DEPLOYMENT_KEY INVALID"]);
+        }
+
+    }
 }
