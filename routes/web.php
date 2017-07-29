@@ -204,7 +204,7 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['web','auth','admin','f
     Route::post('overlord/update-maps', 'OverlordController@postUpdateMaps')->name('admin.overlord.updatemaps');
     Route::post('overlord/start-servers', 'OverlordController@postStartServers')->name('admin.overlord.startservers');
     Route::post('overlord/kill-servers', 'OverlordController@postKillServers')->name('admin.overlord.killservers');
-    Route::post('overlord/heartbeat', 'OverlordController@postHeartbeat')->name('admin.overlord.heartbeat');
+    Route::post('overlord/heartbeat', 'OverlordController@postRequestHeartbeat')->name('admin.overlord.heartbeat');
 
     Route::group(['namespace' => 'Unit', 'prefix'=>'unit'], function (){
         Route::post('members/{id}/add-award', 'FileController@addAward')->name('admin.members.edit.add-award');

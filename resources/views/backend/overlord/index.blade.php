@@ -70,6 +70,9 @@
             <h3>Server Tools</h3>
             <div class="row">
                 <div class="col-lg-4">
+                    {!! Form::open(['route' => ['admin.overlord.heartbeat'],'class' => 'form-horizontal', 'method' => 'POST', 'role' => 'form', 'files' => true]) !!}
+                    <button type="submit" class="btn btn-primary btn-block">Heartbeat - Server Status Ping</button><br>
+                    {!! Form::close() !!}
                     {!! Form::open(['route' => ['admin.overlord.updatemaps'],'class' => 'form-horizontal', 'method' => 'POST', 'role' => 'form', 'files' => true]) !!}
                     <button type="submit" class="btn btn-primary btn-block">Update Maps</button><br>
                     <small>Updating maps will restart all ARMA 3 server!</small>

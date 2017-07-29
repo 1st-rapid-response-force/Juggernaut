@@ -42,6 +42,15 @@ class OverlordController extends Controller
         flash('Servers have been started!', 'success');
         return redirect()->back();
     }
+
+    public function postRequestHeartbeat()
+    {
+        $process = new Process('python3 '.base_path('Capri/csmclient.py RRF_SERVERSTATUS'));
+        $process->run();
+        flash('Servers pinged, new information is new available below!', 'success');
+        return redirect()->back();
+    }
+
     public function postHeartbeat(Request $request)
     {
         if($request->RRF_DEPLOYMENT_KEY == env('RRF_DEPLOYMENT_KEY',''))
