@@ -200,6 +200,12 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['web','auth','admin','f
         Route::get('create/training', 'CalendarController@createTraining')->name('admin.calendar.create.training');
     });
 
+    Route::get('overlord', 'OverlordController@index')->name('admin.overlord');
+    Route::post('overlord/update-maps', 'OverlordController@postUpdateMaps')->name('admin.overlord.updatemaps');
+    Route::post('overlord/start-servers', 'OverlordController@postStartServers')->name('admin.overlord.startservers');
+    Route::post('overlord/kill-servers', 'OverlordController@postKillServers')->name('admin.overlord.killservers');
+    Route::post('overlord/heartbeat', 'OverlordController@postHeartbeat')->name('admin.overlord.heartbeat');
+
     Route::group(['namespace' => 'Unit', 'prefix'=>'unit'], function (){
         Route::post('members/{id}/add-award', 'FileController@addAward')->name('admin.members.edit.add-award');
         Route::post('members/{id}/add-qualification', 'FileController@addQualification')->name('admin.members.edit.add-qualification');
@@ -212,6 +218,7 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['web','auth','admin','f
         Route::resource('members', 'FileController', ['as' => 'admin']);
 
         Route::get('promotions', 'PromotionController@index')->name('admin.promotions');
+
 
         Route::delete('programs/{program}/goals/{goal}/delete', 'ProgramController@deleteProgramGoal')->name('admin.programs.program-goals.delete');
         Route::get('programs/{id}/goals/{goal}', 'ProgramController@editProgramGoal')->name('admin.programs.program-goals.edit');
