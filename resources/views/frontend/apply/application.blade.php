@@ -93,7 +93,7 @@
                                             <div data-row-span="1">
                                                 <div data-field-span="1">
                                                     <label>WHAT POSITION ARE YOU APPLYING FOR</label>
-                                                    <textarea name="position" rows="1" placeholder="Leave blank if you where not referred by a recruitment post."></textarea>
+                                                    <textarea name="position" rows="1" placeholder="Leave blank if you were not referred by a recruitment post."></textarea>
                                                 </div>
                                             </div>
                                             <div data-row-span="1">
