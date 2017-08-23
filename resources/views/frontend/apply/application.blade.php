@@ -29,6 +29,7 @@
                             </ul>
                             <div class="alert alert-warning">
                                 <p>The 1st Rapid Response Force does not allow dual-claning within active membership, you can still join the unit and participate in operations but you will be limited to the Reserve Pool.</p>
+                                <p>We review applications weekly, each Saturday in bulk. We will email you our decision.</p>
                             </div>
                             <HR>
                             <div class="well">
