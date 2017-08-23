@@ -90,16 +90,10 @@
                                                     <label><input type="radio" name="dishonorable_discharge" value="0" checked> NO</label> &nbsp;
                                                 </div>
                                             </div>
-                                            <div data-row-span="2">
+                                            <div data-row-span="1">
                                                 <div data-field-span="1">
-                                                    <label>ACTIVE DUTY OR RESERVE</label>
-                                                    <label><input type="radio" name="reserve" value="0" checked> ACTIVE DUTY</label> &nbsp;
-                                                    <label><input type="radio" name="reserve" value="1"> RESERVE</label> &nbsp;
-                                                </div>
-                                                <div data-field-span="1">
-                                                    <label>INFANTRY OR AVIATION</label>
-                                                    <label><input type="radio" name="role" value="INFANTRY" checked> INFANTRY</label> &nbsp;
-                                                    <label><input type="radio" name="role" value="AVIATION"> AVIATION</label> &nbsp;
+                                                    <label>WHAT POSITION ARE YOU APPLYING FOR</label>
+                                                    <textarea name="position" rows="1" placeholder="Leave blank if you where not referred by a recruitment post."></textarea>
                                                 </div>
                                             </div>
                                             <div data-row-span="1">
