@@ -51,8 +51,6 @@ class Kernel extends ConsoleKernel
             ->daily();
         $schedule->command('member:squadxml')
             ->daily();
-        $schedule->command('csm:heartbeat')
-            ->everyMinute();
         $schedule->command('member:create-perstat')
             ->weekly()->saturdays()->at('6:00');
 
