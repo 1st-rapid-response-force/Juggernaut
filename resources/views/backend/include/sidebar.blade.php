@@ -115,6 +115,12 @@
                             <span>Qualifications</span>
                         </a>
                     </li>
+                    <li class="{{ Active::pattern('admin/unit/qualifications*') }}">
+                        <a href="{{route('admin.operations.index')}}">
+                            <i class="fa fa-circle-o"></i>
+                            <span>Operations</span>
+                        </a>
+                    </li>
                     <li class="{{ Active::pattern('admin/unit/teams*') }}">
                         <a href="{{route('admin.teams.index')}}">
                             <i class="fa fa-circle-o"></i>
