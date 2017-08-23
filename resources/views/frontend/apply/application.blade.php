@@ -138,21 +138,21 @@
                                                     <label><input type="radio" name="agreement_milsim" value="0" checked> NO</label> &nbsp;
                                                 </div>
                                                 <div data-field-span="1">
-                                                    <label>I UNDERSTAND THAT BY SUBMITTING THIS FORM, IT WILL IN EFFECT CHANGE MY STATUS AS A CIVILIAN TO A MEMBER OF THE 1ST RRF AND WILL BE HELD TO UNIT GUIDELINES</label>
-                                                    <label><input type="radio" name="agreement_guidelines" value="1"> YES</label> &nbsp;
-                                                    <label><input type="radio" name="agreement_guidelines" value="0" checked> NO</label> &nbsp;
+                                                    <label>I UNDERSTAND I WILL BE EXPECTED TO SHOW UP TWICE A WEEK TO EVENTS (UNLESS I NOTIFY IN ADVANCE I WILL NOT BE ABLE TO ATTEND)</label>
+                                                    <label><input type="radio" name="agreement_twice" value="1"> YES</label> &nbsp;
+                                                    <label><input type="radio" name="agreement_twice" value="0" checked> NO</label> &nbsp;
                                                 </div>
                                             </div>
                                             <div data-row-span="2">
                                                 <div data-field-span="1">
-                                                    <label>I UNDERSTAND THAT I AM EXPECTED TO FOLLOW ORDERS GIVEN TO ME</label>
-                                                    <label><input type="radio" name="agreement_orders" value="1"> YES</label> &nbsp;
-                                                    <label><input type="radio" name="agreement_orders" value="0" checked> NO</label> &nbsp;
+                                                    <label>I UNDERSTAND IF ACCEPTED INTO THE 1RRF, I WILL BE ASSIGNED RECRUIT STATUS AND CAN BE DISMISSED AT ANYTIME (UNTIL COMPLETION OF RECRUITMENT PHASE).</label>
+                                                    <label><input type="radio" name="agreement_recruit" value="1"> YES</label> &nbsp;
+                                                    <label><input type="radio" name="agreement_recruit" value="0" checked> NO</label> &nbsp;
                                                 </div>
                                                 <div data-field-span="1">
-                                                    <label>I UNDERSTAND THAT I AM EXPECTED TO RESPECT RANKS, CUSTOMS AND COURTESIES</label>
-                                                    <label><input type="radio" name="agreement_ranks" value="1"> YES</label> &nbsp;
-                                                    <label><input type="radio" name="agreement_ranks" value="0" checked> NO</label> &nbsp;
+                                                    <label>I UNDERSTAND IF ACCEPTED INTO THE 1RRF, I WILL BE ASSIGNED TO AN EXISTING RRF MEMBER FOR TRAINING</label>
+                                                    <label><input type="radio" name="agreement_buddy" value="1"> YES</label> &nbsp;
+                                                    <label><input type="radio" name="agreement_buddy" value="0" checked> NO</label> &nbsp;
                                                 </div>
                                             </div>
                                         </fieldset>

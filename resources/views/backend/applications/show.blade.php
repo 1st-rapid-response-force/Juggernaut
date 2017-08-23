@@ -176,6 +176,29 @@
                                     <label><input type="radio" name="agreement_ranks" value="0" {{$app->getApplication()->agreement_ranks == 0 ? 'checked' : ''}}> NO</label> &nbsp;
                                 </div>
                             </div>
+                            @if(isset($app->getApplication()->agreement_recruit))
+                            <div data-row-span="1">
+                                <div data-field-span="1">
+                                    <label>I UNDERSTAND I WILL BE EXPECTED TO SHOW UP TWICE A WEEK TO EVENTS (UNLESS I NOTIFY IN ADVANCE I WILL NOT BE ABLE TO ATTEND)</label>
+                                    <label><input type="radio" name="agreement_twice" value="1" {{$app->getApplication()->agreement_twice == 1 ? 'checked' : ''}}> YES</label> &nbsp;
+                                    <label><input type="radio" name="agreement_twice" value="0" {{$app->getApplication()->agreement_twice == 0 ? 'checked' : ''}}> NO</label> &nbsp;
+                                </div>
+                            </div>
+                            @endif
+                            @if(isset($app->getApplication()->agreement_recruit))
+                            <div data-row-span="2">
+                                <div data-field-span="1">
+                                    <label>I UNDERSTAND IF ACCEPTED INTO THE 1RRF, I WILL BE ASSIGNED RECRUIT STATUS AND CAN BE DISMISSED AT ANYTIME (UNTIL COMPLETION OF RECRUITMENT PHASE).</label>
+                                    <label><input type="radio" name="agreement_recruit" value="1" {{$app->getApplication()->agreement_recruit == 1 ? 'checked' : ''}}> YES</label> &nbsp;
+                                    <label><input type="radio" name="agreement_recruit" value="0" {{$app->getApplication()->agreement_recruit == 0 ? 'checked' : ''}}> NO</label> &nbsp;
+                                </div>
+                                <div data-field-span="1">
+                                    <label>I UNDERSTAND IF ACCEPTED INTO THE 1RRF, I WILL BE ASSIGNED TO AN EXISTING RRF MEMBER FOR TRAINING</label>
+                                    <label><input type="radio" name="agreement_buddy" value="1" {{$app->getApplication()->agreement_buddy == 1 ? 'checked' : ''}}> YES</label> &nbsp;
+                                    <label><input type="radio" name="agreement_buddy" value="0" {{$app->getApplication()->agreement_buddy == 0 ? 'checked' : ''}}> NO</label> &nbsp;
+                                </div>
+                            </div>
+                            @endif
                         </fieldset>
                         <br>
                         <div class="pull-right">
