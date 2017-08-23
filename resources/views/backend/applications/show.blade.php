@@ -95,27 +95,33 @@
                                     <label><input type="radio" name="dishonorable_discharge" value="0" {{$app->getApplication()->dishonorable_discharge == 0 ? 'checked' : ''}}> NO</label> &nbsp;
                                 </div>
                             </div>
+
                             <div data-row-span="1">
                                 <div data-field-span="1">
-                                    <label>REASONING FOR JOINING THE 1ST RRF</label>
-                                    <textarea name="reason_for_joining" rows="3" placeholder="">{{$app->getApplication()->reason_for_joining}}</textarea>
+                                    <label>WHAT POSITION ARE YOU APPLYING FOR</label>
+                                    <textarea name="position" rows="1" placeholder="Leave blank if you where not referred by a recruitment post."></textarea>
                                 </div>
                             </div>
 
-                            @if(isset($app->getApplication()->reserve) && isset($app->getApplication()->role))
-                                <div data-row-span="2">
+                            @if(isset($app->getApplication()->position))
+                                <div data-row-span="1">
                                     <div data-field-span="1">
-                                        <label>ACTIVE DUTY OR RESERVE</label>
-                                        <label><input type="radio" name="reserve" value="0"  {{$app->getApplication()->reserve == 0 ? 'checked' : ''}}> ACTIVE DUTY</label> &nbsp;
-                                        <label><input type="radio" name="reserve" value="1" {{$app->getApplication()->reserve == 1 ? 'checked' : ''}}> RESERVE</label> &nbsp;
-                                    </div>
-                                    <div data-field-span="1">
-                                        <label>INFANTRY OR AVIATION</label>
-                                        <label><input type="radio" name="role" value="INFANTRY" {{$app->getApplication()->role == 'INFANTRY' ? 'checked' : ''}}> INFANTRY</label> &nbsp;
-                                        <label><input type="radio" name="role" value="AVIATION" {{$app->getApplication()->role == 'AVIATION' ? 'checked' : ''}}> AVIATION</label> &nbsp;
+                                        <label>WHAT POSITION ARE YOU APPLYING FOR</label>
+                                        <textarea name="position" rows="1" placeholder="Leave blank if you where not referred by a recruitment post.">{{$app->getApplication()->position}}</textarea>
                                     </div>
                                 </div>
                             @endif
+
+                            @if(isset($app->getApplication()->reason_for_joining))
+                                <div data-row-span="1">
+                                    <div data-field-span="1">
+                                        <label>REASONING FOR JOINING THE 1ST RRF</label>
+                                        <textarea name="reason_for_joining" rows="3" placeholder="">{{$app->getApplication()->reason_for_joining}}</textarea>
+                                    </div>
+                                </div>
+                            @endif
+
+
                         </fieldset>
 
 
