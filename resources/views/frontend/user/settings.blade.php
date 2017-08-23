@@ -2,6 +2,23 @@
 
 @section('title','Settings')
 
+@section('after-styles-end')
+    <link href="/plugins/select2/select2.min.css" rel="stylesheet" type="text/css" />
+    <script src="/plugins/tinymce/tinymce.min.js"></script>
+    <script>tinymce.init({
+            selector: 'textarea',
+            height: 500,
+            menubar: false,
+            plugins: [
+                'advlist autolink lists link image charmap print preview anchor',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table contextmenu paste code media'
+            ],
+            toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media',
+            browser_spellcheck: true
+        });</script>
+@endsection
+
 @section('content')
     <!-- wrapper -->
     <section class="bg-grey-50 border-bottom-1 border-grey-300 padding-10">
@@ -119,14 +136,4 @@
 
 @section('after-scripts-end')
     <script type="text/javascript" src="/plugins/jquery-ui/jquery-ui.min.js"></script>
-    <script src="/plugins/ckeditor/ckeditor.js" type="text/javascript"></script>
-    <!-- Select2 -->
-    <script src="/plugins/select2/select2.full.min.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            CKEDITOR.replace( 'signature', {
-                height: 300
-            });
-        });
-    </script>
 @endsection

@@ -26,8 +26,14 @@ class FileController extends Controller
 
     public function index()
     {
-        $files = Member::all();
-        return view('backend.unit.files.index', ['files' => $files]);
+        $files = Member::active()->get();
+        return view('backend.unit.files.index', ['files' => $files,'type'=>'Active Members']);
+    }
+
+    public function indexNotActive()
+    {
+        $files = Member::whereActive(0)->get();
+        return view('backend.unit.files.index', ['files' => $files,'type'=>'Non-Active Members']);
     }
 
     public function show($id)

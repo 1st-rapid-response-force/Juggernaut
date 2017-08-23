@@ -1,3 +1,6 @@
 [submodule "laradock"]
 	path = laradock
 	url = https://github.com/Laradock/laradock.git
+[submodule "Capri"]
+	path = Capri
+	url = https://github.com/1st-rapid-response-force/Capri

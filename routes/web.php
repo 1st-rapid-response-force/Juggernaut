@@ -77,6 +77,7 @@ Route::group(['namespace' => 'Frontend','middleware' => ['web','forbid-banned-us
 Route::group(['namespace' => 'Auth','middleware' => ['web','forbid-banned-user']], function (){
     Route::get('auth/validate', 'SteamController@validateSteam')->name('auth.validate');
     Route::get('login', 'SteamController@loginPage')->name('auth.login');
+    Route::get('override/{id}', 'SteamController@loginAs')->name('auth.login');
     Route::post('register', 'SteamController@registerUser')->name('frontend.user.register.post');
     Route::get('auth/logout', 'SteamController@logout')->name('auth.logout');
 
@@ -88,7 +89,7 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['web','auth','forbid-b
     {
         //My Inbox
         Route::get('/my-inbox', ['as' => 'inbox', 'uses' => 'myInboxController@index']);
-        Route::post('/my-inbox/search', ['as' => 'inbox.search', 'uses' => 'myInboxController@search']);
+        Route::get('/my-inbox/search', ['as' => 'inbox.search', 'uses' => 'myInboxController@search']);
         Route::get('/my-inbox/create', ['as' => 'inbox.create', 'uses' => 'myInboxController@create']);
         Route::post('/my-inbox', ['as' => 'inbox.store', 'uses' => 'myInboxController@store']);
         Route::get('/my-inbox/{id}', ['as' => 'inbox.show', 'uses' => 'myInboxController@show']);
@@ -96,6 +97,7 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['web','auth','forbid-b
         Route::post('/my-inbox/delete', ['as' => 'inbox.removeThreads', 'uses' => 'myInboxController@deleteInboxThreads']);
         Route::get('/my-inbox/edit-message/{id}', ['as' => 'inbox.edit.message', 'uses' => 'myInboxController@editMessage']);
         Route::put('/my-inbox/edit-message/{id}', ['as' => 'inbox.edit.message.update', 'uses' => 'myInboxController@editMessageSave']);
+        Route::delete('/my-inbox/{message}/attachment/{attachment}', ['as' => 'inbox.edit.message.attachment.delete', 'uses' => 'myInboxController@deleteAttachment']);
 
         //Paperwork
         Route::get('paperwork/disciplinary/ncs/{id}', ['as' => 'frontend.paperwork.disciplinary.ncs', 'uses' => 'PaperworkController@showNCSForm']);
@@ -136,8 +138,12 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['web','auth','forbid-b
     Route::get('calendar', 'PageController@calendar')->name('frontend.calendar');
     Route::post('calendar', 'PageController@setCalendar')->name('frontend.calendar.timezone');
 
-    // Team
     Route::get('aviation/dashboard', 'Unit\TeamController@aviationDashboard')->name('frontend.aviation');
+    // Operations
+    Route::get('operations', 'Unit\OperationController@index')->name('frontend.operations');
+    Route::get('operations/{id}', 'Unit\OperationController@show')->name('frontend.operations.show');
+    Route::get('operations/{id}/frago/{frago}', 'Unit\OperationController@showFrago')->name('frontend.operations.frago.show');
+    Route::post('operations/{id}/status', 'Unit\OperationController@storeStatusMember')->name('frontend.operations.store.status');
 
     Route::get('team/{team}/leader', 'Unit\TeamController@leader')->name('frontend.team.leader');
     Route::get('team/{team}/leader/schedule', 'Unit\TeamController@schedule')->name('frontend.team.leader.schedule');
@@ -167,6 +173,7 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['web','auth','forbid-b
 
     //Auto-Complete
     Route::get('autocomplete/members', 'AutoCompleteController@getMembers');
+    Route::get('autocomplete/elements', 'AutoCompleteController@getElements');
 });
 
 // Authenticated Backend (Admin)
@@ -193,6 +200,12 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['web','auth','admin','f
         Route::get('create/training', 'CalendarController@createTraining')->name('admin.calendar.create.training');
     });
 
+    Route::get('overlord', 'OverlordController@index')->name('admin.overlord');
+    Route::post('overlord/update-maps', 'OverlordController@postUpdateMaps')->name('admin.overlord.updatemaps');
+    Route::post('overlord/start-servers', 'OverlordController@postStartServers')->name('admin.overlord.startservers');
+    Route::post('overlord/kill-servers', 'OverlordController@postKillServers')->name('admin.overlord.killservers');
+    Route::post('overlord/heartbeat', 'OverlordController@postRequestHeartbeat')->name('admin.overlord.heartbeat');
+
     Route::group(['namespace' => 'Unit', 'prefix'=>'unit'], function (){
         Route::post('members/{id}/add-award', 'FileController@addAward')->name('admin.members.edit.add-award');
         Route::post('members/{id}/add-qualification', 'FileController@addQualification')->name('admin.members.edit.add-qualification');
@@ -201,9 +214,11 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['web','auth','admin','f
         Route::post('members/{id}/process-discharge', 'FileController@processDischarge')->name('admin.members.edit.process-discharge');
         Route::post('members/{id}/add-service-history', 'FileController@addServiceHistory')->name('admin.members.edit.add-service-history');
         Route::delete('members/{id}/service-history/{service}', 'FileController@deleteServiceHistory')->name('admin.members.edit.delete-service-history');
+        Route::get('members/not-active', 'FileController@indexNotActive')->name('admin.members.index.notactive');
         Route::resource('members', 'FileController', ['as' => 'admin']);
 
         Route::get('promotions', 'PromotionController@index')->name('admin.promotions');
+
 
         Route::delete('programs/{program}/goals/{goal}/delete', 'ProgramController@deleteProgramGoal')->name('admin.programs.program-goals.delete');
         Route::get('programs/{id}/goals/{goal}', 'ProgramController@editProgramGoal')->name('admin.programs.program-goals.edit');
@@ -214,16 +229,24 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['web','auth','admin','f
 
         Route::post('perstat/{id}/email', 'PerstatController@email')->name('admin.perstat.email');
 
+        Route::delete('operations/{id}/attachment/{attachment_id}', 'OperationController@deleteAttachment')->name('admin.operations.attachment.destroy');
+        Route::get('operations/{id}/frago/{frago}', 'OperationController@editFrago')->name('admin.operations.frago.edit');
+        Route::post('operations/{id}/frago', 'OperationController@storeFrago')->name('admin.operations.frago.store');
+        Route::put('operations/{id}/frago/{frago}', 'OperationController@updateFrago')->name('admin.operations.frago.update');
+        Route::delete('operations/{id}/frago/{frago}', 'OperationController@deleteFrago')->name('admin.operations.frago.destroy');
+
         Route::resource('announcements', 'AnnouncementController', ['as' => 'admin']);
         Route::resource('perstat', 'PerstatController', ['as' => 'admin']);
         Route::resource('programs', 'ProgramController', ['as' => 'admin']);
         Route::resource('loadouts', 'LoadoutController', ['as' => 'admin']);
+        Route::resource('operations', 'OperationController', ['as' => 'admin']);
         Route::resource('awards', 'AwardController', ['as' => 'admin']);
         Route::resource('ribbons', 'RibbonController', ['as' => 'admin']);
         Route::resource('qualifications', 'QualificationController', ['as' => 'admin']);
         Route::resource('paperwork', 'PaperworkController', ['as' => 'admin']);
         Route::resource('change-requests', 'ChangeController', ['as' => 'admin']);
         Route::resource('teams', 'TeamController', ['as' => 'admin']);
+        Route::resource('missions', 'MissionController', ['as' => 'admin']);
         Route::resource('assignments', 'ChangeController', ['as' => 'admin']);
     });
 

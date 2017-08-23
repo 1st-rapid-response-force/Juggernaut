@@ -14,6 +14,10 @@ use Illuminate\Http\Request;
 */
 
 Route::get('loadout/{steam_id}', 'Frontend\Unit\LoadoutController@getLoadoutAPI')->name('api.loadout.get');
+Route::get('missions', 'Backend\Unit\MissionController@getMissionsAPI')->name('api.missions.get');
+Route::get('mission-deployment', 'Backend\Unit\MissionController@getMissionDeployStatusAPI')->name('api.mission-deployment.get');
+Route::post('mission-deployment', 'Backend\Unit\MissionController@setMissionDeployStatusAPI')->name('api.mission-deployment.post');
+Route::post('overlord/heartbeat', 'Backend\OverlordController@postHeartbeat')->name('api.overlord.heartbeat');
 
 
 

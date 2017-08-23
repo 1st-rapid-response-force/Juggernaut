@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Spatie\MediaLibrary\Media;
 
 class myInboxController extends Controller
 {
@@ -31,7 +32,8 @@ class myInboxController extends Controller
         $currentUserId = \Auth::user()->id;
         $threads = $user->threads()->where('subject', 'LIKE', '%'.$request->search.'%')->latest('updated_at')->paginate(15);
         return view('frontend.my-inbox.index-search', compact('threads', 'currentUserId'))
-            ->with('user',$user);
+            ->with('user',$user)
+            ->with('search',$request->search);
     }
 
     /**
@@ -269,6 +271,22 @@ class myInboxController extends Controller
             flash('You have left these conversations');
         }
         return redirect('/my-inbox');
+    }
+
+    public function deleteAttachment($message, $attachment)
+    {
+        $user = \Auth::user();
+        $message = Message::findOrFail($message);
+        if(($message->user->id == $user->id) || $user->admin)
+        {
+            $media = Media::findOrFail($attachment);
+            $media->delete();
+            flash('You have deleted that attachment!', 'success');
+            return redirect()->back();
+        } else {
+            flash('You do not have the permission to delete this attachment!', 'danger');
+            return redirect()->back();
+        }
     }
 
     /**

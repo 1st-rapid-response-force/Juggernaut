@@ -73,6 +73,13 @@
                         </a>
                     </li>
 
+                    <li class="{{ Active::pattern('admin/unit/missions*') }}">
+                        <a href="{{route('admin.missions.index')}}">
+                            <i class="fa fa-circle-o"></i>
+                            <span>Server Missions</span>
+                        </a>
+                    </li>
+
                     <li class="{{ Active::pattern('admin/unit/paperwork*') }}">
                         <a href="{{route('admin.paperwork.index')}}">
                             <i class="fa fa-circle-o"></i>

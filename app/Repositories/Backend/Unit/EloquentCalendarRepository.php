@@ -5,6 +5,9 @@
 
 namespace App\Repositories\Backend\Unit;
 
+use App\Models\Unit\Member;
+use App\Models\Unit\Operation;
+use App\Models\Unit\Team;
 use Carbon\Carbon;
 use App\Models\Unit\Event;
 use App\Models\Unit\PersonnelFile\Award;
@@ -33,7 +36,87 @@ class EloquentCalendarRepository implements CalendarRepositoryContract {
             $event->end_time = $event->end_time->setTimezone($this->timezone);
         }
 
-        return \Calendar::addEvents($events);
+        // Birthdays
+        $birthdays = collect();
+        foreach (Member::whereActive(1)->get() as $mem)
+        {
+            if(isset($mem->user->application))
+            {
+                $dob = Carbon::parse($mem->user->application->getApplication()->dob)->year(Carbon::now()->year);
+                $birthdays->push(\Calendar::event(
+                    $mem.' -  Birthday', //event title
+                    true, //full day event?
+                    $dob,
+                    $dob,
+                    rand(9000,10000),
+                    [
+                        'color' => '#4B870C'
+                    ]
+                ));
+            }
+        }
+
+        // Team Scheduling
+        $scheduling = collect();
+        foreach (Team::all() as $team)
+        {
+            // Make sure the schedule is valid
+            if(isset($team->schedule))
+            {
+                Carbon::setWeekStartsAt(Carbon::SUNDAY);
+                $date = Carbon::now($team->getSchedule()->timezone)
+                    ->startOfWeek()
+                    ->addDay($team->getSchedule()->day)
+                    ->addHour($team->getSchedule()->hour)
+                    ->addMinute($team->getSchedule()->minute)
+                    ->setTimezone($this->timezone);
+                $endDate = Carbon::now($team->getSchedule()->timezone)
+                    ->startOfWeek()
+                    ->addDay($team->getSchedule()->day)
+                    ->addHour($team->getSchedule()->hour)
+                    ->addMinute($team->getSchedule()->minute)
+                    ->addHour(1)
+                    ->setTimezone($this->timezone);
+
+                $scheduling->push(\Calendar::event(
+                    $team->name.' -  Training', //event title
+                    false, //full day event?
+                    $date,
+                    $endDate,
+                    rand(5000,6000),
+                    [
+                        'color' => '#8B0000',
+                        'url' => route('frontend.team.leader.schedule',$team->id)
+                    ]
+                ));
+            }
+        }
+
+        // Add Operations
+        $operations = collect();
+
+        foreach (Operation::wherePublished(1)->get() as $op)
+        {
+            $scheduling->push(\Calendar::event(
+                $op->name, //event title
+                false, //full day event?
+                $op->start_time->setTimezone($this->timezone),
+                $op->end_time->setTimezone($this->timezone),
+                rand(5000,6000),
+                [
+                    'color' => '#000000',
+                    'url' => route('admin.operations.edit',$op->id)
+                ]
+            ));
+        }
+
+        $calendar = \Calendar::addEvents($events);
+        $calendar = \Calendar::addEvents($birthdays);
+        $calendar = \Calendar::addEvents($scheduling);
+        $calendar = \Calendar::addEvents($operations);
+        return $calendar->setOptions([
+            'timeFormat' => 'H(:mm)'
+        ]);
     }
 
     /**

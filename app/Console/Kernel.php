@@ -6,6 +6,7 @@ use App\Console\Commands\AddTimeOfService;
 use App\Console\Commands\ArchiveFlightPlans;
 use App\Console\Commands\ClearLOA;
 use App\Console\Commands\ClearLoadout;
+use App\Models\Overlord\Heartbeat;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -27,6 +28,7 @@ class Kernel extends ConsoleKernel
         AddTimeOfService::class,
         ClearLoadout::class,
         ClearLOA::class,
+        \App\Console\Commands\heartbeat::class
     ];
 
     /**
@@ -49,6 +51,8 @@ class Kernel extends ConsoleKernel
             ->daily();
         $schedule->command('member:squadxml')
             ->daily();
+        $schedule->command('csm:heartbeat')
+            ->everyMinute();
         $schedule->command('member:create-perstat')
             ->weekly()->saturdays()->at('6:00');
 
