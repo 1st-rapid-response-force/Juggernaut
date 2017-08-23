@@ -68,7 +68,7 @@ class ApplicationController extends Controller
         {
             $mem->reserve = 1;
         } else {
-            $pending = Team::whereName('Pending Assignment')->first();
+            $pending = Team::whereName('Recruits')->first();
             $mem->team_id = $pending->id;
         }
 

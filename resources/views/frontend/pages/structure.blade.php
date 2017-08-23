@@ -30,10 +30,9 @@
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs" role="tablist">
                                 <li role="presentation" class="active"><a href="#command" aria-controls="assignments" role="tab" data-toggle="tab">Command</a></li>
-                                <li role="presentation"><a href="#infantry" aria-controls="structure" role="tab" data-toggle="tab">Infantry</a></li>
+                                <li role="presentation"><a href="#infantry" aria-controls="structure" role="tab" data-toggle="tab">ODA Teams</a></li>
                                 <li role="presentation"><a href="#aviation" aria-controls="structure" role="tab" data-toggle="tab">Aviation</a></li>
-                                <li role="presentation"><a href="#special" aria-controls="structure" role="tab" data-toggle="tab">Pending Assignment</a></li>
-                                <li role="presentation"><a href="#reserve" aria-controls="structure" role="tab" data-toggle="tab">Reserve Pool</a></li>
+                                <li role="presentation"><a href="#special" aria-controls="structure" role="tab" data-toggle="tab">Recruits</a></li>
                                 <li role="presentation"><a href="#discharged" aria-controls="structure" role="tab" data-toggle="tab">Discharges</a></li>
                                 <li role="presentation"><a href="#board" aria-controls="structure" role="tab" data-toggle="tab">Board Of Operations & Support</a></li>
                             </ul>
@@ -53,9 +52,6 @@
                                 </div>
 
                                 <div role="tabpanel" class="tab-pane" id="infantry">
-                                    <h4><strong><a href="{{route('frontend.team',3)}}">1st Platoon - Command</a></strong></h4>
-                                    <img src="{{$oges->avatar}}" class="img-circle" style="padding: 2px; height: 32px; width: 32px;"> <a href="{{route('frontend.files.file',$oges->id)}}">{{$oges->searchable_name}} - Platoon Leader</a></br>
-
                                 @foreach($infantryGroups as $group)
                                             <h4><strong><a href="{{route('frontend.team',$group->id)}}">{{$group->name}}</a></strong></h4>
                                             @foreach($group->assignments()->orderBy('order')->get() as $assignment)
@@ -86,28 +82,17 @@
                                 </div>
 
                                 <div role="tabpanel" class="tab-pane" id="special">
-                                    @if((\App\Models\Unit\Team::whereName('Pending Assignment')->first()->count() > 0))
-                                        <h4><strong>Pending Assignment</strong></h4>
-                                        @foreach(\App\Models\Unit\Team::whereName('Pending Assignment')->first()->members as $member)
+                                    @if((\App\Models\Unit\Team::whereName('Recruits')->first()->count() > 0))
+                                        <h4><strong>Recruits</strong></h4>
+                                        @foreach(\App\Models\Unit\Team::whereName('Recruits')->first()->members as $member)
                                             <img src="{{$member->avatar}}" class="img-circle" style="padding: 2px; height: 32px; width: 32px;"><a href="{{route('frontend.files.file',$member->id)}}"> {{$member->searchable_name}} - {{$member->position}}</a></br>
                                         @endforeach
                                     @else
-                                        <h4><strong>Pending Assignment</strong></h4>
+                                        <h4><strong>Recruits</strong></h4>
                                         <p>There are currently no members in this group.</p>
                                     @endif
                                 </div>
 
-                                <div role="tabpanel" class="tab-pane" id="reserve">
-                                    @if((\App\Models\Unit\Member::active()->where('reserve',1)->get()->count() > 0))
-                                        <h4><strong><a href="{{route('frontend.team',$reserve->id)}}">{{$reserve->name}}</a></strong></h4>
-                                        @foreach(\App\Models\Unit\Member::active()->where('reserve',1)->get() as $member)
-                                            <img src="{{$member->avatar}}" class="img-circle" style="padding: 2px; height: 32px; width: 32px;"><a href="{{route('frontend.files.file',$member->id)}}"> {{$member->searchable_name}} - Reserve</a></br>
-                                        @endforeach
-                                    @else
-                                        <h4><strong><a href="{{route('frontend.team',$reserve->id)}}">{{$reserve->name}}</a></strong></h4>
-                                        <p>There are currently no members in this group.</p>
-                                    @endif
-                                </div>
 
                                 <div role="tabpanel" class="tab-pane" id="discharged">
                                     @if(($discharged->count() > 0))
@@ -138,12 +123,10 @@
                                     <br><br>
                                     <h4><strong><a href="#">Support Department Leadership</a></strong></h4>
                                     <img src="{{$rod->avatar}}" class="img-circle" style="padding: 2px; height: 32px; width: 32px;"><a href="{{route('frontend.files.file',$rod->id)}}"> {{$rod->searchable_name}} - (S1) Web Design and Administration</a></br>
-                                    <img src="/img/avatars/background.png" class="img-circle" style="padding: 2px; height: 32px; width: 32px;"> <a href="#">Unassigned - (S2) Unit Infrastructure Security</a></br>
-                                    <img src="{{$oges->avatar}}" class="img-circle" style="padding: 2px; height: 32px; width: 32px;"><a href="{{route('frontend.files.file',$oges->id)}}"> {{$oges->searchable_name}} - (S3) Official Operations Mission Development and Management</a></br>
+                                    <img src="{{$rod->avatar}}" class="img-circle" style="padding: 2px; height: 32px; width: 32px;"> <a href="{{route('frontend.files.file',$rod->id)}}">Unassigned - (S2) Unit Infrastructure Security</a></br>
+                                    <img src="{{$oges->avatar}}" class="img-circle" style="padding: 2px; height: 32px; width: 32px;"><a href="{{route('frontend.files.file',$oges->id)}}"> {{$oges->searchable_name}} - (S3) Operations Mission Development and Management</a></br>
                                     <img src="{{$striker->avatar}}" class="img-circle" style="padding: 2px; height: 32px; width: 32px;"><a href="{{route('frontend.files.file',$striker->id)}}"> {{$striker->searchable_name}} - (S4) MODPACK/Capabilities Procurement and Testing</a></br>
-                                    <img src="/img/avatars/background.png" class="img-circle" style="padding: 2px; height: 32px; width: 32px;"> <a href="#">Unassigned - (S5) Recruitment and Entry Management</a></br>
-                                    <img src="/img/avatars/background.png" class="img-circle" style="padding: 2px; height: 32px; width: 32px;"> <a href="#">Unassigned - (S6) Server and Infrastructure Management</a></br>
-                                    <img src="{{$oges->avatar}}" class="img-circle" style="padding: 2px; height: 32px; width: 32px;"><a href="{{route('frontend.files.file',$oges->id)}}"> {{$oges->searchable_name}} - (S7) Doctrine Development</a></br>
+                                    <img src="{{$oges->avatar}}" class="img-circle" style="padding: 2px; height: 32px; width: 32px;"><a href="{{route('frontend.files.file',$oges->id)}}"> {{$oges->searchable_name}} - (S4) Doctrine Development</a></br>
                                 </div>
                             </div>
 
