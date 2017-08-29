@@ -156,7 +156,7 @@
                                     <label><input type="radio" name="agreement_milsim" value="1" {{$app->getApplication()->agreement_milsim == 1 ? 'checked' : ''}} > YES</label> &nbsp;
                                     <label><input type="radio" name="agreement_milsim" value="0" {{$app->getApplication()->agreement_milsim == 0 ? 'checked' : ''}}> NO</label> &nbsp;
                                 </div>
-                                @if(isset(agreement_twice))
+                                @if(isset($app->getApplication()->agreement_twice))
                                 <div data-field-span="1">
                                     <label>I UNDERSTAND I WILL BE EXPECTED TO SHOW UP TWICE A WEEK TO EVENTS (UNLESS I NOTIFY IN ADVANCE I WILL NOT BE ABLE TO ATTEND)</label>
                                     <label><input type="radio" name="agreement_twice" value="1" {{$app->getApplication()->agreement_twice == 1 ? 'checked' : ''}}> YES</label> &nbsp;
