@@ -60,7 +60,7 @@
                                         <div data-row-span="3">
                                             <div data-field-span="1">
                                                 <label>DATE OF BIRTH</label>
-                                                <input type="text" id="dob" name="dob" placeholder="MM/DD/YYYY">
+                                                <input type="text" id="dob" name="dob" placeholder="DD-MM-YYYY">
                                             </div>
                                             <div data-field-span="2">
                                                 <label>Nationality</label>
