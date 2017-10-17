@@ -149,15 +149,12 @@
                                     <label><input type="radio" name="agreement_truth" value="1" {{$app->getApplication()->agreement_truth == 1 ? 'checked' : ''}} > YES</label> &nbsp;
                                     <label><input type="radio" name="agreement_truth" value="0" {{$app->getApplication()->agreement_truth == 0 ? 'checked' : ''}}> NO</label> &nbsp;
                                 </div>
-                                @if(isset($app->getApplication()->agreement_twice))
                                 <div data-field-span="1">
                                     <label>I CONSENT FOR MY APPLICATION AND DATA TO BE PROCESSED BY SELECTED MEMBERS OF TASK FORCE EVEREST STAFF DEPARTMENTS</label>
                                     <label><input type="radio" name="agreement_consent" value="1" {{$app->getApplication()->agreement_consent == 1 ? 'checked' : ''}}> YES</label> &nbsp;
                                     <label><input type="radio" name="agreement_consent" value="0" {{$app->getApplication()->agreement_consent == 0 ? 'checked' : ''}}> NO</label> &nbsp;
                                 </div>
-                                @endif
                             </div>
-                            @if(isset($app->getApplication()->agreement_recruit))
                             <div data-row-span="2">
                                 <div data-field-span="1">
                                     <label>I AM NOT CURRENTLY ENLISTED OR PARTICIPATING IN ANOTHER MILITARY SIMULATION, TACTICAL REALISM OR ORGANIZED GAMING COMMUNITY THAT OPERATES WITHIN ARMA III</label>
@@ -171,7 +168,6 @@
                                     <label><input type="radio" name="agreement_ucmj" value="0" {{$app->getApplication()->agreement_ucmj == 0 ? 'checked' : ''}}> NO</label> &nbsp;
                                 </div>
                             </div>
-                            @endif
                         </fieldset>
                         <br>
                         <div class="pull-right">
