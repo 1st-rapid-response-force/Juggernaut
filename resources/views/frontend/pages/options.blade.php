@@ -15,6 +15,22 @@
                                     <h2><a href="#">Dashboard</a></h2>
                                 </div>
                             </div>
+                            @if(count(\Auth::User()->member))
+                            <div class="row">
+                                <div class="pull-right">
+                                    <strong>{{\Auth::User()->member}}</strong><br/>
+                                    <small>
+                                        {{\Auth::User()->member->team->name}} <br/>
+                                        Military ID: {{\Auth::User()->steam_id}} <br/>
+                                        Time in Service: {{\Auth::User()->member->time_in_service}} days<br/>
+                                        Roster Number: TFE-{{\Auth::User()->member->id}} <br/>
+                                    </small>
+                                </div>
+                                <img class="media-object img-circle" src="{{\Auth::User()->member->avatar}}" alt="Profile picture">
+
+                            </div>
+                            <hr>
+                            @endif
 
                             <div class="row">
                                 <div class="col-lg-4">
