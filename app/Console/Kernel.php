@@ -47,17 +47,11 @@ class Kernel extends ConsoleKernel
             ->daily();
         $schedule->command('member:searchable')
             ->daily();
-        $schedule->command('member:clear-loa')
-            ->daily();
         $schedule->command('member:squadxml')
             ->daily();
-        $schedule->command('member:create-perstat')
-            ->weekly()->saturdays()->at('6:00');
 
         // MISC
         $schedule->command('catalyst:credit-tig')
-            ->daily();
-        $schedule->command('aviation:flight-plan-archive')
             ->daily();
 
         // BACKUP
