@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <meta name="_token" content="{{ csrf_token() }}" />
 
-    <title>1st Rapid Response Force - @yield('title')</title>
+    <title>Task Force Everest - @yield('title')</title>
 
     <!-- FAVICON -->
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
@@ -35,6 +35,7 @@
     <link href="/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha256-NuCn4IvuZXdBaFKJOAcsU2Q3ZpwbdFisd5dux4jkQ5w=" crossorigin="anonymous" />
 
     <!-- PLUGINS -->
     <link href="/plugins/animate/animate.min.css" rel="stylesheet">

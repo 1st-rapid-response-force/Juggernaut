@@ -16,7 +16,7 @@
                         <div class="post post-single">
                             <div class="post-header">
                                 <div class="post-title">
-                                    <h2><a href="#">Application for the 1st Rapid Response Force</a></h2>
+                                    <h2><a href="#">Application for the TF Everest</a></h2>
                                 </div>
                             </div>
 
@@ -28,17 +28,17 @@
                                 <li>The age field must be accurate. Failure to disclose your actual age will result in discharge from the unit.</li>
                             </ul>
                             <div class="alert alert-warning">
-                                <p>The 1st Rapid Response Force does not allow dual-claning within active membership, you can still join the unit and participate in operations but you will be limited to the Reserve Pool.</p>
+                                <p>The TF Everest does not allow dual-clanning within active membership. Breaking this rule is grounds for dishonorable discharge.</p>
                                 <p>We review applications weekly, each Saturday in bulk. We will email you our decision.</p>
                             </div>
                             <HR>
                             <div class="well">
                                 {{ Form::open(['route' => 'frontend.apply.application.post', 'class' => 'grid-form', 'role' => 'form', 'method' => 'post']) }}
                                     {!! csrf_field() !!}
-                                    <div class="text-center"><legend><strong>ENLISTMENT/REENLISTMENT DOCUMENT</strong><br> 1ST RAPID RESPONSE FORCE<br><br></legend></div>
+                                    <div class="text-center"><legend><strong>ENLISTMENT/REENLISTMENT DOCUMENT</strong><br> TF EVEREST<br><br></legend></div>
                                     <div class="text-center"><h3>PRIVACY ACT STATEMENT</h3></div>
-                                    <p><strong>AUTHORITY: </strong> 1ST-RRF-POLICIES-PROCEDURES</p>
-                                    <p><strong>PRINCIPAL PURPOSE(S): </strong> To record enlistment or reenlistment into the 1st Rapid Response Force. This information becomes a part of the subject's military personnel records which are used to document promotion, reassignment, training, medical support, and other personnel management actions.</p>
+                                    <p><strong>AUTHORITY: </strong> TFE-POLICIES-PROCEDURES</p>
+                                    <p><strong>PRINCIPAL PURPOSE(S): </strong> To record enlistment or reenlistment into the Task Force Everest. This information becomes a part of the subject's military personnel records which are used to document promotion, reassignment, training, medical support, and other personnel management actions.</p>
                                     <p><strong>ROUTINE USE(S): </strong> This form becomes a part of the Service's Enlisted Master File and Field Personnel File.</p>
                                     <p><strong>DISCLOSURE: </strong> Voluntary; however, failure to furnish personal identification information may negate the enlistment/reenlistment application</p>
                                     <fieldset>
@@ -93,13 +93,13 @@
                                             </div>
                                             <div data-row-span="1">
                                                 <div data-field-span="1">
-                                                    <label>WHAT POSITION ARE YOU APPLYING FOR</label>
-                                                    <textarea name="position" rows="1" placeholder="Leave blank if you were not referred by a recruitment post."></textarea>
+                                                    <label>WHAT CHAIN OF COMMAND ARE YOU APPLYING FOR?</label>
+                                                    <textarea name="position" rows="1" placeholder="Headquarters, Infantry, Cavalry, Fleet Air"></textarea>
                                                 </div>
                                             </div>
                                             <div data-row-span="1">
                                                 <div data-field-span="1">
-                                                    <label>REASONING FOR JOINING THE 1ST RRF</label>
+                                                    <label>REASONING FOR JOINING THE TFE</label>
                                                     <textarea name="reason_for_joining" rows="3" placeholder=""></textarea>
                                                 </div>
                                             </div>
@@ -134,26 +134,26 @@
                                             <legend>AGREEMENTS</legend>
                                             <div data-row-span="2">
                                                 <div data-field-span="1">
-                                                    <label>I UNDERSTAND THAT I AM JOINING A MILITARY SIMULATION UNIT</label>
-                                                    <label><input type="radio" name="agreement_milsim" value="1"> YES</label> &nbsp;
-                                                    <label><input type="radio" name="agreement_milsim" value="0" checked> NO</label> &nbsp;
+                                                    <label>I ASSERT THAT ALL INFORMATION I HAVE PROVIDED IN THIS APPLICATION IS TRUTHFUL AND CORRECT TO THE BEST PART OF MY KNOWLEDGE.</label>
+                                                    <label><input type="radio" name="agreement_truth" value="1"> YES</label> &nbsp;
+                                                    <label><input type="radio" name="agreement_truth" value="0" checked> NO</label> &nbsp;
                                                 </div>
                                                 <div data-field-span="1">
-                                                    <label>I UNDERSTAND I WILL BE EXPECTED TO SHOW UP TWICE A WEEK TO EVENTS (UNLESS I NOTIFY IN ADVANCE I WILL NOT BE ABLE TO ATTEND)</label>
-                                                    <label><input type="radio" name="agreement_twice" value="1"> YES</label> &nbsp;
-                                                    <label><input type="radio" name="agreement_twice" value="0" checked> NO</label> &nbsp;
+                                                    <label>I CONSENT FOR MY APPLICATION AND DATA TO BE PROCESSED BY SELECTED MEMBERS OF TASK FORCE EVEREST STAFF DEPARTMENTS</label>
+                                                    <label><input type="radio" name="agreement_consent" value="1"> YES</label> &nbsp;
+                                                    <label><input type="radio" name="agreement_consent" value="0" checked> NO</label> &nbsp;
                                                 </div>
                                             </div>
                                             <div data-row-span="2">
                                                 <div data-field-span="1">
-                                                    <label>I UNDERSTAND IF ACCEPTED INTO THE 1RRF, I WILL BE ASSIGNED RECRUIT STATUS AND CAN BE DISMISSED AT ANYTIME (UNTIL COMPLETION OF RECRUITMENT PHASE).</label>
-                                                    <label><input type="radio" name="agreement_recruit" value="1"> YES</label> &nbsp;
-                                                    <label><input type="radio" name="agreement_recruit" value="0" checked> NO</label> &nbsp;
+                                                    <label>I AM NOT CURRENTLY ENLISTED OR PARTICIPATING IN ANOTHER MILITARY SIMULATION, TACTICAL REALISM OR ORGANIZED GAMING COMMUNITY THAT OPERATES WITHIN ARMA III</label>
+                                                    <label><input type="radio" name="agreement_dualclan" value="1"> YES</label> &nbsp;
+                                                    <label><input type="radio" name="agreement_dualclan" value="0" checked> NO</label> &nbsp;
                                                 </div>
                                                 <div data-field-span="1">
-                                                    <label>I UNDERSTAND IF ACCEPTED INTO THE 1RRF, I WILL BE ASSIGNED TO AN EXISTING RRF MEMBER FOR TRAINING</label>
-                                                    <label><input type="radio" name="agreement_buddy" value="1"> YES</label> &nbsp;
-                                                    <label><input type="radio" name="agreement_buddy" value="0" checked> NO</label> &nbsp;
+                                                    <label>I AGREE TO BE BOUND BY THE TASK FORCE EVEREST'S UNIFORM CODE OF MILITARY JUSTICE COMMENCING AT THE TIME OF MY SUBMISSION OF THIS APPLICATION FORM UNTIL I RECEIVE MY DD-214 FROM THE S1 DEPARTMENT OF TASK FORCE EVEREST</label>
+                                                    <label><input type="radio" name="agreement_ucmj" value="1"> YES</label> &nbsp;
+                                                    <label><input type="radio" name="agreement_ucmj" value="0" checked> NO</label> &nbsp;
                                                 </div>
                                             </div>
                                         </fieldset>

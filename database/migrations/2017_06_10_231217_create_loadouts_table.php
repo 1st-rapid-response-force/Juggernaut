@@ -29,8 +29,8 @@ class CreateLoadoutsTable extends Migration
             $table->unsignedInteger('loadout_id');
             $table->engine = 'InnoDB';
             $table->primary(['member_id', 'loadout_id']);
-            $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
-            $table->foreign('loadout_id')->references('id')->on('loadouts')->onDelete('cascade');
+            //$table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
+            //$table->foreign('loadout_id')->references('id')->on('loadouts')->onDelete('cascade');
         });
 
 

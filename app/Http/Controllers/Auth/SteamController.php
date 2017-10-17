@@ -29,7 +29,14 @@ class SteamController extends Controller
 
     public function loginPage()
     {
-        return view('frontend.pages.login');
+        if(\Auth::Guest())
+        {
+            return view('frontend.pages.login');
+        } else
+        {
+            return view('frontend.pages.options');
+        }
+
     }
 
     public function logout()

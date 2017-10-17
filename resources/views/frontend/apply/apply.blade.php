@@ -23,35 +23,22 @@
                         <div class="post post-single">
                             <div class="post-header">
                                 <div class="post-title">
-                                    <h2><a href="#">Apply to the 1st Rapid Response Force</a></h2>
+                                    <h2><a href="#">Apply to the TF Everest</a></h2>
                                 </div>
                             </div>
 
                             <h3>Overview</h3>
-                            <p>The 1st RRF is a strict military simulation unit which operates within ARMA III using a wide variety of combined arms elements.</p>
-                            <p>The group is mainly modelled on a US Force, bearing US Army ranks, however its structure is not directly drawn from any real world force. It is instead modelled around what allows us to deploy the best quality of functional simulation in both the meta and game space that the game and circumstance of being a sim unit instead of a real job allow.</p>
+                            <p>Pending Content</p>
                             <h3>Membership Criteria</h3>
                             <br>
-                            <h4>Apply to the 1st RRF</h4>
+                            <h4>Apply to the TF Everest</h4>
                             <ol>
-                                <li>Check your eligibility:</li>
-                                <ul>
-                                    <li>Members must own a legal copy of ARMA 3.</li>
-                                    <li>Members must have a clean Steam VAC and BattlEye Record</li>
-                                    <li>Members must be over the age of 16+ </li>
-                                    <li>Members will need to be able to commit to a weekly operations and training schedule.</li>
-                                    <li>Members will need speak english in order to properly communicate with the unit.</li>
-                                </ul>
-                                <li>Review the <a href="{{route('frontend.structure')}}">Structure and Ranks</a>  before completing your application.</li>
-                                <li>Login/Create an account with us, if you are new, we will direct you to a registration page, if you are an existing member, we will log you in. - <small>For more information on Steam Open ID <a href="http://steamcommunity.com/dev">click here.</a></small>
-                                </li>
-                                <li>Fill out the Application and wait for a reply</li>
-                                <li>Be active and participate in the community.</li>
+                                <li>Pending Requirements:</li>
                             </ol>
                             <hr>
                             <div class="row text-center">
                                 <div class="col-lg-12">
-                                    <a class="btn btn-primary" href="{{route('frontend.apply.application','infantry')}}">Application</a>
+                                    <a class="btn btn-primary" href="{{route('frontend.apply.application')}}">Application</a>
                                 </div>
 
                             </div>

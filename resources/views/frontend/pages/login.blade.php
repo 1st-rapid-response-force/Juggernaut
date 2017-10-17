@@ -13,10 +13,10 @@
             <div class="hero-bg"></div>
             <div class="container relative">
                 <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 pull-none margin-auto">
+                    <div class="col-lg-5 col-md-5 col-sm-8 col-xs-12 pull-none margin-auto">
                         <div class="panel panel-default panel-login">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-user"></i> Sign In to 1st RRF</h3>
+                                <h3 class="panel-title"><i class="fa fa-user"></i> Sign in / Register - TF Everest Personnel System</h3>
                             </div>
                             <div class="panel-body">
                                 <div class="text-center">
@@ -26,7 +26,7 @@
                                 </div>
                             </div>
                             <div class="panel-footer">
-                                1st Rapid Response Force uses <a href="https://steamcommunity.com/dev">Steam Open Authentication</a>
+                                Task Force Everest uses <a href="https://steamcommunity.com/dev">Steam Open Authentication</a>
                             </div>
                         </div>
                         <div class="hidden-xs" style="padding-bottom: 500px"></div>

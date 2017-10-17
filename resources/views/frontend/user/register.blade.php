@@ -14,8 +14,8 @@
                                     <h2>Register</h2>
                                 </div>
                             </div>
-                            <p>This registration form is used to create an account on the 1st RRF systems. This will allow you apply to the unit.</p>
-                            <p>1st Rapid Response Force systems use Steam Open ID authentication for login. For more information <a href="http://steamcommunity.com/dev">click here.</a></p>
+                            <p>This registration form is used to create an account on the TF-Everest systems. This will allow you apply to the unit.</p>
+                            <p>TF Everest systems use Steam Open ID authentication for login. For more information <a href="http://steamcommunity.com/dev">click here.</a></p>
                             <hr>
                             {{ Form::open(['route' => 'frontend.user.register.post', 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'post', 'files' => false]) }}
                                 <!-- Form would go here -->
@@ -34,7 +34,7 @@
                                 {{ Form::label('email', 'Email', ['class' => 'col-lg-2 control-label']) }}
 
                                 <div class="col-lg-10">
-                                    {{ Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'john.doe@1st-rrf.com']) }}
+                                    {{ Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'john.doe@tf-everest.com']) }}
                                 </div><!--col-lg-10-->
                             </div><!--form control-->
 

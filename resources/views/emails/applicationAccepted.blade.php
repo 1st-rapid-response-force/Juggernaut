@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>RRF Email</title>
+    <title>TFE Email</title>
     <style type="text/css">
 
         /* Take care of image borders and formatting */
@@ -195,7 +195,7 @@
                                 <tr>
                                     <td valign="top" class="mobile-block mobile-no-padding-bottom mobile-center" width="270" style="background:#1f1f1f;padding:10px 10px 10px 20px;">
                                         <a href="#" style="text-decoration:none;">
-                                            <img src="http://1st-rrf.com/img/email-logo.png" alt="RRF"/>
+                                            <img src="http://goliath.tf-everest.com/img/email-logo.png" alt="TFE"/>
                                         </a>
                                     </td>
                                 </tr>
@@ -214,14 +214,7 @@
 
                                         <h1>Welcome aboard - {{$data['name']}}</h1>
                                         <br>
-                                        You have been accepted into the 1st Rapid Response Force! To ensure you are hitting the ground running, follow the steps below:
-                                        <ol>
-                                            <li>Add your Teamspeak ID to your Settings to obtain your rank and permissions on Teamspeak - <a href="http://1st-rrf.com/settings/teamspeak">Manage your Teamspeak IDs</a></li>
-                                            <li><a href="https://1st-rrf.com/files/my-file">Report In</a> - Make sure to remember to report in weekly (its as simple as pressing a button)</li>
-                                            <li>Download and Setup the Modpack</li>
-                                            <li>Add the SquadXML to your ingame character -<a href="http://1st-rrf.com/settings">View SquadXML URL</a> </li>
-                                            <li>Last but not least, be active and get to know your fellow members!</li>
-                                        </ol>
+                                        You have been accepted into the Task Force Everest!
                                         <br><br>
                                         Once again, Congratulations! We hope to see you on the virtual battlespace soon!
                                         <br>
@@ -241,8 +234,8 @@
                             <table border="0" cellpadding="0" cellspacing="0" width="600" class="w320" style="height:100%;color:#ffffff" bgcolor="#1f1f1f" >
                                 <tr>
                                     <td align="right" valign="middle" class="mobile-padding" style="font-size:12px;padding:20px; background-color:#1f1f1f; color:#ffffff; text-align:left; ">
-                                        <a style="color:#ffffff;"  href="https://1st-rrf.com">Website</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-                                        <a style="color:#ffffff;" href="#">Teamspeak - ts.1st-rrf.com</a>&nbsp;&nbsp; &nbsp;&nbsp;
+                                        <a style="color:#ffffff;"  href="https://tf-everest.com">Website</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                                        <a style="color:#ffffff;" href="#">Teamspeak - ts.tf-everest.com</a>&nbsp;&nbsp; &nbsp;&nbsp;
                                     </td>
                                 </tr>
                             </table>

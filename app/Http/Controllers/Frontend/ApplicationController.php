@@ -20,18 +20,12 @@ class ApplicationController extends Controller
         return view('frontend.apply.apply');
     }
 
-    public function showApplication($type)
+    public function showApplication()
     {
         $user = \Auth::User();
         if (!count($user->application)) {
-
-            if (($type == 'infantry')) {
-                \Log::notice('User viewed application page', ['user_id' => \Auth::User()->id, 'steam_id' => \Auth::User()->steam_id, 'steam_url' => 'http://steamcommunity.com/profiles/'.$user->steam_id]);
-                return view('frontend.apply.application', ['type' => $type]);
-            } else {
-                flash('There is no application for this type.', 'danger');
-                return redirect()->back();
-            }
+            \Log::notice('User viewed application page', ['user_id' => \Auth::User()->id, 'steam_id' => \Auth::User()->steam_id, 'steam_url' => 'http://steamcommunity.com/profiles/'.$user->steam_id]);
+            return view('frontend.apply.application', []);
         } else {
             flash('You have already submitted an application.', 'danger');
             return redirect()->back();
@@ -68,7 +62,6 @@ class ApplicationController extends Controller
         ];
         $this->emailNewApplication($admins,$data);
 
-
         return redirect(route('frontend.apply.application.success'));
     }
 
@@ -97,9 +90,9 @@ class ApplicationController extends Controller
             $user = User::find($userID);
             \Mail::send('emails.newApplicant', ['user' => $user,'data' =>$data], function ($m) use ($user,$data) {
                 $m->to($user->email, $user->member);
-                $m->subject('1st RRF - '.$data['title']);
-                $m->from('no-reply@1st-rrf.com','1st Rapid Response Force');
-                $m->sender('no-reply@1st-rrf.com','1st Rapid Response Force');
+                $m->subject('TF Everest - '.$data['title']);
+                $m->from('no-reply@tf-everest.com','Task Force Everest');
+                $m->sender('no-reply@tf-everest.com','Task Force Everest');
             });
         }
     }

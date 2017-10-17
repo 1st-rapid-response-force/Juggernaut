@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>RRF Email</title>
+    <title>TFE Email</title>
     <style type="text/css">
 
         /* Take care of image borders and formatting */
@@ -195,7 +195,7 @@
                                 <tr>
                                     <td valign="top" class="mobile-block mobile-no-padding-bottom mobile-center" width="270" style="background:#1f1f1f;padding:10px 10px 10px 20px;">
                                         <a href="#" style="text-decoration:none;">
-                                            <img src="http://1st-rrf.com/img/email-logo.png" alt="RRF"/>
+                                            <img src="http://goliath.tf-everest.com/img/email-logo.png" alt="TFE"/>
                                         </a>
                                     </td>
                                 </tr>
@@ -214,7 +214,7 @@
 
                                         <h1>{{$data['title']}}</h1>
                                         <br>
-                                        A new member has completed an application for the 1st RRF  - <strong>{{$data['applicant']}}</strong>
+                                        A new member has completed an application for the TFE  - <strong>{{$data['applicant']}}</strong>
                                         <br><br>
                                         You can view their application here - <a href="{{$data['application']}}">Application URL</a>.
                                         <br><br>
@@ -236,7 +236,7 @@
                                 <tr>
                                     <td align="right" valign="middle" class="mobile-padding" style="font-size:12px;padding:20px; background-color:#1f1f1f; color:#ffffff; text-align:left; ">
                                         <a style="color:#ffffff;"  href="https://1st-rrf.com">Website</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-                                        <a style="color:#ffffff;" href="#">Teamspeak - ts.1st-rrf.com</a>&nbsp;&nbsp; &nbsp;&nbsp;
+                                        <a style="color:#ffffff;" href="#">Teamspeak - ts.tf-everest.com</a>&nbsp;&nbsp; &nbsp;&nbsp;
                                     </td>
                                 </tr>
                             </table>
