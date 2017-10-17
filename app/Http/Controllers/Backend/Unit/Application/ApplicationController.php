@@ -63,17 +63,6 @@ class ApplicationController extends Controller
             'team_id' => 2,
         ]);
 
-        // Determine if Active or Reserve
-        if($app->getApplication()->reserve)
-        {
-            $mem->reserve = 1;
-        } else {
-            $pending = Team::whereName('Recruits')->first();
-            $mem->team_id = $pending->id;
-        }
-
-        $mem->save();
-
 
         // Sync empty
         $app->user->member->loadout()->sync([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]);
@@ -83,25 +72,9 @@ class ApplicationController extends Controller
         \Artisan::queue('member:avatar');
         \Artisan::queue('member:searchable');
         \Artisan::queue('member:squadxml');
-        \Artisan::queue('member:cac');
 
         // Create all relevant records
-        $app->user->member->serviceHistory()->create(['text' => 'Enlisted in the 1st Rapid Response Force','date'=> new Carbon]);
-
-
-        // Create Timeline
-        TeamTimeline::create([
-                'team_id' => 2,
-                'name' => $app->user->member.' has joined the 1st RRF',
-                'type' => 'new-member',
-                'body' => $app->user->member.' has been accepted and has joined the 1st Rapid Response Force!',
-                'date' => new Carbon
-        ]);
-
-
-        // Report in
-        $perstat = Perstat::where('active','=','1')->first();
-        $app->user->member->perstat()->attach($perstat->id);
+        $app->user->member->serviceHistory()->create(['text' => 'Enlisted into Task Force Everest','date'=> new Carbon]);
         $app->user->member->ribbons()->attach([1 => ['awarded_at' =>  new Carbon]]);
 
         \Log::info('User accepted application', ['user_id' => \Auth::User()->id, 'member' => $app->user->member->searchable_name, 'application_id' => $app->id]);
@@ -133,9 +106,9 @@ class ApplicationController extends Controller
     {
         \Mail::send('emails.applicationAccepted', ['user' => $user,'data' =>$data], function ($m) use ($user,$data) {
             $m->to($user->email, $user->vpf);
-            $m->subject('1st RRF - Your Application has been accepted');
-            $m->from('no-reply@1st-rrf.com','1st Rapid Response Force');
-            $m->sender('no-reply@1st-rrf.com','1st Rapid Response Force');
+            $m->subject('Task Force Everest - Your Application has been accepted');
+            $m->from('no-reply@tf-everest.com','Task Force Everest');
+            $m->sender('no-reply@tf-everest.com','Task Force Everest');
         });
     }
     /**
@@ -147,9 +120,9 @@ class ApplicationController extends Controller
     {
         \Mail::send('emails.applicationDeclined', ['user' => $user,'data' =>$data], function ($m) use ($user,$data) {
             $m->to($user->email, 'User');
-            $m->subject('1st RRF - Your Application has been declined');
-            $m->from('no-reply@1st-rrf.com','1st Rapid Response Force');
-            $m->sender('no-reply@1st-rrf.com','1st Rapid Response Force');
+            $m->subject('Task Force Everest - Your Application has been declined');
+            $m->from('no-reply@tf-everest.com','Task Force Everest');
+            $m->sender('no-reply@tf-everest.com','Task Force Everest');
         });
     }
 }

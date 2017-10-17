@@ -42,15 +42,6 @@
                 </div><!-- /.info-box-content -->
             </div><!-- /.info-box -->
         </div>
-        <div class="col-lg-4">
-            <div class="info-box">
-                <span class="info-box-icon bg-green"><i class="fa fa-star-o"></i></span>
-                <div class="info-box-content">
-                    <span class="info-box-text">Report in Status</span>
-                    <span class="info-box-number">{!! $perstat->report_percentage() !!}%</span>
-                    <span class="info-box-content"><a class="btn btn-default btn-sm" href="{{route('admin.perstat.index')}}">More Info</a></span>
-                </div><!-- /.info-box-content -->
-            </div><!-- /.info-box -->
-        </div>
+
     </div>
 @endsection

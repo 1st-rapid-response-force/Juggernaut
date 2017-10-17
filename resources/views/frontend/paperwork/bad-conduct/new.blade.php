@@ -22,9 +22,9 @@
                             <div class="well">
                                 <form class="grid-form" method="post" action="{{route('frontend.paperwork.bad-conduct')}}">
                                     {!! csrf_field() !!}
-                                    <div class="text-center"><legend><strong>BAD CONDUCT REPORT FORM</strong><br> 1ST RAPID RESPONSE FORCE<br><br></legend></div>
+                                    <div class="text-center"><legend><strong>BAD CONDUCT REPORT FORM</strong><br> TASK FORCE EVEREST<br><br></legend></div>
                                     <div class="text-center"><h3>PRIVACY ACT STATEMENT</h3></div>
-                                    <p><strong>AUTHORITY: </strong> 1ST-RRF-POLICIES-PROCEDURES</p>
+                                    <p><strong>AUTHORITY: </strong> TFE-POLICIES-PROCEDURES</p>
                                     <p><strong>PRINCIPAL PURPOSE(S): </strong> Used to report conduct infractions within the unit.</p>
                                     <p><strong>ROUTINE USE(S): </strong> This form is used to report bad conduct that has broken our guidelines..</p>
                                     <p><strong>DISCLOSURE: </strong> Voluntary; information is internally used and will be sent up the chain of command</p>

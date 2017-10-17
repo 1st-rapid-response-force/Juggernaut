@@ -20,32 +20,24 @@
                                 <div class="col-lg-4">
                                     <div class="panel panel-default">
                                         <div class="panel-body text-center" style="height:250px">
-                                            <a href="{{route('frontend.apply.application')}}"><h2>Apply</h2></a><br>
-                                            @if(count(\Auth::User()->application))
-                                                <p>Your Application Status: <br>{!! \Auth::User()->application->getStatus() !!}</p>
-                                            @endif
-                                            <i class="fa fa-folder-open-o fa-5x" aria-hidden="true"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                @if(count(\Auth::User()->member))
-                                <div class="col-lg-4">
-                                    <div class="panel panel-default">
-                                        <div class="panel-body text-center" style="height:250px">
-                                            <a href="{{route('frontend.paperwork')}}"><h2>Paperwork</h2></a><br>
-                                            <i class="fa fa-file fa-5x" aria-hidden="true"></i>
+                                            <a href="{{route('frontend.paperwork.file-correction')}}"><h2>File Correction Form</h2></a><br>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="panel panel-default">
                                         <div class="panel-body text-center" style="height:250px">
-                                            <a href="{{route('frontend.settings.teamspeak')}}"><h2>Teamspeak</h2></a><br>
-                                            <i class="fa fa-microphone fa-5x" aria-hidden="true"></i>
+                                            <a href="{{route('frontend.paperwork.bad-conduct')}}"><h2>Bad Conduct Form</h2></a><br>
                                         </div>
                                     </div>
                                 </div>
-                                @endif
+                                <div class="col-lg-4">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body text-center" style="height:250px">
+                                            <a href="{{route('frontend.paperwork.discharge')}}"><h2>Discharge Form</h2></a><br>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

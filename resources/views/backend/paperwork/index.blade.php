@@ -49,7 +49,7 @@
                                 <td>{{$paper->team->name or 'NA'}}</td>
                                 <td>{{$paper->created_at->diffForHumans()}}</td>
                                 <td>
-                                    <a class="btn btn-info" href="{{route('frontend.paperwork.show',$paper->id)}}"><i class="fa fa-search" aria-hidden="true"></i></a>
+                                    <a class="btn btn-info" href="{{route('admin.paperwork.show',$paper->id)}}"><i class="fa fa-search" aria-hidden="true"></i></a>
                                 </td>
                             </tr>
                         @endforeach

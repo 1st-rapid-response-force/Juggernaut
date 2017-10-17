@@ -13,6 +13,10 @@ use App\Http\Controllers\Controller;
 
 class PaperworkController extends Controller
 {
+    public function showPaperworkOptions()
+    {
+        return view('frontend.paperwork.paperwork');
+    }
     public function showPaperwork($id)
     {
         $paperwork = Paperwork::findOrFail($id);
@@ -85,7 +89,7 @@ class PaperworkController extends Controller
         $paperwork = \Auth::User()->member->paperwork()->create(['type' => 'discharge', 'paperwork' => $form->toJson()]);
         \Log::info('User filled out discharge paperwork', ['user_id' => \Auth::User()->id, 'member' => \Auth::User()->member->searchable_name, 'paperwork_id' => $paperwork]);
         flash('Discharge Application has been filed, we will notify you via email.', 'success');
-        return redirect(route('frontend.files.my-file'));
+        return redirect(route('frontend.index'));
     }
 
     public function showFileCorrectionForm()
@@ -99,7 +103,7 @@ class PaperworkController extends Controller
         $paperwork = \Auth::User()->member->paperwork()->create(['type' => 'file-correction', 'paperwork' => $form->toJson()]);
         \Log::info('User filled out file correction paperwork', ['user_id' => \Auth::User()->id, 'member' => \Auth::User()->member->searchable_name, 'paperwork_id' => $paperwork]);
         flash('File Correction form has been filed, We will contact you soon regarding this form.', 'success');
-        return redirect(route('frontend.files.my-file'));
+        return redirect(route('frontend.index'));
     }
 
     public function showBadConductForm()
@@ -115,7 +119,7 @@ class PaperworkController extends Controller
 
         \Log::info('User filled out bad conduct paperwork', ['user_id' => \Auth::User()->id, 'member' => \Auth::User()->member->searchable_name, 'paperwork_id' => $paperwork,'disciplinary_team_id'=>$mem->team->id]);
         flash('Bad Conduct Form has been filed, We will contact you soon regarding this form.', 'success');
-        return redirect(route('frontend.files.my-file'));
+        return redirect(route('frontend.index'));
     }
 
     public function showFlightPlanForm()
@@ -129,7 +133,7 @@ class PaperworkController extends Controller
         $paperwork = \Auth::User()->member->paperwork()->create(['type' => 'flight-plan', 'paperwork' => $form->toJson()]);
         flash('Your Flight Plan has been filed, it is now visible to the ATC.', 'success');
         \Log::info('User filled out flight plan paperwork', ['user_id' => \Auth::User()->id, 'member' => \Auth::User()->member->searchable_name, 'paperwork_id' => $paperwork]);
-        return redirect(route('frontend.files.my-file'));
+        return redirect(route('frontend.index'));
     }
 
     public function updateFlightPlanForm(Request $request, $id)
@@ -154,7 +158,7 @@ class PaperworkController extends Controller
         $paperwork = \Auth::User()->member->paperwork()->create(['type' => 'aar', 'paperwork' => $form->toJson(), 'team_id' => $request->team_id]);
         flash('Your AAR has been filed.', 'success');
         \Log::notice('User filled out change request paperwork', ['user_id' => \Auth::User()->id, 'member' => \Auth::User()->member->searchable_name, 'paperwork_id' => $paperwork]);
-        return redirect(route('frontend.team', \Auth::User()->member->team_id));
+        return redirect(route('frontend.index', \Auth::User()->member->team_id));
     }
 
     public function showChangeForm()
@@ -168,7 +172,7 @@ class PaperworkController extends Controller
         $paperwork = \Auth::User()->member->paperwork()->create(['type' => 'change-request', 'paperwork' => $form->toJson()]);
         flash('Your Change Request has been filed, you can monitor the status of this paperwork via your file.', 'success');
         \Log::notice('User filled out change request paperwork', ['user_id' => \Auth::User()->id, 'member' => \Auth::User()->member->searchable_name, 'paperwork_id' => $paperwork]);
-        return redirect(route('frontend.files.my-file'));
+        return redirect(route('frontend.index'));
     }
 
     public function createNote($id, Request $request)
@@ -241,7 +245,7 @@ class PaperworkController extends Controller
         if(!(\Auth::User()->admin || $leader))
         {
             flash('You do not have permission to access this.','danger');
-            return redirect(route('frontend.files.my-file'));
+            return redirect(route('frontend.index'));
         }
 
         $member = Member::findOrFail($id);
@@ -256,13 +260,13 @@ class PaperworkController extends Controller
         if(!(\Auth::User()->admin || $leader))
         {
             flash('You do not have permission to access this.','danger');
-            return redirect(route('frontend.files.my-file'));
+            return redirect(route('frontend.index'));
         }
         $form = collect($request->except('_token'));
 
         $paperwork = \Auth::User()->member->paperwork()->create(['type' => 'ncs', 'paperwork' => $form->toJson(),'status' => 2, 'disciplinary_member_id' => $id, 'disciplinary_team_id' => $discipline->team->id]);
         \Log::notice('User filled out an NCS', ['user_id' => \Auth::User()->id, 'filing_party_member' => \Auth::User()->member->searchable_name, 'against'=> $request->name, 'paperwork_id' => $paperwork]);
-        return redirect(route('frontend.files.my-file'));
+        return redirect(route('frontend.index'));
     }
 
     public function viewPublicNCS($id)
@@ -278,7 +282,7 @@ class PaperworkController extends Controller
         if(!(\Auth::User()->admin))
         {
             flash('You do not have permission to access this.','danger');
-            return redirect(route('frontend.files.my-file'));
+            return redirect(route('frontend.index'));
         }
 
         $member = Member::findOrFail($id);
@@ -292,13 +296,13 @@ class PaperworkController extends Controller
         if(!(\Auth::User()->admin ))
         {
             flash('You do not have permission to access this.','danger');
-            return redirect(route('frontend.files.my-file'));
+            return redirect(route('frontend.index'));
         }
         $form = collect($request->except('_token'));
 
         $paperwork = \Auth::User()->member->paperwork()->create(['type' => 'article-15', 'paperwork' => $form->toJson(),'status' => 2, 'disciplinary_member_id' => $id, 'disciplinary_team_id' => $discipline->team->id]);
         \Log::notice('User filled out an Article 15', ['user_id' => \Auth::User()->id, 'filing_party_member' => \Auth::User()->member->searchable_name, 'against'=> $request->name, 'paperwork_id' => $paperwork]);
-        return redirect(route('frontend.files.my-file'));
+        return redirect(route('frontend.index'));
     }
 
     public function viewPublicArticle($id)

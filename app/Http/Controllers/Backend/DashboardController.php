@@ -23,7 +23,6 @@ class DashboardController extends Controller
     {
         $members = Member::whereActive(1)->get()->count();
         $applications = Application::whereStatus(1)->get()->count();
-        $perstat = Perstat::whereActive(1)->first();
-        return view('backend.dashboard',['members' => $members,'applications' => $applications, 'perstat' => $perstat]);
+        return view('backend.dashboard',['members' => $members,'applications' => $applications]);
     }
 }

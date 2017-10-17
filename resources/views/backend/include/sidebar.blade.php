@@ -28,14 +28,6 @@
                 <a href="{{route('admin.applications.index')}}"> <i class="fa fa-file" aria-hidden="true"></i> Applications</a>
             </li>
 
-            <li class="{{ Active::pattern('admin/calendar*') }}">
-                <a href="{{route('admin.calendar.index')}}"> <i class="fa fa-calendar" aria-hidden="true"></i> {{trans('menus.backend.unit.calendar.name')}}</a>
-            </li>
-
-            <li class="{{ Active::pattern('admin/prism*') }}">
-                <a href="{{route('admin.prism.index')}}"> <i class="fa fa-eye" aria-hidden="true"></i> Prism</a>
-            </li>
-
 
             <li class="{{ Active::pattern('admin/unit/*') }} treeview">
                 <a href="#">
@@ -45,12 +37,6 @@
                 </a>
 
                 <ul class="treeview-menu {{ Active::pattern('admin/unit/*', 'menu-open') }}" style="display: none; {{ Active::pattern('admin/unit/*', 'display: block;') }}">
-                    <li class="{{ Active::pattern('admin/unit/announcements*') }}">
-                        <a href="{{route('admin.announcements.index')}}">
-                            <i class="fa fa-circle-o"></i>
-                            <span>Announcements</span>
-                        </a>
-                    </li>
 
                     <li class="{{ Active::pattern('admin/unit/awards*') }}">
                         <a href="{{route('admin.awards.index')}}">
@@ -73,32 +59,10 @@
                         </a>
                     </li>
 
-                    <li class="{{ Active::pattern('admin/unit/missions*') }}">
-                        <a href="{{route('admin.missions.index')}}">
-                            <i class="fa fa-circle-o"></i>
-                            <span>Server Missions</span>
-                        </a>
-                    </li>
-
                     <li class="{{ Active::pattern('admin/unit/paperwork*') }}">
                         <a href="{{route('admin.paperwork.index')}}">
                             <i class="fa fa-circle-o"></i>
                             <span>Paperwork Repository</span>
-                        </a>
-                    </li>
-
-
-                    <li class="{{ Active::pattern('admin/unit/perstat*') }}">
-                        <a href="{{route('admin.perstat.index')}}">
-                            <i class="fa fa-circle-o"></i>
-                            <span>PERSTAT</span>
-                        </a>
-                    </li>
-
-                    <li class="{{ Active::pattern('admin/unit/programs*') }}">
-                        <a href="{{route('admin.programs.index')}}">
-                            <i class="fa fa-circle-o"></i>
-                            <span>Qualification Programs</span>
                         </a>
                     </li>
 
@@ -134,9 +98,6 @@
                         </a>
                     </li>
                 </ul>
-            <li class="">
-                <a href="/admin/log-viewer"> <i class="fa fa-cogs" aria-hidden="true"></i> Log Viewer</a>
-            </li>
             </li>
 
         </ul><!-- /.sidebar-menu -->

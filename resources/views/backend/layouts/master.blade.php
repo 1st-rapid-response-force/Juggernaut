@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="_token" content="{{ csrf_token() }}" />
 
-        <title>1st Rapid Response Force- @yield('title')</title>
+        <title>Task Force Everest - @yield('title')</title>
 
         <!-- Meta -->
         <meta name="description" content="@yield('meta_description', 'Default Description')">

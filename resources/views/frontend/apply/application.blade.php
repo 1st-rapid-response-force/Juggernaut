@@ -78,19 +78,7 @@
                                     <fieldset>
                                         <legend>B. ENLISTMENT SECTION</legend>
                                         <fieldset>
-                                            <legend>PREVIOUS EXPERIENCE</legend>
-                                            <div data-row-span="2">
-                                                <div data-field-span="1">
-                                                    <label>HAVE YOU BEEN IN A MILSIM UNIT BEFORE</label>
-                                                    <label><input type="radio" name="prior_experience" value="1"> YES</label> &nbsp;
-                                                    <label><input type="radio" name="prior_experience" value="0" checked> NO</label> &nbsp;
-                                                </div>
-                                                <div data-field-span="1">
-                                                    <label>HAVE YOU BEEN DISHONORABLY DISCHARGED/REMOVED FROM A UNIT</label>
-                                                    <label><input type="radio" name="dishonorable_discharge" value="1"> YES</label> &nbsp;
-                                                    <label><input type="radio" name="dishonorable_discharge" value="0" checked> NO</label> &nbsp;
-                                                </div>
-                                            </div>
+                                            <legend>GENERAL</legend>
                                             <div data-row-span="1">
                                                 <div data-field-span="1">
                                                     <label>WHAT CHAIN OF COMMAND ARE YOU APPLYING FOR?</label>
@@ -103,14 +91,26 @@
                                                     <textarea name="reason_for_joining" rows="3" placeholder=""></textarea>
                                                 </div>
                                             </div>
+                                        </fieldset><br>
+                                            <fieldset>
+                                            <legend>PRIOR SERVICE TRANSFER INFORMATION</legend>
+                                            <div data-row-span="2">
+                                                <div data-field-span="1">
+                                                    <label>HAVE YOU BEEN IN A MILSIM UNIT BEFORE</label>
+                                                    <label><input type="radio" name="prior_experience" value="1"> YES</label> &nbsp;
+                                                    <label><input type="radio" name="prior_experience" value="0" checked> NO</label> &nbsp;
+                                                </div>
+                                                <div data-field-span="1">
+                                                    <label>DISCHARGE TYPE (HONOURABLE, GENERAL, ADMINISTRATIVE, DISHONOURABLE)</label>
+                                                    <input type="text" name="discharge_type" placeholder="">
+                                                </div>
+                                            </div>
+
                                         </fieldset>
-
-
-
                                         <div data-row-span="1">
                                             <div data-field-span="1">
                                                 <label>WHAT GROUPS HAVE YOU BEEN A PART OF:</label>
-                                                <input type="text" name="prior_groups" placeholder="LEAVE THE REST OF THIS SECTION BLANK, IF NOT APPLICABLE">
+                                                <input type="text" name="prior_groups" placeholder="">
                                             </div>
                                         </div>
                                         <div data-row-span="2">
@@ -121,6 +121,12 @@
                                             <div data-field-span="1">
                                                 <label>RELEVANT TRAINING:</label>
                                                 <input type="text" name="relevant_training" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div data-row-span="2">
+                                            <div data-field-span="2">
+                                                <label>ROLES/MOS OCCUPIED</label>
+                                                <input type="text" name="highest_rank" placeholder="">
                                             </div>
                                         </div>
                                         <div data-row-span="1">

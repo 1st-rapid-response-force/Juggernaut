@@ -1,5 +1,5 @@
 <header class="main-header">
-    {{ link_to_route('frontend.index', 'RRF', [], ['class' => 'logo']) }}
+    {{ link_to_route('frontend.index', 'TFE', [], ['class' => 'logo']) }}
 
     <nav class="navbar navbar-static-top" role="navigation">
         <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">

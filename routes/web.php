@@ -27,6 +27,19 @@ Route::group(['namespace' => 'Frontend','middleware' => ['web','forbid-banned-us
         Route::post('apply', 'ApplicationController@postApplication')->name('frontend.apply.application.post');
     });
 
+    Route::get('teamspeak', ['as' => 'frontend.settings.teamspeak', 'uses' => 'UserController@teamspeak']);
+    Route::delete('teamspeak/{id}/delete', ['as' => 'frontend.settings.teamspeak.delete', 'uses' => 'UserController@deleteTeamspeak']);
+    Route::post('teamspeak', ['as' => 'frontend.settings.teamspeak.post', 'uses' => 'UserController@postTeamspeak']);
+
+    Route::get('paperwork', ['as' => 'frontend.paperwork', 'uses' => 'Unit\PaperworkController@showPaperworkOptions']);
+    Route::get('paperwork/discharge', ['as' => 'frontend.paperwork.discharge', 'uses' => 'Unit\PaperworkController@showDischargeForm']);
+    Route::post('paperwork/discharge', ['as' => 'frontend.paperwork.discharge.post', 'uses' => 'Unit\PaperworkController@storeDischargeForm']);
+    Route::get('paperwork/file-correction', ['as' => 'frontend.paperwork.file-correction', 'uses' => 'Unit\PaperworkController@showFileCorrectionForm']);
+    Route::post('paperwork/file-correction', ['as' => 'frontend.paperwork.file-correction.post', 'uses' => 'Unit\PaperworkController@storeFileCorrectionForm']);
+    Route::get('paperwork/bad-conduct', ['as' => 'frontend.paperwork.bad-conduct', 'uses' => 'Unit\PaperworkController@showBadConductForm']);
+    Route::post('paperwork/bad-conduct', ['as' => 'frontend.paperwork.bad-conduct.post', 'uses' => 'Unit\PaperworkController@storeBadConductForm']);
+
+
 });
 
 // Authentication Pages

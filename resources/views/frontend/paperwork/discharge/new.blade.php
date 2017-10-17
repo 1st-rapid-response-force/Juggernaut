@@ -23,10 +23,10 @@
                                 <form class="grid-form" method="post" action="{{route('frontend.paperwork.discharge.post')}}">
                                     {!! csrf_field() !!}
                                     <input type="hidden" value="discharge" name="type">
-                                    <div class="text-center"><legend><strong>DISCHARGE PAPERWORK</strong><br> 1ST RAPID RESPONSE FORCE<br><br></legend></div>
+                                    <div class="text-center"><legend><strong>DISCHARGE PAPERWORK</strong><br> TASK FORCE EVEREST<br><br></legend></div>
                                     <div class="text-center"><h3>PRIVACY ACT STATEMENT</h3></div>
-                                    <p><strong>AUTHORITY: </strong> 1ST-RRF-POLICIES-PROCEDURES</p>
-                                    <p><strong>PRINCIPAL PURPOSE(S): </strong> Used to document a discharge/seperation from the 1st Rapid Response Force.</p>
+                                    <p><strong>AUTHORITY: </strong> TFE-POLICIES-PROCEDURES</p>
+                                    <p><strong>PRINCIPAL PURPOSE(S): </strong> Used to document a discharge/separation from the Task Force Everest.</p>
                                     <p><strong>ROUTINE USE(S): </strong> This form becomes a part of the Service's Enlisted Internal File.</p>
                                     <p><strong>DISCLOSURE: </strong> Voluntary; however, failure to furnish proper information may negate the proper discharge and can lead to punitive action.</p>
                                     <fieldset>
@@ -55,7 +55,7 @@
                                         <div data-row-span="4">
                                             <div data-field-span="4">
                                                 <label>ORGANIZATION</label>
-                                                <input type="text" name="organization" readonly value="1st Rapid Response Force">
+                                                <input type="text" name="organization" readonly value="Task Force Everest">
                                             </div>
                                         </div>
                                     </fieldset>

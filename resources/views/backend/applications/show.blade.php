@@ -28,18 +28,19 @@
                 <div class="well">
                     {{ Form::open(['route' => 'frontend.apply.application.post', 'class' => 'grid-form', 'role' => 'form', 'method' => 'post']) }}
                     {!! csrf_field() !!}
-                    <div class="text-center"><legend><strong>ENLISTMENT/REENLISTMENT DOCUMENT</strong><br> 1ST RAPID RESPONSE FORCE<br><br></legend></div>
-                    <div class="text-center"><h3>PRIVACY ACT STATEMENT</h3></div>
+                    <div class="text-center"><legend><strong>ENLISTMENT/REENLISTMENT DOCUMENT</strong><br> TF EVEREST<br><br></legend></div>
                     @if(isset($app->getApplication()->reserve) && ($app->getApplication()->reserve))
                         <div class="text-center"> <span class="label label-danger">RESERVE APPLICATION</span></div>
                     @elseif(isset($app->getApplication()->reserve) && (!$app->getApplication()->reserve))
                         <div class="text-center"> <span class="label label-primary">ACTIVE APPLICATION</span></div>
                     @endif
-                    <p><strong>AUTHORITY: </strong> 1ST-RRF-POLICIES-PROCEDURES</p>
-                    <p><strong>PRINCIPAL PURPOSE(S): </strong> To record enlistment or reenlistment into the 1st Rapid Response Force. This information becomes a part of the subject's military personnel records which are used to document promotion, reassignment, training, medical support, and other personnel management actions.</p>
+                    <div class="text-center"><h3>PRIVACY ACT STATEMENT</h3></div>
+                    <p><strong>AUTHORITY: </strong> TFE-POLICIES-PROCEDURES</p>
+                    <p><strong>PRINCIPAL PURPOSE(S): </strong> To record enlistment or reenlistment into the Task Force Everest. This information becomes a part of the subject's military personnel records which are used to document promotion, reassignment, training, medical support, and other personnel management actions.</p>
                     <p><strong>ROUTINE USE(S): </strong> This form becomes a part of the Service's Enlisted Master File and Field Personnel File.</p>
                     <p><strong>DISCLOSURE: </strong> Voluntary; however, failure to furnish personal identification information may negate the enlistment/reenlistment application</p>
                     <fieldset>
+
                         <legend>A. ENLISTEE/REENLISTEE IDENTIFICATION DATA</legend>
                         <div data-row-span="4">
                             <div data-field-span="1">
@@ -82,7 +83,22 @@
                     <fieldset>
                         <legend>B. ENLISTMENT SECTION</legend>
                         <fieldset>
-                            <legend>PREVIOUS EXPERIENCE</legend>
+                            <legend>GENERAL</legend>
+                            <div data-row-span="1">
+                                <div data-field-span="1">
+                                    <label>WHAT CHAIN OF COMMAND ARE YOU APPLYING FOR?</label>
+                                    <textarea name="position" rows="1" placeholder="Headquarters, Infantry, Cavalry, Fleet Air">{{$app->getApplication()->position}}</textarea>
+                                </div>
+                            </div>
+                            <div data-row-span="1">
+                                <div data-field-span="1">
+                                    <label>REASONING FOR JOINING THE TFE</label>
+                                    <textarea name="reason_for_joining" rows="3" placeholder="">{{$app->getApplication()->reason_for_joining}}</textarea>
+                                </div>
+                            </div>
+                        </fieldset><br>
+                        <fieldset>
+                            <legend>PRIOR SERVICE TRANSFER INFORMATION</legend>
                             <div data-row-span="2">
                                 <div data-field-span="1">
                                     <label>HAVE YOU BEEN IN A MILSIM UNIT BEFORE</label>
@@ -90,61 +106,38 @@
                                     <label><input type="radio" name="prior_experience" value="0" {{$app->getApplication()->prior_experience == 0 ? 'checked' : ''}}> NO</label> &nbsp;
                                 </div>
                                 <div data-field-span="1">
-                                    <label>HAVE YOU BEEN DISHONORABLY DISCHARGED/REMOVED FROM A UNIT</label>
-                                    <label><input type="radio" name="dishonorable_discharge" value="1" {{$app->getApplication()->dishonorable_discharge == 1 ? 'checked' : ''}}> YES</label> &nbsp;
-                                    <label><input type="radio" name="dishonorable_discharge" value="0" {{$app->getApplication()->dishonorable_discharge == 0 ? 'checked' : ''}}> NO</label> &nbsp;
+                                    <label>DISCHARGE TYPE (HONOURABLE, GENERAL, ADMINISTRATIVE, DISHONOURABLE)</label>
+                                    <input type="text" name="discharge_type" placeholder="" value="{{$app->getApplication()->discharge_type}}">
                                 </div>
                             </div>
-
-                            <div data-row-span="1">
-                                <div data-field-span="1">
-                                    <label>WHAT POSITION ARE YOU APPLYING FOR</label>
-                                    <textarea name="position" rows="1" placeholder="Leave blank if you where not referred by a recruitment post."></textarea>
-                                </div>
-                            </div>
-
-                            @if(isset($app->getApplication()->position))
-                                <div data-row-span="1">
-                                    <div data-field-span="1">
-                                        <label>WHAT POSITION ARE YOU APPLYING FOR</label>
-                                        <textarea name="position" rows="1" placeholder="Leave blank if you where not referred by a recruitment post.">{{$app->getApplication()->position}}</textarea>
-                                    </div>
-                                </div>
-                            @endif
-
-                            @if(isset($app->getApplication()->reason_for_joining))
-                                <div data-row-span="1">
-                                    <div data-field-span="1">
-                                        <label>REASONING FOR JOINING THE 1ST RRF</label>
-                                        <textarea name="reason_for_joining" rows="3" placeholder="">{{$app->getApplication()->reason_for_joining}}</textarea>
-                                    </div>
-                                </div>
-                            @endif
-
 
                         </fieldset>
-
-
                         <div data-row-span="1">
                             <div data-field-span="1">
                                 <label>WHAT GROUPS HAVE YOU BEEN A PART OF:</label>
-                                <input type="text" name="prior_groups" value="{{$app->getApplication()->prior_groups}}" placeholder="LEAVE THE REST OF THIS SECTION BLANK, IF NOT APPLICABLE">
+                                <input type="text" name="prior_groups" placeholder="" value="{{$app->getApplication()->prior_groups}}">
                             </div>
                         </div>
                         <div data-row-span="2">
                             <div data-field-span="1">
                                 <label>HIGHEST RANK ATTAINED</label>
-                                <input type="text" name="highest_rank" value="{{$app->getApplication()->highest_rank}}" placeholder="">
+                                <input type="text" name="highest_rank" placeholder="" value="{{$app->getApplication()->highest_rank}}">
                             </div>
                             <div data-field-span="1">
                                 <label>RELEVANT TRAINING:</label>
-                                <input type="text" name="relevant_training" value="{{$app->getApplication()->relevant_training}}" placeholder="">
+                                <input type="text" name="relevant_training" placeholder="" value="{{$app->getApplication()->relevant_training}}">
+                            </div>
+                        </div>
+                        <div data-row-span="2">
+                            <div data-field-span="2">
+                                <label>ROLES/MOS OCCUPIED</label>
+                                <input type="text" name="highest_rank" placeholder="" value="{{$app->getApplication()->highest_rank}}">
                             </div>
                         </div>
                         <div data-row-span="1">
                             <div data-field-span="1">
                                 <label>REASON FOR DEPARTURE FROM PREVIOUS UNIT</label>
-                                <input type="text" name="departure_reason" value="{{$app->getApplication()->departure_reason}}" placeholder="">
+                                <input type="text" name="departure_reason" placeholder="" value="{{$app->getApplication()->departure_reason}}">
                             </div>
                         </div>
                         <br>
@@ -152,29 +145,30 @@
                             <legend>AGREEMENTS</legend>
                             <div data-row-span="2">
                                 <div data-field-span="1">
-                                    <label>I UNDERSTAND THAT I AM JOINING A MILITARY SIMULATION UNIT</label>
-                                    <label><input type="radio" name="agreement_milsim" value="1" {{$app->getApplication()->agreement_milsim == 1 ? 'checked' : ''}} > YES</label> &nbsp;
-                                    <label><input type="radio" name="agreement_milsim" value="0" {{$app->getApplication()->agreement_milsim == 0 ? 'checked' : ''}}> NO</label> &nbsp;
+                                    <label>I ASSERT THAT ALL INFORMATION I HAVE PROVIDED IN THIS APPLICATION IS TRUTHFUL AND CORRECT TO THE BEST PART OF MY KNOWLEDGE.</label>
+                                    <label><input type="radio" name="agreement_truth" value="1" {{$app->getApplication()->agreement_truth == 1 ? 'checked' : ''}} > YES</label> &nbsp;
+                                    <label><input type="radio" name="agreement_truth" value="0" {{$app->getApplication()->agreement_truth == 0 ? 'checked' : ''}}> NO</label> &nbsp;
                                 </div>
                                 @if(isset($app->getApplication()->agreement_twice))
                                 <div data-field-span="1">
-                                    <label>I UNDERSTAND I WILL BE EXPECTED TO SHOW UP TWICE A WEEK TO EVENTS (UNLESS I NOTIFY IN ADVANCE I WILL NOT BE ABLE TO ATTEND)</label>
-                                    <label><input type="radio" name="agreement_twice" value="1" {{$app->getApplication()->agreement_twice == 1 ? 'checked' : ''}}> YES</label> &nbsp;
-                                    <label><input type="radio" name="agreement_twice" value="0" {{$app->getApplication()->agreement_twice == 0 ? 'checked' : ''}}> NO</label> &nbsp;
+                                    <label>I CONSENT FOR MY APPLICATION AND DATA TO BE PROCESSED BY SELECTED MEMBERS OF TASK FORCE EVEREST STAFF DEPARTMENTS</label>
+                                    <label><input type="radio" name="agreement_consent" value="1" {{$app->getApplication()->agreement_consent == 1 ? 'checked' : ''}}> YES</label> &nbsp;
+                                    <label><input type="radio" name="agreement_consent" value="0" {{$app->getApplication()->agreement_consent == 0 ? 'checked' : ''}}> NO</label> &nbsp;
                                 </div>
                                 @endif
                             </div>
                             @if(isset($app->getApplication()->agreement_recruit))
                             <div data-row-span="2">
                                 <div data-field-span="1">
-                                    <label>I UNDERSTAND IF ACCEPTED INTO THE 1RRF, I WILL BE ASSIGNED RECRUIT STATUS AND CAN BE DISMISSED AT ANYTIME (UNTIL COMPLETION OF RECRUITMENT PHASE).</label>
-                                    <label><input type="radio" name="agreement_recruit" value="1" {{$app->getApplication()->agreement_recruit == 1 ? 'checked' : ''}}> YES</label> &nbsp;
-                                    <label><input type="radio" name="agreement_recruit" value="0" {{$app->getApplication()->agreement_recruit == 0 ? 'checked' : ''}}> NO</label> &nbsp;
+                                    <label>I AM NOT CURRENTLY ENLISTED OR PARTICIPATING IN ANOTHER MILITARY SIMULATION, TACTICAL REALISM OR ORGANIZED GAMING COMMUNITY THAT OPERATES WITHIN ARMA III</label>
+
+                                        <label><input type="radio" name="agreement_dualclan" value="1" {{$app->getApplication()->agreement_dualclan == 1 ? 'checked' : ''}}> YES</label> &nbsp;
+                                    <label><input type="radio" name="agreement_dualclan" value="0" {{$app->getApplication()->agreement_dualclan == 0 ? 'checked' : ''}}> NO</label> &nbsp;
                                 </div>
                                 <div data-field-span="1">
-                                    <label>I UNDERSTAND IF ACCEPTED INTO THE 1RRF, I WILL BE ASSIGNED TO AN EXISTING RRF MEMBER FOR TRAINING</label>
-                                    <label><input type="radio" name="agreement_buddy" value="1" {{$app->getApplication()->agreement_buddy == 1 ? 'checked' : ''}}> YES</label> &nbsp;
-                                    <label><input type="radio" name="agreement_buddy" value="0" {{$app->getApplication()->agreement_buddy == 0 ? 'checked' : ''}}> NO</label> &nbsp;
+                                    <label>I AGREE TO BE BOUND BY THE TASK FORCE EVEREST'S UNIFORM CODE OF MILITARY JUSTICE COMMENCING AT THE TIME OF MY SUBMISSION OF THIS APPLICATION FORM UNTIL I RECEIVE MY DD-214 FROM THE S1 DEPARTMENT OF TASK FORCE EVEREST</label>
+                                    <label><input type="radio" name="agreement_ucmj" value="1" {{$app->getApplication()->agreement_ucmj == 1 ? 'checked' : ''}}> YES</label> &nbsp;
+                                    <label><input type="radio" name="agreement_ucmj" value="0" {{$app->getApplication()->agreement_ucmj == 0 ? 'checked' : ''}}> NO</label> &nbsp;
                                 </div>
                             </div>
                             @endif

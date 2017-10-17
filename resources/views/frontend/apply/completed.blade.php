@@ -25,7 +25,7 @@
                                 </div>
                             </div>
 
-                            <p>Thank you for applying to the Task Force Everest. We review all applications in bulk on Saturday. Please get in touch with any officer ranked member for an quick interview. Our system will email you once we make a decision on your application.</p>
+                            <p>Thank you for applying to the Task Force Everest. You will notify you via email when your application has been processed.</p>
 
                             <p>While you wait for us to process your application why not:</p>
                             <ul>

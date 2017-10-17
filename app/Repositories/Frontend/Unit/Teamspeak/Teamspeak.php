@@ -41,24 +41,14 @@ class Teamspeak implements TeamspeakContract
         $add = collect();
         $remove = collect();
         if ($user->member->rank->id >= 2) {
-            $groups->push(9);
+            $groups->push(56);
             $groups->push($user->member->rank->teamspeak_id);
 
             //Admin Check - Rod and Striker and Oges
-            if (($user->id == 1) || ($user->id == 2) || ($user->id == 3))
+            if (($user->id == 1) || ($user->id == 2))
                 $groups->push(6);
 
-            //Check if User is on LOA
-            if($user->member->loa)
-            {
-                $groups->push(52);
-            }
-
-            //Check if user is in Reserve
-            if($user->member->reserve)
-            {
-                $groups->push(53);
-            }
+            //TODO Add correct Staff Department integration
 
 
         } else {

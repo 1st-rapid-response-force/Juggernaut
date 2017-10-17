@@ -22,9 +22,9 @@
                             <div class="well">
                                 <form class="grid-form" method="post" action="{{route('frontend.paperwork.file-correction.post')}}">
                                     {!! csrf_field() !!}
-                                    <div class="text-center"><legend><strong>MEMBER FILE CORRECTION FORM</strong><br> 1ST RAPID RESPONSE FORCE<br><br></legend></div>
+                                    <div class="text-center"><legend><strong>MEMBER FILE CORRECTION FORM</strong><br> TASK FORCE EVEREST<br><br></legend></div>
                                     <div class="text-center"><h3>PRIVACY ACT STATEMENT</h3></div>
-                                    <p><strong>AUTHORITY: </strong> 1ST-RRF-POLICIES-PROCEDURES</p>
+                                    <p><strong>AUTHORITY: </strong> TFE-POLICIES-PROCEDURES</p>
                                     <p><strong>PRINCIPAL PURPOSE(S): </strong> Used to report and correct issues with member file.</p>
                                     <p><strong>ROUTINE USE(S): </strong> Used by S1 to correct issues with member files.</p>
                                     <p><strong>DISCLOSURE: </strong> Voluntary; however, failure to report issues with a virtual personnel file after becoming aware of an error and can lead to punitive action.</p>
@@ -54,7 +54,7 @@
                                         <div data-row-span="4">
                                             <div data-field-span="4">
                                                 <label>ORGANIZATION</label>
-                                                <input type="text" name="organization" readonly value="1st Rapid Response Force">
+                                                <input type="text" name="organization" readonly value="TASK FORCE EVEREST">
                                             </div>
                                         </div>
                                     </fieldset>

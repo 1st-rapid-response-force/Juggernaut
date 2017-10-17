@@ -22,10 +22,10 @@ class UsersTableSeeder extends Seeder
         ]);
 
         $striker->member()->create([
-            'rank_id' => '22',
-            'team_id' => '16',
-            'searchable_name' => 'MAJ. Striker.A',
-            'position' => 'ODA OIC'
+            'rank_id' => '21',
+            'team_id' => '1',
+            'searchable_name' => 'CPT. Striker.A',
+            'position' => 'Unit Commander'
         ]);
 
         $rod = \App\User::create([
@@ -39,7 +39,7 @@ class UsersTableSeeder extends Seeder
         $rod->member()->create([
             'searchable_name' => 'MAJ. Rodriguez.G',
             'rank_id' => '22',
-            'team_id' => '9',
+            'team_id' => '1',
             'position' => 'JAG'
         ]);
 

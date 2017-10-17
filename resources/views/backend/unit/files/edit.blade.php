@@ -92,7 +92,7 @@
                     <div class="form-group">
                         {{ Form::label('assignment', 'Assignment', ['class' => 'col-lg-2 control-label']) }}
                         <div class="col-lg-10">
-                            {{$file->assignment->name}}
+                            {{$file->assignment->name or 'Not Assigned'}}
                         </div><!--col-lg-10-->
                     </div><!--form control-->
 
@@ -330,13 +330,7 @@
                 <div class="col-lg-2">
                     <div class="pull-right">
 
-                        @if($file->hasReportedIn())
-                            <span class="label label-success">Reported in</span>
-                        @else
-                            <span class="label label-danger">Pending Report in</span>
-                        @endif
-                            <br><br>
-                        <img src="{{$file->showCAC()}}" class="img img-thumbnail">
+                        <img src="{{$file->avatar}}" class="img img-thumbnail">
 
                     </div>
 

@@ -47,18 +47,18 @@ class SquadXML extends Command
             $xml .= '<!DOCTYPE squad SYSTEM "squad.dtd">'. PHP_EOL;
             $xml .= '<?xml-stylesheet href="squad.xsl" type="text/xsl"?>'. PHP_EOL;
             $xml .= '<squad nick="RRF">'. PHP_EOL;
-            $xml .= '<name>1st Rapid Response Force</name>'. PHP_EOL;
-            $xml .= '<email>contactus@1st-rrf.com</email>'. PHP_EOL;
-            $xml .= '<web>1st-rrf.com</web>'. PHP_EOL;
-            $xml .= '<picture>1st-rrf.paa</picture>'. PHP_EOL;
-            $xml .= '<title>1st Rapid Response Force</title>'. PHP_EOL;
+            $xml .= '<name>Task Force Everest</name>'. PHP_EOL;
+            $xml .= '<email>contactus@tf-everest.com</email>'. PHP_EOL;
+            $xml .= '<web>tf-everest.com</web>'. PHP_EOL;
+            $xml .= '<picture>tfe.paa</picture>'. PHP_EOL;
+            $xml .= '<title>Task Force Everest</title>'. PHP_EOL;
             foreach ($members as $member)
             {
                 $xml .= '<member id="'.$member->user->steam_id.'" nick="'.$member.'">'. PHP_EOL;
                 $xml .= '<name>'.$member->user->first_name.' '.$member->user->last_name.'</name>'. PHP_EOL;
                 $xml .= '<email></email>'. PHP_EOL;
                 $xml .= '<icq>N/A</icq>'. PHP_EOL;
-                $xml .= '<remark>1st Rapid Response Force - '.$member->team->name.'</remark>'. PHP_EOL;
+                $xml .= '<remark>Task Force Everest - '.$member->team->name.'</remark>'. PHP_EOL;
                 $xml .= '</member>'. PHP_EOL;
             }
             $xml .= '</squad>'. PHP_EOL;

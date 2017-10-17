@@ -13,7 +13,9 @@ class AddLoadout extends Seeder
      */
     public function run()
     {
-        $qualification = Qualification::find(1);
+        $qualification = Qualification::create(['name' => 'Task Force Everest', 'description' => 'A member within Task Force Everest', 'published'=> true]);
+        $qualification->addMedia(public_path('img/logo.png'))->preservingOriginal()->toCollection('image');
+
         // Add Blank Objects for all categories
         $item = new Loadout;
         $item->qualification_id = $qualification->id;

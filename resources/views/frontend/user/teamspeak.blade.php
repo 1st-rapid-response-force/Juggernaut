@@ -8,8 +8,6 @@
         <div class="container">
             <ol class="breadcrumb">
                 <li><a href="/">Home</a></li>
-                <li><a href="{{route('frontend.files.my-file')}}">{{\Auth::User()->member}}</a></li>
-                <li><a href="{{route('frontend.settings')}}">Settings</a></li>
                 <li class="active">Teamspeak</li>
             </ol>
         </div>
