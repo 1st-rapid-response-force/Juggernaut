@@ -69,7 +69,7 @@
                             </div>
                         </div>
                         <div data-row-span="2">
-                            <div data-field-span="2">
+                            <div data-field-span="1">
                                 <label>Nationality</label>
                                 <input type="text" name="nationality" readonly value="{{$app->getApplication()->nationality}}">
                             </div>
@@ -78,9 +78,6 @@
                                 <input type="text" id="dob" name="locality" readonly value="{{$app->getApplication()->locality}}" placeholder="Country of Residence">
                             </div>
                         </div>
-
-
-
 
                     </fieldset>
                     <br>
