@@ -67,6 +67,17 @@
                                                 @include('frontend.apply.include.nationality')
                                             </div>
                                         </div>
+                                        <div data-row-span="2">
+                                            <div data-field-span="1">
+                                                <label>CURRENT LOCALITY</label>
+                                                <input type="text" id="locality" name="dob" placeholder="Country of Residence">
+                                            </div>
+                                            <div data-field-span="1">
+                                                <label>I AM INTERESTING IN TAKING THE "INTRODUCTION TO ARMA" SESSION TO ESTABLISH BASIC SKILLS SUCH AS MOVEMENT AND WEAPON HANDLING.</label>
+                                                <label><input type="radio" name="new_to_arma" value="1"> YES</label> &nbsp;
+                                                <label><input type="radio" name="new_to_arma" value="0" checked> NO</label> &nbsp;
+                                            </div>
+                                        </div>
                                         <div data-row-span="4">
                                             <div data-field-span="4" data-field-error="Please enter a valid email address">
                                                 <label>E-mail</label>
@@ -82,18 +93,18 @@
                                             <div data-row-span="1">
                                                 <div data-field-span="1">
                                                     <label>WHAT CHAIN OF COMMAND ARE YOU APPLYING FOR?</label>
-                                                    <textarea name="position" rows="1" placeholder="Headquarters, Infantry, Cavalry, Fleet Air"></textarea>
-                                                </div>
-                                            </div>
-                                            <div data-row-span="1">
-                                                <div data-field-span="1">
-                                                    <label>REASONING FOR JOINING THE TFE</label>
-                                                    <textarea name="reason_for_joining" rows="3" placeholder=""></textarea>
+                                                    <select name="position">
+                                                        <option>Headquarters</option>
+                                                        <option>Infantry</option>
+                                                        <option>Cavalry</option>
+                                                        <option>Fleet Air</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </fieldset><br>
                                             <fieldset>
                                             <legend>PRIOR SERVICE TRANSFER INFORMATION</legend>
+                                                <p>This section is only for use of players who have previously been in an ARMA III Military Simulation group.</p>
                                             <div data-row-span="2">
                                                 <div data-field-span="1">
                                                     <label>HAVE YOU BEEN IN A MILSIM UNIT BEFORE</label>
@@ -102,14 +113,19 @@
                                                 </div>
                                                 <div data-field-span="1">
                                                     <label>DISCHARGE TYPE (HONOURABLE, GENERAL, ADMINISTRATIVE, DISHONOURABLE)</label>
-                                                    <input type="text" name="discharge_type" placeholder="">
+                                                    <select name="discharge_type">
+                                                        <option>Honourable</option>
+                                                        <option>General</option>
+                                                        <option>Administrative</option>
+                                                        <option>Dishonorable</option>
+                                                    </select>
                                                 </div>
                                             </div>
 
                                         </fieldset>
                                         <div data-row-span="1">
                                             <div data-field-span="1">
-                                                <label>WHAT GROUPS HAVE YOU BEEN A PART OF:</label>
+                                                <label>LAST UNIT:</label>
                                                 <input type="text" name="prior_groups" placeholder="">
                                             </div>
                                         </div>
@@ -133,6 +149,13 @@
                                             <div data-field-span="1">
                                                 <label>REASON FOR DEPARTURE FROM PREVIOUS UNIT</label>
                                                 <input type="text" name="departure_reason" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div data-row-span="1">
+                                            <div data-field-span="1">
+                                                <label>I AM INTERESTED IN APPLYING FOR THE STANDARDISED TRANSFER ASSESSMENT TEST (stat) AS PART OF MY APPLICATION.</label>
+                                                <label><input type="radio" name="transfer" value="1"> YES</label> &nbsp;
+                                                <label><input type="radio" name="transfer" value="0" checked> NO</label> &nbsp;
                                             </div>
                                         </div>
                                         <br>
