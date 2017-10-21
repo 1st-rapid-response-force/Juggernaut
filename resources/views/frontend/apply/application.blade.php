@@ -68,12 +68,10 @@
                                             </div>
                                         </div>
                                         <div data-row-span="2">
-                                            @if(isset($app->getApplication()->locality))
-                                                <div data-field-span="1">
-                                                    <label>CURRENT LOCALITY</label>
-                                                    @include('frontend.apply.include.local')
-                                                </div>
-                                            @endif
+                                            <div data-field-span="1">
+                                                <label>CURRENT LOCALITY</label>
+                                                @include('frontend.apply.include.local')
+                                            </div>
                                             <div data-field-span="1">
                                                 <label>Nationality</label>
                                                 @include('frontend.apply.include.nationality')
@@ -97,7 +95,7 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            @if(isset($app->getApplication()->new_to_arma))
+
                                             <br>
                                             <div data-row-span="1">
                                             <div data-field-span="1">
@@ -106,7 +104,6 @@
                                                 <label><input type="radio" name="new_to_arma" value="0" checked> NO</label> &nbsp;
                                             </div>
                                             </div>
-                                            @endif
                                         </fieldset><br>
                                             <fieldset>
                                             <legend>PRIOR SERVICE TRANSFER INFORMATION</legend>
@@ -157,7 +154,6 @@
                                                 <input type="text" name="departure_reason" placeholder="">
                                             </div>
                                         </div>
-                                        @if(isset($app->getApplication()->transfer))
                                         <div data-row-span="1">
                                             <div data-field-span="1">
                                                 <label>I AM INTERESTED IN APPLYING FOR THE STANDARDISED TRANSFER ASSESSMENT TEST (stat) AS PART OF MY APPLICATION.</label>
@@ -165,7 +161,6 @@
                                                 <label><input type="radio" name="transfer" value="0" checked> NO</label> &nbsp;
                                             </div>
                                         </div>
-                                        @endif
                                         <br>
                                         <fieldset>
                                             <legend>AGREEMENTS</legend>

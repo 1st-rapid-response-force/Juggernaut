@@ -73,10 +73,12 @@
                                 <label>Nationality</label>
                                 <input type="text" name="nationality" readonly value="{{$app->getApplication()->nationality}}">
                             </div>
+                            @if(isset($app->getApplication()->locality))
                             <div data-field-span="1">
                                 <label>CURRENT LOCALITY</label>
                                 <input type="text" id="dob" name="locality" readonly value="{{$app->getApplication()->locality}}" placeholder="Country of Residence">
                             </div>
+                            @endif
                         </div>
 
                     </fieldset>
@@ -96,11 +98,13 @@
                                     </select>
                                 </div>
                             </div>
+                            @if(isset($app->getApplication()->new_to_arma))
                             <div data-field-span="1">
                                 <label>I AM INTERESTING IN TAKING THE "INTRODUCTION TO ARMA" SESSION TO ESTABLISH BASIC SKILLS SUCH AS MOVEMENT AND WEAPON HANDLING.</label>
                                 <label><input type="radio" name="new_to_arma" value="1" {{$app->getApplication()->new_to_arma == 1 ? 'checked' : ''}}> YES</label> &nbsp;
                                 <label><input type="radio" name="new_to_arma" value="0" {{$app->getApplication()->new_to_arma == 0 ? 'checked' : ''}}> NO</label> &nbsp;
                             </div>
+                            @endif
                         </fieldset><br>
                         <fieldset>
                             <legend>PRIOR SERVICE TRANSFER INFORMATION</legend>
@@ -150,6 +154,7 @@
                                 <input type="text" name="departure_reason" placeholder="" value="{{$app->getApplication()->departure_reason}}">
                             </div>
                         </div>
+                        @if(isset($app->getApplication()->transfer))
                         <div data-row-span="1">
                             <div data-field-span="1">
                                 <label>I AM INTERESTED IN APPLYING FOR THE STANDARDISED TRANSFER ASSESSMENT TEST (stat) AS PART OF MY APPLICATION.</label>
@@ -157,6 +162,7 @@
                                 <label><input type="radio" name="transfer" value="0" {{$app->getApplication()->transfer == 0 ? 'checked' : ''}}> NO</label> &nbsp;
                             </div>
                         </div>
+                        @endif
                         <br>
                         <fieldset>
                             <legend>AGREEMENTS</legend>
