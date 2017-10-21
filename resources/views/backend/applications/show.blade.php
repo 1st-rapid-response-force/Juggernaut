@@ -77,12 +77,6 @@
                                 <label>CURRENT LOCALITY</label>
                                 <input type="text" id="dob" name="locality" readonly value="{{$app->getApplication()->locality}}" placeholder="Country of Residence">
                             </div>
-
-                            <div data-field-span="1">
-                                <label>I AM INTERESTING IN TAKING THE "INTRODUCTION TO ARMA" SESSION TO ESTABLISH BASIC SKILLS SUCH AS MOVEMENT AND WEAPON HANDLING.</label>
-                                <label><input type="radio" name="new_to_arma" value="1" {{$app->getApplication()->new_to_arma == 1 ? 'checked' : ''}}> YES</label> &nbsp;
-                                <label><input type="radio" name="new_to_arma" value="0" {{$app->getApplication()->new_to_arma == 0 ? 'checked' : ''}}> NO</label> &nbsp;
-                            </div>
                         </div>
 
 
@@ -104,6 +98,11 @@
                                         <option {{$app->getApplication()->position == 'Fleet Air' ? 'selected' : ''}}>Fleet Air</option>
                                     </select>
                                 </div>
+                            </div>
+                            <div data-field-span="1">
+                                <label>I AM INTERESTING IN TAKING THE "INTRODUCTION TO ARMA" SESSION TO ESTABLISH BASIC SKILLS SUCH AS MOVEMENT AND WEAPON HANDLING.</label>
+                                <label><input type="radio" name="new_to_arma" value="1" {{$app->getApplication()->new_to_arma == 1 ? 'checked' : ''}}> YES</label> &nbsp;
+                                <label><input type="radio" name="new_to_arma" value="0" {{$app->getApplication()->new_to_arma == 0 ? 'checked' : ''}}> NO</label> &nbsp;
                             </div>
                         </fieldset><br>
                         <fieldset>
