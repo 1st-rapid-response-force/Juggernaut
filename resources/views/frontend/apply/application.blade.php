@@ -57,31 +57,24 @@
                                                 <input type="text" name="steam_id" readonly value="{{\Auth::User()->steam_id}}">
                                             </div>
                                         </div>
-                                        <div data-row-span="3">
+                                        <div data-row-span="2">
                                             <div data-field-span="1">
                                                 <label>DATE OF BIRTH</label>
                                                 <input type="text" id="dob" name="dob" placeholder="DD-MM-YYYY">
                                             </div>
-                                            <div data-field-span="2">
-                                                <label>Nationality</label>
-                                                @include('frontend.apply.include.nationality')
+                                            <div data-field-span="1" data-field-error="Please enter a valid email address">
+                                                <label>E-mail</label>
+                                                <input type="email" name="email" readonly value="{{\Auth::User()->email}}">
                                             </div>
                                         </div>
                                         <div data-row-span="2">
                                             <div data-field-span="1">
                                                 <label>CURRENT LOCALITY</label>
-                                                <input type="text" id="locality" name="dob" placeholder="Country of Residence">
+                                                @include('frontend.apply.include.local')
                                             </div>
                                             <div data-field-span="1">
-                                                <label>I AM INTERESTING IN TAKING THE "INTRODUCTION TO ARMA" SESSION TO ESTABLISH BASIC SKILLS SUCH AS MOVEMENT AND WEAPON HANDLING.</label>
-                                                <label><input type="radio" name="new_to_arma" value="1"> YES</label> &nbsp;
-                                                <label><input type="radio" name="new_to_arma" value="0" checked> NO</label> &nbsp;
-                                            </div>
-                                        </div>
-                                        <div data-row-span="4">
-                                            <div data-field-span="4" data-field-error="Please enter a valid email address">
-                                                <label>E-mail</label>
-                                                <input type="email" name="email" readonly value="{{\Auth::User()->email}}">
+                                                <label>Nationality</label>
+                                                @include('frontend.apply.include.nationality')
                                             </div>
                                         </div>
                                     </fieldset>
@@ -100,6 +93,11 @@
                                                         <option>Fleet Air</option>
                                                     </select>
                                                 </div>
+                                            </div>
+                                            <div data-field-span="1">
+                                                <label>I AM INTERESTING IN TAKING THE "INTRODUCTION TO ARMA" SESSION TO ESTABLISH BASIC SKILLS SUCH AS MOVEMENT AND WEAPON HANDLING.</label>
+                                                <label><input type="radio" name="new_to_arma" value="1"> YES</label> &nbsp;
+                                                <label><input type="radio" name="new_to_arma" value="0" checked> NO</label> &nbsp;
                                             </div>
                                         </fieldset><br>
                                             <fieldset>

@@ -58,21 +58,26 @@
                             </div>
                             @endif
                         </div>
-                        <div data-row-span="3">
+                        <div data-row-span="2">
                             <div data-field-span="1">
                                 <label>DATE OF BIRTH</label>
                                 <input type="text" id="dob" name="dob" readonly value="{{$app->getApplication()->dob}}" placeholder="MM/DD/YYYY">
                             </div>
+                            <div data-field-span="1" data-field-error="Please enter a valid email address">
+                                <label>E-mail</label>
+                                <input type="email" name="email" readonly value="{{$app->getApplication()->email}}">
+                            </div>
+                        </div>
+                        <div data-row-span="2">
                             <div data-field-span="2">
                                 <label>Nationality</label>
                                 <input type="text" name="nationality" readonly value="{{$app->getApplication()->nationality}}">
                             </div>
-                        </div>
-                        <div data-row-span="2">
                             <div data-field-span="1">
                                 <label>CURRENT LOCALITY</label>
                                 <input type="text" id="dob" name="locality" readonly value="{{$app->getApplication()->locality}}" placeholder="Country of Residence">
                             </div>
+
                             <div data-field-span="1">
                                 <label>I AM INTERESTING IN TAKING THE "INTRODUCTION TO ARMA" SESSION TO ESTABLISH BASIC SKILLS SUCH AS MOVEMENT AND WEAPON HANDLING.</label>
                                 <label><input type="radio" name="new_to_arma" value="1" {{$app->getApplication()->new_to_arma == 1 ? 'checked' : ''}}> YES</label> &nbsp;
@@ -80,14 +85,7 @@
                             </div>
                         </div>
 
-                        @if(isset($app->getApplication()->steam_id))
-                        <div data-row-span="4">
-                            <div data-field-span="4" data-field-error="Please enter a valid email address">
-                                <label>E-mail</label>
-                                <input type="email" name="email" readonly value="{{$app->getApplication()->email}}">
-                            </div>
-                        </div>
-                        @endif
+
 
 
                     </fieldset>
