@@ -95,10 +95,12 @@
                                                 </div>
                                             </div>
                                             <br>
+                                            <div data-row-span="1">
                                             <div data-field-span="1">
                                                 <label>I AM INTERESTING IN TAKING THE "INTRODUCTION TO ARMA" SESSION TO ESTABLISH BASIC SKILLS SUCH AS MOVEMENT AND WEAPON HANDLING.</label>
                                                 <label><input type="radio" name="new_to_arma" value="1"> YES</label> &nbsp;
                                                 <label><input type="radio" name="new_to_arma" value="0" checked> NO</label> &nbsp;
+                                            </div>
                                             </div>
                                         </fieldset><br>
                                             <fieldset>
